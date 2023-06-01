@@ -1,4 +1,4 @@
-# new_hita
+# truda
 
 A new Flutter project.
 
