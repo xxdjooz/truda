@@ -1,0 +1,22 @@
+PODS:
+  - disable_screenshots (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - disable_screenshots (from `.symlinks/plugins/disable_screenshots/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  disable_screenshots:
+    :path: ".symlinks/plugins/disable_screenshots/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  disable_screenshots: 3f3a1881efa341fcdad395fb2b25e11a9a7bce0b
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1

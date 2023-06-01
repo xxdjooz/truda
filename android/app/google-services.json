@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "827214121066",
+    "project_id": "pc-api-5759439220039539138-637",
+    "storage_bucket": "pc-api-5759439220039539138-637.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827214121066:android:9533efca23b1aa22aca213",
+        "android_client_info": {
+          "package_name": "com.hitawula.newhita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827214121066-4vig9nd0khsihuijb2msbkmg78sstabl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDksdwBM9tlo0s6u1GZZKwlkhwSWcYOD78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827214121066-4vig9nd0khsihuijb2msbkmg78sstabl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

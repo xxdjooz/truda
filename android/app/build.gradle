@@ -1,0 +1,242 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+//    cannot resolve symbol gradleexception，本来GradleException 解决这个报错，不替换也不影响运行的
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+// 使用测试，打包要改！！！！！！！！！！！！！！！！ todo
+//def keystorePropertiesFile = rootProject.file("key.properties")
+def keystorePropertiesFile = rootProject.file("keytest.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+// aab处理
+apply plugin: 'com.bytedance.android.aabResGuard'
+// 垃圾代码
+apply plugin: 'android-junk-code'
+// 使用测试包名时它会导致报错，可以注释掉它，打包要改！！！！！！！！！！！！！！！！ todo
+//apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 33
+//    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        // 打包要改！！！！！！！！！！！！！！！！ todo
+//        applicationId "com.hitawula.newhita" // 线上
+        applicationId "a.b.c.newhita" // 测试
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile file(keystoreProperties['storeFile']) // 发包使用
+//            storePassword keystoreProperties['storePassword']
+//        }
+//        debug {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile file(keystoreProperties['storeFile'])
+//            storePassword keystoreProperties['storePassword']
+//        }
+//    }
+
+    signingConfigs {
+        release {
+            if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
+                storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias System.getenv()["CM_KEY_ALIAS"]
+                keyPassword System.getenv()["CM_KEY_PASSWORD"]
+            } else {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile']) // 发包使用
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    lintOptions {
+        //忽略异常提示
+        disable 'InvalidPackage'
+        checkReleaseBuilds false //<- add this line
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true   //开启混淆
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //默认的混淆文件以及我们指定的混淆文件
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false   //开启混淆
+            zipAlignEnabled false  //压缩优化
+            shrinkResources false  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //默认的混淆文件以及我们指定的混淆文件
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
+
+    android {
+//    声网插件减小体积
+        packagingOptions {
+            //AI 降噪插件
+            exclude "**/libagora_ai_denoise_extension.so"
+            //提升屏幕共享中文本共享的清晰度
+            exclude "**/libagora_dav1d_extension.so"
+            //ROI 插件
+            exclude "**/libagora_fd_extension.so"
+            //虚拟背景插件
+            exclude "**/libagora_segmentation_extension.so"
+            //超分辨率（beta 功能）
+            exclude "**/libagora_super_resolution_extension.so"
+            //视频增强插件
+            exclude "**/libagora_video_process_extension.so"
+            //全格式音频解码插件
+            exclude "**/libagora-full-audio-format-extension.so"
+            //视频截图上传插件
+            exclude "**/libagora_ci_extension.so"
+            //空间音效插件
+            exclude "**/libagora_spatial_audio_extension.so"
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+//aabresguard插件
+aabResGuard {
+    obfuscatedBundleFileName = android.defaultConfig.applicationId + "-" + android.defaultConfig.versionCode + "-" + android.defaultConfig.versionName + ".aab"
+    // 混淆后的文件名称，必须以 `.aab` 结尾
+    enableFilterFiles = true
+    filterList = ["BUNDLE-METADATA/**/proguard.map"]
+    whiteList = [
+            // 白名单规则
+            "*.R.raw.*",
+            "*.R.drawable.icon",
+            "*.R.drawable.notify",
+            "*.R.mipmap.ic_launcher",
+            //谷歌服务
+            "*.R.string.default_web_client_id",
+            "*.R.string.firebase_database_url",
+            "*.R.string.gcm_defaultSenderId",
+            "*.R.string.google_api_key",
+            "*.R.string.google_app_id",
+            "*.R.string.google_crash_reporting_api_key",
+            "*.R.string.google_storage_bucket",
+            "*.R.string.project_id",
+            "*.R.string.com.crashlytics.android.build_id",
+            //所有涉及到 getResources().getIdentifier 对应的资源ID
+            "*.R.array.a1",
+            "*.R.string.s1",
+            "*.R.mipmap.m1",
+            "*.R.dimen.d1",
+            "*.R.integer.int1",
+            // for fabric
+            "*.R.string.com.crashlytics.*",
+            //Firebase Crashlytics
+            "*.R.bool.com.crashlytics.useFirebaseAppId",
+            "*.R.string.com.crashlytics.useFirebaseAppId",
+            "*.R.string.google_app_id",
+            "*.R.bool.com.crashlytics.CollectDeviceIdentifiers",
+            "*.R.string.com.crashlytics.CollectDeviceIdentifiers",
+            "*.R.bool.com.crashlytics.CollectUserIdentifiers",
+            "*.R.string.com.crashlytics.CollectUserIdentifiers",
+            "*.R.string.com.crashlytics.ApiEndpoint",
+            "*.R.string.io.fabric.android.build_id",
+            "*.R.string.com.crashlytics.android.build_id",
+            "*.R.bool.com.crashlytics.RequireBuildId",
+            "*.R.string.com.crashlytics.RequireBuildId",
+            "*.R.bool.com.crashlytics.CollectCustomLogs",
+            "*.R.string.com.crashlytics.CollectCustomLogs",
+            "*.R.bool.com.crashlytics.Trace",
+            "*.R.string.com.crashlytics.Trace",
+            "*.R.string.com.crashlytics.CollectCustomKeys",
+    ]
+    enableObfuscate = false
+}
+androidJunkCode {
+    variantConfig {
+        release {
+//变体名称，如果没有设置productFlavors就是buildType名称，如果有设置productFlavors就是flavor+buildType，例如（freeRelease、proRelease）
+            packageBase = "com.hitawula.newhita.ui"  //生成java类根包名
+            packageCount = 30 //生成包数量
+            activityCountPerPackage = 3 //每个包下生成Activity类数量
+            excludeActivityJavaFile = false
+            //是否排除生成Activity的Java文件,默认false(layout和写入AndroidManifest.xml还会执行)，主要用于处理类似神策全埋点编译过慢问题
+            otherCountPerPackage = 50  //每个包下生成其它类的数量
+            methodCountPerClass = 20  //每个类下生成方法数量
+            resPrefix = "newhita_"  //生成的layout、drawable、string等资源名前缀
+            drawableCount = 300  //生成drawable资源数量
+            stringCount = 300  //生成string数量
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // AIHelp
+    implementation 'net.aihelp:android-aihelp-aar:2.8.+'
+
+    // adjust
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+}

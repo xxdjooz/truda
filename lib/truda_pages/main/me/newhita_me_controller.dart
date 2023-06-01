@@ -1,0 +1,195 @@
+import 'dart:async';
+
+import 'package:get/get.dart';
+import 'package:truda/truda_common/truda_language_key.dart';
+import 'package:truda/truda_entities/truda_info_entity.dart';
+import 'package:truda/truda_services/newhita_event_bus_bean.dart';
+import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/newhita_log.dart';
+
+import '../../../truda_common/truda_charge_path.dart';
+import '../../../truda_common/truda_common_dialog.dart';
+import '../../../truda_common/truda_common_type.dart';
+import '../../../truda_dialogs/truda_dialog_confirm.dart';
+import '../../../truda_dialogs/truda_dialog_vip_diamond_get.dart';
+import '../../../truda_http/newhita_http_urls.dart';
+import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_socket/newhita_socket_entity.dart';
+import '../../../truda_socket/newhita_socket_manager.dart';
+import '../../login/newhita_login_util.dart';
+import '../../vip/newhita_vip_controller.dart';
+
+class NewHitaMeController extends GetxController {
+  /// 加载会话列表时的最下面一条的时间戳，根据这个分页加载
+  var time = DateTime.now().millisecondsSinceEpoch;
+  TrudaInfoDetail? myDetail;
+
+  late final TrudaCallback<NewHitaSocketBalance> _balanceListener;
+
+  /// event bus 监听
+  late final StreamSubscription<String> sub;
+
+  ///激励广告工具类
+  // late NewHitaAdsRewardedUtils rewardedUtils;
+  @override
+  void onInit() {
+    super.onInit();
+    myDetail = NewHitaMyInfoService.to.myDetail;
+    _balanceListener = (balance) {
+      NewHitaLog.debug(balance);
+      myDetail?.userBalance?.remainDiamonds = balance.diamonds;
+      // 邀请码
+      if (balance.inviterCode?.isNotEmpty == true) {
+        myDetail?.inviterCode = balance.inviterCode;
+      }
+      update();
+    };
+    NewHitaSocketManager.to.addBalanceListener(_balanceListener);
+
+    /// event bus 监听
+    sub = NewHitaStorageService.to.eventBus.on<String>().listen((event) {
+      if (event == eventBusRefreshMe) {
+        NewHitaLog.debug('eventBus eventBusRefreshMe');
+        refreshMe();
+      }
+      if (event == eventBusUpdateMe) {
+        NewHitaLog.debug('eventBus eventBusUpdateMe');
+        myDetail = NewHitaMyInfoService.to.myDetail;
+        update();
+      }
+    });
+
+    // 个人中心先不显示广告
+    // rewardedUtils =
+    //     NewHitaAdsRewardedUtils(NewHitaAdsUtils.getAdCode(NewHitaAdsUtils.REWARD_PROFILE), () {
+    //   update();
+    // });
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  Future refreshMe() async {
+    NewHitaLog.debug('NewHitaMeController refreshMe()');
+    await NewHitaHttpUtil()
+        .post<TrudaInfoDetail>(
+      NewHitaHttpUrls.userInfoApi,
+    )
+        .then((value) {
+      myDetail = value;
+      NewHitaMyInfoService.to.setMyDetail = value;
+      update();
+    });
+  }
+
+  @override
+  void onClose() {
+    sub.cancel();
+    super.onClose();
+    NewHitaSocketManager.to.removeBalanceListener(_balanceListener);
+    // rewardedUtils.closeSub();
+  }
+
+  void getVipDiamond() {
+    if (myDetail?.isVip != 1) {
+      TrudaCommonDialog.dialog(TrudaDialogConfirm(
+        title: TrudaLanguageKey.newhita_vip_upgrade_ask.tr,
+        callback: (i) {
+          NewHitaVipController.openDialog(
+              createPath: TrudaChargePath.recharge_vip_dialog_user_center);
+        },
+      ));
+      return;
+    }
+    // if (getTodayYet()) {
+    //   TrudaCommonDialog.dialog(NewHitaDialogConfirm(
+    //     title: TrudaLanguageKey.newhita_vip_diamond_already.tr,
+    //     callback: (i) {},
+    //     onlyConfirm: true,
+    //   ));
+    //   return;
+    // } else {
+    //
+    // }
+    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.vipSignIn, errCallback: (err) {
+      if (err.code == 71) {
+        TrudaCommonDialog.dialog(TrudaDialogConfirm(
+          title: TrudaLanguageKey.newhita_vip_diamond_already.tr,
+          callback: (i) {},
+          onlyConfirm: true,
+        ));
+      } else {
+        NewHitaLoading.toast(err.message);
+      }
+    }).then((value) {
+      // NewHitaStorageService.to.prefs
+      //     .setBool('$keyEveryDay${_getTodayStr()}', true);
+      int vipD = NewHitaMyInfoService.to.config?.vipDailyDiamonds ?? 10;
+      refreshMe();
+      TrudaCommonDialog.dialog(
+        TrudaDialogVipDiamondGet(
+          diamond: vipD,
+        ),
+      );
+      // Get.dialog(NewHitaDialogConfirm(
+      //   title: TrudaLanguageKey.newhita_vip_diamond_get.trArgs([vipD.toString()]),
+      //   callback: (i) {},
+      //   onlyConfirm: true,
+      // ));
+    });
+  }
+
+  String _getTodayStr() {
+    final today = DateTime.now();
+    return "${today.year.toString()}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}";
+  }
+
+  final String keyEveryDay = "keyVipDiamond-";
+
+  // 获取今天使用了几次
+  bool getTodayYet() {
+    return NewHitaStorageService.to.prefs
+            .getBool('$keyEveryDay${_getTodayStr()}') ??
+        false;
+  }
+
+  bool _logining = false;
+  NewHitaLoginUtil loginUtil = NewHitaLoginUtil();
+  void googleSignIn() {
+    if (_logining) {
+      return;
+    }
+    _logining = true;
+    loginUtil.googleSignIn((callback) {
+      if (callback.success) {
+        _loginGoogle(
+            callback.token, callback.id, callback.nickname, callback.cover);
+      } else {
+        NewHitaLoading.toast(TrudaLanguageKey.newhita_err_unknown.tr);
+      }
+      _logining = false;
+    });
+  }
+
+  /// google登录
+  void _loginGoogle(String? token, String id, String? nickname, String? cover) {
+    var config =
+    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.bindGoogle, data: {
+      "id": id,
+      "cover": cover ?? '',
+      "token": token ?? '',
+      "nickname": nickname ?? '',
+    }, errCallback: (err) {
+      NewHitaLoading.toast(err.toString());
+    }, doneCallback: (success, re) {
+      _logining = false;
+    }, showLoading: true);
+    config.then((value) {
+      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+    });
+  }
+}

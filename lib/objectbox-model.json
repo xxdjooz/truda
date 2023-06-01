@@ -1,0 +1,442 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:5801323278618565369",
+      "lastPropertyId": "13:8748831353225298135",
+      "name": "NewHitaOrderEntity",
+      "properties": [
+        {
+          "id": "1:5984136341120721055",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6654804423479040085",
+          "name": "userId",
+          "type": 9
+        },
+        {
+          "id": "3:511528472449000037",
+          "name": "orderNo",
+          "type": 9
+        },
+        {
+          "id": "4:8663324543209939486",
+          "name": "productId",
+          "type": 9
+        },
+        {
+          "id": "5:5067738032996008672",
+          "name": "price",
+          "type": 9
+        },
+        {
+          "id": "6:5244279085741581265",
+          "name": "currency",
+          "type": 9
+        },
+        {
+          "id": "7:5330302876823427671",
+          "name": "payType",
+          "type": 9
+        },
+        {
+          "id": "8:1398873006948748992",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "9:7303599399282208651",
+          "name": "payTime",
+          "type": 9
+        },
+        {
+          "id": "10:4922394321321089243",
+          "name": "orderCreateTime",
+          "type": 9
+        },
+        {
+          "id": "11:1673415854795397138",
+          "name": "orderStatus",
+          "type": 6
+        },
+        {
+          "id": "12:7346142556627946084",
+          "name": "isUploadServer",
+          "type": 1
+        },
+        {
+          "id": "13:8748831353225298135",
+          "name": "dateInsert",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8118914391823614089",
+      "lastPropertyId": "17:8782834569161307899",
+      "name": "TrudaAicEntity",
+      "properties": [
+        {
+          "id": "1:7143112715468219622",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6264949964418937317",
+          "name": "extra",
+          "type": 9
+        },
+        {
+          "id": "3:4975246918118719865",
+          "name": "callCardCount",
+          "type": 6
+        },
+        {
+          "id": "4:6910856567433320521",
+          "name": "aicId",
+          "type": 6
+        },
+        {
+          "id": "5:8981597364239371360",
+          "name": "isOnline",
+          "type": 6
+        },
+        {
+          "id": "6:643129062091801557",
+          "name": "muteStatus",
+          "type": 6
+        },
+        {
+          "id": "7:2342280816114485242",
+          "name": "isCard",
+          "type": 6
+        },
+        {
+          "id": "8:3141153890180185748",
+          "name": "propDuration",
+          "type": 6
+        },
+        {
+          "id": "9:5306730588659629226",
+          "name": "isFollowed",
+          "type": 1
+        },
+        {
+          "id": "10:5345566632857786702",
+          "name": "nickname",
+          "type": 9
+        },
+        {
+          "id": "11:3172123871376088454",
+          "name": "filename",
+          "type": 9
+        },
+        {
+          "id": "12:1702486771257778934",
+          "name": "portrait",
+          "type": 9
+        },
+        {
+          "id": "13:7113558965270985163",
+          "name": "localPath",
+          "type": 9
+        },
+        {
+          "id": "14:8288022627910098128",
+          "name": "userId",
+          "type": 9
+        },
+        {
+          "id": "15:8741775511956086600",
+          "name": "dateInsert",
+          "type": 6
+        },
+        {
+          "id": "16:4322604511740578676",
+          "name": "playState",
+          "type": 6
+        },
+        {
+          "id": "17:8782834569161307899",
+          "name": "rawData",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:5604083892956884505",
+      "lastPropertyId": "11:7266139082166574271",
+      "name": "TrudaCallEntity",
+      "properties": [
+        {
+          "id": "1:2641424417831606556",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5095819207997889598",
+          "name": "dateInsert",
+          "type": 6
+        },
+        {
+          "id": "3:7412495029810994013",
+          "name": "channelId",
+          "type": 9
+        },
+        {
+          "id": "4:3916426887976057168",
+          "name": "myId",
+          "type": 9
+        },
+        {
+          "id": "5:4647281218791161677",
+          "name": "herId",
+          "type": 9
+        },
+        {
+          "id": "6:6821628685001527556",
+          "name": "herVirtualId",
+          "type": 9
+        },
+        {
+          "id": "7:1494552420134524675",
+          "name": "groupId",
+          "type": 9
+        },
+        {
+          "id": "8:2753514954859886965",
+          "name": "callType",
+          "type": 2
+        },
+        {
+          "id": "9:5327481122409934852",
+          "name": "callStatus",
+          "type": 6
+        },
+        {
+          "id": "10:7677557061164833212",
+          "name": "duration",
+          "type": 9
+        },
+        {
+          "id": "11:7266139082166574271",
+          "name": "extra",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:125843660806084294",
+      "lastPropertyId": "13:123085008679097715",
+      "name": "TrudaConversationEntity",
+      "properties": [
+        {
+          "id": "1:5091614405070868748",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2564899723937920746",
+          "name": "dateInsert",
+          "type": 6
+        },
+        {
+          "id": "3:6195028589296146873",
+          "name": "msgId",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "1:5788284007238431499"
+        },
+        {
+          "id": "4:2810017047602598624",
+          "name": "myId",
+          "type": 9
+        },
+        {
+          "id": "5:1081332848614509218",
+          "name": "herId",
+          "type": 9
+        },
+        {
+          "id": "6:2289142493297846751",
+          "name": "groupId",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "2:2144574539597997996"
+        },
+        {
+          "id": "7:3576594327179150861",
+          "name": "sendType",
+          "type": 2
+        },
+        {
+          "id": "8:3905913732179587386",
+          "name": "sendState",
+          "type": 2
+        },
+        {
+          "id": "9:6925201724276477089",
+          "name": "unReadQuality",
+          "type": 6
+        },
+        {
+          "id": "10:8412939545608074336",
+          "name": "top",
+          "type": 6
+        },
+        {
+          "id": "11:6622370315137490666",
+          "name": "content",
+          "type": 9
+        },
+        {
+          "id": "12:756620765733580784",
+          "name": "lastMsgType",
+          "type": 6
+        },
+        {
+          "id": "13:123085008679097715",
+          "name": "rawData",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:6048106847533876611",
+      "lastPropertyId": "5:1584457970257929326",
+      "name": "TrudaHerEntity",
+      "properties": [
+        {
+          "id": "1:6912151501688369116",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7874099289435378045",
+          "name": "uid",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "3:6618365412498658621"
+        },
+        {
+          "id": "3:5749557295475279866",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:3940987237106901650",
+          "name": "portrait",
+          "type": 9
+        },
+        {
+          "id": "5:1584457970257929326",
+          "name": "date",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:4337628684584240603",
+      "lastPropertyId": "13:5891861027157683697",
+      "name": "TrudaMsgEntity",
+      "properties": [
+        {
+          "id": "1:5019897548950007058",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5352370631074539375",
+          "name": "dateInsert",
+          "type": 6
+        },
+        {
+          "id": "3:3890339691778210629",
+          "name": "msgId",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "4:943818944054675991"
+        },
+        {
+          "id": "4:3084552477991976560",
+          "name": "myId",
+          "type": 9,
+          "flags": 2048,
+          "indexId": "5:4750468883458362259"
+        },
+        {
+          "id": "5:3866301234666901347",
+          "name": "herId",
+          "type": 9
+        },
+        {
+          "id": "6:2232171376636144193",
+          "name": "groupId",
+          "type": 9
+        },
+        {
+          "id": "7:2344209803581760346",
+          "name": "sendType",
+          "type": 2
+        },
+        {
+          "id": "8:3466909513836170564",
+          "name": "sendState",
+          "type": 2
+        },
+        {
+          "id": "9:3999992643843121524",
+          "name": "readState",
+          "type": 2
+        },
+        {
+          "id": "10:3716848422884864276",
+          "name": "msgType",
+          "type": 6
+        },
+        {
+          "id": "11:7434647585219050739",
+          "name": "content",
+          "type": 9
+        },
+        {
+          "id": "12:617806596178276628",
+          "name": "extra",
+          "type": 9
+        },
+        {
+          "id": "13:5891861027157683697",
+          "name": "rawData",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "6:4337628684584240603",
+  "lastIndexId": "5:4750468883458362259",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

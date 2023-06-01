@@ -1,0 +1,11 @@
+为了把Google的billing版本改到4.1.0，做了这个本地库，主要是怀疑5版本的和Google支付成功率低有关系
+
+这个插件的billing版本是3.x.x，改动4.1.0后代码android代码改动：
+1.Translator：
+方法fromPurchase和fromPurchaseHistoryRecord，从插件0.2.3复制过来的，里面的info.put("skus", skus);老版本
+是sku,这个从String变成列表了，这个最终会影响PurchaseWrapper里面的sku,但是我们好像没有用到
+2.MethodCallHandlerImpl:
+queryPurchases方法里面有过时调用，改成了从插件0.2.3复制过来的queryPurchasesAsync,其中有个字段purchaseList
+要改成purchasesList
+
+launchBillingFlow方法里面paramsBuilder的设置oldSku和prorationMode从从插件0.2.3复制过来的
