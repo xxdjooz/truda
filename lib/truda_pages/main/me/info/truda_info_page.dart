@@ -7,10 +7,10 @@ import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_services/truda_event_bus_bean.dart';
 import '../../../../truda_services/truda_storage_service.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
-import '../../../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../../truda_widget/newhita_sheet_header.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
+import '../../../../truda_widget/truda_avatar_with_bg.dart';
+import '../../../../truda_widget/truda_decoration_bg.dart';
+import '../../../../truda_widget/truda_sheet_header.dart';
 import 'truda_info_controller.dart';
 
 class TrudaInfoPage extends GetView<TrudaInfoController> {
@@ -24,7 +24,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
       },
       builder: (contro) {
         return Scaffold(
-          appBar: NewHitaAppBar(
+          appBar: TrudaAppBar(
             title: Text(TrudaLanguageKey.newhita_details_edit_info.tr),
             backgroundColor: TrudaColors.white,
             bottom: PreferredSize(
@@ -51,7 +51,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
                     onTap: contro.changeAvatar,
                     child: Stack(
                       children: [
-                        NewHitaAvatarWithBg(
+                        TrudaAvatarWithBg(
                           url: controller.myDetail?.portrait ?? '',
                           width: 135,
                           height: 135,
@@ -226,7 +226,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const NewHitaSheetHeader(),
+            const TrudaSheetHeader(),
             Container(
                 padding: EdgeInsetsDirectional.only(top: 30),
                 decoration: const BoxDecoration(
@@ -357,7 +357,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
       Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const NewHitaSheetHeader(),
+          const TrudaSheetHeader(),
           Container(
             decoration: BoxDecoration(
               color: TrudaColors.white,
@@ -490,7 +490,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const NewHitaSheetHeader(),
+                const TrudaSheetHeader(),
                 Container(
                   decoration: BoxDecoration(
                     // gradient: LinearGradient(

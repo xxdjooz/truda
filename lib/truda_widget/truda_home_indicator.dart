@@ -10,11 +10,11 @@ import 'package:truda/truda_common/truda_colors.dart';
 /// The [TabBar.indicatorSize] property can be used to define the indicator's
 /// bounds in terms of its (centered) widget with [TabBarIndicatorSize.label],
 /// or the entire tab with [TabBarIndicatorSize.tab].
-class NewHitaHomeTabIndicator extends Decoration {
+class TrudaHomeTabIndicator extends Decoration {
   /// Create an underline style selected tab indicator.
   ///
   /// The [borderSide] and [insets] arguments must not be null.
-  NewHitaHomeTabIndicator({
+  TrudaHomeTabIndicator({
     this.borderSide = const BorderSide(width: 2.0, color: Colors.white),
     this.insets = EdgeInsets.zero,
   })  : assert(borderSide != null),
@@ -33,8 +33,8 @@ class NewHitaHomeTabIndicator extends Decoration {
 
   @override
   Decoration? lerpFrom(Decoration? a, double t) {
-    if (a is NewHitaHomeTabIndicator) {
-      return NewHitaHomeTabIndicator(
+    if (a is TrudaHomeTabIndicator) {
+      return TrudaHomeTabIndicator(
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
         insets: EdgeInsetsGeometry.lerp(a.insets, insets, t)!,
       );
@@ -44,8 +44,8 @@ class NewHitaHomeTabIndicator extends Decoration {
 
   @override
   Decoration? lerpTo(Decoration? b, double t) {
-    if (b is NewHitaHomeTabIndicator) {
-      return NewHitaHomeTabIndicator(
+    if (b is TrudaHomeTabIndicator) {
+      return TrudaHomeTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
         insets: EdgeInsetsGeometry.lerp(insets, b.insets, t)!,
       );
@@ -55,7 +55,7 @@ class NewHitaHomeTabIndicator extends Decoration {
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _NewHitaHomeTabPainter(this, onChanged);
+    return _TrudaHomeTabPainter(this, onChanged);
   }
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
@@ -76,12 +76,12 @@ class NewHitaHomeTabIndicator extends Decoration {
   }
 }
 
-class _NewHitaHomeTabPainter extends BoxPainter {
-  _NewHitaHomeTabPainter(this.decoration, VoidCallback? onChanged)
+class _TrudaHomeTabPainter extends BoxPainter {
+  _TrudaHomeTabPainter(this.decoration, VoidCallback? onChanged)
       : assert(decoration != null),
         super(onChanged);
 
-  final NewHitaHomeTabIndicator decoration;
+  final TrudaHomeTabIndicator decoration;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {

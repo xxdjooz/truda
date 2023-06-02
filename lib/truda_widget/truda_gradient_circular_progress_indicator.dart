@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 /// A circular progress indicator with gradient effect.
-class NewHitaGradientCircularProgressIndicator extends StatelessWidget {
-  const NewHitaGradientCircularProgressIndicator({
+class TrudaGradientCircularProgressIndicator extends StatelessWidget {
+  const TrudaGradientCircularProgressIndicator({
     Key? key,
     required this.radius,
     this.stokeWidth = 2.0,
@@ -21,7 +21,7 @@ class NewHitaGradientCircularProgressIndicator extends StatelessWidget {
   /// The width of the line used to draw the circle.
   final double stokeWidth;
 
-  /// The radius of the [NewHitaGradientCircularProgressIndicator]
+  /// The radius of the [TrudaGradientCircularProgressIndicator]
   final double radius;
 
   /// The kind of finish to place on the end of arc drawn .
@@ -84,7 +84,7 @@ class NewHitaGradientCircularProgressIndicator extends StatelessWidget {
       angle: -pi / 2.0 - _offset,
       child: CustomPaint(
         size: Size.fromRadius(radius),
-        painter: _NewHitaGradientCircularProgressPainter(
+        painter: _TrudaGradientCircularProgressPainter(
           stokeWidth: stokeWidth,
           strokeCapRound: strokeCapRound,
           backgroundColor: backgroundColor,
@@ -99,8 +99,8 @@ class NewHitaGradientCircularProgressIndicator extends StatelessWidget {
   }
 }
 
-class _NewHitaGradientCircularProgressPainter extends CustomPainter {
-  const _NewHitaGradientCircularProgressPainter({
+class _TrudaGradientCircularProgressPainter extends CustomPainter {
+  const _TrudaGradientCircularProgressPainter({
     this.stokeWidth = 10.0,
     this.strokeCapRound = false,
     this.backgroundColor = const Color(0xFFEEEEEE),
@@ -179,7 +179,7 @@ class _NewHitaGradientCircularProgressPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_NewHitaGradientCircularProgressPainter old) {
+  bool shouldRepaint(_TrudaGradientCircularProgressPainter old) {
     return old.stokeWidth != stokeWidth ||
         old.strokeCapRound != strokeCapRound ||
         old.backgroundColor != backgroundColor ||

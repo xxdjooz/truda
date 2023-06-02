@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
-class NewHitaStackedList extends StatelessWidget {
+class TrudaStackedList extends StatelessWidget {
   final double sizeW = 44.0;
   final double offsetW = 20.0;
   List<String>? list;
 
-  NewHitaStackedList({Key? key, required this.list}) : super(key: key);
+  TrudaStackedList({Key? key, required this.list}) : super(key: key);
 
   double _getImageStackWidth() {
     if (list?.isNotEmpty != true) return 0;
@@ -21,7 +21,7 @@ class NewHitaStackedList extends StatelessWidget {
       _list.add(PositionedDirectional(
         start: off,
         child: CircleAvatar(
-          child: NewHitaNetImage(
+          child: TrudaNetImage(
             list![i],
             width: sizeW,
             height: sizeW,
@@ -66,7 +66,7 @@ class NewHitaStackedList extends StatelessWidget {
   }
 }
 
-class NewHitaImageStackPage extends StatelessWidget {
+class TrudaImageStackPage extends StatelessWidget {
   final double sizeW = 50.0;
   final double offsetW = 20.0;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vap2/vap_view.dart';
-import 'package:truda/truda_widget/newhita_cache_manager.dart';
+import 'package:truda/truda_widget/truda_cache_manager.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_utils/truda_log.dart';
@@ -24,7 +24,7 @@ class TrudaVapController {
     if (state == null) return;
     state?.showPush(gift);
     if (gift.animEffectUrl == null || gift.animEffectUrl!.isEmpty) return;
-    NewHitaGiftCacheManager.instance
+    TrudaGiftCacheManager.instance
         .getSingleFile(gift.animEffectUrl ?? '')
         .then((value) {
       TrudaLog.debug('NewHitaVapPlayer getSingleFile ${value.path}');

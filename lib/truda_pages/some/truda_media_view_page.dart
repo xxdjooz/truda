@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:truda/truda_entities/truda_moment_entity.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_net_image.dart';
-import '../../truda_widget/newhita_player_android.dart';
+import '../../truda_widget/truda_net_image.dart';
+import '../../truda_widget/truda_player_android.dart';
 
 class TrudaMediaPage extends StatefulWidget {
   int position;
@@ -249,7 +249,7 @@ class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.bean.noAppBar
-          ? NewHitaAppBar(
+          ? TrudaAppBar(
               actions: [
                 if (widget.bean.mId != null)
                   GestureDetector(
@@ -269,7 +269,7 @@ class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
                   ),
               ],
             )
-          : NewHitaAppBar(
+          : TrudaAppBar(
               actions: [
                 if (widget.bean.mId != null)
                   GestureDetector(
@@ -295,11 +295,11 @@ class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
         tag: widget.bean.heroId,
         child: SizedBox.expand(
             child: widget.bean.type == 0
-                ? NewHitaNetImage(
+                ? TrudaNetImage(
               widget.bean.path,
               fit: BoxFit.contain,
             )
-                : NewHitaPlayerAndroid(
+                : TrudaPlayerAndroid(
               cover: widget.bean.cover,
               path: widget.bean.path,
               stream: widget.stream,

@@ -7,7 +7,7 @@ import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/truda_log.dart';
-import '../newhita_cache_manager.dart';
+import '../truda_cache_manager.dart';
 
 class TrudaGiftDataHelper {
   static Future<List<TrudaGiftEntity>?> getGifts({bool vip = false}) async {
@@ -51,7 +51,7 @@ class TrudaGiftDataHelper {
     getGifts().then((value) {
       if (value == null || value.isEmpty) return;
       for (var gift in value) {
-        NewHitaGiftCacheManager.instance
+        TrudaGiftCacheManager.instance
             .getSingleFile(gift.animEffectUrl ?? '')
             .then((value) {
           TrudaLog.debug('checkGiftDownload getSingleFile ${value.path}');

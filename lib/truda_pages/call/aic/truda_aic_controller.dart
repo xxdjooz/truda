@@ -37,7 +37,7 @@ import '../../../truda_utils/truda_log.dart';
 import '../../../truda_widget/gift/truda_gift_data_helper.dart';
 import '../../../truda_widget/gift/truda_gift_list_view.dart';
 import '../../../truda_widget/gift/truda_vap_player.dart';
-import '../../../truda_widget/newhita_cache_manager.dart';
+import '../../../truda_widget/truda_cache_manager.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/truda_vip_controller.dart';
 import '../end/truda_end_controller.dart';
@@ -173,7 +173,7 @@ class TrudaAicController extends GetxController {
     // });
 
     // DefaultCacheManager()
-    NewHitaAicCacheManager.instance
+    TrudaAicCacheManager.instance
         .getFileStream(url, withProgress: true)
         .listen((fileResponse) {
       if (fileResponse is DownloadProgress) {

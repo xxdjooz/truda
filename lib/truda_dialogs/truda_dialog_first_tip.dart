@@ -5,7 +5,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../truda_common/truda_common_dialog.dart';
-import '../truda_widget/newhita_gradient_button.dart';
+import '../truda_widget/truda_gradient_button.dart';
 
 //首次文明弹窗
 class TrudaFirstTip extends StatefulWidget {
@@ -143,7 +143,7 @@ class _TrudaFirstTipState extends State<TrudaFirstTip> {
                       const SizedBox(
                         height: 10,
                       ),
-                      NewHitaGradientButton(
+                      TrudaGradientButton(
                         onTap: () {
                           Get.back();
                         },

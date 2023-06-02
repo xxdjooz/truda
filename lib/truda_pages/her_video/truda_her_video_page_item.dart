@@ -13,8 +13,8 @@ import 'package:truda/truda_pages/her_video/truda_cache_page.dart';
 import 'package:truda/truda_pages/her_video/truda_video_progress.dart';
 import 'package:truda/truda_pages/host/truda_host_controller.dart';
 import 'package:truda/truda_utils/truda_log.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../truda_dialogs/truda_sheet_host_video_option.dart';
@@ -138,7 +138,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
           ),
           if (firstIn)
             Positioned.fill(
-              child: NewHitaNetImage(
+              child: TrudaNetImage(
                 widget.detail.portrait ?? '',
                 placeholderAsset: 'assets/images_sized/newhita_home_girl.png',
               ),
@@ -218,7 +218,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                NewHitaNetImage(
+                                TrudaNetImage(
                                   widget.detail.portrait ?? "",
                                   isCircle: true,
                                   width: 36,

@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_text_styles.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/truda_log.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 import 'package:intl/intl.dart';
 
 import '../../../truda_common/truda_constants.dart';
@@ -326,7 +326,7 @@ class NewHitaMsgWidget extends StatelessWidget {
                         width: 50,
                         height: 50,
                       )
-                    : NewHitaNetImage(
+                    : TrudaNetImage(
                         her?.portrait ?? "",
                         width: 50,
                         height: 50,

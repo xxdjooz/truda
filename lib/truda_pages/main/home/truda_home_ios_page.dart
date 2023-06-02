@@ -10,7 +10,7 @@ import 'package:truda/truda_pages/main/moment/truda_moment_list_page.dart';
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_routes/truda_pages.dart';
-import '../../../truda_widget/newhita_image_indicator.dart';
+import '../../../truda_widget/truda_image_indicator.dart';
 import 'truda_follow_page.dart';
 
 class TrudaHomeIosPage extends StatefulWidget {
@@ -78,7 +78,7 @@ class _TrudaHomeIosPageState extends State<TrudaHomeIosPage>
         title: TabBar(
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.label,
-          indicator: indicator == null ? null : NewHitaImageIndicator(indicator!),
+          indicator: indicator == null ? null : TrudaImageIndicator(indicator!),
           tabs: [
             Tab(text: TrudaLanguageKey.newhita_home_tab_hot.tr),
             Tab(text: TrudaLanguageKey.newhita_home_tab_follow.tr)

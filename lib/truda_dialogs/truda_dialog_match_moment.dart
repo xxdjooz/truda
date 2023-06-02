@@ -21,7 +21,7 @@ import '../truda_pages/some/truda_media_view_page.dart';
 import '../truda_routes/truda_pages.dart';
 import '../truda_utils/truda_format_util.dart';
 import '../truda_utils/truda_loading.dart';
-import '../truda_widget/newhita_net_image.dart';
+import '../truda_widget/truda_net_image.dart';
 import 'truda_dialog_match_one.dart';
 
 class TrudaDialogMatchMoment extends StatefulWidget {
@@ -183,7 +183,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
                       height: 42,
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
-                        child: NewHitaNetImage(
+                        child: TrudaNetImage(
                           bean.portrait ?? "",
                         ),
                       ),
@@ -281,7 +281,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
                     children: [
                       Hero(
                         tag: heroId,
-                        child: NewHitaNetImage(
+                        child: TrudaNetImage(
                           media.mediaType == 1
                               ? media.screenshotUrl!
                               : media.mediaUrl!,

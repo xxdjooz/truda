@@ -22,7 +22,7 @@ import '../truda_pages/chat/truda_chat_controller.dart';
 import '../truda_utils/truda_format_util.dart';
 import '../truda_utils/truda_loading.dart';
 import '../truda_utils/truda_log.dart';
-import '../truda_widget/newhita_net_image.dart';
+import '../truda_widget/truda_net_image.dart';
 import 'truda_sheet_host_option.dart';
 
 class TrudaDialogMatchOne extends StatefulWidget {
@@ -188,7 +188,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
                                               ),
                                             ),
                                           )
-                                        : NewHitaNetImage(
+                                        : TrudaNetImage(
                                             widget.detail.portrait ?? "",
                                             placeholderAsset:
                                                 "assets/images_sized/newhita_home_girl.png",
@@ -428,7 +428,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                NewHitaNetImage(
+                TrudaNetImage(
                   detail.portrait ?? "",
                   isCircle: true,
                   width: 36,

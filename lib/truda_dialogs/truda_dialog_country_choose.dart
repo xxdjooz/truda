@@ -11,8 +11,8 @@ import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_hot_entity.dart';
 import '../truda_services/truda_my_info_service.dart';
-import '../truda_widget/newhita_gradient_boder.dart';
-import '../truda_widget/newhita_net_image.dart';
+import '../truda_widget/truda_gradient_boder.dart';
+import '../truda_widget/truda_net_image.dart';
 
 class TrudaDialogCountryChoose extends StatelessWidget {
   List<TrudaAreaData> areaList;
@@ -111,7 +111,7 @@ class TrudaDialogCountryChoose extends StatelessWidget {
                                           ),
                                         )
                                       else
-                                        NewHitaNetImage(
+                                        TrudaNetImage(
                                           area.path ?? "",
                                           width: 22,
                                           height: 22,
@@ -158,7 +158,7 @@ class TrudaDialogCountryChoose extends StatelessWidget {
 
   void showLevalWarn() {
     TrudaCommonDialog.dialog(Center(
-      child: NewHitaGradientBoder(
+      child: TrudaGradientBoder(
           margin: EdgeInsets.symmetric(horizontal: 30),
           padding: EdgeInsetsDirectional.only(top: 30, bottom: 20),
           border: 3,

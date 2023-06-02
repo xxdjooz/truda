@@ -9,8 +9,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_utils/truda_format_util.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
-import '../../../../truda_widget/newhita_avatar_with_bg.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
+import '../../../../truda_widget/truda_avatar_with_bg.dart';
 import '../../../call/local/truda_local_controller.dart';
 import '../../../chat/truda_chat_controller.dart';
 import '../../home/truda_host_widget.dart';
@@ -23,7 +23,7 @@ class TrudaCallListPage extends GetView<TrudaCallListController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaCallListController>(builder: (contro) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(
             TrudaLanguageKey.newhita_conver_history.tr,
           ),
@@ -89,7 +89,7 @@ class TrudaCallListPage extends GetView<TrudaCallListController> {
                                 },
                                 child: Stack(
                                   children: [
-                                    NewHitaAvatarWithBg(
+                                    TrudaAvatarWithBg(
                                       url: bean.peerPortrait ?? "",
                                       width: 65,
                                       height: 65,

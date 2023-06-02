@@ -5,8 +5,8 @@ import 'package:truda/truda_services/truda_app_info_service.dart';
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_common/truda_language_key.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
-import '../../../../truda_widget/newhita_decoration_bg.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
+import '../../../../truda_widget/truda_decoration_bg.dart';
 import '../../../some/truda_web_page.dart';
 import 'truda_about_controller.dart';
 
@@ -16,9 +16,9 @@ class TrudaAboutPage extends GetView<TrudaAboutController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const NewHitaDecorationBg(),
+      decoration: const TrudaDecorationBg(),
       child: Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(TrudaLanguageKey.newhita_setting_about_us.tr),
         ),
         extendBodyBehindAppBar: false,

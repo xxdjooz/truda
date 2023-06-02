@@ -8,14 +8,14 @@ import 'package:truda/truda_pages/some/truda_web_page.dart';
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_common/truda_language_key.dart';
-import '../../truda_widget/newhita_gradient_boder.dart';
+import '../../truda_widget/truda_gradient_boder.dart';
 
 showAgreeDialog(Function fun) {
   bool _checked = true;
   TrudaCommonDialog.dialog(
       Container(
           child: Center(
-        child: NewHitaGradientBoder(
+        child: TrudaGradientBoder(
             margin: EdgeInsets.symmetric(horizontal: 30),
             padding: EdgeInsetsDirectional.only(top: 30, bottom: 20),
             border: 3,

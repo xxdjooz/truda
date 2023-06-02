@@ -2,7 +2,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_cache_manager/src/storage/file_system/file_system.dart';
 
 /// aic的缓存管理器
-class NewHitaAicCacheManager {
+class TrudaAicCacheManager {
   static const key = 'aicCache';
   static CacheManager instance = CacheManager(
     Config(
@@ -17,7 +17,7 @@ class NewHitaAicCacheManager {
 }
 
 /// 礼物的缓存管理器
-class NewHitaGiftCacheManager {
+class TrudaGiftCacheManager {
   static const key = 'giftCache';
   static CacheManager instance = CacheManager(
     Config(

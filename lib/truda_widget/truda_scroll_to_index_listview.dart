@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class NewHitaScrollToIndex extends StatefulWidget {
+class TrudaScrollToIndex extends StatefulWidget {
   final IndexedWidgetBuilder itemBuilder;
   final Duration? duration;
   final double topDistance;
   final int itemCount;
-  final NewHitaScrollToIndexController? controller;
+  final TrudaScrollToIndexController? controller;
 
-  const NewHitaScrollToIndex(
+  const TrudaScrollToIndex(
       {Key? key,
         this.duration,
         this.topDistance = 0,
@@ -18,10 +18,10 @@ class NewHitaScrollToIndex extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NewHitaScrollToIndexState createState() => _NewHitaScrollToIndexState();
+  _TrudaScrollToIndexState createState() => _TrudaScrollToIndexState();
 }
 
-class _NewHitaScrollToIndexState extends State<NewHitaScrollToIndex> {
+class _TrudaScrollToIndexState extends State<TrudaScrollToIndex> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _scrollKey = GlobalKey();
 
@@ -66,7 +66,7 @@ class _NewHitaScrollToIndexState extends State<NewHitaScrollToIndex> {
   }
 
   @override
-  void didUpdateWidget(covariant NewHitaScrollToIndex oldWidget) {
+  void didUpdateWidget(covariant TrudaScrollToIndex oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       _bindController();
@@ -104,8 +104,8 @@ class _NewHitaScrollToIndexState extends State<NewHitaScrollToIndex> {
   }
 }
 
-class NewHitaScrollToIndexController {
-  _NewHitaScrollToIndexState? _scrollToIndexState;
+class TrudaScrollToIndexController {
+  _TrudaScrollToIndexState? _scrollToIndexState;
 
   /// 滑动到指定位置
   void to(int index) {
@@ -116,7 +116,7 @@ class NewHitaScrollToIndexController {
     this._scrollToIndexState = null;
   }
 
-  void _bind(_NewHitaScrollToIndexState state) {
+  void _bind(_TrudaScrollToIndexState state) {
     this._scrollToIndexState = state;
   }
 }

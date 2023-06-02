@@ -4,8 +4,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../truda_common/truda_colors.dart';
 
-class NewHitaHostTabBar extends TabBar {
-  NewHitaHostTabBar({Key? key, final TabController? controller})
+class TrudaHostTabBar extends TabBar {
+  TrudaHostTabBar({Key? key, final TabController? controller})
       : super(
           key: key,
           tabs: [
@@ -45,7 +45,7 @@ class NewHitaHostTabBar extends TabBar {
               const TextStyle(fontSize: 16, color: Colors.white38),
           isScrollable: false,
           indicatorSize: TabBarIndicatorSize.label,
-          indicator: const NewHitaHostTabIndicator(),
+          indicator: const TrudaHostTabIndicator(),
           indicatorWeight: 0,
           labelPadding: const EdgeInsets.symmetric(horizontal: 4.0),
           // indicatorPadding:
@@ -56,8 +56,8 @@ class NewHitaHostTabBar extends TabBar {
   // Size get preferredSize => Size.fromHeight(46);
 }
 
-class NewHitaHostTabIndicator extends Decoration {
-  const NewHitaHostTabIndicator({
+class TrudaHostTabIndicator extends Decoration {
+  const TrudaHostTabIndicator({
     this.borderSide = const BorderSide(width: 2.0, color: Colors.white),
     this.insets = EdgeInsets.zero,
   })  : assert(borderSide != null),
@@ -68,8 +68,8 @@ class NewHitaHostTabIndicator extends Decoration {
 
   @override
   Decoration? lerpFrom(Decoration? a, double t) {
-    if (a is NewHitaHostTabIndicator) {
-      return NewHitaHostTabIndicator(
+    if (a is TrudaHostTabIndicator) {
+      return TrudaHostTabIndicator(
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
         insets: EdgeInsetsGeometry.lerp(a.insets, insets, t)!,
       );
@@ -79,8 +79,8 @@ class NewHitaHostTabIndicator extends Decoration {
 
   @override
   Decoration? lerpTo(Decoration? b, double t) {
-    if (b is NewHitaHostTabIndicator) {
-      return NewHitaHostTabIndicator(
+    if (b is TrudaHostTabIndicator) {
+      return TrudaHostTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
         insets: EdgeInsetsGeometry.lerp(insets, b.insets, t)!,
       );
@@ -90,7 +90,7 @@ class NewHitaHostTabIndicator extends Decoration {
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _NewHitaHostTabPainter(this, onChanged);
+    return _TrudaHostTabPainter(this, onChanged);
   }
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
@@ -111,12 +111,12 @@ class NewHitaHostTabIndicator extends Decoration {
   }
 }
 
-class _NewHitaHostTabPainter extends BoxPainter {
-  _NewHitaHostTabPainter(this.decoration, VoidCallback? onChanged)
+class _TrudaHostTabPainter extends BoxPainter {
+  _TrudaHostTabPainter(this.decoration, VoidCallback? onChanged)
       : assert(decoration != null),
         super(onChanged);
 
-  final NewHitaHostTabIndicator decoration;
+  final TrudaHostTabIndicator decoration;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {

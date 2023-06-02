@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
@@ -128,7 +128,7 @@ class _TrudaAccountPasswordPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           backgroundColor: Colors.transparent,
           title: Text(
             TrudaLanguageKey.newhita_visitor_pw_change.tr,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_constants.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 import 'truda_black_list_controller.dart';
 
 class TrudaBlackListPage extends GetView<TrudaBlackListController> {
@@ -17,7 +17,7 @@ class TrudaBlackListPage extends GetView<TrudaBlackListController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaBlackListController>(builder: (contro) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(
             TrudaLanguageKey.newhita_setting_black_list.tr,
           ),
@@ -81,7 +81,7 @@ class TrudaBlackListPage extends GetView<TrudaBlackListController> {
                                       width: 64,
                                       height: 64,
                                     )
-                                        : NewHitaNetImage(
+                                        : TrudaNetImage(
                                       bean.portrait ?? "",
                                     ),
                                   ),

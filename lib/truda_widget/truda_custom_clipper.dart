@@ -41,10 +41,10 @@ import 'package:flutter/material.dart';
 //   style: TextStyle(color: Color(0xffEDFBFF), fontSize: 24),
 // );
 // 随着进度的增加，扫描式地减少
-class NewHitaProgressClipper extends CustomClipper<Path> {
+class TrudaProgressClipper extends CustomClipper<Path> {
   final double progress;
 
-  NewHitaProgressClipper({this.progress = 0});
+  TrudaProgressClipper({this.progress = 0});
 
   @override
   Path getClip(Size size) {
@@ -71,16 +71,16 @@ class NewHitaProgressClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant NewHitaProgressClipper oldClipper) {
+  bool shouldReclip(covariant TrudaProgressClipper oldClipper) {
     return progress != oldClipper.progress;
   }
 }
 
 // 阴影区域圆形缩减的效果
-class NewHitaCircleProgressClipper extends CustomClipper<Path> {
+class TrudaCircleProgressClipper extends CustomClipper<Path> {
   final double progress;
 
-  NewHitaCircleProgressClipper({this.progress = 0});
+  TrudaCircleProgressClipper({this.progress = 0});
 
   @override
   Path getClip(Size size) {
@@ -98,16 +98,16 @@ class NewHitaCircleProgressClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant NewHitaCircleProgressClipper oldClipper) {
+  bool shouldReclip(covariant TrudaCircleProgressClipper oldClipper) {
     return progress != oldClipper.progress;
   }
 }
 
 // 让遮罩以矩形的方式逐渐缩减
-class NewHitaRectProgressClipper extends CustomClipper<Path> {
+class TrudaRectProgressClipper extends CustomClipper<Path> {
   final double progress;
 
-  NewHitaRectProgressClipper({this.progress = 0});
+  TrudaRectProgressClipper({this.progress = 0});
 
   @override
   Path getClip(Size size) {
@@ -124,7 +124,7 @@ class NewHitaRectProgressClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant NewHitaRectProgressClipper oldClipper) {
+  bool shouldReclip(covariant TrudaRectProgressClipper oldClipper) {
     return progress != oldClipper.progress;
   }
 }

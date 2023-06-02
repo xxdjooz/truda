@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class NewHitaBorder extends BorderDirectional {
+class TrudaBorder extends BorderDirectional {
   @override
   final BorderSide top;
   @override
@@ -10,7 +10,7 @@ class NewHitaBorder extends BorderDirectional {
   @override
   final BorderSide end;
 
-  const NewHitaBorder({
+  const TrudaBorder({
     this.top = BorderSide.none,
     this.bottom = BorderSide.none,
     this.start = BorderSide.none,

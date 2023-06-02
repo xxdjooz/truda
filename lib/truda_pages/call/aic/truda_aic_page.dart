@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_widget/newhita_decoration_bg.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_decoration_bg.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/gift/truda_vap_player.dart';
-import '../../../truda_widget/newhita_click_widget.dart';
+import '../../../truda_widget/truda_click_widget.dart';
 import '../truda_contribute_view.dart';
 import 'truda_aic_controller.dart';
 import 'truda_aic_widget.dart';
@@ -53,7 +53,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                NewHitaNetImage(
+                                TrudaNetImage(
                                   controller.detail?.portrait ?? '',
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
@@ -138,7 +138,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                     const SizedBox(
                       width: 10,
                     ),
-                    NewHitaClickWidget(
+                    TrudaClickWidget(
                         onTap: controller.switchCamera,
                         child: Image.asset(
                           'assets/images/newhita_call_camera.png',
@@ -424,7 +424,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
     return Scaffold(
         backgroundColor: TrudaColors.baseColorBlackBg,
         body: Container(
-          decoration: const NewHitaDecorationBg(),
+          decoration: const TrudaDecorationBg(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -439,7 +439,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                       right: 35,
                       child: Transform.rotate(
                         angle: pi / 12.0,
-                        child: NewHitaNetImage(
+                        child: TrudaNetImage(
                           controller.detail?.portrait ?? "",
                           imageBuilder: (context, imageProvider) => Container(
                               width: 150,
@@ -459,7 +459,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                       left: 35,
                       child: Transform.rotate(
                         angle: -pi / 12.0,
-                        child: NewHitaNetImage(
+                        child: TrudaNetImage(
                           TrudaMyInfoService.to.userLogin?.portrait ?? "",
                           imageBuilder: (context, imageProvider) => Container(
                               width: 150,

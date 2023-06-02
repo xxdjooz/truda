@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../truda_common/truda_colors.dart';
 
-class NewHitaGradientButton extends StatelessWidget {
+class TrudaGradientButton extends StatelessWidget {
   final Widget child;
   final GestureTapCallback onTap;
   final EdgeInsetsGeometry? padding;
   final double? width;
   final double? height;
 
-  const NewHitaGradientButton(
+  const TrudaGradientButton(
       {Key? key,
       required this.child,
       required this.onTap,

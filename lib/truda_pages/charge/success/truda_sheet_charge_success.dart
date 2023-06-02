@@ -5,7 +5,7 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_my_info_service.dart';
-import '../../../truda_widget/newhita_sheet_header.dart';
+import '../../../truda_widget/truda_sheet_header.dart';
 
 class TrudaSheetChargeSuccess extends StatefulWidget {
   final int lottery;
@@ -31,7 +31,7 @@ class _TrudaSheetChargeSuccessState extends State<TrudaSheetChargeSuccess> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const NewHitaSheetHeader(),
+        const TrudaSheetHeader(),
         Container(
             decoration: const BoxDecoration(
               // gradient: LinearGradient(

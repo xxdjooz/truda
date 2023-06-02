@@ -10,7 +10,7 @@ import '../truda_http/truda_http_util.dart';
 import '../truda_pages/login/truda_login_util.dart';
 import '../truda_services/truda_my_info_service.dart';
 import '../truda_utils/truda_loading.dart';
-import '../truda_widget/newhita_gradient_boder.dart';
+import '../truda_widget/truda_gradient_boder.dart';
 
 //提醒绑定弹窗
 class TrudaBindTip extends StatefulWidget {
@@ -84,7 +84,7 @@ class _TrudaBindTipState extends State<TrudaBindTip> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          NewHitaGradientBoder(
+          TrudaGradientBoder(
             border: 3,
             colors: const [
               TrudaColors.baseColorGradient1,

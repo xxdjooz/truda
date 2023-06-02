@@ -9,8 +9,8 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_entities/truda_charge_quick_entity.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_my_info_service.dart';
-import '../../../truda_widget/newhita_app_bar.dart';
-import '../../../truda_widget/newhita_click_widget.dart';
+import '../../../truda_widget/truda_app_bar.dart';
+import '../../../truda_widget/truda_click_widget.dart';
 import '../../../truda_widget/lottery_winner/truda_lottery_show_player.dart';
 import 'truda_charge_ios_controller.dart';
 
@@ -24,7 +24,7 @@ class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
         fit: StackFit.expand,
         children: [
           Scaffold(
-            appBar: NewHitaAppBar(
+            appBar: TrudaAppBar(
               title: Text(TrudaLanguageKey.newhita_recharge.tr),
               actions: [
                 if (!TrudaConstants.isFakeMode)
@@ -232,7 +232,7 @@ class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
 
   Widget getGoogleItem(
       TrudaPayQuickCommodite commodite, TrudaChargeIosController controller) {
-    return NewHitaClickWidget(
+    return TrudaClickWidget(
       onTap: () async {
         // bool hasNotCompleteTransactions =
         // await CblGlInAppPurchase.hasNotCompleteTransactions();

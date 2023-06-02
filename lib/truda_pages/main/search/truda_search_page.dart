@@ -5,8 +5,8 @@ import 'package:truda/truda_pages/main/search/truda_search_bar.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../truda_widget/newhita_net_image.dart';
+import '../../../truda_widget/truda_decoration_bg.dart';
+import '../../../truda_widget/truda_net_image.dart';
 import '../../host/truda_host_controller.dart';
 import '../home/truda_host_widget.dart';
 import 'truda_search_controller.dart';
@@ -35,7 +35,7 @@ class TrudaSearchPage extends GetView<TrudaSearchController> {
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: const NewHitaDecorationBg(),
+          decoration: const TrudaDecorationBg(),
           child: Column(
             children: [
               SizedBox(
@@ -91,7 +91,7 @@ class TrudaHostSearchWidget extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-              child: NewHitaNetImage(
+              child: TrudaNetImage(
             detail.portrait ?? "",
             radius: 10,
           )),

@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/main/moment/create/truda_create_controller.dart';
-import 'package:truda/truda_widget/newhita_click_widget.dart';
+import 'package:truda/truda_widget/truda_click_widget.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_utils/truda_choose_image_util.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 
 class TrudaCreatePage extends GetView<TrudaCreateController> {
   TrudaCreatePage({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class TrudaCreatePage extends GetView<TrudaCreateController> {
         },
         child: Scaffold(
           backgroundColor: TrudaColors.white,
-          appBar: NewHitaAppBar(
+          appBar: TrudaAppBar(
             // title: Text(
             //   TrudaLanguageKey.newhita_story_post.tr,
             //   style: TextStyle(color: TrudaColors.textColor333),
@@ -43,7 +43,7 @@ class TrudaCreatePage extends GetView<TrudaCreateController> {
 
             ),
             actions: [
-              NewHitaClickWidget(
+              TrudaClickWidget(
                 child: Center(
                   child: Image.asset('assets/images/newhita_moment_create.png'),
                 ),

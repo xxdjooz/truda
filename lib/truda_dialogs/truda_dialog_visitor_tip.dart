@@ -15,7 +15,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:ui' as ui;
 
 import '../truda_common/truda_colors.dart';
-import '../truda_widget/newhita_gradient_boder.dart';
+import '../truda_widget/truda_gradient_boder.dart';
 
 // 访客登录提示保存账号密码
 class TrudaVisitorTip extends StatefulWidget {
@@ -156,7 +156,7 @@ class _TrudaVisitorTipState extends State<TrudaVisitorTip> {
             child: Stack(
               alignment: AlignmentDirectional.topCenter,
               children: [
-                NewHitaGradientBoder(
+                TrudaGradientBoder(
                   border: 3,
                   colors: const [
                     TrudaColors.baseColorGradient1,

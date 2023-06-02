@@ -5,18 +5,18 @@ import 'package:video_player/video_player.dart';
 
 import '../truda_pages/call/aic/truda_aic_controller.dart';
 
-class NewHitaVideoPlayer extends StatefulWidget {
+class TrudaVideoPlayer extends StatefulWidget {
   // String netUrl;
   // String imageUrl;
   VideoPlayerController controller;
 
-  NewHitaVideoPlayer({Key? key, required this.controller}) : super(key: key);
+  TrudaVideoPlayer({Key? key, required this.controller}) : super(key: key);
 
   @override
-  _NewHitaVideoPlayerState createState() => _NewHitaVideoPlayerState();
+  _TrudaVideoPlayerState createState() => _TrudaVideoPlayerState();
 }
 
-class _NewHitaVideoPlayerState extends State<NewHitaVideoPlayer> {
+class _TrudaVideoPlayerState extends State<TrudaVideoPlayer> {
   late VideoPlayerController _controller;
   bool startedPlaying = false;
 

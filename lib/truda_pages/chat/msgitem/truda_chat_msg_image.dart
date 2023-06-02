@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_pages/some/truda_media_view_page.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../truda_chat_msg_widget.dart';
 import '../truda_chat_msg_wrapper.dart';
@@ -43,7 +43,7 @@ class TrudaChatMsgImage extends StatelessWidget {
                       TrudaMediaViewPage.startMe(context,
                           path: url ?? '', cover: '', type: 0, heroId: 0);
                     },
-                    child: NewHitaNetImage(url ?? '')),
+                    child: TrudaNetImage(url ?? '')),
               ),
             ),
           )
@@ -65,7 +65,7 @@ class TrudaChatMsgImage extends StatelessWidget {
                           TrudaMediaViewPage.startMe(context,
                               path: url ?? '', cover: '', type: 0, heroId: 0);
                         },
-                        child: NewHitaNetImage(url))
+                        child: TrudaNetImage(url))
                     : Image.file(File(msg.extra ?? '')),
               ),
             ),

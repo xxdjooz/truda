@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// 网络加载图片
-class NewHitaNetImage extends CachedNetworkImage {
-  NewHitaNetImage(
+class TrudaNetImage extends CachedNetworkImage {
+  TrudaNetImage(
     String imageUrl, {
     Key? key,
     String? placeholderAsset,

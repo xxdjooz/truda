@@ -5,9 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_widget/newhita_gradient_boder.dart';
-import '../truda_widget/newhita_gradient_button.dart';
-import '../truda_widget/newhita_line_button.dart';
+import '../truda_widget/truda_gradient_boder.dart';
+import '../truda_widget/truda_gradient_button.dart';
+import '../truda_widget/truda_line_button.dart';
 
 class TrudaDialogConfirm extends StatelessWidget {
   TrudaCallback<int> callback;
@@ -32,7 +32,7 @@ class TrudaDialogConfirm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: NewHitaGradientBoder(
+      child: TrudaGradientBoder(
         margin: EdgeInsets.symmetric(horizontal: 30),
         padding: EdgeInsetsDirectional.only(top: 30, bottom: 20),
         border: 3,
@@ -91,7 +91,7 @@ class TrudaDialogConfirm extends StatelessWidget {
                 children: [
                   if (!onlyConfirm)
                     Expanded(
-                      child: NewHitaLineButton(
+                      child: TrudaLineButton(
                         onTap: () {
                           Get.back();
                         },
@@ -111,7 +111,7 @@ class TrudaDialogConfirm extends StatelessWidget {
                     ),
                   if (!onlyConfirm) const SizedBox(width: 15),
                   Expanded(
-                    child: NewHitaGradientButton(
+                    child: TrudaGradientButton(
                       onTap: () {
                         Get.back();
                         callback.call(1);

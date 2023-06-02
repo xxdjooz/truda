@@ -23,7 +23,7 @@ import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/truda_loading.dart';
 import '../../../truda_utils/truda_log.dart';
-import '../../../truda_widget/newhita_app_bar.dart';
+import '../../../truda_widget/truda_app_bar.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_login_agree_dialog.dart';
 import '../truda_login_to_main_api.dart';
@@ -203,7 +203,7 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
         ],
       )),
       child: Scaffold(
-          appBar: NewHitaAppBar(
+          appBar: TrudaAppBar(
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             title: Text(TrudaLanguageKey.newhita_login_username.tr),
           ),

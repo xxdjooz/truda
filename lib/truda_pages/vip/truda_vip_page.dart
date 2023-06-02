@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_services/truda_my_info_service.dart';
-import '../../truda_widget/newhita_gradient_button.dart';
+import '../../truda_widget/truda_gradient_button.dart';
 
 class TrudaVipPage extends GetView<TrudaVipController> {
   TrudaVipPage({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class TrudaVipPage extends GetView<TrudaVipController> {
         () => TrudaVipController()..createPath = createPath);
     return GetBuilder<TrudaVipController>(builder: (contr) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           leading: GestureDetector(
             onTap: () => Navigator.maybePop(Get.context!),
             child: Container(
@@ -166,7 +166,7 @@ class TrudaVipPage extends GetView<TrudaVipController> {
                           return _getVipItem(index);
                         },
                       ),
-                      NewHitaGradientButton(
+                      TrudaGradientButton(
                         padding:
                             EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         onTap: () {

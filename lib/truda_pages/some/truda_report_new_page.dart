@@ -13,7 +13,7 @@ import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../truda_utils/truda_loading.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_app_bar.dart';
+import '../../truda_widget/truda_app_bar.dart';
 
 class TrudaReportNewPage extends StatelessWidget {
   const TrudaReportNewPage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class TrudaReportNewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var arguments = Get.arguments as Map<String, dynamic>;
     return Scaffold(
-      appBar: NewHitaAppBar(
+      appBar: TrudaAppBar(
         title: Text(TrudaLanguageKey.newhita_setting_opinions_complaints.tr),
       ),
       backgroundColor: TrudaColors.baseColorBlackBg,

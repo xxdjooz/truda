@@ -26,10 +26,10 @@ import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/truda_log.dart';
 import '../../truda_utils/truda_ui_image_util.dart';
-import '../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../truda_widget/newhita_border.dart';
-import '../../truda_widget/newhita_image_indicator.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_avatar_with_bg.dart';
+import '../../truda_widget/truda_border.dart';
+import '../../truda_widget/truda_image_indicator.dart';
+import '../../truda_widget/truda_net_image.dart';
 import '../../truda_widget/sliver/truda_sliver_header_delegate.dart';
 import '../chat/truda_chat_controller.dart';
 import '../main/home/truda_host_widget.dart';
@@ -158,7 +158,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                               child: Stack(
                                 fit: StackFit.expand,
                                 children: [
-                                  NewHitaNetImage(_controller.portrait!,
+                                  TrudaNetImage(_controller.portrait!,
                                       placeholderAsset:
                                           'assets/images_sized/newhita_home_girl.png'),
                                   PositionedDirectional(
@@ -184,7 +184,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                                     bottom: 90,
                                     child: Row(
                                       children: [
-                                        NewHitaAvatarWithBg(
+                                        TrudaAvatarWithBg(
                                           url: _controller.detail?.portrait ??
                                               "",
                                           width: 64,
@@ -345,7 +345,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                                   // indicator: TrudaHostDetailIndicator(),
                                   indicator: _controller.indicatorImage == null
                                       ? null
-                                      : NewHitaImageIndicator(
+                                      : TrudaImageIndicator(
                                           _controller.indicatorImage!,
                                           colorFilter:
                                               TrudaColors.baseColorTheme,
@@ -731,7 +731,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                               imageFilter:
                                   ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                               // 注意这里vip图片path会返回N/A
-                              child: NewHitaNetImage(bean.type == 1
+                              child: TrudaNetImage(bean.type == 1
                                   ? bean.cover ?? ''
                                   : _controller.detail?.portrait ?? ''),
                             ),
@@ -739,7 +739,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                         else
                           ClipRRect(
                             borderRadius: BorderRadiusDirectional.circular(14),
-                            child: NewHitaNetImage(
+                            child: TrudaNetImage(
                               bean.type == 1
                                   ? bean.cover ?? ''
                                   : bean.path ?? '',
@@ -869,7 +869,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                                     children: [
                                       Hero(
                                         tag: heroId,
-                                        child: NewHitaNetImage(
+                                        child: TrudaNetImage(
                                           media.mediaType == 1
                                               ? media.screenshotUrl!
                                               : media.mediaUrl!,

@@ -4,7 +4,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_utils/truda_some_extension.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
@@ -31,7 +31,7 @@ class TrudaHostWidget extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: NewHitaNetImage(
+            child: TrudaNetImage(
               detail.portrait ?? "",
               radius: 10,
               placeholderAsset: "assets/images_sized/newhita_home_girl.png",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NewHitaSheetHeader extends StatelessWidget {
-  const NewHitaSheetHeader({Key? key}) : super(key: key);
+class TrudaSheetHeader extends StatelessWidget {
+  const TrudaSheetHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

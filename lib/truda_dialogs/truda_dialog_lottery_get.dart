@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_lottery_entity.dart';
-import '../truda_widget/newhita_gradient_button.dart';
+import '../truda_widget/truda_gradient_button.dart';
 
 // 抽奖结果
 class TrudaDialogLotteryGet extends StatelessWidget {
@@ -44,7 +44,7 @@ class TrudaDialogLotteryGet extends StatelessWidget {
                     Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                        child: NewHitaNetImage(bean.icon ?? '')),
+                        child: TrudaNetImage(bean.icon ?? '')),
                     if (bean.drawType != 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -96,7 +96,7 @@ class TrudaDialogLotteryGet extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: NewHitaGradientButton(
+                  child: TrudaGradientButton(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     onTap: () {
                       Get.back();

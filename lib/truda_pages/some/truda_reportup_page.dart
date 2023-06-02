@@ -10,7 +10,7 @@ import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../../truda_utils/truda_loading.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_decoration_bg.dart';
+import '../../truda_widget/truda_decoration_bg.dart';
 
 class TrudaReportUpPage extends StatefulWidget {
   const TrudaReportUpPage({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _TrudaReportUpPageState extends State<TrudaReportUpPage> {
       ),
       backgroundColor: TrudaColors.baseColorBlackBg,
       body: Container(
-          decoration: const NewHitaDecorationBg(),
+          decoration: const TrudaDecorationBg(),
           width: double.infinity,
           height: double.infinity,
           child: TrudaReportWdg(upid, null)),

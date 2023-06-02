@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/gift/truda_vap_player.dart';
-import '../../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../../truda_widget/newhita_click_widget.dart';
+import '../../../truda_widget/truda_avatar_with_bg.dart';
+import '../../../truda_widget/truda_click_widget.dart';
 import '../truda_contribute_view.dart';
 import 'truda_aiv_controller.dart';
 import 'truda_aiv_widget.dart';
@@ -54,7 +54,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    NewHitaNetImage(
+                                    TrudaNetImage(
                                       controller.detail?.portrait ?? '',
                                       imageBuilder: (context, imageProvider) =>
                                           Container(
@@ -143,7 +143,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
                             const SizedBox(
                               width: 8,
                             ),
-                            NewHitaClickWidget(
+                            TrudaClickWidget(
                                 onTap: controller.switchCamera,
                                 child: Image.asset(
                                   'assets/images/newhita_call_camera.png',
@@ -489,7 +489,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
           extendBodyBehindAppBar: true,
           body: Stack(
             children: [
-              NewHitaNetImage(
+              TrudaNetImage(
                 controller.detail?.portrait ?? "",
                 placeholder: (context, url) => const SizedBox(),
                 errorWidget: (context, url, error) => const SizedBox(),
@@ -563,7 +563,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
                                           ),
                                         ),
                                         padding: const EdgeInsets.all(15),
-                                        child: NewHitaAvatarWithBg(
+                                        child: TrudaAvatarWithBg(
                                           url:
                                               controller.detail?.portrait ?? "",
                                         ),
@@ -581,7 +581,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
                                                 'assets/images_sized/newhita_call_link_me.png'),
                                           ),
                                         ),
-                                        child: NewHitaAvatarWithBg(
+                                        child: TrudaAvatarWithBg(
                                           url: TrudaMyInfoService
                                                   .to.myDetail?.portrait ??
                                               "",

@@ -9,7 +9,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_utils/truda_log.dart';
 import 'package:truda/truda_widget/gift/truda_gift_data_helper.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_services/truda_my_info_service.dart';
@@ -299,7 +299,7 @@ class _TrudaLianGiftListViewState extends State<TrudaLianGiftListView>
                                   EdgeInsets.only(left: 16, right: 16, top: 4),
                               child: AspectRatio(
                                   aspectRatio: 1,
-                                  child: NewHitaNetImage(gift.icon ?? '')),
+                                  child: TrudaNetImage(gift.icon ?? '')),
                             ),
                             Container(
                                 alignment: Alignment.center,

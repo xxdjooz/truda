@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import '../truda_utils/truda_log.dart';
-import 'newhita_net_image.dart';
+import 'truda_net_image.dart';
 
 // ignore: must_be_immutable
-class NewHitaPlayerAndroid extends StatefulWidget {
+class TrudaPlayerAndroid extends StatefulWidget {
   String? cover;
   String? path;
   Stream? stream;
 
-  NewHitaPlayerAndroid({
+  TrudaPlayerAndroid({
     Key? key,
     this.cover,
     this.path,
@@ -18,10 +18,10 @@ class NewHitaPlayerAndroid extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NewHitaPlayerAndroidState createState() => _NewHitaPlayerAndroidState();
+  _TrudaPlayerAndroidState createState() => _TrudaPlayerAndroidState();
 }
 
-class _NewHitaPlayerAndroidState extends State<NewHitaPlayerAndroid> {
+class _TrudaPlayerAndroidState extends State<TrudaPlayerAndroid> {
   bool playing = false;
   bool pause = false;
   late VideoPlayerController _controller;
@@ -108,7 +108,7 @@ class _NewHitaPlayerAndroidState extends State<NewHitaPlayerAndroid> {
                     right: 0,
                     top: 0,
                     bottom: 0,
-                    child: NewHitaNetImage(widget.cover ?? ''),
+                    child: TrudaNetImage(widget.cover ?? ''),
                   ),
                   const Icon(
                     Icons.play_circle_outline_rounded,

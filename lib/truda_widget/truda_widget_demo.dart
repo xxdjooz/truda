@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_language_key.dart';
 
-class NewHitaWidgetDemo extends StatelessWidget {
-  const NewHitaWidgetDemo({Key? key}) : super(key: key);
+class TrudaWidgetDemo extends StatelessWidget {
+  const TrudaWidgetDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -24,7 +24,7 @@ import '../../../../truda_entities/truda_lottery_entity.dart';
 import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_utils/truda_app_rate.dart';
 import '../../../../truda_utils/truda_permission_handler.dart';
-import '../../../../truda_widget/newhita_gradient_boder.dart';
+import '../../../../truda_widget/truda_gradient_boder.dart';
 import '../../../call/truda_count_20.dart';
 import '../../../charge/success/truda_success_controller.dart';
 import '../../../vip/truda_vip_dialog.dart';

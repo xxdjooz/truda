@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/main/moment/truda_moment_list_controller.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
-import 'package:truda/truda_widget/newhita_decoration_bg.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_decoration_bg.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_colors.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_utils/truda_format_util.dart';
 import '../../call/local/truda_local_controller.dart';
@@ -28,11 +28,11 @@ class TrudaMomentListPage extends GetView<TrudaMomentListController> {
     Get.put(TrudaMomentListController());
     return GetBuilder<TrudaMomentListController>(builder: (contro) {
       return Container(
-        decoration: iosMock ? null : const NewHitaDecorationBg(),
+        decoration: iosMock ? null : const TrudaDecorationBg(),
         child: Scaffold(
           appBar: iosMock
               ? null
-              : NewHitaAppBar(
+              : TrudaAppBar(
                   // title: Text(
                   //   TrudaLanguageKey.newhita_setting_black_list.tr,
                   // ),
@@ -139,7 +139,7 @@ class TrudaMomentListPage extends GetView<TrudaMomentListController> {
                                   child: Stack(
                                     clipBehavior: Clip.none,
                                     children: [
-                                      NewHitaNetImage(
+                                      TrudaNetImage(
                                         bean.portrait ?? "",
                                         width: 42,
                                         height: 42,
@@ -319,7 +319,7 @@ class TrudaMomentListPage extends GetView<TrudaMomentListController> {
                                                 children: [
                                                   Hero(
                                                     tag: heroId,
-                                                    child: NewHitaNetImage(
+                                                    child: TrudaNetImage(
                                                       media.mediaType == 1
                                                           ? media.screenshotUrl!
                                                           : media.mediaUrl!,

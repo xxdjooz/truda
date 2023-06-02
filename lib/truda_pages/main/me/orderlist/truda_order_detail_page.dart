@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import '../../../../truda_entities/truda_order_entity.dart';
 import '../../../../truda_services/truda_my_info_service.dart';
 import '../../../../truda_utils/truda_ai_help_manager.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 
 class TrudaOrderDetailPage extends StatefulWidget {
   const TrudaOrderDetailPage({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class _TrudaOrderDetailPageState extends State<TrudaOrderDetailPage> {
     }
 
     return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(
             TrudaLanguageKey.newhita_order_one_details.tr,
           ),

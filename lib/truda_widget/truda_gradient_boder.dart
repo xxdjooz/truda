@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class NewHitaGradientBoder extends StatefulWidget {
+class TrudaGradientBoder extends StatefulWidget {
   // 矩形 长、宽、边框宽度，其中长、宽已包含边框宽度
   final double? width;
   final double? height;
@@ -15,7 +15,7 @@ class NewHitaGradientBoder extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
 
-  const NewHitaGradientBoder({
+  const TrudaGradientBoder({
     Key? key,
     this.width,
     this.height,
@@ -30,10 +30,10 @@ class NewHitaGradientBoder extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaGradientBoder> createState() => _NewHitaGradientBoderState();
+  State<TrudaGradientBoder> createState() => _TrudaGradientBoderState();
 }
 
-class _NewHitaGradientBoderState extends State<NewHitaGradientBoder>
+class _TrudaGradientBoderState extends State<TrudaGradientBoder>
     with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
@@ -63,7 +63,7 @@ class _NewHitaGradientBoderState extends State<NewHitaGradientBoder>
           builder: (BuildContext context, Widget? child) {
             return CustomPaint(
               // 创建 painter
-              painter: NewHitaGradientBoundPainter(
+              painter: TrudaGradientBoundPainter(
                 colors: widget.colors,
                 animation: animation.value,
                 border: widget.border,
@@ -94,13 +94,13 @@ class _NewHitaGradientBoderState extends State<NewHitaGradientBoder>
 }
 
 // 渐变边框核心绘图逻辑
-class NewHitaGradientBoundPainter extends CustomPainter {
+class TrudaGradientBoundPainter extends CustomPainter {
   final List<Color> colors;
   final double animation;
   final double border;
   final double? borderRadius;
 
-  const NewHitaGradientBoundPainter({
+  const TrudaGradientBoundPainter({
     Key? key,
     required this.colors,
     required this.animation,
@@ -137,7 +137,7 @@ class NewHitaGradientBoundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant NewHitaGradientBoundPainter oldDelegate) {
+  bool shouldRepaint(covariant TrudaGradientBoundPainter oldDelegate) {
     return oldDelegate.colors != colors || oldDelegate.animation != animation;
   }
 }

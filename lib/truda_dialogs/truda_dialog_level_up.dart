@@ -12,7 +12,7 @@ import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/some/truda_web_page.dart';
 import '../truda_services/truda_my_info_service.dart';
-import '../truda_widget/newhita_net_image.dart';
+import '../truda_widget/truda_net_image.dart';
 
 //用户升级提示
 class TrudaUserLevelUpdate extends StatelessWidget {
@@ -99,7 +99,7 @@ class TrudaUserLevelUpdate extends StatelessWidget {
                   Text("lv.${expLevel.grade ?? 1}",
                       style: TextStyle(
                           fontSize: 30, color: TrudaColors.textColor333)),
-                  NewHitaNetImage(
+                  TrudaNetImage(
                     expLevel.awardIcon ?? "",
                   ),
                   Container(

@@ -15,16 +15,16 @@ import 'package:permission_handler/permission_handler.dart';
 import '../truda_utils/truda_loading.dart';
 import '../truda_utils/truda_log.dart';
 
-typedef NewHitaUploadCallBack = Function(String duration, String localPath);
+typedef TrudaUploadCallBack = Function(String duration, String localPath);
 
-class NewHitaVoiceWidgetRecord extends StatefulWidget {
+class TrudaVoiceWidgetRecord extends StatefulWidget {
   final Function? startRecord;
   final Function? stopRecord;
-  final NewHitaUploadCallBack? uploadCallBack;
+  final TrudaUploadCallBack? uploadCallBack;
   final EdgeInsets? margin;
 
   /// startRecord 开始录制回调  stopRecord回调
-  const NewHitaVoiceWidgetRecord(
+  const TrudaVoiceWidgetRecord(
       {Key? key,
       this.startRecord,
       this.stopRecord,
@@ -33,10 +33,10 @@ class NewHitaVoiceWidgetRecord extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NewHitaVoiceWidgetRecordState createState() => _NewHitaVoiceWidgetRecordState();
+  _TrudaVoiceWidgetRecordState createState() => _TrudaVoiceWidgetRecordState();
 }
 
-class _NewHitaVoiceWidgetRecordState extends State<NewHitaVoiceWidgetRecord> {
+class _TrudaVoiceWidgetRecordState extends State<TrudaVoiceWidgetRecord> {
   // 倒计时总时长
   int _countTotal = 60;
 

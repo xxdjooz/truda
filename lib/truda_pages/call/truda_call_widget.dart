@@ -11,8 +11,8 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../../truda_services/truda_my_info_service.dart';
-import '../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_gradient_circular_progress_indicator.dart';
+import '../../truda_widget/truda_net_image.dart';
 import 'truda_call_controller.dart';
 
 class TrudaCallWidget extends GetView<TrudaCallController> {
@@ -34,7 +34,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                         child: Stack(
                           alignment: AlignmentDirectional.center,
                           children: [
-                            NewHitaNetImage(
+                            TrudaNetImage(
                               controller.detail?.portrait ?? "",
                               placeholder: (context, imageurl) =>
                                   const SizedBox(),
@@ -76,7 +76,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  NewHitaNetImage(
+                                  TrudaNetImage(
                                     controller.detail?.portrait ?? '',
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
@@ -290,7 +290,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                           height: 74,
                           child: Row(
                             children: [
-                              NewHitaNetImage(
+                              TrudaNetImage(
                                 gift.icon ?? '',
                                 width: 54,
                                 height: 54,
@@ -480,7 +480,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                                         controller.showCount2Min.value > 0;
                                     return !show
                                         ? const SizedBox()
-                                        : NewHitaGradientCircularProgressIndicator(
+                                        : TrudaGradientCircularProgressIndicator(
                                             colors: const [
                                               Colors.green,
                                               Colors.orange
@@ -544,7 +544,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(40)),
                               alignment: AlignmentDirectional.center,
-                              child: NewHitaNetImage(
+                              child: TrudaNetImage(
                                 url,
                                 width: 35,
                                 height: 35,

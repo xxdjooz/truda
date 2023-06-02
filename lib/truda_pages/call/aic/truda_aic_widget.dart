@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
 import '../../../truda_services/truda_my_info_service.dart';
-import '../../../truda_widget/newhita_net_image.dart';
-import '../../../truda_widget/newhita_video_player.dart';
+import '../../../truda_widget/truda_net_image.dart';
+import '../../../truda_widget/truda_video_player.dart';
 import 'truda_aic_controller.dart';
 
 class TrudaAicWidget extends GetView<TrudaAicController> {
@@ -20,7 +20,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
               id: TrudaAicController.idAgora,
               builder: (controller) {
                 if (controller.playFinish) {
-                  return NewHitaNetImage(
+                  return TrudaNetImage(
                     controller.detail?.portrait ?? "",
                     placeholder: (context, imageurl) => const SizedBox(),
                     errorWidget: (context, url, error) => const SizedBox(),
@@ -53,7 +53,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
                     Positioned.fill(
                         child: controller.switchView
                             ? NewHitaAicCamera()
-                            : NewHitaVideoPlayer(
+                            : TrudaVideoPlayer(
                                 controller: controller.videoController,
                               )),
                     Positioned(
@@ -88,7 +88,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
                                           BorderRadiusDirectional.circular(8),
                                       child: !controller.switchView
                                           ? NewHitaAicCamera()
-                                          : NewHitaVideoPlayer(
+                                          : TrudaVideoPlayer(
                                               controller:
                                                   controller.videoController,
                                             ),
@@ -231,7 +231,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
                                       color: Colors.black38,
                                       borderRadius: BorderRadius.circular(40)),
                                   alignment: AlignmentDirectional.center,
-                                  child: NewHitaNetImage(
+                                  child: TrudaNetImage(
                                     url,
                                     width: 40,
                                     height: 40,
@@ -294,7 +294,7 @@ class NewHitaAicCamera extends StatelessWidget {
                   ),
                 ]),
               )
-            : NewHitaNetImage(
+            : TrudaNetImage(
                 TrudaMyInfoService.to.userLogin?.portrait ?? "",
               ));
   }

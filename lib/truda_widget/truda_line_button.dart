@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NewHitaLineButton extends StatelessWidget {
+class TrudaLineButton extends StatelessWidget {
   final Widget child;
   final GestureTapCallback onTap;
   final EdgeInsetsGeometry? padding;
   final double? width;
   final double? height;
 
-  const NewHitaLineButton(
+  const TrudaLineButton(
       {Key? key,
       required this.child,
       required this.onTap,

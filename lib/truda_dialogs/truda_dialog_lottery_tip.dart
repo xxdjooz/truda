@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_widget/newhita_gradient_button.dart';
+import '../truda_widget/truda_gradient_button.dart';
 
 class TrudaDialogLotteryTip extends StatelessWidget {
   TrudaDialogLotteryTip({
@@ -69,7 +69,7 @@ class TrudaDialogLotteryTip extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: NewHitaGradientButton(
+                  child: TrudaGradientButton(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     onTap: () {
                       Get.back();

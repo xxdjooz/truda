@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
-class NewHitaAppBar extends AppBar {
-  NewHitaAppBar({
+class TrudaAppBar extends AppBar {
+  TrudaAppBar({
     Key? key,
     Widget? title,
     Widget? leading,

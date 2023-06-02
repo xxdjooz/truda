@@ -6,10 +6,10 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_dialogs/truda_dialog_confirm_hang.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_utils/truda_format_util.dart';
-import '../../../truda_widget/newhita_avatar_with_bg.dart';
+import '../../../truda_widget/truda_avatar_with_bg.dart';
 import 'truda_local_controller.dart';
 
 class TrudaLocalPage extends GetView<TrudaLocalController> {
@@ -30,7 +30,7 @@ class TrudaLocalPage extends GetView<TrudaLocalController> {
             return Stack(
               fit: StackFit.expand,
               children: [
-                NewHitaNetImage(
+                TrudaNetImage(
                   controller.detail?.portrait ?? "",
                   placeholderAsset: 'assets/images_sized/newhita_home_girl.png',
                   errorWidget: (context, url, error) => const SizedBox(),
@@ -78,7 +78,7 @@ class TrudaLocalPage extends GetView<TrudaLocalController> {
                     // ),
                     Container(
                       padding: EdgeInsets.all(30),
-                      child: NewHitaAvatarWithBg(
+                      child: TrudaAvatarWithBg(
                         url: controller.portrait,
                         width: 105,
                         height: 105,

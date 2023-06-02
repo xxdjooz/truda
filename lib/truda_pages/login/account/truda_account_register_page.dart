@@ -12,7 +12,7 @@ import '../../../truda_entities/truda_login_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/truda_loading.dart';
-import '../../../truda_widget/newhita_app_bar.dart';
+import '../../../truda_widget/truda_app_bar.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_login_agree_dialog.dart';
 import '../truda_login_to_main_api.dart';
@@ -129,7 +129,7 @@ class _TrudaAccountRegisterPageState extends State<TrudaAccountRegisterPage>
             ],
           )),
       child: Scaffold(
-          appBar: NewHitaAppBar(
+          appBar: TrudaAppBar(
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             title: Text(TrudaLanguageKey.newhita_login_username_register.tr),
           ),

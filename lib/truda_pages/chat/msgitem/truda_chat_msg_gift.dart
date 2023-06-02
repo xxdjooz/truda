@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../truda_chat_msg_widget.dart';
 import '../truda_chat_msg_wrapper.dart';
@@ -36,7 +36,7 @@ class TrudaChatMsgGift extends StatelessWidget {
               child: LimitedBox(
                 maxWidth: 180,
                 maxHeight: 240,
-                child: NewHitaNetImage(url ?? ''),
+                child: TrudaNetImage(url ?? ''),
               ),
             ),
           )
@@ -52,7 +52,7 @@ class TrudaChatMsgGift extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  NewHitaNetImage(
+                  TrudaNetImage(
                     url ?? '',
                     width: 50,
                     height: 50,

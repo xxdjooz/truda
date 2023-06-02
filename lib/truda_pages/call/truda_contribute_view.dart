@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_entities/truda_contribute_entity.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_http/truda_http_urls.dart';
@@ -137,7 +137,7 @@ class TrudaContributeView extends GetView<TrudaContributeController> {
                         const SizedBox(
                           width: 5,
                         ),
-                        NewHitaNetImage(
+                        TrudaNetImage(
                           bean.portrait ?? '',
                           width: 30,
                           height: 30,

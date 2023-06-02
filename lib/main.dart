@@ -14,7 +14,7 @@ import 'package:truda/truda_services/truda_host_video_service.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/truda_loading.dart';
-import 'package:truda/truda_widget/newhita_ball_beat.dart';
+import 'package:truda/truda_widget/truda_ball_beat.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 // import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -104,7 +104,7 @@ class NewHitaApp extends StatelessWidget {
       footerBuilder: () => CustomFooter(builder: (context, status) {
         return status == LoadStatus.loading
             ? Center(
-                child: NewHitaBallBeatIndicator(),
+                child: TrudaBallBeatIndicator(),
               )
             : const SizedBox(
                 height: 0,

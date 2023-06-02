@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_widget/newhita_ball_beat.dart';
-import 'package:truda/truda_widget/newhita_click_widget.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_ball_beat.dart';
+import 'package:truda/truda_widget/truda_click_widget.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_sheet_host_option.dart';
-import '../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../truda_widget/newhita_gradient_button.dart';
+import '../../../truda_widget/truda_decoration_bg.dart';
+import '../../../truda_widget/truda_gradient_button.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../local/truda_local_controller.dart';
 import 'truda_end_controller.dart';
@@ -78,11 +78,11 @@ class TrudaEndPage extends StatelessWidget {
               ],
             ),
             body: Container(
-                decoration: const NewHitaDecorationBg(),
+                decoration: const TrudaDecorationBg(),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    NewHitaNetImage(
+                    TrudaNetImage(
                       controller.detail?.portrait ?? "",
                       placeholder: (context, url) => const SizedBox(),
                       errorWidget: (context, url, error) => const SizedBox(),
@@ -118,7 +118,7 @@ class TrudaEndPage extends StatelessWidget {
                             alignment: Alignment.bottomCenter,
                             fit: StackFit.loose,
                             children: [
-                              NewHitaNetImage(
+                              TrudaNetImage(
                                 controller.detail?.portrait ?? "",
                                 width: 105,
                                 height: 105,
@@ -238,7 +238,7 @@ class TrudaEndPage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: const [
-                                          NewHitaBallBeatIndicator(),
+                                          TrudaBallBeatIndicator(),
                                         ],
                                       )
                                     : Builder(builder: (context) {
@@ -498,7 +498,7 @@ class TrudaEndPage extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          NewHitaClickWidget(
+                          TrudaClickWidget(
                             onTap: () {
                               Get.back();
                             },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
-class NewHitaDecorationBg extends BoxDecoration {
-  const NewHitaDecorationBg({Color? color})
+class TrudaDecorationBg extends BoxDecoration {
+  const TrudaDecorationBg({Color? color})
       : super(
             color: color ?? TrudaColors.baseColorBlackBg,
             image: const DecorationImage(

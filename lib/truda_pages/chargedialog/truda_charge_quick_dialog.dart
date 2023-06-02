@@ -5,7 +5,7 @@ import 'package:truda/truda_pages/chargedialog/vip_widget/truda_vip_widget.dart'
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
-import '../../truda_widget/newhita_click_widget.dart';
+import '../../truda_widget/truda_click_widget.dart';
 import 'truda_charge_dialog_manager.dart';
 import 'truda_charge_quick_controller.dart';
 
@@ -300,7 +300,7 @@ class _TrudaChargeQuickDialogState extends State<TrudaChargeQuickDialog> {
 
   Widget _commonProduct(TrudaChargeQuickController controller,
       TrudaPayQuickCommodite commodite) {
-    return NewHitaClickWidget(
+    return TrudaClickWidget(
       onTap: () => controller.chooseCommdite(commodite),
       child: Container(
         decoration: BoxDecoration(

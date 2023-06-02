@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_widget/newhita_gradient_button.dart';
-import '../truda_widget/newhita_line_button.dart';
+import '../truda_widget/truda_gradient_button.dart';
+import '../truda_widget/truda_line_button.dart';
 
 class TrudaDialogConfirmBlack extends StatelessWidget {
   TrudaCallback<int> callback;
@@ -53,7 +53,7 @@ class TrudaDialogConfirmBlack extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                NewHitaGradientButton(
+                TrudaGradientButton(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   onTap: () {
                     Get.back();
@@ -103,7 +103,7 @@ class TrudaDialogConfirmBlack extends StatelessWidget {
               ],
             ),
           ),
-          NewHitaNetImage(
+          TrudaNetImage(
             portrait,
             height: 115,
             width: 115,

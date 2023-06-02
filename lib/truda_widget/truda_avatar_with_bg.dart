@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
-class NewHitaAvatarWithBg extends StatelessWidget {
+class TrudaAvatarWithBg extends StatelessWidget {
   final String url;
   final double? width;
   final double? height;
@@ -11,7 +11,7 @@ class NewHitaAvatarWithBg extends StatelessWidget {
 
   final String? placeholderAsset;
 
-  const NewHitaAvatarWithBg({
+  const TrudaAvatarWithBg({
     Key? key,
     required this.url,
     this.width,
@@ -27,7 +27,7 @@ class NewHitaAvatarWithBg extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: NewHitaNetImage(
+      child: TrudaNetImage(
         url,
         isCircle: true,
         placeholderAsset: placeholderAsset,

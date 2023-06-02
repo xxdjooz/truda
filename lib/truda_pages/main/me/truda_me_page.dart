@@ -21,7 +21,7 @@ import '../../../truda_dialogs/truda_dialog_service.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/ai/truda_ai_logic_utils.dart';
-import '../../../truda_widget/newhita_avatar_with_bg.dart';
+import '../../../truda_widget/truda_avatar_with_bg.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../../vip/truda_vip_controller.dart';
 import 'truda_me_controller.dart';
@@ -75,7 +75,7 @@ class TrudaMePage extends StatelessWidget {
                                 Stack(
                                   clipBehavior: Clip.none,
                                   children: [
-                                    NewHitaAvatarWithBg(
+                                    TrudaAvatarWithBg(
                                       url: controller.myDetail?.portrait ?? '',
                                       width: 66,
                                       height: 66,

@@ -7,7 +7,7 @@ import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_gift_entity.dart';
 import '../truda_routes/truda_pages.dart';
-import '../truda_widget/newhita_net_image.dart';
+import '../truda_widget/truda_net_image.dart';
 import '../truda_widget/gift/truda_gift_data_helper.dart';
 
 class TrudaGiftFollowTipController {
@@ -173,7 +173,7 @@ class TrudaFollowTip extends StatelessWidget {
                 child: SizedBox(
                   width: 36,
                   height: 36,
-                  child: NewHitaNetImage(
+                  child: TrudaNetImage(
                     portrait ?? '',
                   ),
                 ),
@@ -255,7 +255,7 @@ class TrudaSendGiftTip extends StatelessWidget {
                 child: SizedBox(
                   width: 36,
                   height: 36,
-                  child: NewHitaNetImage(
+                  child: TrudaNetImage(
                     gift?.icon ?? '',
                   ),
                 ),

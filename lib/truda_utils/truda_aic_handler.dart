@@ -10,7 +10,7 @@ import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_rtm/truda_rtm_msg_entity.dart';
 import '../truda_services/truda_my_info_service.dart';
-import '../truda_widget/newhita_cache_manager.dart';
+import '../truda_widget/truda_cache_manager.dart';
 import 'truda_loading.dart';
 import 'truda_log.dart';
 
@@ -58,7 +58,7 @@ class TrudaAicHandler {
     final String url = aic.filename!;
     // final String url =
     //     'http://yesme-public.oss-cn-hongkong.aliyuncs.com/app/testMp4.mp4';
-    NewHitaAicCacheManager.instance
+    TrudaAicCacheManager.instance
         .getFileStream(aic.filename!, withProgress: true)
         .listen((fileResponse) {
       if (fileResponse is DownloadProgress) {
@@ -128,7 +128,7 @@ class TrudaAicHandler {
   // 每次启动app的时候调一下
   void clearAicHadShow() {
     TrudaStorageService.to.objectBoxCall.deleteAicHadShow();
-    NewHitaAicCacheManager.instance.emptyCache();
+    TrudaAicCacheManager.instance.emptyCache();
   }
 
   /// ************* 新的逻辑 *******************

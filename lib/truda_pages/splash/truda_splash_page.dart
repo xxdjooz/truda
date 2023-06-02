@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_pages/splash/truda_splash_controller.dart';
 
 import '../../truda_common/truda_colors.dart';
-import '../../truda_widget/newhita_decoration_bg.dart';
+import '../../truda_widget/truda_decoration_bg.dart';
 
 class TrudaSplashPage extends GetView<TrudaSplashController> {
   TrudaSplashPage({Key? key}) : super(key: key);

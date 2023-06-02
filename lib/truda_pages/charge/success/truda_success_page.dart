@@ -4,8 +4,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../truda_widget/newhita_net_image.dart';
+import '../../../truda_widget/truda_decoration_bg.dart';
+import '../../../truda_widget/truda_net_image.dart';
 import '../../host/truda_host_controller.dart';
 import '../../main/home/truda_host_widget.dart';
 import 'truda_success_controller.dart';
@@ -38,7 +38,7 @@ class TrudaSuccessPage extends GetView<TrudaSuccessController> {
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: const NewHitaDecorationBg(),
+          decoration: const TrudaDecorationBg(),
           child: Column(
             children: [
               SizedBox(
@@ -109,7 +109,7 @@ class TrudaRecommendWidget extends StatelessWidget {
           onTap: () {
             TrudaHostController.startMe(detail.userId!, detail.portrait);
           },
-          child: NewHitaNetImage(
+          child: TrudaNetImage(
             detail.portrait ?? "",
             radius: 10,
           ),

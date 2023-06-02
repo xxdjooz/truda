@@ -11,8 +11,8 @@ import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_dialogs/truda_dialog_search.dart';
 import '../../../../truda_routes/truda_pages.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
-import '../../../../truda_widget/newhita_decoration_bg.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
+import '../../../../truda_widget/truda_decoration_bg.dart';
 import '../../../login/account/truda_account_pasaword_page.dart';
 import 'truda_setting_controller.dart';
 
@@ -24,7 +24,7 @@ class TrudaSettingPage extends GetView<TrudaSettingController> {
     return GetBuilder<TrudaSettingController>(builder: (contro) {
       return Scaffold(
         backgroundColor: TrudaColors.baseColorBg,
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(TrudaLanguageKey.newhita_mine_setting.tr),
           actions: [
             if (!kReleaseMode)

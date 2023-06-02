@@ -8,8 +8,8 @@ import '../truda_common/truda_colors.dart';
 /// author: Vans Z
 /// date: 2019-05-31
 ///
-class NewHitaBallBeatIndicator extends StatefulWidget {
-  const NewHitaBallBeatIndicator({
+class TrudaBallBeatIndicator extends StatefulWidget {
+  const TrudaBallBeatIndicator({
     this.minAlpha = 51,
     this.maxAlpha = 255,
     this.minRadius = 5.6,
@@ -28,11 +28,11 @@ class NewHitaBallBeatIndicator extends StatefulWidget {
   final Duration duration;
 
   @override
-  State<StatefulWidget> createState() => _NewHitaBallBeatIndicatorState();
+  State<StatefulWidget> createState() => _TrudaBallBeatIndicatorState();
 }
 
-class _NewHitaBallBeatIndicatorState extends State<NewHitaBallBeatIndicator>
-    with SingleTickerProviderStateMixin, NewHitaInfiniteProgressMixin {
+class _TrudaBallBeatIndicatorState extends State<TrudaBallBeatIndicator>
+    with SingleTickerProviderStateMixin, TrudaInfiniteProgressMixin {
   @override
   void initState() {
     startEngine(this, widget.duration);
@@ -59,7 +59,7 @@ class _NewHitaBallBeatIndicatorState extends State<NewHitaBallBeatIndicator>
       builder: (context, child) {
         return CustomPaint(
           size: measureSize(),
-          painter: _NewHitaBallBeatIndicatorPainter(
+          painter: _TrudaBallBeatIndicatorPainter(
             animationValue: animationValue,
             minRadius: widget.minRadius,
             maxRadius: widget.maxRadius,
@@ -77,8 +77,8 @@ class _NewHitaBallBeatIndicatorState extends State<NewHitaBallBeatIndicator>
 double progress = .0;
 double lastExtent = .0;
 
-class _NewHitaBallBeatIndicatorPainter extends CustomPainter {
-  _NewHitaBallBeatIndicatorPainter({
+class _TrudaBallBeatIndicatorPainter extends CustomPainter {
+  _TrudaBallBeatIndicatorPainter({
     required this.animationValue,
     required this.minRadius,
     required this.maxRadius,
@@ -145,7 +145,7 @@ class _NewHitaBallBeatIndicatorPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
-mixin NewHitaInfiniteProgressMixin {
+mixin TrudaInfiniteProgressMixin {
   late Animation<double> _animation;
   late AnimationController controller;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
@@ -28,7 +28,7 @@ class TrudaInviteBindPage extends GetView<TrudaInviteBindController> {
           ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: NewHitaAppBar(),
+            appBar: TrudaAppBar(),
             body: Padding(
               padding: const EdgeInsetsDirectional.only(
                 start: 15,

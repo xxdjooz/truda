@@ -7,9 +7,9 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_entities/truda_gift_entity.dart';
 import '../../../truda_utils/truda_choose_image_util.dart';
 import '../../../truda_widget/gift/truda_gift_list_view.dart';
-import '../../../truda_widget/newhita_keybord_logic.dart';
-import '../../../truda_widget/newhita_voice_widget_record.dart';
-import '../../../truda_widget/newhita_voice_widget_record_new.dart';
+import '../../../truda_widget/truda_keybord_logic.dart';
+import '../../../truda_widget/truda_voice_widget_record.dart';
+import '../../../truda_widget/truda_voice_widget_record_new.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../truda_chat_controller.dart';
 import 'truda_chat_input_controller.dart';
@@ -25,7 +25,7 @@ class TrudaChatInputWidget extends StatefulWidget {
 }
 
 class _TrudaChatInputWidgetState extends State<TrudaChatInputWidget>
-    with WidgetsBindingObserver, NewHitaKeyboardLogic {
+    with WidgetsBindingObserver, TrudaKeyboardLogic {
   late final TrudaChatInputController _controller;
   late final TrudaChatController _chatController;
   late final FocusNode _focusNode;
@@ -96,7 +96,7 @@ class _TrudaChatInputWidgetState extends State<TrudaChatInputWidget>
                             ),
                           ),
                           Expanded(
-                              child: NewHitaVoiceRecordNew(
+                              child: TrudaVoiceRecordNew(
                             uploadCallBack: _controller.voiceRecord,
                           )),
                         ],

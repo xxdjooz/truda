@@ -15,7 +15,7 @@ import '../../truda_dialogs/truda_sheet_host_chat_option.dart';
 import '../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../../truda_utils/ad/truda_ads_utils.dart';
 import '../../truda_utils/truda_gift_follow_tip.dart';
-import '../../truda_widget/newhita_app_bar.dart';
+import '../../truda_widget/truda_app_bar.dart';
 import '../vip/truda_vip_controller.dart';
 import 'truda_chat_controller.dart';
 import 'truda_chat_msg_wrapper.dart';
@@ -36,7 +36,7 @@ class TrudaChatPage extends GetView<TrudaChatController> {
       return Scaffold(
         backgroundColor: TrudaColors.baseColorBlackBg,
         resizeToAvoidBottomInset: true,
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
           backgroundColor: Colors.transparent,
           leading: GestureDetector(

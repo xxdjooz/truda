@@ -6,7 +6,7 @@ import '../truda_utils/truda_log.dart';
 
 /// class _NewHitaDemoViewState extends State<DemoView> with WidgetsBindingObserver, KeyboardLogic {
 /// 监听键盘弹出
-mixin NewHitaKeyboardLogic<T extends StatefulWidget>
+mixin TrudaKeyboardLogic<T extends StatefulWidget>
     on State<T>, WidgetsBindingObserver {
   bool _keyboardVisible = false;
 

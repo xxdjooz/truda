@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_language_key.dart';
@@ -21,7 +21,7 @@ class TrudaLotteryPage extends GetView<TrudaLotteryController> {
       builder: (contr) {
         return Scaffold(
           backgroundColor: TrudaColors.baseColorBlackBg,
-          appBar: NewHitaAppBar(
+          appBar: TrudaAppBar(
             title: Text(TrudaLanguageKey.newhita_lottery.tr),
             titleTextStyle: const TextStyle(
               fontSize: 18,

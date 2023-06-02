@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_app_bar.dart';
+import '../../truda_widget/truda_app_bar.dart';
 
 class TrudaWebPage extends StatefulWidget {
   static startMe(String url, bool fullScreen) {
@@ -54,7 +54,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TrudaColors.white,
-      appBar: NewHitaAppBar(
+      appBar: TrudaAppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark, // 状态栏字体黑色
         title: Text(
           title,

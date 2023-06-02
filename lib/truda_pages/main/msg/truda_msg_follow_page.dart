@@ -5,7 +5,7 @@ import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/main/msg/truda_msg_follow_controller.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/truda_log.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 import 'package:intl/intl.dart';
 
 import '../../../truda_database/entity/truda_conversation_entity.dart';
@@ -83,7 +83,7 @@ class TrudaMsgWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         child: Row(
           children: [
-            NewHitaNetImage(
+            TrudaNetImage(
               her?.portrait ?? "",
               width: 50,
               height: 50,

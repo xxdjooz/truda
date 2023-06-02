@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_widget/newhita_avatar_with_bg.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_avatar_with_bg.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
@@ -27,7 +27,7 @@ class TrudaRemotePage extends GetView<TrudaRemoteController> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                NewHitaNetImage(
+                TrudaNetImage(
                   controller.portrait ?? "",
                   placeholderAsset: 'assets/images_sized/newhita_home_girl.png',
                   errorWidget: (context, url, error) => const SizedBox(),
@@ -61,7 +61,7 @@ class TrudaRemotePage extends GetView<TrudaRemoteController> {
                     SizedBox(height: Get.height / 10),
                     Container(
                       padding: EdgeInsets.all(30),
-                      child: NewHitaAvatarWithBg(
+                      child: TrudaAvatarWithBg(
                         url: controller.portrait,
                         width: 105,
                         height: 105,

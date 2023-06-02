@@ -6,8 +6,8 @@ import 'package:intl/intl.dart';
 
 import '../../truda_common/truda_constants.dart';
 import '../../truda_database/entity/truda_msg_entity.dart';
-import '../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_avatar_with_bg.dart';
+import '../../truda_widget/truda_net_image.dart';
 import 'truda_chat_msg_wrapper.dart';
 
 class TrudaLianChatMsgHer extends StatelessWidget {
@@ -52,7 +52,7 @@ class TrudaLianChatMsgHer extends StatelessWidget {
                         TrudaHostController.startMe(
                             wrapper.herId, wrapper.her?.portrait ?? "");
                       },
-                      child: NewHitaNetImage(
+                      child: TrudaNetImage(
                         wrapper.her?.portrait ?? "",
                         width: 40,
                         height: 40,
@@ -141,7 +141,7 @@ class TrudaLianChatMsgMe extends StatelessWidget {
               //   height: 40,
               //   isCircle: true,
               // ),
-              NewHitaAvatarWithBg(
+              TrudaAvatarWithBg(
                 url: TrudaMyInfoService.to.myDetail?.portrait ?? '',
                 width: 40,
                 height: 40,

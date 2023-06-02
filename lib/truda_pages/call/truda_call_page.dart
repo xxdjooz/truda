@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_widget/newhita_avatar_with_bg.dart';
+import 'package:truda/truda_widget/truda_avatar_with_bg.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_language_key.dart';
@@ -15,8 +15,8 @@ import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_gift_follow_tip.dart';
 import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/gift/truda_vap_player.dart';
-import '../../truda_widget/newhita_click_widget.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_click_widget.dart';
+import '../../truda_widget/truda_net_image.dart';
 import 'truda_call_controller.dart';
 import 'truda_call_widget.dart';
 import 'truda_contribute_view.dart';
@@ -99,7 +99,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              NewHitaNetImage(
+                              TrudaNetImage(
                                 controller.detail?.portrait ?? '',
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
@@ -188,7 +188,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                         width: 8,
                       ),
                       if (!controller.audioMode.value)
-                        NewHitaClickWidget(
+                        TrudaClickWidget(
                             onTap: controller.switchCamera,
                             child: Image.asset(
                               'assets/images/newhita_call_camera.png',
@@ -528,7 +528,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
           extendBodyBehindAppBar: true,
           body: Stack(
             children: [
-              NewHitaNetImage(
+              TrudaNetImage(
                 controller.detail?.portrait ?? "",
                 placeholder: (context, url) => const SizedBox(),
                 errorWidget: (context, url, error) => const SizedBox(),
@@ -602,7 +602,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                                           ),
                                         ),
                                         padding: const EdgeInsets.all(15),
-                                        child: NewHitaAvatarWithBg(
+                                        child: TrudaAvatarWithBg(
                                           url:
                                               controller.detail?.portrait ?? "",
                                         ),
@@ -620,7 +620,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                                                 'assets/images_sized/newhita_call_link_me.png'),
                                           ),
                                         ),
-                                        child: NewHitaAvatarWithBg(
+                                        child: TrudaAvatarWithBg(
                                           url: TrudaMyInfoService
                                                   .to.myDetail?.portrait ??
                                               "",

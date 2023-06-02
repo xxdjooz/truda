@@ -8,7 +8,7 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_utils/truda_format_util.dart';
-import '../../../truda_widget/newhita_avatar_with_bg.dart';
+import '../../../truda_widget/truda_avatar_with_bg.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../../host/truda_host_controller.dart';
@@ -98,7 +98,7 @@ class TrudaFollowWidget extends StatelessWidget {
             },
             child: Stack(
               children: [
-                NewHitaAvatarWithBg(
+                TrudaAvatarWithBg(
                   url: detail.portrait ?? "",
                   width: 74,
                   height: 74,

@@ -9,7 +9,7 @@ import '../../truda_common/truda_colors.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_log.dart';
 import '../../truda_utils/truda_pay_cache_manager.dart';
-import '../../truda_widget/newhita_decoration_bg.dart';
+import '../../truda_widget/truda_decoration_bg.dart';
 import 'home/truda_home_page.dart';
 import 'match/truda_match_page.dart';
 import 'me/truda_me_page.dart';
@@ -98,7 +98,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
         child: Scaffold(
           backgroundColor: TrudaColors.baseColorBlackBg,
           body: Container(
-            decoration: const NewHitaDecorationBg(),
+            decoration: const TrudaDecorationBg(),
             width: double.infinity,
             height: double.infinity,
             child: Stack(

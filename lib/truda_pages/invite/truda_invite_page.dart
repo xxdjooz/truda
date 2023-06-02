@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
-import 'package:truda/truda_widget/newhita_app_bar.dart';
+import 'package:truda/truda_widget/truda_app_bar.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_sheet_invite_method.dart';
 import '../../truda_utils/truda_loading.dart';
-import '../../truda_widget/newhita_stacked_list.dart';
+import '../../truda_widget/truda_stacked_list.dart';
 import 'truda_invite_controller.dart';
 
 class TrudaInvitePage extends GetView<TrudaInviteController> {
@@ -20,7 +20,7 @@ class TrudaInvitePage extends GetView<TrudaInviteController> {
     final screenWidth = Get.width;
     return GetBuilder<TrudaInviteController>(builder: (contr) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           leading: GestureDetector(
             onTap: () => Navigator.maybePop(Get.context!),
             child: Container(
@@ -121,7 +121,7 @@ class TrudaInvitePage extends GetView<TrudaInviteController> {
                                                   height: 44,
                                                 ),
                                               )
-                                            : NewHitaStackedList(
+                                            : TrudaStackedList(
                                                 list: controller
                                                     .inviteBean?.portraits),
                                       ),

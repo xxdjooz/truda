@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/main/me/moment_list/truda_my_moment_controller.dart';
-import 'package:truda/truda_widget/newhita_net_image.dart';
+import 'package:truda/truda_widget/truda_net_image.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -12,7 +12,7 @@ import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../../truda_routes/truda_pages.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 import '../../../some/truda_media_view_page.dart';
 
 class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
@@ -22,7 +22,7 @@ class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaMyMomentController>(builder: (contro) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(
             TrudaLanguageKey.newhita_story_mine.tr,
           ),
@@ -155,7 +155,7 @@ class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
                                             children: [
                                               Hero(
                                                 tag: heroId,
-                                                child: NewHitaNetImage(
+                                                child: TrudaNetImage(
                                                   media,
                                                   radius: 10,
                                                 ),

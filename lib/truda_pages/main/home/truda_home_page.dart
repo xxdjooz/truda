@@ -15,8 +15,8 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_country_choose.dart';
 import '../../../truda_dialogs/truda_dialog_invite_for_diamond.dart';
 import '../../../truda_utils/truda_ui_image_util.dart';
-import '../../../truda_widget/newhita_image_indicator.dart';
-import '../../../truda_widget/newhita_net_image.dart';
+import '../../../truda_widget/truda_image_indicator.dart';
+import '../../../truda_widget/truda_net_image.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
 import 'truda_follow_page.dart';
 import 'truad_home_controller.dart';
@@ -71,7 +71,7 @@ class _TrudaHomePageState extends State<TrudaHomePage>
           indicatorSize: TabBarIndicatorSize.label,
           labelPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
           indicator:
-              indicator == null ? null : NewHitaImageIndicator(indicator!),
+              indicator == null ? null : TrudaImageIndicator(indicator!),
           tabs: [
             Tab(text: TrudaLanguageKey.newhita_home_tab_hot.tr),
             // Tab(text: TrudaLanguageKey.newhita_base_online.tr),
@@ -144,7 +144,7 @@ class _TrudaHomePageState extends State<TrudaHomePage>
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              NewHitaNetImage(
+                              TrudaNetImage(
                                 area?.path ?? "",
                                 // radius: 9,
                                 width: 22,

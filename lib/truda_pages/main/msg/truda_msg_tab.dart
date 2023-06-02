@@ -10,7 +10,7 @@ import 'package:truda/truda_utils/truda_log.dart';
 import '../../../truda_dialogs/truda_sheet_msg_option.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_utils/truda_ui_image_util.dart';
-import '../../../truda_widget/newhita_image_indicator.dart';
+import '../../../truda_widget/truda_image_indicator.dart';
 import '../home/truda_home_page.dart';
 import 'truda_msg_page.dart';
 
@@ -72,7 +72,7 @@ class _TrudaMsgTabState extends State<TrudaMsgTab>
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.label,
           labelPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
-          indicator: indicator == null ? null : NewHitaImageIndicator(indicator!),
+          indicator: indicator == null ? null : TrudaImageIndicator(indicator!),
           tabs: [
             Tab(text: TrudaLanguageKey.newhita_base_message.tr),
             // Tab(text: TrudaLanguageKey.newhita_home_tab_follow.tr)

@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_colors.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 import 'truda_card_list_controller.dart';
 
 class TrudaCardListPage extends GetView<TrudaCardListController> {
@@ -17,7 +17,7 @@ class TrudaCardListPage extends GetView<TrudaCardListController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaCardListController>(builder: (contro) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(
             TrudaLanguageKey.newhita_prop_package.tr,
           ),

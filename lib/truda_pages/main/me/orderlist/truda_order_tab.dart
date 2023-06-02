@@ -5,7 +5,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../../truda_routes/truda_pages.dart';
-import '../../../../truda_widget/newhita_app_bar.dart';
+import '../../../../truda_widget/truda_app_bar.dart';
 import 'truda_cost_list_page.dart';
 import 'truda_order_list_page.dart';
 
@@ -53,7 +53,7 @@ class _TrudaOrderTabState extends State<TrudaOrderTab>
     TrudaLog.debug("NewHitaMsgPage build");
     return Scaffold(
       backgroundColor: TrudaColors.baseColorBlackBg,
-      appBar: NewHitaAppBar(
+      appBar: TrudaAppBar(
         backgroundColor: TrudaColors.white,
         title: TabBar(
           isScrollable: true,

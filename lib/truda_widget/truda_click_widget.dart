@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-enum NewHitaClickType {
+enum TrudaClickType {
   /// 无限制
   none,
 
@@ -20,17 +20,17 @@ enum NewHitaClickType {
 }
 
 /// 自定义点击控件
-class NewHitaClickWidget extends StatelessWidget {
+class TrudaClickWidget extends StatelessWidget {
   final Widget child;
   final Function? onTap;
-  final NewHitaClickType type;
+  final TrudaClickType type;
   final int? timeout;
 
-  const NewHitaClickWidget(
+  const TrudaClickWidget(
       {Key? key,
       required this.child,
       this.onTap,
-      this.type = NewHitaClickType.throttleWithTimeout,
+      this.type = TrudaClickType.throttleWithTimeout,
       this.timeout})
       : super(key: key);
 
@@ -44,11 +44,11 @@ class NewHitaClickWidget extends StatelessWidget {
   }
 
   VoidCallback? _getOnTap() {
-    if (type == NewHitaClickType.throttle) {
+    if (type == TrudaClickType.throttle) {
       return onTap?.throttle();
-    } else if (type == NewHitaClickType.throttleWithTimeout) {
+    } else if (type == TrudaClickType.throttleWithTimeout) {
       return onTap?.throttleWithTimeout(timeout: timeout);
-    } else if (type == NewHitaClickType.debounce) {
+    } else if (type == TrudaClickType.debounce) {
       return onTap?.debounce(timeout: timeout);
     }
     return () => onTap?.call();
@@ -56,29 +56,29 @@ class NewHitaClickWidget extends StatelessWidget {
 }
 
 /// 对Function进行扩展
-extension NewHitaFunctionExt on Function {
+extension TrudaFunctionExt on Function {
   VoidCallback throttle() {
-    return NewHitaFunctionProxy(this).throttle;
+    return TrudaFunctionProxy(this).throttle;
   }
 
   VoidCallback throttleWithTimeout({int? timeout}) {
-    return NewHitaFunctionProxy(this, timeout: timeout).throttleWithTimeout;
+    return TrudaFunctionProxy(this, timeout: timeout).throttleWithTimeout;
   }
 
   VoidCallback debounce({int? timeout}) {
-    return NewHitaFunctionProxy(this, timeout: timeout).debounce;
+    return TrudaFunctionProxy(this, timeout: timeout).debounce;
   }
 }
 
 /// 节流、防抖 实现方式
-class NewHitaFunctionProxy {
+class TrudaFunctionProxy {
   static final Map<String, bool> _funcThrottle = {};
   static final Map<String, Timer> _funcDebounce = {};
   final Function? target;
 
   final int timeout;
 
-  NewHitaFunctionProxy(this.target, {int? timeout}) : timeout = timeout ?? 500;
+  TrudaFunctionProxy(this.target, {int? timeout}) : timeout = timeout ?? 500;
 
   /// 点击的回调执行完才能响应下次
   void throttle() async {

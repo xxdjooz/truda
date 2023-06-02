@@ -18,7 +18,7 @@ import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/truda_choose_image_util.dart';
 import '../../../truda_utils/truda_loading.dart';
 import '../../../truda_utils/truda_log.dart';
-import '../../../truda_widget/newhita_voice_widget_record.dart';
+import '../../../truda_widget/truda_voice_widget_record.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/truda_vip_controller.dart';
 import '../truda_chat_controller.dart';
@@ -32,7 +32,7 @@ class TrudaChatInputController extends GetxController {
   late String myId;
   final TextEditingController textEditingController =
       TextEditingController(text: "");
-  late NewHitaUploadCallBack voiceRecord;
+  late TrudaUploadCallBack voiceRecord;
 
   final isShowEmoji = false.obs;
   final isShowRecord = false.obs;

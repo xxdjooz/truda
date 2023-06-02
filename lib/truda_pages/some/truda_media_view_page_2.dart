@@ -7,7 +7,7 @@ import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_net_image.dart';
 
 class TrudaFullscreenSliderDemo extends StatefulWidget {
   List<TrudaHostMedia> list;
@@ -315,7 +315,7 @@ class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
               tag: widget.heroId,
               child: SizedBox.expand(
                 child: widget.type == 0
-                    ? NewHitaNetImage(
+                    ? TrudaNetImage(
                         widget.path,
                         fit: BoxFit.contain,
                       )
@@ -329,7 +329,7 @@ class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
                               right: 0,
                               top: 0,
                               bottom: 0,
-                              child: NewHitaNetImage(widget.cover ?? ''),
+                              child: TrudaNetImage(widget.cover ?? ''),
                             ),
                             const Icon(
                               Icons.play_circle_outline_rounded,

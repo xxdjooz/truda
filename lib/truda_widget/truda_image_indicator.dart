@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 // 把图片绘制到Indicator
-class NewHitaImageIndicator extends Decoration {
+class TrudaImageIndicator extends Decoration {
   final ui.Image indicator;
   final Color? colorFilter;
 
-  const NewHitaImageIndicator(this.indicator, {this.colorFilter});
+  const TrudaImageIndicator(this.indicator, {this.colorFilter});
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _NewHitaImageIndicatorPainter(
+    return _TrudaImageIndicatorPainter(
         this, indicator, colorFilter, onChanged);
   }
 }
 
-class _NewHitaImageIndicatorPainter extends BoxPainter {
-  final NewHitaImageIndicator binIndicator;
+class _TrudaImageIndicatorPainter extends BoxPainter {
+  final TrudaImageIndicator binIndicator;
   final ui.Image indicator;
   final Color? colorFilter;
 
-  _NewHitaImageIndicatorPainter(this.binIndicator, this.indicator,
+  _TrudaImageIndicatorPainter(this.binIndicator, this.indicator,
       this.colorFilter, VoidCallback? onChanged);
 
   @override

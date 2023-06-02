@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_colors.dart';
-import '../../../truda_widget/newhita_app_bar.dart';
+import '../../../truda_widget/truda_app_bar.dart';
 import 'truda_invite_bonus_controller.dart';
 
 class TrudaInviteBonusPage extends GetView<TrudaInviteBonusController> {
@@ -16,7 +16,7 @@ class TrudaInviteBonusPage extends GetView<TrudaInviteBonusController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaInviteBonusController>(builder: (contro) {
       return Scaffold(
-        appBar: NewHitaAppBar(
+        appBar: TrudaAppBar(
           title: Text(TrudaLanguageKey.newhita_invite_diamonds.tr),
         ),
         extendBodyBehindAppBar: false,

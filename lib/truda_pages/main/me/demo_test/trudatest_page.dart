@@ -25,9 +25,9 @@ import '../../../../truda_utils/truda_third_util.dart';
 import '../../../../truda_utils/truda_voice_player.dart';
 import '../../../../truda_widget/gift/truda_gift_data_helper.dart';
 import '../../../../truda_widget/gift/truda_vap_player.dart';
-import '../../../../truda_widget/newhita_gradient_boder.dart';
-import '../../../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
-import '../../../../truda_widget/newhita_stacked_list.dart';
+import '../../../../truda_widget/truda_gradient_boder.dart';
+import '../../../../truda_widget/truda_gradient_circular_progress_indicator.dart';
+import '../../../../truda_widget/truda_stacked_list.dart';
 import '../../../some/truda_media_view_page_2.dart';
 import '../../../vip/truda_vip_controller.dart';
 import 'truda_mock_dialog_page.dart';
@@ -148,7 +148,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    Get.to(NewHitaImageStackPage());
+                    Get.to(TrudaImageStackPage());
                   },
                   child: Text('images stack'),
                 ),
@@ -237,7 +237,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                   },
                   child: Text('Gift send'),
                 ),
-                NewHitaGradientCircularProgressIndicator(
+                TrudaGradientCircularProgressIndicator(
                   colors: const [Colors.green, Colors.orange],
                   radius: 50.0,
                   stokeWidth: 3.0,
@@ -247,7 +247,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 SizedBox(
                   width: 140,
                   height: 140,
-                  child: const NewHitaGradientBoder(
+                  child: const TrudaGradientBoder(
                     border: 4,
                     colorSolid: Colors.grey,
                     borderRadius: 8,

@@ -7,8 +7,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_entities/truda_hot_entity.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/newhita_click_widget.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_click_widget.dart';
+import '../../truda_widget/truda_net_image.dart';
 import 'truda_dialog_pay_country_choose.dart';
 import 'truda_pay_countries_util.dart';
 
@@ -175,7 +175,7 @@ class _TrudaChargeChannelDialogState extends State<TrudaChargeChannelDialog> {
                           visible: area != null,
                           child: Row(
                             children: [
-                              NewHitaNetImage(
+                              TrudaNetImage(
                                 area?.path ?? "",
                                 // radius: 9,
                                 width: 15,
@@ -310,7 +310,7 @@ class _TrudaChargeChannelDialogState extends State<TrudaChargeChannelDialog> {
           // if (choosePayData == null) {
           //   choosePayData = payListDataCommodities;
           // }
-          return NewHitaClickWidget(
+          return TrudaClickWidget(
             onTap: () async {
               Get.back();
               callback.call(
@@ -338,7 +338,7 @@ class _TrudaChargeChannelDialogState extends State<TrudaChargeChannelDialog> {
                             borderRadius: BorderRadiusDirectional.all(
                                 Radius.circular(4))),
                         margin: EdgeInsetsDirectional.only(end: 10),
-                        child: NewHitaNetImage(
+                        child: TrudaNetImage(
                           channelData.nationalFlagPath ?? "",
                           //本地占位图
                           fit: BoxFit.contain,

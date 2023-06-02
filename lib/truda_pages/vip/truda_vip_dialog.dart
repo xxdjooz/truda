@@ -8,8 +8,8 @@ import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_services/truda_my_info_service.dart';
-import '../../truda_widget/newhita_gradient_button.dart';
-import '../../truda_widget/newhita_net_image.dart';
+import '../../truda_widget/truda_gradient_button.dart';
+import '../../truda_widget/truda_net_image.dart';
 
 class TrudaVipDialog extends GetView<TrudaVipController> {
   static bool showing = false;
@@ -178,7 +178,7 @@ class TrudaVipDialog extends GetView<TrudaVipController> {
                           return _getVipItem(index);
                         },
                       ),
-                      NewHitaGradientButton(
+                      TrudaGradientButton(
                         padding:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                         onTap: () {

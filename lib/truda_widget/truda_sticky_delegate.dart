@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
-class NewHitaStickyDelegate extends SliverPersistentHeaderDelegate {
+class TrudaStickyDelegate extends SliverPersistentHeaderDelegate {
   final PreferredSizeWidget child;
   final Decoration? decoration;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
 
-  NewHitaStickyDelegate(
+  TrudaStickyDelegate(
       {required this.child, this.decoration, this.padding, this.margin});
 
   @override

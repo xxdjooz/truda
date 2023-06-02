@@ -20,7 +20,7 @@ import '../../truda_utils/truda_permission_handler.dart';
 import 'package:flutter/material.dart';
 
 import '../../truda_common/truda_colors.dart';
-import '../../truda_widget/newhita_decoration_bg.dart';
+import '../../truda_widget/truda_decoration_bg.dart';
 import 'match/truda_match_page.dart';
 import 'truda_main_page.dart';
 import 'home/truda_home_ios_page.dart';
@@ -155,7 +155,7 @@ class _NewHitaIOSMainPageState extends State<NewHitaIOSMainPage>{
         child: Scaffold(
           backgroundColor: TrudaColors.baseColorBlackBg,
           body: Container(
-            decoration: const NewHitaDecorationBg(),
+            decoration: const TrudaDecorationBg(),
             child: PageView(
               pageSnapping: false,
               scrollBehavior: null,
