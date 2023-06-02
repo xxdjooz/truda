@@ -14,9 +14,9 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../../chat/truda_chat_controller.dart';
-import '../../host/newhita_host_controller.dart';
+import '../../host/truda_host_controller.dart';
 import '../../some/newhita_media_view_page.dart';
-import '../home/newhita_host_widget.dart';
+import '../home/truda_host_widget.dart';
 
 class NewHitaMomentListPage extends GetView<NewHitaMomentListController> {
   bool iosMock;
@@ -129,7 +129,7 @@ class NewHitaMomentListPage extends GetView<NewHitaMomentListController> {
                                 GestureDetector(
                                   onTap: () async {
                                     var result =
-                                    await NewHitaHostController
+                                    await TrudaHostController
                                         .startMe(bean.userId!,
                                         bean.portrait);
                                     if (result == 1) {
@@ -148,7 +148,7 @@ class NewHitaMomentListPage extends GetView<NewHitaMomentListController> {
                                       PositionedDirectional(
                                         top: -4,
                                         start: -4,
-                                        child: NewHitaHostStateWidget(
+                                        child: TrudaHostStateWidget(
                                           isDoNotDisturb:
                                               bean.isDoNotDisturb ?? 0,
                                           isOnline: bean.isOnline ?? 0,
@@ -167,7 +167,7 @@ class NewHitaMomentListPage extends GetView<NewHitaMomentListController> {
                                       GestureDetector(
                                         onTap: () async {
                                           var result =
-                                              await NewHitaHostController
+                                              await TrudaHostController
                                                   .startMe(bean.userId!,
                                                       bean.portrait);
                                           if (result == 1) {

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_net_helper.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/login/newhita_login_to_main_api.dart';
+import 'package:truda/truda_pages/login/truda_login_to_main_api.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';

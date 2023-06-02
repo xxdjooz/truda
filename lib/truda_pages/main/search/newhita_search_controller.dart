@@ -8,7 +8,7 @@ import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 
 import '../../../truda_entities/truda_config_entity.dart';
-import '../../host/newhita_host_controller.dart';
+import '../../host/truda_host_controller.dart';
 
 class NewHitaSearchController extends GetxController {
   late String herId;
@@ -32,7 +32,7 @@ class NewHitaSearchController extends GetxController {
         doneCallback: (bool success, String message) {
       NewHitaLoading.dismiss();
     }).then((value) {
-      NewHitaHostController.startMe(value.userId!, value.portrait);
+      TrudaHostController.startMe(value.userId!, value.portrait);
     });
   }
 

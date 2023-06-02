@@ -8,7 +8,7 @@ import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_host_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_pages/host/newhita_host_controller.dart';
+import '../truda_pages/host/truda_host_controller.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_widget/newhita_gradient_boder.dart';
 import '../truda_widget/newhita_sheet_header.dart';
@@ -43,7 +43,7 @@ class _TrudaDialogSearchState extends State<TrudaDialogSearch> {
       },
       showLoading: true,
     ).then((value) {
-      NewHitaHostController.startMe(value.userId!, value.portrait);
+      TrudaHostController.startMe(value.userId!, value.portrait);
     });
   }
 

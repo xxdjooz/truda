@@ -18,7 +18,7 @@ import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_socket/newhita_socket_manager.dart';
-import '../../login/newhita_login_util.dart';
+import '../../login/truda_login_util.dart';
 import '../../vip/newhita_vip_controller.dart';
 
 class NewHitaMeController extends GetxController {
@@ -158,7 +158,7 @@ class NewHitaMeController extends GetxController {
   }
 
   bool _logining = false;
-  NewHitaLoginUtil loginUtil = NewHitaLoginUtil();
+  TrudaLoginUtil loginUtil = TrudaLoginUtil();
   void googleSignIn() {
     if (_logining) {
       return;

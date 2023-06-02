@@ -125,7 +125,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: TrudaColors.white,
-            // indicator: NewHitaHostDetailIndicator(),
+            // indicator: TrudaHostDetailIndicator(),
             labelPadding: EdgeInsetsDirectional.only(start: 10, end: 10),
             tabs: [
               Tab(text: TrudaLanguageKey.newhita_gift_all.tr),

@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_dialogs/truda_dialog_first_tip.dart';
 import 'package:truda/truda_entities/truda_leval_entity.dart';
 import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
-import 'package:truda/truda_pages/main/home/newhita_page_index_manager.dart';
+import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_socket/newhita_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_adjust_manager.dart';
@@ -50,7 +50,7 @@ class NewHitaMainController extends GetxController {
     if (index == 2) {
       NewHitaStorageService.to.objectBoxMsg.refreshUnreadNum();
     }
-    NewHitaPageIndexManager.setMainIndex(index);
+    TrudaPageIndexManager.setMainIndex(index);
   }
 
   @override

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../truda_entities/truda_info_entity.dart';
-import '../truda_pages/main/home/newhita_follow_controller.dart';
+import '../truda_pages/main/home/truda_follow_controller.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_utils/newhita_log.dart';
@@ -30,8 +30,8 @@ class TrudaCommonApi {
           NewHitaLoading.toast(err.message);
         }, showLoading: showLoading).then((value) {
           // 通知关注列表刷新
-          if (Get.isRegistered<NewHitaFollowController>()){
-            Get.find<NewHitaFollowController>().shouldReload = true;
+          if (Get.isRegistered<TrudaFollowController>()){
+            Get.find<TrudaFollowController>().shouldReload = true;
           }
       return value;
     });

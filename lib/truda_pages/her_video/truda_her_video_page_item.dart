@@ -11,7 +11,7 @@ import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/her_video/truda_cache_page.dart';
 import 'package:truda/truda_pages/her_video/truda_video_progress.dart';
-import 'package:truda/truda_pages/host/newhita_host_controller.dart';
+import 'package:truda/truda_pages/host/truda_host_controller.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/newhita_app_bar.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
@@ -23,7 +23,7 @@ import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_utils/newhita_format_util.dart';
 import '../../truda_utils/newhita_loading.dart';
-import '../main/home/newhita_host_widget.dart';
+import '../main/home/truda_host_widget.dart';
 
 ///
 /// TikTok风格的一个视频页组件，覆盖在video上，提供以下功能：
@@ -192,7 +192,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
                   const SizedBox(height: 10),
                   GestureDetector(
                     onTap: () async {
-                      var result = await NewHitaHostController.startMe(
+                      var result = await TrudaHostController.startMe(
                           widget.detail.userId!, widget.detail.portrait);
                       if (result == 1) {
                         Get.back(result: 1);
@@ -205,7 +205,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
                         GestureDetector(
                           onTap: () {
                             Get.back();
-                            NewHitaHostController.startMe(
+                            TrudaHostController.startMe(
                                 widget.detail.userId!, widget.detail.portrait);
                           },
                           child: Container(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_common/truda_text_styles.dart';
-import 'package:truda/truda_pages/host/newhita_host_controller.dart';
+import 'package:truda/truda_pages/host/truda_host_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -13,7 +13,7 @@ import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../../call/local/truda_local_controller.dart';
 import '../../../chat/truda_chat_controller.dart';
-import '../../home/newhita_host_widget.dart';
+import '../../home/truda_host_widget.dart';
 import 'newhita_call_list_controller.dart';
 
 class NewHitaCallListPage extends GetView<NewHitaCallListController> {
@@ -64,7 +64,7 @@ class NewHitaCallListPage extends GetView<NewHitaCallListController> {
                       updateTime = DateFormat('yyyy.MM.dd HH:mm').format(time);
                       return GestureDetector(
                         onTap: () {
-                          NewHitaHostController.startMe(
+                          TrudaHostController.startMe(
                               (bean.peerUserId ?? 0).toString(),
                               bean.peerPortrait);
                         },
@@ -83,7 +83,7 @@ class NewHitaCallListPage extends GetView<NewHitaCallListController> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  NewHitaHostController.startMe(
+                                  TrudaHostController.startMe(
                                       (bean.peerUserId ?? 0).toString(),
                                       bean.peerPortrait);
                                 },
@@ -97,7 +97,7 @@ class NewHitaCallListPage extends GetView<NewHitaCallListController> {
                                     PositionedDirectional(
                                       bottom: 0,
                                       end: 0,
-                                      child: NewHitaHostStateWidget(
+                                      child: TrudaHostStateWidget(
                                         isDoNotDisturb:
                                             bean.peerIsDoNotDisturb ?? 0,
                                         isOnline: bean.peerIsOnline ?? 0,

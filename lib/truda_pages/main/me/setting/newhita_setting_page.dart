@@ -13,7 +13,7 @@ import '../../../../truda_dialogs/truda_dialog_search.dart';
 import '../../../../truda_routes/newhita_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../login/account/newhita_account_pasaword_page.dart';
+import '../../../login/account/truda_account_pasaword_page.dart';
 import 'newhita_setting_controller.dart';
 
 class NewHitaSettingPage extends GetView<NewHitaSettingController> {
@@ -157,7 +157,7 @@ class NewHitaSettingPage extends GetView<NewHitaSettingController> {
                 _wItemSet(
                   title: TrudaLanguageKey.newhita_visitor_pw_change.tr,
                   onTap: () {
-                    Get.to(const NewHitaAccountPasswordPage());
+                    Get.to(const TrudaAccountPasswordPage());
                   },
                 ),
                 const ColoredBox(

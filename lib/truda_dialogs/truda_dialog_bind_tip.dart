@@ -7,7 +7,7 @@ import '../truda_common/truda_constants.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_pages/login/newhita_login_util.dart';
+import '../truda_pages/login/truda_login_util.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_widget/newhita_gradient_boder.dart';
@@ -36,7 +36,7 @@ class _TrudaBindTipState extends State<TrudaBindTip> {
   }
 
   bool _logining = false;
-  NewHitaLoginUtil loginUtil = NewHitaLoginUtil();
+  TrudaLoginUtil loginUtil = TrudaLoginUtil();
 
   void googleSignIn() {
     if (_logining) {

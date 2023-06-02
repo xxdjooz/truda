@@ -21,9 +21,9 @@ import 'package:flutter/material.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
-import 'match/newhita_match_page.dart';
+import 'match/truda_match_page.dart';
 import 'newhita_main_page.dart';
-import 'home/newhita_home_ios_page.dart';
+import 'home/truda_home_ios_page.dart';
 import 'me/newhita_me_page.dart';
 import 'moment/newhita_moment_list_page.dart';
 import 'msg/newhita_msg_tab.dart';
@@ -162,8 +162,8 @@ class _NewHitaIOSMainPageState extends State<NewHitaIOSMainPage>{
               physics: const NeverScrollableScrollPhysics(),
               controller: controller.pageController,
               children: <Widget>[
-                NewHitaMatchPage(),
-                NewHitaHomeIosPage(),
+                TrudaMatchPage(),
+                TrudaHomeIosPage(),
                 NewHitaMsgTab(),
                 NewHitaMePage(),
               ],

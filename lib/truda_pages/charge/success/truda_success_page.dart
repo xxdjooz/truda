@@ -6,8 +6,8 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../truda_widget/newhita_net_image.dart';
-import '../../host/newhita_host_controller.dart';
-import '../../main/home/newhita_host_widget.dart';
+import '../../host/truda_host_controller.dart';
+import '../../main/home/truda_host_widget.dart';
 import 'truda_success_controller.dart';
 
 @Deprecated('message')
@@ -107,7 +107,7 @@ class TrudaRecommendWidget extends StatelessWidget {
         Positioned.fill(
             child: GestureDetector(
           onTap: () {
-            NewHitaHostController.startMe(detail.userId!, detail.portrait);
+            TrudaHostController.startMe(detail.userId!, detail.portrait);
           },
           child: NewHitaNetImage(
             detail.portrait ?? "",
@@ -142,7 +142,7 @@ class TrudaRecommendWidget extends StatelessWidget {
         PositionedDirectional(
           top: 10,
           end: 10,
-          child: NewHitaHostStateWidget(
+          child: TrudaHostStateWidget(
             isDoNotDisturb: detail.isDoNotDisturb ?? 0,
             isOnline: detail.isOnline ?? 0,
           ),

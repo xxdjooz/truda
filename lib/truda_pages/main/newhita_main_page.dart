@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_pages/main/home/newhita_page_index_manager.dart';
+import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
 import 'package:truda/truda_pages/main/newhita_main_controller.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_socket/newhita_socket_manager.dart';
@@ -10,8 +10,8 @@ import '../../truda_routes/newhita_pages.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_utils/newhita_pay_cache_manager.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
-import 'home/newhita_home_page.dart';
-import 'match/newhita_match_page.dart';
+import 'home/truda_home_page.dart';
+import 'match/truda_match_page.dart';
 import 'me/newhita_me_page.dart';
 import 'moment/newhita_moment_list_page.dart';
 import 'msg/newhita_msg_tab.dart';
@@ -54,13 +54,13 @@ class _NewHitaMainPageState extends State<NewHitaMainPage>
     NewHitaLog.debug('NewHitaMainPage didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
     NewHitaPayCacheManager.checkOrderList();
-    NewHitaPageIndexManager.setMainShow(true);
+    TrudaPageIndexManager.setMainShow(true);
   }
 
   @override
   void didPushNext() {
     super.didPushNext();
-    NewHitaPageIndexManager.setMainShow(false);
+    TrudaPageIndexManager.setMainShow(false);
   }
 
   //App 的⽣命周期
@@ -109,9 +109,9 @@ class _NewHitaMainPageState extends State<NewHitaMainPage>
                   scrollBehavior: null,
                   physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
-                    NewHitaHomePage(),
+                    TrudaHomePage(),
                     NewHitaMomentListPage(),
-                    NewHitaMatchPage(),
+                    TrudaMatchPage(),
                     NewHitaMsgTab(),
                     NewHitaMePage(),
                   ],

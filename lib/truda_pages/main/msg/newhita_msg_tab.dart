@@ -11,7 +11,7 @@ import '../../../truda_dialogs/truda_sheet_msg_option.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_utils/newhita_ui_image_util.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
-import '../home/newhita_home_page.dart';
+import '../home/truda_home_page.dart';
 import 'newhita_msg_page.dart';
 
 class NewHitaMsgTab extends StatefulWidget {

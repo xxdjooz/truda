@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_pages/host/newhita_host_controller.dart';
+import 'package:truda/truda_pages/host/truda_host_controller.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:intl/intl.dart';
 
@@ -49,7 +49,7 @@ class TrudaLianChatMsgHer extends StatelessWidget {
                     )
                   : GestureDetector(
                       onTap: () {
-                        NewHitaHostController.startMe(
+                        TrudaHostController.startMe(
                             wrapper.herId, wrapper.her?.portrait ?? "");
                       },
                       child: NewHitaNetImage(

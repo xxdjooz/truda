@@ -7,8 +7,8 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../truda_widget/newhita_net_image.dart';
-import '../../host/newhita_host_controller.dart';
-import '../home/newhita_host_widget.dart';
+import '../../host/truda_host_controller.dart';
+import '../home/truda_host_widget.dart';
 import 'newhita_search_controller.dart';
 
 class NewHitaSearchPage extends GetView<NewHitaSearchController> {
@@ -86,7 +86,7 @@ class NewHitaHostSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        NewHitaHostController.startMe(detail.userId!, detail.portrait);
+        TrudaHostController.startMe(detail.userId!, detail.portrait);
       },
       child: Stack(
         children: [
@@ -123,7 +123,7 @@ class NewHitaHostSearchWidget extends StatelessWidget {
           PositionedDirectional(
             top: 10,
             end: 10,
-            child: NewHitaHostStateWidget(
+            child: TrudaHostStateWidget(
               isDoNotDisturb: detail.isDoNotDisturb ?? 0,
               isOnline: detail.isOnline ?? 0,
             ),

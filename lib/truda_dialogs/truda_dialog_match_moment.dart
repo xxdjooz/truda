@@ -15,8 +15,8 @@ import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/call/local/truda_local_controller.dart';
 import '../truda_pages/chat/truda_chat_controller.dart';
-import '../truda_pages/host/newhita_host_controller.dart';
-import '../truda_pages/main/home/newhita_host_widget.dart';
+import '../truda_pages/host/truda_host_controller.dart';
+import '../truda_pages/main/home/truda_host_widget.dart';
 import '../truda_pages/some/newhita_media_view_page.dart';
 import '../truda_routes/newhita_pages.dart';
 import '../truda_utils/newhita_format_util.dart';
@@ -168,7 +168,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
           GestureDetector(
             onTap: () async {
               var result =
-                  await NewHitaHostController.startMe(bean.userId!, bean.portrait);
+                  await TrudaHostController.startMe(bean.userId!, bean.portrait);
               if (result == 1) {
                 Get.back(result: 1);
               }

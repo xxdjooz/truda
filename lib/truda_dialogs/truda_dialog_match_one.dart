@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_pages/host/newhita_host_controller.dart';
+import 'package:truda/truda_pages/host/truda_host_controller.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -416,7 +416,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
         GestureDetector(
           onTap: () {
             Get.back();
-            NewHitaHostController.startMe(detail.userId!, detail.portrait);
+            TrudaHostController.startMe(detail.userId!, detail.portrait);
           },
           child: Container(
             padding:
