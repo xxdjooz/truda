@@ -35,8 +35,8 @@ class NewHitaGoogleBilling {
 // import 'package:truda/truda_common/truda_language_key.dart';
 // import 'package:truda/truda_entities/truda_charge_entity.dart';
 // import 'package:truda/truda_entities/truda_charge_quick_entity.dart';
-// import 'package:truda/truda_http/newhita_http_urls.dart';
-// import 'package:truda/truda_http/newhita_http_util.dart';
+// import 'package:truda/truda_http/truda_http_urls.dart';
+// import 'package:truda/truda_http/truda_http_util.dart';
 // import 'package:truda/truda_services/newhita_my_info_service.dart';
 // import 'package:truda/truda_services/newhita_storage_service.dart';
 // import 'package:truda/truda_utils/newhita_loading.dart';

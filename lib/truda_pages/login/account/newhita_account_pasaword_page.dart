@@ -7,8 +7,8 @@ import 'package:truda/truda_widget/newhita_app_bar.dart';
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_services/newhita_storage_service.dart';
@@ -98,8 +98,8 @@ class _NewHitaAccountPasswordPageState
     final oriPassword = _textEditingController.text;
     final newPassword = _textEditingController2.text;
 
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.changePassword,
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.changePassword,
             data: {
               "oriPassword": oriPassword,
               "newPassword": newPassword,

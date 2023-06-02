@@ -5,8 +5,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../truda_database/entity/truda_msg_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import 'newhita_loading.dart';
 import 'newhita_log.dart';
 import 'newhita_upload_isolate.dart';
@@ -130,7 +130,7 @@ class NewHitaChooseImageUtil {
     // }, onError: (e) {
     //   callBack.call(this, NewHitaUploadType.failed, null, null);
     // });
-    NewHitaHttpUtil().post<String>(NewHitaHttpUrls.s3UploadUrl,
+    TrudaHttpUtil().post<String>(TrudaHttpUrls.s3UploadUrl,
         data: {'endType': '.jpg'}, errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);

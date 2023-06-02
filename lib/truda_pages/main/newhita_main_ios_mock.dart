@@ -12,8 +12,8 @@ import 'package:truda/truda_utils/newhita_firebase_manager.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_permission_handler.dart';
@@ -83,7 +83,7 @@ class NewHitaIOSMainController extends GetxController {
   }
 
   void getGift() {
-    NewHitaHttpUtil().post<List<TrudaGiftEntity>>(NewHitaHttpUrls.allGiftListApi,
+    TrudaHttpUtil().post<List<TrudaGiftEntity>>(TrudaHttpUrls.allGiftListApi,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }).then((value) {
@@ -97,8 +97,8 @@ class NewHitaIOSMainController extends GetxController {
 
   void getLevalList() {
     var areaCode = NewHitaMyInfoService.to.myDetail?.areaCode ?? 1;
-    NewHitaHttpUtil()
-        .post<List<TrudaLevalBean>>(NewHitaHttpUrls.LevelRuleApi + '/$areaCode',
+    TrudaHttpUtil()
+        .post<List<TrudaLevalBean>>(TrudaHttpUrls.LevelRuleApi + '/$areaCode',
             errCallback: (err) {})
         .then((value) {
       if (value.isNotEmpty) {
@@ -111,8 +111,8 @@ class NewHitaIOSMainController extends GetxController {
   }
 
   void getSensitiveList() {
-    NewHitaHttpUtil()
-        .post<List<TrudaSensitiveWordBean>>(NewHitaHttpUrls.sensitiveWordsApi,
+    TrudaHttpUtil()
+        .post<List<TrudaSensitiveWordBean>>(TrudaHttpUrls.sensitiveWordsApi,
             errCallback: (err) {})
         .then((value) {
       if (value.isNotEmpty) {

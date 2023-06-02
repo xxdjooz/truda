@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_end_type_2.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_socket/newhita_socket_manager.dart';
@@ -30,7 +30,7 @@ import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_entities/truda_info_entity.dart';
 import '../../truda_entities/truda_join_call_entity.dart';
 import '../../truda_entities/truda_send_gift_result.dart';
-import '../../truda_http/newhita_common_api.dart';
+import '../../truda_http/truda_common_api.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_rtm/newhita_rtm_manager.dart';
 import '../../truda_rtm/newhita_rtm_msg_entity.dart';
@@ -45,7 +45,7 @@ import '../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
 import '../vip/newhita_vip_controller.dart';
-import 'end/newhita_end_controller.dart';
+import 'end/truda_end_controller.dart';
 import 'newhita_count_20.dart';
 
 class NewHitaCallController extends GetxController {
@@ -266,7 +266,7 @@ class NewHitaCallController extends GetxController {
   @Deprecated("_getTokenV2")
   void _getToken() {
     _startLinkTimer();
-    NewHitaHttpUtil().post<String>(NewHitaHttpUrls.agoraTokenApi + channelId!,
+    TrudaHttpUtil().post<String>(TrudaHttpUrls.agoraTokenApi + channelId!,
         data: {}, errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);
@@ -286,7 +286,7 @@ class NewHitaCallController extends GetxController {
   /// 获取进入频道的token
   void _getTokenV2() {
     _startLinkTimer();
-    NewHitaHttpUtil().post<TrudaJoinCall>(NewHitaHttpUrls.joinCall + channelId!,
+    TrudaHttpUtil().post<TrudaJoinCall>(TrudaHttpUrls.joinCall + channelId!,
         data: {}, errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);
@@ -422,7 +422,7 @@ class NewHitaCallController extends GetxController {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       detail?.followed = value;
       followed.value = value;
       update();
@@ -520,7 +520,7 @@ class NewHitaCallController extends GetxController {
   }
 
   void sendGift(TrudaGiftEntity gift) {
-    NewHitaHttpUtil().post<TrudaSendGiftResult>(NewHitaHttpUrls.sendGiftApi,
+    TrudaHttpUtil().post<TrudaSendGiftResult>(TrudaHttpUrls.sendGiftApi,
         data: {"receiverId": herId, "quantity": 1, "gid": gift.gid},
         showLoading: true, errCallback: (err) {
       if (err.code == 8) {
@@ -558,8 +558,8 @@ class NewHitaCallController extends GetxController {
   /// 用户端每计时一分钟时通知扣用户钻石
   @Deprecated("message")
   void _refreshCall() {
-    NewHitaHttpUtil().post<void>(
-      NewHitaHttpUrls.refreshCallApi + channelId!,
+    TrudaHttpUtil().post<void>(
+      TrudaHttpUrls.refreshCallApi + channelId!,
 
       /// 续费失败
       errCallback: (err) {
@@ -574,8 +574,8 @@ class NewHitaCallController extends GetxController {
 
   /// 用户端每计时一分钟时通知扣用户钻石
   void _refreshCallV2({bool first = false}) {
-    NewHitaHttpUtil().post<String>(
-      NewHitaHttpUrls.refreshCallV2 + channelId!,
+    TrudaHttpUtil().post<String>(
+      TrudaHttpUrls.refreshCallV2 + channelId!,
 
       /// 续费失败
       errCallback: (err) {
@@ -616,7 +616,7 @@ class NewHitaCallController extends GetxController {
       return;
     }
     alreadyGotoEnd = true;
-    NewHitaEndController.startMeAndOff(
+    TrudaEndController.startMeAndOff(
       herId: herId,
       channelId: channelId ?? '',
       portrait: detail?.portrait ?? '',
@@ -708,7 +708,7 @@ class NewHitaCallController extends GetxController {
     if (channelId == null || channelId!.isEmpty) {
       return;
     }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.cancelCallApi,
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.cancelCallApi,
         data: {'channelId': channelId, 'endType': endType});
   }
 
@@ -726,8 +726,8 @@ class NewHitaCallController extends GetxController {
   }
 
   void _askGift(NewHitaRTMMsgGift msgGift) {
-    NewHitaHttpUtil()
-        .post<TrudaGiftEntity>(NewHitaHttpUrls.giftGetOne + (msgGift.giftId ?? ''),
+    TrudaHttpUtil()
+        .post<TrudaGiftEntity>(TrudaHttpUrls.giftGetOne + (msgGift.giftId ?? ''),
             errCallback: (err) {})
         .then((value) {
       askGift.value = value;
@@ -758,8 +758,8 @@ class NewHitaCallController extends GetxController {
 
   Future _getContributeList() async {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaContributeBean>>(
-        NewHitaHttpUrls.getExpendRanking + herId, errCallback: (err) {
+    await TrudaHttpUtil().post<List<TrudaContributeBean>>(
+        TrudaHttpUrls.getExpendRanking + herId, errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }).then((value) {
       for (var index = 0; index < value.length; index++) {

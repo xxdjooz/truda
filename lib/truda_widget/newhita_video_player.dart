@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-import '../truda_pages/call/aic/newhita_aic_controller.dart';
+import '../truda_pages/call/aic/truda_aic_controller.dart';
 
 class NewHitaVideoPlayer extends StatefulWidget {
   // String netUrl;
@@ -33,7 +33,7 @@ class _NewHitaVideoPlayerState extends State<NewHitaVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    var aicController = Get.find<NewHitaAicController>();
+    var aicController = Get.find<TrudaAicController>();
     return Material(
       elevation: 0,
       child: SizedBox.expand(

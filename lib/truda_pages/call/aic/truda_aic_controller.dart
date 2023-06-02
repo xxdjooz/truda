@@ -9,8 +9,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_end_type.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
@@ -26,7 +26,7 @@ import '../../../truda_entities/truda_gift_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_send_gift_result.dart';
-import '../../../truda_http/newhita_common_api.dart';
+import '../../../truda_http/truda_common_api.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../../truda_rtm/newhita_rtm_msg_sender.dart';
@@ -40,9 +40,9 @@ import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../truda_widget/newhita_cache_manager.dart';
 import '../../chargedialog/newhita_charge_dialog_manager.dart';
 import '../../vip/newhita_vip_controller.dart';
-import '../end/newhita_end_controller.dart';
+import '../end/truda_end_controller.dart';
 
-class NewHitaAicController extends GetxController {
+class TrudaAicController extends GetxController {
   static startMeAndOff(String herId, String url, String localPath, int isCard,
       TrudaAicEntity aic) {
     Map<String, dynamic> map = {};
@@ -305,8 +305,8 @@ class NewHitaAicController extends GetxController {
 
   /// 消耗掉一张体验卡
   void consumeOneCard() {
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.useCardByAIBApi, errCallback: (err) {});
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.useCardByAIBApi, errCallback: (err) {});
   }
 
   // 视频播放结束和有体验卡的倒计时结束
@@ -356,7 +356,7 @@ class NewHitaAicController extends GetxController {
     }
     if (aicUseCard) {
       callTime = callTime + callCardDurationSecond;
-      NewHitaEndController.startMeAndOff(
+      TrudaEndController.startMeAndOff(
         herId: herId,
         channelId: channelId ?? '',
         portrait: detail?.portrait ?? '',
@@ -368,7 +368,7 @@ class NewHitaAicController extends GetxController {
         callHadShowCount20: callHadShowCount20,
       );
     } else {
-      NewHitaEndController.startMeAndOff(
+      TrudaEndController.startMeAndOff(
         herId: herId,
         channelId: channelId ?? '',
         portrait: detail?.portrait ?? '',
@@ -454,8 +454,8 @@ class NewHitaAicController extends GetxController {
 
   void sendGift(TrudaGiftEntity gift) {
     /// 这里送礼物要送给9999？好像是因为不让主播有收益
-    NewHitaHttpUtil().post<TrudaSendGiftResult>(
-      NewHitaHttpUrls.sendGiftApi,
+    TrudaHttpUtil().post<TrudaSendGiftResult>(
+      TrudaHttpUrls.sendGiftApi,
       data: {
         "receiverId": TrudaConstants.systemId,
         "quantity": 1,
@@ -496,7 +496,7 @@ class NewHitaAicController extends GetxController {
   }
 
   void _getHostDetail() {
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);
@@ -514,7 +514,7 @@ class NewHitaAicController extends GetxController {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       detail?.followed = value;
       followed.value = value;
       update();

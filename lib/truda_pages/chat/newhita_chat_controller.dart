@@ -19,9 +19,9 @@ import '../../truda_database/entity/truda_msg_entity.dart';
 import '../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_entities/truda_send_gift_result.dart';
-import '../../truda_http/newhita_common_api.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_common_api.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_rtm/newhita_rtm_msg_sender.dart';
 import '../../truda_services/newhita_event_bus_bean.dart';
@@ -159,7 +159,7 @@ class NewHitaChatController extends GetxController {
     if (herId.isEmpty || herId == TrudaConstants.systemId) {
       return;
     }
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }).then((value) {
@@ -298,7 +298,7 @@ class NewHitaChatController extends GetxController {
         msgEventType: NewHitaMsgEventType.sending, sendState: 1);
     var id = NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg);
     msg.id = id;
-    NewHitaHttpUtil().post<TrudaSendGiftResult>(NewHitaHttpUrls.sendGiftApi,
+    TrudaHttpUtil().post<TrudaSendGiftResult>(TrudaHttpUrls.sendGiftApi,
         data: {"receiverId": herId, "quantity": 1, "gid": gift.gid},
         errCallback: (err) {
       NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
@@ -334,7 +334,7 @@ class NewHitaChatController extends GetxController {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       herDetail?.followed = value;
       update();
     });

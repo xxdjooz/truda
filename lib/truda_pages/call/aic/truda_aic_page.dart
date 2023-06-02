@@ -13,11 +13,11 @@ import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
 import '../newhita_contribute_view.dart';
-import 'newhita_aic_controller.dart';
-import 'newhita_aic_widget.dart';
+import 'truda_aic_controller.dart';
+import 'truda_aic_widget.dart';
 
-class NewHitaAicPage extends GetView<NewHitaAicController> {
-  NewHitaAicPage({Key? key}) : super(key: key);
+class TrudaAicPage extends GetView<TrudaAicController> {
+  TrudaAicPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class NewHitaAicPage extends GetView<NewHitaAicController> {
     double appBarHeight = kToolbarHeight;
     return WillPopScope(
       onWillPop: () async => false,
-      child: GetBuilder<NewHitaAicController>(builder: (controller) {
+      child: GetBuilder<TrudaAicController>(builder: (controller) {
         return controller.connecting
             ? _connectWidget()
             : Scaffold(
@@ -212,7 +212,7 @@ class NewHitaAicPage extends GetView<NewHitaAicController> {
                 body: Stack(
                   children: [
                     Positioned.fill(
-                      child: NewHitaAicWidget(),
+                      child: TrudaAicWidget(),
                     ),
                     // 顶部布局
                     PositionedDirectional(

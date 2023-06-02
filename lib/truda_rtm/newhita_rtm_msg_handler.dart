@@ -13,8 +13,8 @@ import 'package:truda/truda_utils/newhita_log.dart';
 import '../truda_common/truda_call_status.dart';
 import '../truda_database/entity/truda_msg_entity.dart';
 import '../truda_entities/truda_host_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_socket/newhita_socket_entity.dart';
 
 void handleMsg(AgoraRtmMessage message, String peerId) {
@@ -38,7 +38,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       NewHitaStorageService.to.eventBus.fire(entity);
     } else {
       // 发现服务端下发的话术消息只有id,"userInfo":{"auth":2,"uid":"108172243"}
-      NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + her.uid!,
+      TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + her.uid!,
           errCallback: (err) {
         NewHitaLog.debug(err);
       }).then((value) {

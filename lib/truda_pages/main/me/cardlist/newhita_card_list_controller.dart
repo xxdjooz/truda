@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_card_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_utils/newhita_loading.dart';
@@ -29,7 +29,7 @@ class NewHitaCardListController extends GetxController {
 
   Future getList() async {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaCardBean>>(NewHitaHttpUrls.toolsApi,
+    await TrudaHttpUtil().post<List<TrudaCardBean>>(TrudaHttpUrls.toolsApi,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }, showLoading: true).then((value) {

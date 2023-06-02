@@ -6,8 +6,8 @@ import 'package:truda/truda_entities/truda_contribute_entity.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../truda_common/truda_language_key.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_utils/newhita_loading.dart';
 
 class NewHitaContributeController extends GetxController
@@ -23,8 +23,8 @@ class NewHitaContributeController extends GetxController
 
   Future getList() async {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaContributeBean>>(
-        NewHitaHttpUrls.getExpendRanking + herId, errCallback: (err) {
+    await TrudaHttpUtil().post<List<TrudaContributeBean>>(
+        TrudaHttpUrls.getExpendRanking + herId, errCallback: (err) {
       NewHitaLoading.toast(err.message);
       change(null, status: RxStatus.empty());
     }).then((value) {

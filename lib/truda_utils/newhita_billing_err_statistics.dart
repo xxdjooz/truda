@@ -1,5 +1,5 @@
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import 'newhita_log.dart';
 
 /// 上报统计一下Google支付的错误
@@ -8,8 +8,8 @@ class NewHitaBillingErrStatistics {
 
   static err(int err) {
     NewHitaLog.debug('NewHitaBillingErrStatistics $err');
-    NewHitaHttpUtil().post<void>(
-      NewHitaHttpUrls.appCallStatistics + '/$billingErr/$err',
+    TrudaHttpUtil().post<void>(
+      TrudaHttpUrls.appCallStatistics + '/$billingErr/$err',
       errCallback: (e) {},
     );
   }

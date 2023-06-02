@@ -8,7 +8,7 @@ import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../call/local/newhita_local_controller.dart';
+import '../../call/local/truda_local_controller.dart';
 import '../../host/newhita_host_controller.dart';
 
 class NewHitaHostWidget extends StatelessWidget {
@@ -143,7 +143,7 @@ class NewHitaHostWidget extends StatelessWidget {
                   (detail.isShowOnline && !TrudaConstants.isFakeMode)
                       ? GestureDetector(
                           onTap: () {
-                            NewHitaLocalController.startMe(
+                            TrudaLocalController.startMe(
                                 detail.userId!, detail.portrait);
                           },
                           //     Image.asset(

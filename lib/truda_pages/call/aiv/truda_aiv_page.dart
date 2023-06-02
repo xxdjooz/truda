@@ -14,11 +14,11 @@ import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
 import '../newhita_contribute_view.dart';
-import 'newhita_aiv_controller.dart';
-import 'newhita_aiv_widget.dart';
+import 'truda_aiv_controller.dart';
+import 'truda_aiv_widget.dart';
 
-class NewHitaAivPage extends GetView<NewHitaAivController> {
-  NewHitaAivPage({Key? key}) : super(key: key);
+class TrudaAivPage extends GetView<TrudaAivController> {
+  TrudaAivPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class NewHitaAivPage extends GetView<NewHitaAivController> {
     double appBarHeight = kToolbarHeight;
     return WillPopScope(
       onWillPop: () async => false,
-      child: GetBuilder<NewHitaAivController>(builder: (controller) {
+      child: GetBuilder<TrudaAivController>(builder: (controller) {
         return controller.connecting
             ? _connectWidget(controller)
             : Obx(() {
@@ -208,7 +208,7 @@ class NewHitaAivPage extends GetView<NewHitaAivController> {
                   body: Stack(
                     children: [
                       Positioned.fill(
-                        child: NewHitaAivWidget(),
+                        child: TrudaAivWidget(),
                       ),
                       // 顶部布局
                       PositionedDirectional(
@@ -471,7 +471,7 @@ class NewHitaAivPage extends GetView<NewHitaAivController> {
     );
   }
 
-  Widget _connectWidget(NewHitaAivController controller) {
+  Widget _connectWidget(TrudaAivController controller) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

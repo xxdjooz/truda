@@ -4,8 +4,8 @@ import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_dialog_visitor_tip.dart';
 import '../../truda_entities/truda_info_entity.dart';
 import '../../truda_entities/truda_login_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_rtm/newhita_rtm_manager.dart';
 import '../../truda_services/newhita_my_info_service.dart';
@@ -19,7 +19,7 @@ void whenGotLoginToMain(TrudaLogin theLogin){
 }
 void _getDetail() {
   NewHitaLog.debug('NewHitaMeController refreshMe()');
-  NewHitaHttpUtil().post<TrudaInfoDetail>(NewHitaHttpUrls.userInfoApi,
+  TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
       errCallback: (err) {
         NewHitaLoading.toast(err.toString());
       }, showLoading: true).then((value) {

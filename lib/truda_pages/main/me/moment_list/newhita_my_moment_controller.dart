@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -42,8 +42,8 @@ class NewHitaMyMomentController extends GetxController {
   Future getList() async {
     final myId = NewHitaMyInfoService.to.myDetail?.userId ?? '';
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaLinkContent>>(
-      '${NewHitaHttpUrls.getLinkContent}$myId/-1',
+    await TrudaHttpUtil().post<List<TrudaLinkContent>>(
+      '${TrudaHttpUrls.getLinkContent}$myId/-1',
       // data: {
       //   "page": _page,
       //   "pageSize": _pageSize,
@@ -60,7 +60,7 @@ class NewHitaMyMomentController extends GetxController {
   }
 
   void removeBlack(String rId) {
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.delContent + rId,
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.delContent + rId,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }, showLoading: true).then((value) {

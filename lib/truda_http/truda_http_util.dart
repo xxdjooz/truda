@@ -18,7 +18,7 @@ import '../truda_rtm/newhita_rtm_manager.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_socket/newhita_socket_manager.dart';
 import '../truda_utils/newhita_loading.dart';
-import 'newhita_http_urls.dart';
+import 'truda_http_urls.dart';
 
 /*
   * http 操作类
@@ -29,20 +29,20 @@ import 'newhita_http_urls.dart';
   * 从 3 升级到 4
   * https://github.com/flutterchina/dio/blob/master/migration_to_4.x.md
 */
-typedef NewHitaHttpErrCallback = void Function(NewHitaErrorEntity err);
-typedef NewHitaHttpPageCallback = void Function(bool hasNext);
-typedef NewHitaHttpDoneCallback = void Function(bool success, String msg);
+typedef TrudaHttpErrCallback = void Function(TrudaErrorEntity err);
+typedef TrudaHttpPageCallback = void Function(bool hasNext);
+typedef TrudaHttpDoneCallback = void Function(bool success, String msg);
 
-class NewHitaHttpUtil {
-  static final NewHitaHttpUtil _instance = NewHitaHttpUtil._internal();
+class TrudaHttpUtil {
+  static final TrudaHttpUtil _instance = TrudaHttpUtil._internal();
 
-  factory NewHitaHttpUtil() => _instance;
+  factory TrudaHttpUtil() => _instance;
 
   late Dio _dio;
   CancelToken cancelToken = CancelToken();
   static int timeDiff = 0;
 
-  NewHitaHttpUtil._internal() {
+  TrudaHttpUtil._internal() {
     // BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
     BaseOptions options = BaseOptions(
       // 请求基地址,可以包含子路径
@@ -126,7 +126,7 @@ class NewHitaHttpUtil {
       onError: (DioError e, handler) {
         // Do something with response error
         NewHitaLoading.dismiss();
-        NewHitaErrorEntity eInfo = createErrorEntity(e);
+        TrudaErrorEntity eInfo = createErrorEntity(e);
         onError(eInfo);
         return handler.next(e); //continue
         // 如果你想完成请求并返回一些自定义数据，可以resolve 一个`Response`,如`handler.resolve(response)`。
@@ -147,7 +147,7 @@ class NewHitaHttpUtil {
    */
 
   // 错误处理
-  void onError(NewHitaErrorEntity eInfo) {
+  void onError(TrudaErrorEntity eInfo) {
     NewHitaLog.debug('error.code -> ' +
         eInfo.code.toString() +
         ', error.message -> ' +
@@ -165,17 +165,17 @@ class NewHitaHttpUtil {
   }
 
   // 错误信息
-  NewHitaErrorEntity createErrorEntity(DioError error) {
+  TrudaErrorEntity createErrorEntity(DioError error) {
     switch (error.type) {
       case DioErrorType.cancel:
-        return NewHitaErrorEntity(code: -1, message: "DioErrorType.cancel");
+        return TrudaErrorEntity(code: -1, message: "DioErrorType.cancel");
       case DioErrorType.connectTimeout:
-        return NewHitaErrorEntity(
+        return TrudaErrorEntity(
             code: -1, message: "DioErrorType.connectTimeout");
       case DioErrorType.sendTimeout:
-        return NewHitaErrorEntity(code: -1, message: "DioErrorType.sendTimeout");
+        return TrudaErrorEntity(code: -1, message: "DioErrorType.sendTimeout");
       case DioErrorType.receiveTimeout:
-        return NewHitaErrorEntity(
+        return TrudaErrorEntity(
             code: -1, message: "DioErrorType.receiveTimeout");
       case DioErrorType.response:
         {
@@ -194,11 +194,11 @@ class NewHitaHttpUtil {
               case 502:
               case 503:
               case 505:
-                return NewHitaErrorEntity(code: errCode, message: "net err");
+                return TrudaErrorEntity(code: errCode, message: "net err");
               default:
                 {
                   // return ErrorEntity(code: errCode, message: "未知错误");
-                  return NewHitaErrorEntity(
+                  return TrudaErrorEntity(
                     code: errCode,
                     message: error.response != null
                         ? error.response!.statusMessage!
@@ -207,12 +207,12 @@ class NewHitaHttpUtil {
                 }
             }
           } on Exception catch (_) {
-            return NewHitaErrorEntity(code: -1, message: "unknown err");
+            return TrudaErrorEntity(code: -1, message: "unknown err");
           }
         }
       default:
         {
-          return NewHitaErrorEntity(code: -1, message: error.message);
+          return TrudaErrorEntity(code: -1, message: error.message);
         }
     }
   }
@@ -324,9 +324,9 @@ class NewHitaHttpUtil {
     dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    NewHitaHttpErrCallback? errCallback,
-    NewHitaHttpPageCallback? pageCallback,
-    NewHitaHttpDoneCallback? doneCallback,
+    TrudaHttpErrCallback? errCallback,
+    TrudaHttpPageCallback? pageCallback,
+    TrudaHttpDoneCallback? doneCallback,
     bool showLoading = false,
   }) async {
     Options requestOptions = options ?? Options();
@@ -351,12 +351,12 @@ class NewHitaHttpUtil {
     var sendPara = _encryptAes(_zipStr(json));
 
     /// configApi接口和一般的接口不一样
-    bool _isGetLanguage = path == NewHitaHttpUrls.getTransationsApi;
-    bool _isGetLanguageV2 = path == NewHitaHttpUrls.getTransationsV2Api;
-    bool _isGetConfig = path == NewHitaHttpUrls.configApi;
+    bool _isGetLanguage = path == TrudaHttpUrls.getTransationsApi;
+    bool _isGetLanguageV2 = path == TrudaHttpUrls.getTransationsV2Api;
+    bool _isGetConfig = path == TrudaHttpUrls.configApi;
     final _isSpecal = _isGetConfig || _isGetLanguage || _isGetLanguageV2;
     final root =
-        _isSpecal ? NewHitaHttpUrls.getConfigBaseUrl() : NewHitaHttpUrls.getBaseUrl();
+        _isSpecal ? TrudaHttpUrls.getConfigBaseUrl() : TrudaHttpUrls.getBaseUrl();
     _dio.options.baseUrl = root;
     NewHitaLog.debug('$root $path， Http post: $json');
 
@@ -374,13 +374,13 @@ class NewHitaHttpUtil {
       );
     } catch (e) {
       print(e);
-      NewHitaErrorEntity err;
-      if (e is NewHitaErrorEntity) {
+      TrudaErrorEntity err;
+      if (e is TrudaErrorEntity) {
         err = e;
       } else if (e is DioError) {
-        err = NewHitaErrorEntity(code: -4, message: e.message);
+        err = TrudaErrorEntity(code: -4, message: e.message);
       } else {
-        err = NewHitaErrorEntity(code: -3, message: "try catch err");
+        err = TrudaErrorEntity(code: -3, message: "try catch err");
       }
       if (errCallback == null) {
         NewHitaLoading.toast(err.message);
@@ -408,7 +408,7 @@ class NewHitaHttpUtil {
         NewHitaLoading.toast("baseEntity == null");
       } else {
         errCallback
-            .call(NewHitaErrorEntity(code: -3, message: "baseEntity == null"));
+            .call(TrudaErrorEntity(code: -3, message: "baseEntity == null"));
       }
       doneCallback?.call(false, "baseEntity == null");
       return Future.error("baseEntity err");
@@ -434,7 +434,7 @@ class NewHitaHttpUtil {
         }
       } else {
         errCallback
-            .call(NewHitaErrorEntity(code: code, message: baseEntity["message"]));
+            .call(TrudaErrorEntity(code: code, message: baseEntity["message"]));
       }
       doneCallback?.call(false, "[${code}] ${baseEntity["message"]}");
       return Future.error("baseEntity err");
@@ -597,11 +597,11 @@ class NewHitaHttpUtil {
 }
 
 // 异常处理
-class NewHitaErrorEntity implements Exception {
+class TrudaErrorEntity implements Exception {
   int code = -1;
   String message = "";
 
-  NewHitaErrorEntity({required this.code, required this.message});
+  TrudaErrorEntity({required this.code, required this.message});
 
   @override
   String toString() {

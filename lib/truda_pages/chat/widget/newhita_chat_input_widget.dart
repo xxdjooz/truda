@@ -10,7 +10,7 @@ import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/newhita_keybord_logic.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
 import '../../../truda_widget/newhita_voice_widget_record_new.dart';
-import '../../call/local/newhita_local_controller.dart';
+import '../../call/local/truda_local_controller.dart';
 import '../newhita_chat_controller.dart';
 import 'newhita_chat_input_controller.dart';
 
@@ -210,7 +210,7 @@ class _NewHitaChatInputWidgetState extends State<NewHitaChatInputWidget>
                               _focusNode.unfocus();
                               _controller.isShowEmoji.value = false;
                               _controller.isShowRecord.value = false;
-                              NewHitaLocalController.startMe(
+                              TrudaLocalController.startMe(
                                   _chatController.herId,
                                   _chatController.her?.portrait);
                             },

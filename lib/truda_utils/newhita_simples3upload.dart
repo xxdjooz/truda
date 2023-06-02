@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../truda_common/truda_colors.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_util.dart';
 import 'newhita_loading.dart';
 import 'newhita_log.dart';
 
@@ -174,7 +174,7 @@ class NewHitaSimpleS3UploadState extends State<NewHitaSimpleS3Upload> {
         setState(() {
           isLoading = true;
         });
-        NewHitaHttpUtil().post<String>('/user/s3/storage/upload/pre-signed',
+        TrudaHttpUtil().post<String>('/user/s3/storage/upload/pre-signed',
             data: {'endType': '.jpg'}, errCallback: (err) {
           NewHitaLog.debug(err);
           NewHitaLoading.toast(err.message);

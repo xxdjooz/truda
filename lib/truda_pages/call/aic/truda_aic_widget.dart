@@ -8,16 +8,16 @@ import 'package:truda/truda_common/truda_colors.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import '../../../truda_widget/newhita_video_player.dart';
-import 'newhita_aic_controller.dart';
+import 'truda_aic_controller.dart';
 
-class NewHitaAicWidget extends GetView<NewHitaAicController> {
+class TrudaAicWidget extends GetView<TrudaAicController> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          child: GetBuilder<NewHitaAicController>(
-              id: NewHitaAicController.idAgora,
+          child: GetBuilder<TrudaAicController>(
+              id: TrudaAicController.idAgora,
               builder: (controller) {
                 if (controller.playFinish) {
                   return NewHitaNetImage(
@@ -160,8 +160,8 @@ class NewHitaAicWidget extends GetView<NewHitaAicController> {
             start: 20,
             end: 20,
             bottom: 30,
-            child: GetBuilder<NewHitaAicController>(
-                id: NewHitaAicController.idSwitch,
+            child: GetBuilder<TrudaAicController>(
+                id: TrudaAicController.idSwitch,
                 builder: (controller) {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
@@ -274,7 +274,7 @@ class NewHitaAicCamera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<NewHitaAicController>();
+    var controller = Get.find<TrudaAicController>();
     return ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(0)),
         child: (controller.hadCameraInit && controller.cameraController != null)

@@ -6,8 +6,8 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
-import 'package:truda/truda_http/newhita_common_api.dart';
-import 'package:truda/truda_pages/call/local/newhita_local_controller.dart';
+import 'package:truda/truda_http/truda_common_api.dart';
+import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import 'package:truda/truda_pages/chat/newhita_chat_controller.dart';
 import 'package:truda/truda_pages/her_video/newhita_cache_page.dart';
 import 'package:truda/truda_pages/her_video/newhita_video_progress.dart';
@@ -18,8 +18,8 @@ import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../truda_dialogs/truda_sheet_host_video_option.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_utils/newhita_format_util.dart';
 import '../../truda_utils/newhita_loading.dart';
@@ -407,7 +407,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
                                   flex: 7,
                                   child: GestureDetector(
                                     onTap: () {
-                                      NewHitaLocalController.startMe(
+                                      TrudaLocalController.startMe(
                                           widget.detail.userId!,
                                           widget.detail.portrait);
                                     },
@@ -493,7 +493,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
 
   ///关注
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel((widget.detail.userId ?? ""))
+    TrudaCommonApi.followHostOrCancel((widget.detail.userId ?? ""))
         .then((value) {
       widget.detail.followed = value;
       setState(() {

@@ -15,8 +15,8 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_visitor_tip.dart';
 import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_login_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_rtm/newhita_rtm_manager.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
@@ -94,8 +94,8 @@ class _NewHitaAccountLoginPageState extends State<NewHitaAccountLoginPage>
       NewHitaLoading.toast(TrudaLanguageKey.newhita_prompt_password.tr);
       return;
     }
-    NewHitaHttpUtil()
-        .post<TrudaLogin>(NewHitaHttpUrls.accountLogin,
+    TrudaHttpUtil()
+        .post<TrudaLogin>(TrudaHttpUrls.accountLogin,
             data: {
               "username": _textEditingController.text,
               "password": _textEditingController2.text,
@@ -108,7 +108,7 @@ class _NewHitaAccountLoginPageState extends State<NewHitaAccountLoginPage>
   void _getDetail() {
     NewHitaLoading.show();
     NewHitaLog.debug('NewHitaMeController refreshMe()');
-    NewHitaHttpUtil().post<TrudaInfoDetail>(NewHitaHttpUrls.userInfoApi,
+    TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
         errCallback: (err) {
           NewHitaLoading.dismiss();
         }).then((value) {
@@ -141,8 +141,8 @@ class _NewHitaAccountLoginPageState extends State<NewHitaAccountLoginPage>
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
       if (list.isNotEmpty && list.length == 2) {
-        NewHitaHttpUtil().post<TrudaLogin>(
-          NewHitaHttpUrls.accountLogin,
+        TrudaHttpUtil().post<TrudaLogin>(
+          TrudaHttpUrls.accountLogin,
           data: {
             "username": list[0],
             "password": list[1],
@@ -168,8 +168,8 @@ class _NewHitaAccountLoginPageState extends State<NewHitaAccountLoginPage>
     const nums = '1234567890';
     // 密码自己做一个
     final pw = _getRandomString(4, chars) + _getRandomString(4, nums);
-    NewHitaHttpUtil()
-        .post<TrudaLogin>(NewHitaHttpUrls.appRegister,
+    TrudaHttpUtil()
+        .post<TrudaLogin>(TrudaHttpUrls.appRegister,
         data: {
           "password": pw,
           "attribution": '',

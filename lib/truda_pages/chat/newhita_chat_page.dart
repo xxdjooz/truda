@@ -318,7 +318,7 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
         ),
         // floatingActionButton: GestureDetector(
         //   onTap: () {
-        //     NewHitaLocalController.startMe(
+        //     TrudaLocalController.startMe(
         //         controller.userId, controller.her?.portrait);
         //   },
         //   // tooltip: 'chat',

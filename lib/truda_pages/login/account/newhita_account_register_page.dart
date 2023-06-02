@@ -9,8 +9,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 
 import '../../../truda_entities/truda_login_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../some/newhita_web_page.dart';
@@ -85,8 +85,8 @@ class _NewHitaAccountRegisterPageState extends State<NewHitaAccountRegisterPage>
     //   "password": _textEditingController2.text,
     // }, true);
 
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.auditModeRegister,
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.auditModeRegister,
             data: {
               "username": _textEditingController.text,
               "password": _textEditingController2.text,
@@ -104,8 +104,8 @@ class _NewHitaAccountRegisterPageState extends State<NewHitaAccountRegisterPage>
     if (_textEditingController2.text.length <= 0) {
       return;
     }
-    NewHitaHttpUtil()
-        .post<TrudaLogin>(NewHitaHttpUrls.accountLogin,
+    TrudaHttpUtil()
+        .post<TrudaLogin>(TrudaHttpUrls.accountLogin,
             data: {
               "username": _textEditingController.text,
               "password": _textEditingController2.text,

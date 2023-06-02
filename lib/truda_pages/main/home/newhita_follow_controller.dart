@@ -10,8 +10,8 @@ import '../../../truda_database/entity/truda_conversation_entity.dart';
 import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_utils/newhita_loading.dart';
 
@@ -81,8 +81,8 @@ class NewHitaFollowController extends GetxController {
   //
   Future getList() async {
     _page++;
-    await NewHitaHttpUtil()
-        .post<List<TrudaHostDetail>>(NewHitaHttpUrls.followUpListApi + "1", data: {
+    await TrudaHttpUtil()
+        .post<List<TrudaHostDetail>>(TrudaHttpUrls.followUpListApi + "1", data: {
       "page": _page,
       "pageSize": _pageSize,
     }, pageCallback: (has) {

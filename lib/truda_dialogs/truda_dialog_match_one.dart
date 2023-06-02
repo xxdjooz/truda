@@ -14,10 +14,10 @@ import 'package:wakelock/wakelock.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_entities/truda_match_host_entity.dart';
-import '../truda_http/newhita_common_api.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
-import '../truda_pages/call/local/newhita_local_controller.dart';
+import '../truda_http/truda_common_api.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
+import '../truda_pages/call/local/truda_local_controller.dart';
 import '../truda_pages/chat/newhita_chat_controller.dart';
 import '../truda_utils/newhita_format_util.dart';
 import '../truda_utils/newhita_loading.dart';
@@ -101,7 +101,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(widget.detail.userId!,
+    TrudaCommonApi.followHostOrCancel(widget.detail.userId!,
         showLoading: false);
   }
 
@@ -290,7 +290,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
                                                   flex: 4,
                                                   child: GestureDetector(
                                                     onTap: () {
-                                                      NewHitaLocalController
+                                                      TrudaLocalController
                                                           .startMe(
                                                               widget.detail
                                                                   .userId!,

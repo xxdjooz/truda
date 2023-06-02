@@ -11,7 +11,7 @@ import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_utils/newhita_format_util.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../../call/local/newhita_local_controller.dart';
+import '../../../call/local/truda_local_controller.dart';
 import '../../../chat/newhita_chat_controller.dart';
 import '../../home/newhita_host_widget.dart';
 import 'newhita_call_list_controller.dart';
@@ -238,7 +238,7 @@ class NewHitaCallListPage extends GetView<NewHitaCallListController> {
                                         !TrudaConstants.isFakeMode)
                                       GestureDetector(
                                         onTap: () {
-                                          NewHitaLocalController.startMe(
+                                          TrudaLocalController.startMe(
                                               (bean.peerUserId ?? 0).toString(),
                                               bean.peerPortrait);
                                         },

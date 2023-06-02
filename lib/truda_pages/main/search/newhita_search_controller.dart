@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
@@ -28,7 +28,7 @@ class NewHitaSearchController extends GetxController {
 
   void search(String str) {
     NewHitaLoading.show();
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.searchUpApi + str,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.searchUpApi + str,
         doneCallback: (bool success, String message) {
       NewHitaLoading.dismiss();
     }).then((value) {
@@ -38,8 +38,8 @@ class NewHitaSearchController extends GetxController {
 
   Future _getList() async {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaHostDetail>>(
-        NewHitaHttpUrls.commandUpListApi + "-1",
+    await TrudaHttpUtil().post<List<TrudaHostDetail>>(
+        TrudaHttpUrls.commandUpListApi + "-1",
         data: {},
         pageCallback: (has) {}, errCallback: (err) {
       NewHitaLoading.toast(err.message);

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_call_status.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
 import 'package:truda/truda_rtm/newhita_rtm_msg_sender.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
@@ -14,14 +14,14 @@ import 'package:truda/truda_utils/newhita_format_util.dart';
 
 import '../../../truda_entities/truda_end_call_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_http/newhita_common_api.dart';
+import '../../../truda_http/truda_common_api.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_services/newhita_event_bus_bean.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_utils/newhita_log.dart';
 
 /// 这个页面是有可能出现多个的，Controller要注意处理！！！
-class NewHitaEndController extends GetxController {
+class TrudaEndController extends GetxController {
   static startMeAndOff({
     required String herId,
     required String channelId,
@@ -33,7 +33,7 @@ class NewHitaEndController extends GetxController {
     bool? useCard,
     bool? callHadShowCount20,
   }) {
-    NewHitaLog.debug('NewHitaEndController startMeAndOff');
+    NewHitaLog.debug('TrudaEndController startMeAndOff');
     Map<String, dynamic> map = {};
     map['herId'] = herId;
     map['channelId'] = channelId;
@@ -129,7 +129,7 @@ class NewHitaEndController extends GetxController {
 
   /// 结束通话
   void _endCall() {
-    NewHitaLog.debug('NewHitaEndController _endCall');
+    NewHitaLog.debug('TrudaEndController _endCall');
     // aic没有 channelId
     if (channelId.isEmpty) {
       var entity = TrudaEndCallEntity();
@@ -150,8 +150,8 @@ class NewHitaEndController extends GetxController {
           duration: NewHitaFormatUtil.getTimeStrFromSecond(callTime));
       return;
     }
-    NewHitaHttpUtil()
-        .post<TrudaEndCallEntity>(NewHitaHttpUrls.endCallApi,
+    TrudaHttpUtil()
+        .post<TrudaEndCallEntity>(TrudaHttpUrls.endCallApi,
             data: {
               "channelId": channelId,
               "endType": endType,
@@ -164,7 +164,7 @@ class NewHitaEndController extends GetxController {
       endCallEntity.value = value;
       // 拨打方发消息 aib在拨打时如果传了aiType,主播端会发消息
       if (callType == 0) {
-        NewHitaLog.debug('NewHitaEndController _endCall endCallApi');
+        NewHitaLog.debug('TrudaEndController _endCall endCallApi');
         NewHitaRtmMsgSender.sendCallState(
             herId, TrudaCallStatus.PICK_UP, value.totalCallTime);
 
@@ -194,7 +194,7 @@ class NewHitaEndController extends GetxController {
     //   detail?.followed = value;
     //   update();
     // });
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       detail?.followed = value;
       update();
     });

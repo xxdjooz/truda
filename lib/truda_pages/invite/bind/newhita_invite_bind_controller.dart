@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 
 class NewHitaInviteBindController extends GetxController {
@@ -44,7 +44,7 @@ class NewHitaInviteBindController extends GetxController {
       errText.value = TrudaLanguageKey.newhita_invite_fill_code.tr;
       return;
     }
-    await NewHitaHttpUtil().post<void>(NewHitaHttpUrls.bindInviteCode + text,
+    await TrudaHttpUtil().post<void>(TrudaHttpUrls.bindInviteCode + text,
         errCallback: (err) {
       errText.value = TrudaLanguageKey.newhita_invite_fill_code.tr;
     }).then((value) {

@@ -6,15 +6,15 @@ import '../truda_pages/main/home/newhita_follow_controller.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_utils/newhita_log.dart';
-import 'newhita_http_urls.dart';
-import 'newhita_http_util.dart';
+import 'truda_http_urls.dart';
+import 'truda_http_util.dart';
 
-class NewHitaCommonApi {
+class TrudaCommonApi {
   static Future<TrudaInfoDetail> refreshMe() async {
     NewHitaLog.debug('NewHitaCommonApi refreshMe()');
-    return NewHitaHttpUtil()
+    return TrudaHttpUtil()
         .post<TrudaInfoDetail>(
-      NewHitaHttpUrls.userInfoApi,
+      TrudaHttpUrls.userInfoApi,
     )
         .then((value) {
       NewHitaMyInfoService.to.setMyDetail = value;
@@ -25,7 +25,7 @@ class NewHitaCommonApi {
   static Future<int> followHostOrCancel(String herId, {bool showLoading = true}) async {
     NewHitaLog.debug('NewHitaCommonApi followHostOrCancel $herId');
 
-    return NewHitaHttpUtil().post<int>(NewHitaHttpUrls.followUpApi + herId,
+    return TrudaHttpUtil().post<int>(TrudaHttpUrls.followUpApi + herId,
         errCallback: (err) {
           NewHitaLoading.toast(err.message);
         }, showLoading: showLoading).then((value) {

@@ -8,8 +8,8 @@ import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_constants.dart';
 import '../truda_entities/truda_leval_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_pages/some/newhita_web_page.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_widget/newhita_net_image.dart';
@@ -44,8 +44,8 @@ class TrudaUserLevelUpdate extends StatelessWidget {
     NewHitaMyInfoService.to.saveLastLeval(leval.grade!);
 
     // 每次等级变动都调一下，领取奖励
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.getLevelUpdateGiftApi, errCallback: (e) {});
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.getLevelUpdateGiftApi, errCallback: (e) {});
     TrudaCommonDialog.dialog(TrudaUserLevelUpdate(leval));
   }
 

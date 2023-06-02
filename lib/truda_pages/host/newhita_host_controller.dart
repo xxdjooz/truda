@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_http/newhita_common_api.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_common_api.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 
 import '../../truda_database/entity/truda_her_entity.dart';
@@ -48,7 +48,7 @@ class NewHitaHostController extends GetxController {
 
   void _getHostDetail() {
     NewHitaLoading.show();
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         data: {'vipVideo': 1}, errCallback: (err) {
       NewHitaLoading.toast(err.message);
       NewHitaLoading.dismiss();
@@ -72,14 +72,14 @@ class NewHitaHostController extends GetxController {
     //   detail?.followed = value;
     //   update();
     // });
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       detail?.followed = value;
       update();
     });
   }
 
   void handleBlack() {
-    NewHitaHttpUtil().post<int>(NewHitaHttpUrls.blacklistActionApi + herId,
+    TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }).then((value) {
@@ -89,7 +89,7 @@ class NewHitaHostController extends GetxController {
   }
 
   Future _getMomentList() async {
-    await NewHitaHttpUtil().post<List<TrudaMomentDetail>>(NewHitaHttpUrls.getMoments,
+    await TrudaHttpUtil().post<List<TrudaMomentDetail>>(TrudaHttpUrls.getMoments,
         data: {
           "page": 1,
           "pageSize": 20,
@@ -112,10 +112,10 @@ class NewHitaHostController extends GetxController {
   }
 
   void priseMoment(String momentId, bool prise) {
-    NewHitaHttpUtil().post<int>(
+    TrudaHttpUtil().post<int>(
         prise
-            ? NewHitaHttpUrls.momentsPraise + momentId
-            : NewHitaHttpUrls.momentsPraiseCancel + momentId, errCallback: (err) {
+            ? TrudaHttpUrls.momentsPraise + momentId
+            : TrudaHttpUrls.momentsPraiseCancel + momentId, errCallback: (err) {
       // NewHitaLoading.toast(err.message);
     }, showLoading: false);
   }

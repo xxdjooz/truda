@@ -10,8 +10,8 @@ import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_entities/truda_info_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 
 //新用户福利(体验卡)
 class NewTrudaUserCardsTip extends StatefulWidget {
@@ -23,8 +23,8 @@ class NewTrudaUserCardsTip extends StatefulWidget {
       Future.delayed(Duration(seconds: 10), () async {
         TrudaInfoDetail myDetail;
         try {
-          myDetail = await NewHitaHttpUtil().post<TrudaInfoDetail>(
-            NewHitaHttpUrls.userInfoApi,
+          myDetail = await TrudaHttpUtil().post<TrudaInfoDetail>(
+            TrudaHttpUrls.userInfoApi,
           );
         } catch (e) {
           print(e);

@@ -5,8 +5,8 @@ import 'package:truda/truda_routes/newhita_pages.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_services/newhita_storage_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import 'truda_dialog_confirm.dart';
@@ -29,7 +29,7 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
 
   void handleBlack() {
     NewHitaLoading.show();
-    NewHitaHttpUtil().post<int>(NewHitaHttpUrls.blacklistActionApi + widget.herId,
+    TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + widget.herId,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
       Get.back();

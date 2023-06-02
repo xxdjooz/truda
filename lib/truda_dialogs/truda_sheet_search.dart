@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_host_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_pages/host/newhita_host_controller.dart';
 import '../truda_utils/newhita_loading.dart';
 
@@ -35,8 +35,8 @@ class _TrudaSheetSearchState extends State<TrudaSheetSearch> {
   FocusNode nameFocusNode = FocusNode();
 
   void search(String str) {
-    NewHitaHttpUtil().post<TrudaHostDetail>(
-      NewHitaHttpUrls.searchUpApi + str,
+    TrudaHttpUtil().post<TrudaHostDetail>(
+      TrudaHttpUrls.searchUpApi + str,
       doneCallback: (bool success, String message) {
         NewHitaLoading.dismiss();
       },

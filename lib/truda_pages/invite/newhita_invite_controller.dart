@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_invite_entity.dart';
 
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 
 class NewHitaInviteController extends GetxController {
   TrudaInviteBean? inviteBean;
@@ -14,9 +14,9 @@ class NewHitaInviteController extends GetxController {
   }
 
   Future getData() async {
-    await NewHitaHttpUtil()
+    await TrudaHttpUtil()
         .post<TrudaInviteBean>(
-      NewHitaHttpUrls.getInviteInfo,
+      TrudaHttpUrls.getInviteInfo,
     )
         .then((value) {
       if (value.portraits == null || value.portraits!.isEmpty) {

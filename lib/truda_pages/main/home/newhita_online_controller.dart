@@ -7,8 +7,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import 'newhita_home_controller.dart';
@@ -82,8 +82,8 @@ class NewHitaOnlineController extends GetxController {
   // 在线比主播列表多了参数 "isOnline": 1
   Future getList() async {
     _page++;
-    await NewHitaHttpUtil().post<TrudaUpListData>(
-        NewHitaHttpUrls.upListApi + areaCode.toString(),
+    await TrudaHttpUtil().post<TrudaUpListData>(
+        TrudaHttpUrls.upListApi + areaCode.toString(),
         data: {"page": _page, "pageSize": _pageSize, "isOnline": 1},
         pageCallback: (has) {
       enablePullUp = has;

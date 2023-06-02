@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_pages/call/local/newhita_local_controller.dart';
+import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 
 import '../../../truda_common/truda_call_status.dart';
 import '../../../truda_common/truda_language_key.dart';
@@ -33,7 +33,7 @@ class NewHitaChatMsgCall extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 if (her != null) {
-                  NewHitaLocalController.startMe(her.uid, her.portrait);
+                  TrudaLocalController.startMe(her.uid, her.portrait);
                 }
               },
               child: Container(
@@ -70,7 +70,7 @@ class NewHitaChatMsgCall extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 if (her != null) {
-                  NewHitaLocalController.startMe(her.uid, her.portrait);
+                  TrudaLocalController.startMe(her.uid, her.portrait);
                 }
               },
               child: Container(

@@ -14,18 +14,18 @@ import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../truda_widget/newhita_gradient_button.dart';
 import '../../chat/newhita_chat_controller.dart';
-import '../local/newhita_local_controller.dart';
-import 'newhita_end_controller.dart';
+import '../local/truda_local_controller.dart';
+import 'truda_end_controller.dart';
 
 // 结算页面
-class NewHitaEndPage extends StatelessWidget {
-  NewHitaEndPage({Key? key}) : super(key: key);
+class TrudaEndPage extends StatelessWidget {
+  TrudaEndPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaEndController>(
+    return GetBuilder<TrudaEndController>(
         tag: DateTime.now().millisecondsSinceEpoch.toString(),
-        init: NewHitaEndController(),
+        init: TrudaEndController(),
         builder: (controller) {
           return Scaffold(
             backgroundColor: TrudaColors.baseColorBlackBg,
@@ -423,7 +423,7 @@ class NewHitaEndPage extends StatelessWidget {
                               return GestureDetector(
                                 onTap: () {
                                   if (herOn) {
-                                    NewHitaLocalController.startMe(
+                                    TrudaLocalController.startMe(
                                         detail.userId!, detail.portrait,
                                         closeSelf: true);
                                   } else {

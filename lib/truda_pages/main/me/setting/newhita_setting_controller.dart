@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
@@ -19,17 +19,17 @@ class NewHitaSettingController extends GetxController {
   }
 
   void getConfig() {
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<TrudaConfigData>(
-          NewHitaHttpUrls.configApi,
+          TrudaHttpUrls.configApi,
         )
         .then((value) {});
   }
 
   void switchDND() {
     var newDnd = dnd.value ? 0 : 1;
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.updateUserInfoApi,
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.updateUserInfoApi,
             data: {"isDoNotDisturb": newDnd}, showLoading: true)
         .then((value) {
       NewHitaMyInfoService.to.myDetail?.isDoNotDisturb = newDnd;
@@ -55,7 +55,7 @@ class NewHitaSettingController extends GetxController {
     // CblLocalStore.saveAgree(false);
     // Get.find<CblPersonController>().hadUploadAdjust = false;
     // todo
-    NewHitaHttpUtil().post(NewHitaHttpUrls.delete_current_account).then((value) {
+    TrudaHttpUtil().post(TrudaHttpUrls.delete_current_account).then((value) {
       NewHitaAppPages.logout();
     });
   }

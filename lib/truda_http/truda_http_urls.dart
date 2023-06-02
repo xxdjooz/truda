@@ -2,7 +2,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 
 import '../truda_services/newhita_storage_service.dart';
 
-class NewHitaHttpUrls {
+class TrudaHttpUrls {
   // 预发版本
   static const String socketBaseUrl_pre = "ws://pre.hitatop.com/socket";
   static const String configBaseUrl_pre = "https://pre.hitatop.com/v2";

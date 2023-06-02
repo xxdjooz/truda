@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:truda/truda_http/newhita_common_api.dart';
+import 'package:truda/truda_http/truda_common_api.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../truda_common/truda_colors.dart';
@@ -11,9 +11,9 @@ import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_constants.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_moment_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
-import '../truda_pages/call/local/newhita_local_controller.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
+import '../truda_pages/call/local/truda_local_controller.dart';
 import '../truda_pages/chat/newhita_chat_controller.dart';
 import '../truda_pages/host/newhita_host_controller.dart';
 import '../truda_pages/main/home/newhita_host_widget.dart';
@@ -60,14 +60,14 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(widget.detail.userId!, showLoading: false);
+    TrudaCommonApi.followHostOrCancel(widget.detail.userId!, showLoading: false);
   }
 
   void priseMoment(String momentId, bool prise) {
-    NewHitaHttpUtil().post<int>(
+    TrudaHttpUtil().post<int>(
         prise
-            ? NewHitaHttpUrls.momentsPraise + momentId
-            : NewHitaHttpUrls.momentsPraiseCancel + momentId, errCallback: (err) {
+            ? TrudaHttpUrls.momentsPraise + momentId
+            : TrudaHttpUrls.momentsPraiseCancel + momentId, errCallback: (err) {
       // NewHitaLoading.toast(err.message);
     }, showLoading: false);
   }

@@ -11,8 +11,8 @@ import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_entities/truda_banner_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import 'newhita_home_controller.dart';
 
@@ -91,8 +91,8 @@ class NewHitaHotController extends GetxController {
       getBanners();
     }
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<TrudaUpListData>(
-        NewHitaHttpUrls.upListApi + areaCode.toString(),
+    await TrudaHttpUtil().post<TrudaUpListData>(
+        TrudaHttpUrls.upListApi + areaCode.toString(),
         data: {
           "page": _page,
           "pageSize": _pageSize,
@@ -132,8 +132,8 @@ class NewHitaHotController extends GetxController {
   }
 
   void getBanners() {
-    NewHitaHttpUtil()
-        .post<List<TrudaBannerBean>>(NewHitaHttpUrls.bannerApi,
+    TrudaHttpUtil()
+        .post<List<TrudaBannerBean>>(TrudaHttpUrls.bannerApi,
             errCallback: (err) {})
         .then((value) {
       bannerList = value;

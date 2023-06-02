@@ -13,8 +13,8 @@ import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_dialog_match_one.dart';
 import '../../../truda_entities/truda_match_host_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
@@ -78,7 +78,7 @@ class NewHitaMatchController extends GetxController with RouteAware {
       return;
     }
     matching = 0;
-    NewHitaHttpUtil().post<TrudaMatchHost>(NewHitaHttpUrls.matchOneAnchor,
+    TrudaHttpUtil().post<TrudaMatchHost>(TrudaHttpUrls.matchOneAnchor,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
       NewHitaLoading.dismiss();

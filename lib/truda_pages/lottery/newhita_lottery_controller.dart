@@ -7,8 +7,8 @@ import 'package:truda/truda_services/newhita_my_info_service.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_dialogs/truda_dialog_lottery_get.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/newhita_pages.dart';
 import '../../truda_utils/newhita_ui_image_util.dart';
 import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
@@ -54,7 +54,7 @@ class NewHitaLotteryController extends GetxController {
   //  "drawType": 1,// 奖品类型，0.谢谢参与，1.送钻石，2.送会员天数，3.送钻石加成卡
   //  "value": 1,// 值
   void _getList() {
-    NewHitaHttpUtil().post<List<TrudaLotteryBean>>(NewHitaHttpUrls.lotteryConfig,
+    TrudaHttpUtil().post<List<TrudaLotteryBean>>(TrudaHttpUrls.lotteryConfig,
         errCallback: (err) {
       // NewHitaLoading.toast(err.message);
     }).then((value) {
@@ -72,7 +72,7 @@ class NewHitaLotteryController extends GetxController {
     lastTimes.value--;
     controller.beginRoll();
     rolling = true;
-    NewHitaHttpUtil().post<TrudaLotteryBean>(NewHitaHttpUrls.lotteryOne,
+    TrudaHttpUtil().post<TrudaLotteryBean>(TrudaHttpUrls.lotteryOne,
         errCallback: (err) {
       // NewHitaLoading.toast(err.message);
       controller.toIndex(emptyPosition);

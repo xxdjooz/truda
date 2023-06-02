@@ -13,8 +13,8 @@ import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_common/truda_common_type.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_dialog_vip_diamond_get.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_socket/newhita_socket_manager.dart';
@@ -75,9 +75,9 @@ class NewHitaMeController extends GetxController {
 
   Future refreshMe() async {
     NewHitaLog.debug('NewHitaMeController refreshMe()');
-    await NewHitaHttpUtil()
+    await TrudaHttpUtil()
         .post<TrudaInfoDetail>(
-      NewHitaHttpUrls.userInfoApi,
+      TrudaHttpUrls.userInfoApi,
     )
         .then((value) {
       myDetail = value;
@@ -115,7 +115,7 @@ class NewHitaMeController extends GetxController {
     // } else {
     //
     // }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.vipSignIn, errCallback: (err) {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.vipSignIn, errCallback: (err) {
       if (err.code == 71) {
         TrudaCommonDialog.dialog(TrudaDialogConfirm(
           title: TrudaLanguageKey.newhita_vip_diamond_already.tr,
@@ -178,7 +178,7 @@ class NewHitaMeController extends GetxController {
   /// google登录
   void _loginGoogle(String? token, String id, String? nickname, String? cover) {
     var config =
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.bindGoogle, data: {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.bindGoogle, data: {
       "id": id,
       "cover": cover ?? '',
       "token": token ?? '',

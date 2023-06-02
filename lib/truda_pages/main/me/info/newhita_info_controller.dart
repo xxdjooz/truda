@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_choose_image_util.dart';
@@ -39,9 +39,9 @@ class NewHitaInfoController extends GetxController {
               break;
             case NewHitaUploadType.success:
               NewHitaLoading.dismiss();
-              NewHitaHttpUtil()
+              TrudaHttpUtil()
                   .post<void>(
-                NewHitaHttpUrls.updateUserInfoApi,
+                TrudaHttpUrls.updateUserInfoApi,
                 data: {"portrait": url},
                 showLoading: true,
               )
@@ -86,7 +86,7 @@ class NewHitaInfoController extends GetxController {
       NewHitaLoading.toast(TrudaLanguageKey.newhita_mine_edit_sex.tr);
       return;
     }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.updateUserInfoApi,
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
         data: {"gender": gender}, errCallback: (e) {
       NewHitaLoading.dismiss();
     }).then((value) {
@@ -124,7 +124,7 @@ class NewHitaInfoController extends GetxController {
       String finalS = nameTextController.text.replaceAll(RegExp(r'\s*$'), "");
       finalS = finalS.replaceAll(RegExp(r"\d"), "*");
       NewHitaLoading.show();
-      NewHitaHttpUtil().post<void>(NewHitaHttpUrls.updateUserInfoApi,
+      TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
           data: {"nickname": finalS}, errCallback: (e) {
         NewHitaLoading.dismiss();
       }).then((value) {
@@ -180,7 +180,7 @@ class NewHitaInfoController extends GetxController {
         return;
       }
       NewHitaLoading.show();
-      NewHitaHttpUtil().post<void>(NewHitaHttpUrls.updateUserInfoApi,
+      TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
           data: {"intro": finalS}, errCallback: (e) {
         NewHitaLoading.dismiss();
       }).then((value) {
@@ -217,7 +217,7 @@ class NewHitaInfoController extends GetxController {
       onChanged: (date) {},
       onConfirm: (date) {
         NewHitaLoading.show();
-        NewHitaHttpUtil().post<void>(NewHitaHttpUrls.updateUserInfoApi,
+        TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
             data: {"birthday": date.millisecondsSinceEpoch}, errCallback: (e) {
           NewHitaLoading.dismiss();
         }).then((value) {

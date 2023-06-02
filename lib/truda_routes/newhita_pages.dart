@@ -27,17 +27,17 @@ import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_socket/newhita_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
-import '../truda_pages/call/aic/newhita_aic_binding.dart';
-import '../truda_pages/call/aic/newhita_aic_page.dart';
-import '../truda_pages/call/aiv/newhita_aiv_binding.dart';
-import '../truda_pages/call/aiv/newhita_aiv_page.dart';
-import '../truda_pages/call/end/newhita_end_page.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
+import '../truda_pages/call/aic/truda_aic_binding.dart';
+import '../truda_pages/call/aic/truda_aic_page.dart';
+import '../truda_pages/call/aiv/truda_aiv_binding.dart';
+import '../truda_pages/call/aiv/truda_aiv_page.dart';
+import '../truda_pages/call/end/truda_end_page.dart';
 import '../truda_pages/call/newhita_call_binding.dart';
 import '../truda_pages/call/newhita_call_page.dart';
-import '../truda_pages/call/local/newhita_local_binding.dart';
-import '../truda_pages/call/local/newhita_local_page.dart';
+import '../truda_pages/call/local/truda_local_binding.dart';
+import '../truda_pages/call/local/truda_local_page.dart';
 import '../truda_pages/call/remote/newhita_remote_binding.dart';
 import '../truda_pages/charge/newhita_charge_new_binding.dart';
 import '../truda_pages/charge/newhita_charge_new_page.dart';
@@ -151,8 +151,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: callOut,
-      page: () => NewHitaLocalPage(),
-      binding: NewHitaLocalBinding(),
+      page: () => TrudaLocalPage(),
+      binding: TrudaLocalBinding(),
     ),
     GetPage(
       name: call,
@@ -161,8 +161,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: callEnd,
-      page: () => NewHitaEndPage(),
-      // binding: NewHitaEndBinding(),
+      page: () => TrudaEndPage(),
+      // binding: TrudaEndBinding(),
     ),
     GetPage(
       name: hostDetail,
@@ -172,13 +172,13 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: aicPage,
-      page: () => NewHitaAicPage(),
-      binding: NewHitaAicBinding(),
+      page: () => TrudaAicPage(),
+      binding: TrudaAicBinding(),
     ),
     GetPage(
       name: aivPage,
-      page: () => NewHitaAivPage(),
-      binding: NewHitaAivBinding(),
+      page: () => TrudaAivPage(),
+      binding: TrudaAivBinding(),
     ),
     GetPage(
       name: search,
@@ -301,7 +301,7 @@ class NewHitaAppPages {
     NewHitaRtmManager.closeRtm();
     NewHitaSocketManager.to.breakenSocket();
 
-    NewHitaHttpUtil().post(NewHitaHttpUrls.loginOutApi);
+    TrudaHttpUtil().post(TrudaHttpUrls.loginOutApi);
     NewHitaStorageService.to.prefs.setString(NewHitaMyInfoService.userLoginData, '');
   }
 

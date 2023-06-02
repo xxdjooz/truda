@@ -8,8 +8,8 @@ import '../../truda_database/entity/truda_order_entity.dart';
 import '../../truda_entities/truda_charge_entity.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_entities/truda_info_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_services/newhita_storage_service.dart';
 import '../../truda_utils/newhita_loading.dart';
@@ -53,9 +53,9 @@ class NewHitaVipController extends GetxController {
     super.onInit();
   }
   Future refreshMe() async {
-    await NewHitaHttpUtil()
+    await TrudaHttpUtil()
         .post<TrudaInfoDetail>(
-      NewHitaHttpUrls.userInfoApi,
+      TrudaHttpUrls.userInfoApi,
     )
         .then((value) {
       myDetail = value;
@@ -95,8 +95,8 @@ class NewHitaVipController extends GetxController {
   }
 
   void getDatas() {
-    NewHitaHttpUtil().post<List<TrudaPayQuickCommodite>>(
-      NewHitaHttpUrls.getVipProduct,
+    TrudaHttpUtil().post<List<TrudaPayQuickCommodite>>(
+      TrudaHttpUrls.getVipProduct,
       errCallback: (err) {
         NewHitaLoading.toast(err.message);
       },
@@ -158,9 +158,9 @@ class NewHitaVipController extends GetxController {
   void doCharge(TrudaPayQuickChannel channel, {int? countryCode}) {
     clickPay = true;
     var commdi = choosedCommodite!;
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<TrudaCreateOrderBean>(
-      NewHitaHttpUrls.createOrderApi,
+      TrudaHttpUrls.createOrderApi,
       data: {
         "productCode": channel.productCode ?? "",
         "storeCode": channel.storeCode ?? "",

@@ -10,10 +10,10 @@ import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
-import 'newhita_local_controller.dart';
+import 'truda_local_controller.dart';
 
-class NewHitaLocalPage extends GetView<NewHitaLocalController> {
-  NewHitaLocalPage({Key? key}) : super(key: key);
+class TrudaLocalPage extends GetView<TrudaLocalController> {
+  TrudaLocalPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class NewHitaLocalPage extends GetView<NewHitaLocalController> {
           color: Colors.black54,
           width: double.infinity,
           height: double.infinity,
-          child: GetBuilder<NewHitaLocalController>(builder: (controller) {
+          child: GetBuilder<TrudaLocalController>(builder: (controller) {
             return Stack(
               fit: StackFit.expand,
               children: [

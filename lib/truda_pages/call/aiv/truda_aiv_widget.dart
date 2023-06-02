@@ -8,16 +8,16 @@ import 'package:video_player/video_player.dart';
 
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_widget/newhita_net_image.dart';
-import 'newhita_aiv_controller.dart';
+import 'truda_aiv_controller.dart';
 
-class NewHitaAivWidget extends GetView<NewHitaAivController> {
+class TrudaAivWidget extends GetView<TrudaAivController> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          child: GetBuilder<NewHitaAivController>(
-              id: NewHitaAivController.idAgora,
+          child: GetBuilder<TrudaAivController>(
+              id: TrudaAivController.idAgora,
               builder: (controller) {
                 if (controller.playFinish) {
                   return NewHitaNetImage(
@@ -56,8 +56,8 @@ class NewHitaAivWidget extends GetView<NewHitaAivController> {
                     children: [
                       Positioned.fill(
                           child: controller.switchView
-                              ? NewHitaAivCamera()
-                              : NewHitaAivVideoPlayer(
+                              ? TrudaAivCamera()
+                              : TrudaAivVideoPlayer(
                                   controller: controller.videoController,
                                 )),
                       Positioned(
@@ -92,8 +92,8 @@ class NewHitaAivWidget extends GetView<NewHitaAivController> {
                                         borderRadius:
                                             BorderRadiusDirectional.circular(12),
                                         child: !controller.switchView
-                                            ? NewHitaAivCamera()
-                                            : NewHitaAivVideoPlayer(
+                                            ? TrudaAivCamera()
+                                            : TrudaAivVideoPlayer(
                                                 controller:
                                                     controller.videoController,
                                               ),
@@ -177,8 +177,8 @@ class NewHitaAivWidget extends GetView<NewHitaAivController> {
             child: Obx(() {
               return Visibility(
                 visible: !controller.cleanScreen.value,
-                child: GetBuilder<NewHitaAivController>(
-                    id: NewHitaAivController.idSwitch,
+                child: GetBuilder<TrudaAivController>(
+                    id: TrudaAivController.idSwitch,
                     builder: (controller) {
                       return GestureDetector(
                           onTap: controller.clickCharge,
@@ -201,8 +201,8 @@ class NewHitaAivWidget extends GetView<NewHitaAivController> {
         PositionedDirectional(
           end: 20,
           bottom: 30,
-          child: GetBuilder<NewHitaAivController>(
-            id: NewHitaAivController.idSwitch,
+          child: GetBuilder<TrudaAivController>(
+            id: TrudaAivController.idSwitch,
             builder: (controller) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
@@ -273,12 +273,12 @@ class NewHitaAivWidget extends GetView<NewHitaAivController> {
   }
 }
 
-class NewHitaAivCamera extends StatelessWidget {
-  NewHitaAivCamera({Key? key}) : super(key: key);
+class TrudaAivCamera extends StatelessWidget {
+  TrudaAivCamera({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<NewHitaAivController>();
+    var controller = Get.find<TrudaAivController>();
     return ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(0)),
         child: (controller.hadCameraInit && controller.cameraController != null)
@@ -304,18 +304,18 @@ class NewHitaAivCamera extends StatelessWidget {
   }
 }
 
-class NewHitaAivVideoPlayer extends StatefulWidget {
+class TrudaAivVideoPlayer extends StatefulWidget {
   // String netUrl;
   // String imageUrl;
   VideoPlayerController controller;
 
-  NewHitaAivVideoPlayer({Key? key, required this.controller}) : super(key: key);
+  TrudaAivVideoPlayer({Key? key, required this.controller}) : super(key: key);
 
   @override
-  _NewHitaAivVideoPlayerState createState() => _NewHitaAivVideoPlayerState();
+  _TrudaAivVideoPlayerState createState() => _TrudaAivVideoPlayerState();
 }
 
-class _NewHitaAivVideoPlayerState extends State<NewHitaAivVideoPlayer> {
+class _TrudaAivVideoPlayerState extends State<TrudaAivVideoPlayer> {
   late VideoPlayerController _controller;
   bool startedPlaying = false;
 
@@ -332,7 +332,7 @@ class _NewHitaAivVideoPlayerState extends State<NewHitaAivVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    var aicController = Get.find<NewHitaAivController>();
+    var aicController = Get.find<TrudaAivController>();
     return Material(
       elevation: 0,
       child: SizedBox.expand(

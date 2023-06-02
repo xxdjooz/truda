@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_constants.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_pages/login/newhita_login_util.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_utils/newhita_loading.dart';
@@ -57,7 +57,7 @@ class _TrudaBindTipState extends State<TrudaBindTip> {
   /// google登录
   void _loginGoogle(String? token, String id, String? nickname, String? cover) {
     var config =
-        NewHitaHttpUtil().post<void>(NewHitaHttpUrls.bindGoogle, data: {
+        TrudaHttpUtil().post<void>(TrudaHttpUrls.bindGoogle, data: {
       "id": id,
       "cover": cover ?? '',
       "token": token ?? '',

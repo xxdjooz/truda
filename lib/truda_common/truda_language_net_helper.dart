@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_translate_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
@@ -19,8 +19,8 @@ class TrudaLanguageNetHelper {
   static handleLanguageJson() {
     NewHitaLog.debug("updateLanguage postRequest");
     //请求接口 返回支持的 languagecode 以及 翻译json文件
-    NewHitaHttpUtil()
-        .post<TrudaTranslateData>(NewHitaHttpUrls.getTransationsApi)
+    TrudaHttpUtil()
+        .post<TrudaTranslateData>(TrudaHttpUrls.getTransationsApi)
         .then((value) {
       //转服务器语言数据为map =》用户端
       String languageurl = value.configUrl!;
@@ -59,8 +59,8 @@ class TrudaLanguageNetHelper {
 
   //请求接口 返回支持的 languagecode 以及 翻译json文件
   static handleLanguageJsonV2() {
-    NewHitaHttpUtil()
-        .post<TrudaTranslateData>(NewHitaHttpUrls.getTransationsV2Api)
+    TrudaHttpUtil()
+        .post<TrudaTranslateData>(TrudaHttpUrls.getTransationsV2Api)
         .then((value) {
       String languageurl = value.configUrl!;
       int configVersion = value.configVersion ?? 0;

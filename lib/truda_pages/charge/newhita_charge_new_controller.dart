@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_database/entity/truda_order_entity.dart';
 import 'package:truda/truda_entities/truda_charge_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/some/newhita_web_page.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
@@ -56,8 +56,8 @@ class NewHitaChargeNewController extends GetxController {
   }
 
   void getDatas() {
-    NewHitaHttpUtil().post<TrudaPayQuickData>(
-      NewHitaHttpUrls.getCompositeProduct + '2',
+    TrudaHttpUtil().post<TrudaPayQuickData>(
+      TrudaHttpUrls.getCompositeProduct + '2',
       errCallback: (err) {
         NewHitaLoading.toast(err.message);
       },
@@ -138,9 +138,9 @@ class NewHitaChargeNewController extends GetxController {
   void createOrder(
       TrudaPayQuickCommodite element, TrudaPayQuickChannel channel,
       {int? countryCode}) {
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<TrudaCreateOrderBean>(
-      NewHitaHttpUrls.createOrderApi,
+      TrudaHttpUrls.createOrderApi,
       data: {
         "productCode": channel.productCode ?? "",
         "storeCode": channel.storeCode ?? "",
@@ -187,8 +187,8 @@ class NewHitaChargeNewController extends GetxController {
   }
 
   void _getDrawUser() {
-    NewHitaHttpUtil().post<List<TrudaLotteryUser>>(
-        NewHitaHttpUrls.getDrawUser, errCallback: (err) {
+    TrudaHttpUtil().post<List<TrudaLotteryUser>>(
+        TrudaHttpUrls.getDrawUser, errCallback: (err) {
       var bean = TrudaLotteryUser();
       bean.nickname = "haha";
       bean.name = "hehe";

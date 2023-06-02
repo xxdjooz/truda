@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/login/newhita_login_to_main_api.dart';
 import 'package:truda/truda_pages/login/newhita_login_util.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
@@ -34,7 +34,7 @@ class NewHitaLoginController extends GetxController {
   /// 测试登录
   void testLoginGoogle(String str) {
     var config =
-        NewHitaHttpUtil().post<TrudaLogin>(NewHitaHttpUrls.googleLoginApi, data: {
+        TrudaHttpUtil().post<TrudaLogin>(TrudaHttpUrls.googleLoginApi, data: {
       "id": str,
       "cover": _heads[_rnd.nextInt(5)],
       "nickname": "newhita_${getRandomString(5, _chars)}",
@@ -70,7 +70,7 @@ class NewHitaLoginController extends GetxController {
   /// google登录
   void _loginGoogle(String? token, String id, String? nickname, String? cover) {
     var config =
-        NewHitaHttpUtil().post<TrudaLogin>(NewHitaHttpUrls.googleLoginApi, data: {
+        TrudaHttpUtil().post<TrudaLogin>(TrudaHttpUrls.googleLoginApi, data: {
       "id": id,
       "cover": cover ?? _heads[_rnd.nextInt(5)],
       "token": token ?? "",
@@ -98,7 +98,7 @@ class NewHitaLoginController extends GetxController {
   /// google登录
   void _loginFacebook(String? accessToken) {
     var config =
-        NewHitaHttpUtil().post<TrudaLogin>(NewHitaHttpUrls.facebookLoginApi, data: {
+        TrudaHttpUtil().post<TrudaLogin>(TrudaHttpUrls.facebookLoginApi, data: {
       "accessToken": accessToken ?? "",
     }, errCallback: (err) {
       NewHitaLoading.toast(err.toString());
@@ -123,7 +123,7 @@ class NewHitaLoginController extends GetxController {
   /// Apple登录
   void _loginApple(String? token, String? nickname) {
     var config =
-    NewHitaHttpUtil().post<TrudaLogin>(NewHitaHttpUrls.appleLoginApi, data: {
+    TrudaHttpUtil().post<TrudaLogin>(TrudaHttpUrls.appleLoginApi, data: {
       "identityToken": token ?? "",
       "nickname": nickname ?? "gora_${getRandomString(5, _chars)}",
     }, errCallback: (err) {
@@ -144,8 +144,8 @@ class NewHitaLoginController extends GetxController {
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
       if (list.isNotEmpty && list.length == 2) {
-        NewHitaHttpUtil().post<TrudaLogin>(
-          NewHitaHttpUrls.accountLogin,
+        TrudaHttpUtil().post<TrudaLogin>(
+          TrudaHttpUrls.accountLogin,
           data: {
             "username": list[0],
             "password": list[1],
@@ -168,8 +168,8 @@ class NewHitaLoginController extends GetxController {
     const nums = '1234567890';
     // 密码自己做一个
     final pw = getRandomString(4, chars) + getRandomString(4, nums);
-    NewHitaHttpUtil()
-        .post<TrudaLogin>(NewHitaHttpUrls.appRegister,
+    TrudaHttpUtil()
+        .post<TrudaLogin>(TrudaHttpUrls.appRegister,
         data: {
           "password": pw,
           "attribution": '',

@@ -12,8 +12,8 @@ import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_third_util.dart';
 
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_pages/chargedialog/newhita_charge_quick_controller.dart';
 
 class NewHitaAdjustManager {
@@ -108,7 +108,7 @@ class NewHitaAdjustManager {
     // 拿到Google的安装来源数据，如果是organic就不用管了
     if (referrer.contains('organic')) return;
     // 否则认为是广告的来源，调adjust的上传接口
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.attributionData, errCallback: (e) {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.attributionData, errCallback: (e) {
       NewHitaLog.debug("upload adjust attribution  failed");
     }, data: {
       "trackerToken": "",
@@ -195,7 +195,7 @@ class NewHitaAdjustManager {
     if (cost.isNaN) {
       cost = 0;
     }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.attributionData, errCallback: (e) {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.attributionData, errCallback: (e) {
       NewHitaLog.debug("upload adjust attribution  failed");
     }, data: {
       "trackerToken": attributionChangedData!.trackerToken ?? "",

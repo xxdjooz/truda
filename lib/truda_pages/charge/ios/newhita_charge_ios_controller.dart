@@ -9,8 +9,8 @@ import '../../../truda_entities/truda_charge_entity.dart';
 import '../../../truda_entities/truda_charge_quick_entity.dart';
 import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_lottery_user_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_event_bus_bean.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_services/newhita_storage_service.dart';
@@ -63,9 +63,9 @@ class NewHitaChargeIosController extends GetxController {
 
   Future refreshMe() async {
     NewHitaLog.debug('NewHitaMeController refreshMe()');
-    await NewHitaHttpUtil()
+    await TrudaHttpUtil()
         .post<TrudaInfoDetail>(
-      NewHitaHttpUrls.userInfoApi,
+      TrudaHttpUrls.userInfoApi,
       showLoading: true,
     )
         .then((value) {
@@ -76,8 +76,8 @@ class NewHitaChargeIosController extends GetxController {
   }
 
   void getDatas() {
-    NewHitaHttpUtil().post<TrudaPayQuickData>(
-      NewHitaHttpUrls.getCompositeProduct + '2',
+    TrudaHttpUtil().post<TrudaPayQuickData>(
+      TrudaHttpUrls.getCompositeProduct + '2',
       errCallback: (err) {
         NewHitaLoading.toast(err.message);
       },
@@ -154,9 +154,9 @@ class NewHitaChargeIosController extends GetxController {
 
   void createOrder(TrudaPayQuickCommodite element, TrudaPayQuickChannel channel,
       {int? countryCode}) {
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<TrudaCreateOrderBean>(
-      NewHitaHttpUrls.createOrderApi,
+      TrudaHttpUrls.createOrderApi,
       data: {
         "productCode": channel.productCode ?? "",
         "storeCode": channel.storeCode ?? "",
@@ -203,7 +203,7 @@ class NewHitaChargeIosController extends GetxController {
   }
 
   void _getDrawUser() {
-    NewHitaHttpUtil().post<List<TrudaLotteryUser>>(NewHitaHttpUrls.getDrawUser,
+    TrudaHttpUtil().post<List<TrudaLotteryUser>>(TrudaHttpUrls.getDrawUser,
         errCallback: (err) {
           var bean = TrudaLotteryUser();
           bean.nickname = "haha";

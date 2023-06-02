@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_call_status.dart';
 import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
 import 'package:truda/truda_services/newhita_event_bus_bean.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
@@ -25,7 +25,7 @@ import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_utils/newhita_permission_handler.dart';
 import '../../../truda_utils/newhita_voice_player.dart';
 
-class NewHitaLocalController extends GetxController {
+class TrudaLocalController extends GetxController {
   static startMe(String herId, String? portrait, {bool closeSelf = false}) {
     //获取到权限再去拨打页面
     NewHitaPermissionHandler.checkCallPermission().then((value) {
@@ -110,8 +110,8 @@ class NewHitaLocalController extends GetxController {
   }
 
   void _getHostDetail() {
-    NewHitaHttpUtil().post<TrudaHostDetail>(
-      NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(
+      TrudaHttpUrls.upDetailApi + herId,
       errCallback: (err) {
         NewHitaLog.debug(err);
         NewHitaLoading.toast(err.message);
@@ -170,7 +170,7 @@ class NewHitaLocalController extends GetxController {
 
   void _createCall() {
     _startTimer();
-    NewHitaHttpUtil().post<int>(NewHitaHttpUrls.createCallApi + herId,
+    TrudaHttpUtil().post<int>(TrudaHttpUrls.createCallApi + herId,
         errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);
@@ -207,8 +207,8 @@ class NewHitaLocalController extends GetxController {
   // statisticsType 1 呼叫 2 客户端忙线 3 用户被叫拒绝 4 用户被叫超时
   // 5 用户余额不足 6 用户被叫对方取消 7 用户连接异常
   void callStatistics(int isAib, int entType) {
-    NewHitaHttpUtil().post<void>(
-      NewHitaHttpUrls.appCallStatistics + '/$isAib/$entType',
+    TrudaHttpUtil().post<void>(
+      TrudaHttpUrls.appCallStatistics + '/$isAib/$entType',
     );
   }
 
@@ -261,7 +261,7 @@ class NewHitaLocalController extends GetxController {
           callStatus: TrudaCallStatus.MY_HANG_UP,
           dateInsert: DateTime.now().millisecondsSinceEpoch,
           duration: '00:00');
-      NewHitaHttpUtil().post<void>(NewHitaHttpUrls.cancelCallApi,
+      TrudaHttpUtil().post<void>(TrudaHttpUrls.cancelCallApi,
           data: {'channelId': channelId, 'endType': endType});
     }
     _closeMe();

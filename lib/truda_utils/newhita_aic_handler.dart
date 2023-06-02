@@ -6,8 +6,8 @@ import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 
 import '../truda_common/truda_constants.dart';
 import '../truda_database/entity/truda_her_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import '../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../truda_services/newhita_my_info_service.dart';
 import '../truda_widget/newhita_cache_manager.dart';
@@ -181,7 +181,7 @@ class NewHitaAicHandler {
       //能接起电话  不能调起虚拟视频    如有 60 钻石  or 有体验卡
       if (TrudaConstants.isTestMode &&
           //判断是不是测试
-          NewHitaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
+          TrudaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
         NewHitaLoading.toast(
           '测试时，有钱也打开aic',
           duration: Duration(seconds: 4),
@@ -219,8 +219,8 @@ class NewHitaAicHandler {
 
   void eventss(int aaa) {
     //直接被拦截
-    NewHitaHttpUtil().post<void>(
-      '${NewHitaHttpUrls.appCallStatistics}/6/$aaa',
+    TrudaHttpUtil().post<void>(
+      '${TrudaHttpUrls.appCallStatistics}/6/$aaa',
     );
   }
 }

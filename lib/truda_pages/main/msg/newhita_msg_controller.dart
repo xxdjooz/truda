@@ -9,8 +9,8 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_database/entity/truda_conversation_entity.dart';
 import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_database/entity/truda_msg_entity.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/newhita_event_bus_bean.dart';
 import '../../../truda_utils/ad/newhita_ads_native_utils.dart';
 import '../../../truda_utils/ad/newhita_ads_rewarded_utils.dart';
@@ -111,7 +111,7 @@ class NewHitaMsgController extends GetxController {
       }).whenComplete(() => _getList());
       return;
     }
-    NewHitaHttpUtil().post<int>(NewHitaHttpUrls.blacklistActionApi + herId,
+    TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
           NewHitaLoading.toast(err.message);
         }).then((value) {

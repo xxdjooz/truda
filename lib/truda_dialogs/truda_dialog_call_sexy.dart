@@ -6,8 +6,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_constants.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 
 //
 class TrudaDialogCallSexy extends StatelessWidget {
@@ -100,8 +100,8 @@ class TrudaDialogCallSexy extends StatelessWidget {
                 //     {},
                 //     false);
                 if (noMore.value) {
-                  NewHitaHttpUtil().post<String>(
-                      NewHitaHttpUrls.noLongerReminds,
+                  TrudaHttpUtil().post<String>(
+                      TrudaHttpUrls.noLongerReminds,
                       errCallback: (err) {});
                 }
                 Get.back();

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_net_helper.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/login/newhita_login_to_main_api.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
@@ -22,7 +22,7 @@ class NewHitaSplashController extends GetxController {
 
   // 获取config
   void getConfig() {
-    NewHitaHttpUtil().post<TrudaConfigData>(NewHitaHttpUrls.configApi,
+    TrudaHttpUtil().post<TrudaConfigData>(TrudaHttpUrls.configApi,
         errCallback: (e) {
       NewHitaLoading.toast(e.message);
       Future.delayed(Duration(seconds: 2), () {
@@ -58,7 +58,7 @@ class NewHitaSplashController extends GetxController {
   // 已经登陆过，加载个人信息后去主页
   void _getDetail() {
     NewHitaLog.debug('NewHitaSplashController refreshMe()');
-    NewHitaHttpUtil().post<TrudaInfoDetail>(NewHitaHttpUrls.userInfoApi,
+    TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
         errCallback: (err) {
       NewHitaLoading.dismiss();
       Get.offAllNamed(NewHitaAppPages.login);

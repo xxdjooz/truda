@@ -1,8 +1,8 @@
 import 'package:anythink_sdk/at_index.dart';
 
 import '../../truda_common/truda_constants.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/newhita_app_info_service.dart';
 import '../../truda_services/newhita_storage_service.dart';
 import '../newhita_log.dart';
@@ -284,9 +284,9 @@ class NewHitaAdsUtils {
 
   ///提交广告事件
   static void adSpotsCallBack(String adCode) {
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<void>(
-          NewHitaHttpUrls.adSpotsCallback + getAdId(adCode),
+          TrudaHttpUrls.adSpotsCallback + getAdId(adCode),
           errCallback: (e) {},
         )
         .then((value) => {logi('adSpotsCallBack ')});
@@ -294,7 +294,7 @@ class NewHitaAdsUtils {
 
   ///获取广告列表
   static void getAdSpots({bool isRefresh = false}) {
-    NewHitaHttpUtil().post<List<NewHitaAdsSpotsEntity>>(NewHitaHttpUrls.getAdSpots,
+    TrudaHttpUtil().post<List<NewHitaAdsSpotsEntity>>(TrudaHttpUrls.getAdSpots,
         errCallback: (e) {
       NewHitaLog.debug('ad spots call back success 3 ${e.toString()}');
     }).then((data) {

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,8 +50,8 @@ class _TrudaSheetInviteMethodState extends State<TrudaSheetInviteMethod> {
 
   ///记录分享次数
   void _addShareCount() {
-    NewHitaHttpUtil()
-        .post<String>(NewHitaHttpUrls.accumulateShareCount, errCallback: (err) {});
+    TrudaHttpUtil()
+        .post<String>(TrudaHttpUrls.accumulateShareCount, errCallback: (err) {});
   }
 
   @override

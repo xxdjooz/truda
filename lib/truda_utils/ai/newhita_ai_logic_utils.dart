@@ -10,8 +10,8 @@ import '../../truda_common/truda_constants.dart';
 import '../../truda_database/entity/truda_her_entity.dart';
 import '../../truda_entities/truda_ai_config_entity.dart';
 import '../../truda_entities/truda_aiv_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_pages/call/remote/newhita_remote_controller.dart';
 import '../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../truda_services/newhita_event_bus_bean.dart';
@@ -112,8 +112,8 @@ class NewHitaAiLogicUtils {
 
   ///获取 aib 配置
   void _getAibConfig() {
-    NewHitaHttpUtil()
-        .post<TrudaAiConfigEntity>(NewHitaHttpUrls.getAibConfig,
+    TrudaHttpUtil()
+        .post<TrudaAiConfigEntity>(TrudaHttpUrls.getAibConfig,
             errCallback: (error) {})
         .then((value) {
       _log("返回数据了 ");
@@ -372,7 +372,7 @@ class NewHitaAiLogicUtils {
     _log("==============   aib");
     if (NewHitaCheckCallingUtil.checkCanAib()) {
       //检查是否能调起aib
-      NewHitaHttpUtil().post<NewHitaRTMMsgAIB>(NewHitaHttpUrls.getAibAnchor,
+      TrudaHttpUtil().post<NewHitaRTMMsgAIB>(TrudaHttpUrls.getAibAnchor,
           errCallback: (error) {}, doneCallback: (isSuccess, msg) {
         _log("========== aib  $isSuccess");
         if (!isSuccess) {
@@ -418,7 +418,7 @@ class NewHitaAiLogicUtils {
         return;
       }
       //检查是否能调起aib
-      NewHitaHttpUtil().post<TrudaAivBean>(NewHitaHttpUrls.getAivAnchor,
+      TrudaHttpUtil().post<TrudaAivBean>(TrudaHttpUrls.getAivAnchor,
           errCallback: (error) {}, doneCallback: (isSuccess, msg) {
         _log("========== aic  $isSuccess");
         if (!isSuccess) {

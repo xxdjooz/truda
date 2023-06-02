@@ -10,8 +10,8 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_database/entity/truda_msg_entity.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_services/newhita_storage_service.dart';
@@ -95,7 +95,7 @@ class NewHitaChatInputController extends GetxController {
         ..msgEventType = NewHitaMsgEventType.none
         ..sendState = 0);
       if(hasSenstiveWord || hasContinuousNum){
-        NewHitaHttpUtil().post<void>(NewHitaHttpUrls.uploadSensitiveRecord,
+        TrudaHttpUtil().post<void>(TrudaHttpUrls.uploadSensitiveRecord,
             data: {"targetId": userId, "sendAuth": "0", "payload": str});
       }
 
@@ -105,7 +105,7 @@ class NewHitaChatInputController extends GetxController {
 
     NewHitaStorageService.to.eventBus.fire(msg);
 
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.rtmServerSendApi, data: {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.rtmServerSendApi, data: {
       "recipientId": userId,
       "payload": json,
     }, errCallback: (err) {
@@ -190,7 +190,7 @@ class NewHitaChatInputController extends GetxController {
           sendState: 1);
       msg.extra = localPath;
       // NewHitaStorageService.to.eventBus.fire(msg);
-      NewHitaHttpUtil().post<String>(NewHitaHttpUrls.s3UploadUrl,
+      TrudaHttpUtil().post<String>(TrudaHttpUrls.s3UploadUrl,
           data: {'endType': '.wav'}, errCallback: (err) {
         NewHitaLog.debug(err);
         NewHitaLoading.toast(err.message);
@@ -213,7 +213,7 @@ class NewHitaChatInputController extends GetxController {
             msg.msgEventType = NewHitaMsgEventType.sending;
             msg.sendState = 1;
             NewHitaStorageService.to.eventBus.fire(msg);
-            NewHitaHttpUtil().post<void>(NewHitaHttpUrls.rtmServerSendApi, data: {
+            TrudaHttpUtil().post<void>(TrudaHttpUrls.rtmServerSendApi, data: {
               "recipientId": userId,
               "payload": json,
             }, errCallback: (err) {
@@ -318,7 +318,7 @@ class NewHitaChatInputController extends GetxController {
           msg.msgEventType = NewHitaMsgEventType.sending;
           msg.sendState = 1;
           // NewHitaStorageService.to.eventBus.fire(msg);
-          NewHitaHttpUtil().post<void>(NewHitaHttpUrls.rtmServerSendApi, data: {
+          TrudaHttpUtil().post<void>(TrudaHttpUrls.rtmServerSendApi, data: {
             "recipientId": userId,
             "payload": json,
           }, errCallback: (err) {

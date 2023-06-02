@@ -6,8 +6,8 @@ import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../../truda_dialogs/truda_dialog_create_moment.dart';
 import '../../../../truda_entities/truda_moment_entity.dart';
-import '../../../../truda_http/newhita_http_urls.dart';
-import '../../../../truda_http/newhita_http_util.dart';
+import '../../../../truda_http/truda_http_urls.dart';
+import '../../../../truda_http/truda_http_util.dart';
 import '../../../../truda_utils/newhita_choose_image_util.dart';
 import '../../../../truda_utils/newhita_loading.dart';
 import '../../../../truda_utils/newhita_log.dart';
@@ -82,7 +82,7 @@ class NewHitaCreateController extends GetxController {
         str.write(',');
       }
     }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.saveReviewContent,
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.saveReviewContent,
         data: {
           'content': introTextController.text,
           'paths': str.toString(),

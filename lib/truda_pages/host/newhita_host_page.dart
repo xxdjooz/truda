@@ -9,7 +9,7 @@ import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_dialogs/truda_sheet_host_option.dart';
-import 'package:truda/truda_pages/call/local/newhita_local_controller.dart';
+import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import 'package:truda/truda_pages/host/newhita_host_detail_indicator.dart';
 import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
@@ -470,7 +470,7 @@ class _NewHitaHostPageState extends State<NewHitaHostPage>
                     flex: 7,
                     child: GestureDetector(
                       onTap: () {
-                        NewHitaLocalController.startMe(
+                        TrudaLocalController.startMe(
                             _controller.herId, _controller.portrait);
                       },
                       child: AspectRatio(

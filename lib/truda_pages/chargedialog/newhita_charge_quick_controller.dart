@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_charge_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../truda_database/entity/truda_order_entity.dart';
@@ -63,8 +63,8 @@ class NewHitaChargeQuickController extends GetxController {
   }
 
   void getDatas() {
-    NewHitaHttpUtil().post<TrudaPayQuickData>(
-      NewHitaHttpUrls.getCompositeProduct + '1',
+    TrudaHttpUtil().post<TrudaPayQuickData>(
+      TrudaHttpUrls.getCompositeProduct + '1',
       errCallback: (err) {
         NewHitaLoading.toast(err.message);
       },
@@ -147,9 +147,9 @@ class NewHitaChargeQuickController extends GetxController {
   void doCharge(TrudaPayQuickChannel channel, {int? countryCode}) {
     clickPay = true;
     var commdi = choosedCommodite!;
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<TrudaCreateOrderBean>(
-      NewHitaHttpUrls.createOrderApi,
+      TrudaHttpUrls.createOrderApi,
       data: {
         "productCode": channel.productCode ?? "",
         "storeCode": channel.storeCode ?? "",

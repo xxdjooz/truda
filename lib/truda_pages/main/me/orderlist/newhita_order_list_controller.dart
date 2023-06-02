@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_language_key.dart';
@@ -47,8 +47,8 @@ class NewHitaOrderListController extends GetxController {
   Future getList() async {
     _page++;
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil()
-        .post<List<TrudaOrderData>>(NewHitaHttpUrls.orderListApi, data: {
+    await TrudaHttpUtil()
+        .post<List<TrudaOrderData>>(TrudaHttpUrls.orderListApi, data: {
       "page": _page,
       "pageSize": _pageSize,
       // -1所有 0.待支付订单，1.完成订单，2.失败订单

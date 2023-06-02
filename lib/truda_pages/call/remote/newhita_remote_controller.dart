@@ -5,8 +5,8 @@ import 'package:agora_rtm/agora_rtm.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_end_type_2.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_voice_player.dart';
@@ -30,9 +30,9 @@ import '../../../truda_utils/newhita_facebook_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_utils/newhita_permission_handler.dart';
-import '../aic/newhita_aic_controller.dart';
-import '../aiv/newhita_aiv_controller.dart';
-import '../aiv/newhita_aiv_video_controller.dart';
+import '../aic/truda_aic_controller.dart';
+import '../aiv/truda_aiv_controller.dart';
+import '../aiv/truda_aiv_video_controller.dart';
 
 class NewHitaRemoteController extends GetxController {
   static startMeAic(TrudaAicEntity aic) async {
@@ -40,7 +40,7 @@ class NewHitaRemoteController extends GetxController {
         NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
     if (myDiamonds > 60) {
       if (TrudaConstants.isTestMode &&
-          NewHitaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
+          TrudaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
         NewHitaLoading.toast(
           '测试时，有钱也打开aic',
           duration: Duration(seconds: 4),
@@ -66,7 +66,7 @@ class NewHitaRemoteController extends GetxController {
     if (NewHitaCheckCallingUtil.checkCanAic()) {
       await _toThisPage(map);
     } else {
-      NewHitaHttpUtil().post(NewHitaHttpUrls.hanAIA_Api + '/${aic.userId}/0');
+      TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/${aic.userId}/0');
     }
   }
 
@@ -92,7 +92,7 @@ class NewHitaRemoteController extends GetxController {
       _toThisPage(map);
       return true;
     } else {
-      NewHitaHttpUtil().post(NewHitaHttpUrls.hanAIA_Api + '/${bean.userId}/0');
+      TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/${bean.userId}/0');
       return false;
     }
   }
@@ -160,7 +160,7 @@ class NewHitaRemoteController extends GetxController {
 
   /// event bus 监听
   late final StreamSubscription<NewHitaEventRtmCall> sub;
-  NewHitaAivVideoController? _aivVideoController;
+  TrudaAivVideoController? _aivVideoController;
   @override
   void onInit() {
     super.onInit();
@@ -179,7 +179,7 @@ class NewHitaRemoteController extends GetxController {
     } else if (callType == 4) {
       aiv = arguments['aiv'];
       isCard = aiv?.isCard ?? 0;
-      _aivVideoController = NewHitaAivVideoController.make(aiv!.filename!);
+      _aivVideoController = TrudaAivVideoController.make(aiv!.filename!);
     }
 
     NewHitaLog.debug(content);
@@ -284,7 +284,7 @@ class NewHitaRemoteController extends GetxController {
       );
     } else {
       // 是虚拟视频 被拒绝了请求一个话术
-      NewHitaHttpUtil().post(NewHitaHttpUrls.hanAIA_Api + '/$herId/0');
+      TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/$herId/0');
     }
     if (callType > 1) {
       // 插入一个通话记录
@@ -358,8 +358,8 @@ class NewHitaRemoteController extends GetxController {
       String localPath = Get.arguments['localPath'] ?? '';
       String url = Get.arguments['url'] ?? '';
       if (localPath.isEmpty || url.isEmpty) return;
-      NewHitaAicController.startMeAndOff(herId, url, localPath, isCard, aic!);
-      NewHitaHttpUtil().post(NewHitaHttpUrls.hanAIA_Api + '/$herId/1');
+      TrudaAicController.startMeAndOff(herId, url, localPath, isCard, aic!);
+      TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/$herId/1');
       return;
     }
 
@@ -374,9 +374,9 @@ class NewHitaRemoteController extends GetxController {
       }
       String url = aiv?.filename ?? '';
       if (url.isEmpty) return;
-      NewHitaAivController.startMeAndOff(
+      TrudaAivController.startMeAndOff(
           herId, isCard, aiv!, _aivVideoController!);
-      NewHitaHttpUtil().post(NewHitaHttpUrls.hanAIA_Api + '/$herId/1');
+      TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/$herId/1');
       return;
     }
     // 没有钱也没有体验卡
@@ -420,7 +420,7 @@ class NewHitaRemoteController extends GetxController {
   }
 
   void _getHostDetail() {
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
       NewHitaLog.debug(err);
     }).then((value) {
@@ -440,8 +440,8 @@ class NewHitaRemoteController extends GetxController {
   /// AIB主动拨打
   void _createCall() {
     if (!_aibCheckOnline()) return;
-    NewHitaHttpUtil().post<int>(
-      NewHitaHttpUrls.createAIBCallApi + herId,
+    TrudaHttpUtil().post<int>(
+      TrudaHttpUrls.createAIBCallApi + herId,
       errCallback: (err) {
         NewHitaLog.debug(err);
         NewHitaLoading.toast(err.message);
@@ -521,8 +521,8 @@ class NewHitaRemoteController extends GetxController {
   // statisticsType 1 呼叫失败 2 客户端忙线 3 用户被叫拒绝 4 用户被叫超时
   // 5 用户余额不足 6 用户被叫对方取消 7 用户连接异常
   void callStatistics(int isAib, int statisticsType) {
-    NewHitaHttpUtil().post<void>(
-      NewHitaHttpUrls.appCallStatistics + '/$isAib/$statisticsType',
+    TrudaHttpUtil().post<void>(
+      TrudaHttpUrls.appCallStatistics + '/$isAib/$statisticsType',
     );
   }
 
@@ -542,14 +542,14 @@ class NewHitaRemoteController extends GetxController {
       } else if (endType == TrudaEndType2.calledRefuse) {
         statisticsType = 3;
         // 手动挂掉aib，做一个延迟aib
-        NewHitaHttpUtil().post<void>(NewHitaHttpUrls.refuseAIBCall + herId);
+        TrudaHttpUtil().post<void>(TrudaHttpUrls.refuseAIBCall + herId);
       } else if (endType == TrudaEndType2.noMoney) {
         statisticsType = 5;
       }
       callStatistics(1, statisticsType);
       return;
     }
-    NewHitaHttpUtil().post<void>(NewHitaHttpUrls.refuseCallApi, data: {
+    TrudaHttpUtil().post<void>(TrudaHttpUrls.refuseCallApi, data: {
       "channelId": channelId,
       "endType": endType,
       "isRobot": 0,

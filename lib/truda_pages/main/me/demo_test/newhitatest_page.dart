@@ -18,8 +18,8 @@ import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_dialogs/truda_dialog_match_one.dart';
 import '../../../../truda_entities/truda_aiv_entity.dart';
-import '../../../../truda_http/newhita_http_urls.dart';
-import '../../../../truda_http/newhita_http_util.dart';
+import '../../../../truda_http/truda_http_urls.dart';
+import '../../../../truda_http/truda_http_util.dart';
 import '../../../../truda_services/newhita_storage_service.dart';
 import '../../../../truda_utils/newhita_third_util.dart';
 import '../../../../truda_utils/newhita_voice_player.dart';
@@ -55,8 +55,8 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
 
   /// 消耗掉一张体验卡
   void consumeOneCard() {
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.useCardByAIBApi, errCallback: (err) {});
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.useCardByAIBApi, errCallback: (err) {});
   }
 
   @override

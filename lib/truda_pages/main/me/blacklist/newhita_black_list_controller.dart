@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_constants.dart';
@@ -46,8 +46,8 @@ class NewHitaBlackListController extends GetxController {
   Future getList() async {
     _page++;
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaHostDetail>>(
-      NewHitaHttpUrls.blacklistApi,
+    await TrudaHttpUtil().post<List<TrudaHostDetail>>(
+      TrudaHttpUrls.blacklistApi,
       data: {
         "page": _page,
         "pageSize": _pageSize,
@@ -90,7 +90,7 @@ class NewHitaBlackListController extends GetxController {
       onRefresh();
       return;
     }
-    NewHitaHttpUtil().post<int>(NewHitaHttpUrls.blacklistActionApi + herId,
+    TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
       NewHitaLoading.toast(err.message);
     }, showLoading: true).then((value) {

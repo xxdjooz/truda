@@ -7,7 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_translations.dart';
-import 'package:truda/truda_http/newhita_http_overrides.dart';
+import 'package:truda/truda_http/truda_http_overrides.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_services/newhita_app_info_service.dart';
 import 'package:truda/truda_services/newhita_host_video_service.dart';
@@ -42,7 +42,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// 试图解决有手机（有账号机）ssl问题
-  HttpOverrides.global = NewHitaHttpOverrides();
+  HttpOverrides.global = TrudaHttpOverrides();
   await NewHitaGlobal.init();
   runApp(const NewHitaApp());
 }

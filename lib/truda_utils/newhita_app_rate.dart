@@ -6,13 +6,13 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
 import 'package:truda/truda_utils/newhita_third_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../truda_common/truda_colors.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_util.dart';
 
 class NewHitaAppRate {
   static void rateApp(String msg) async {
@@ -517,7 +517,7 @@ class _NewHitaGoogleRateState extends State<NewHitaGoogleRate> {
                           autofocus: false,
                           onPressed: () {
                             Get.back();
-                            NewHitaHttpUtil().post(NewHitaHttpUrls.updateRatedApp,
+                            TrudaHttpUtil().post(TrudaHttpUrls.updateRatedApp,
                                 data: {"rating": -1, "remark": ''});
                           },
                         ),
@@ -549,7 +549,7 @@ class _NewHitaGoogleRateState extends State<NewHitaGoogleRate> {
                             setState(() {
                               _step = 2;
                             });
-                            NewHitaHttpUtil().post(NewHitaHttpUrls.updateRatedApp,
+                            TrudaHttpUtil().post(TrudaHttpUrls.updateRatedApp,
                                 data: {
                                   "rating": _rating,
                                   "remark": _textEditingController.text

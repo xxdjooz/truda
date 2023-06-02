@@ -1,7 +1,7 @@
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_entities/truda_hot_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 
 class NewHitaPayCountriesUtil {
   static List<TrudaAreaData>? areaList;
@@ -10,8 +10,8 @@ class NewHitaPayCountriesUtil {
     if (areaList?.isNotEmpty == true) {
       return areaList!;
     }
-    areaList = await NewHitaHttpUtil().post<List<TrudaAreaData>>(
-        NewHitaHttpUrls.getPayCountry, errCallback: (err) {
+    areaList = await TrudaHttpUtil().post<List<TrudaAreaData>>(
+        TrudaHttpUrls.getPayCountry, errCallback: (err) {
       // NewHitaLoading.toast(err.message);
     });
     return areaList!;
@@ -19,8 +19,8 @@ class NewHitaPayCountriesUtil {
 
   static Future<TrudaPayQuickCommodite> getCountryProduct(
       String productId, String countryCode) async {
-    return await NewHitaHttpUtil().post<TrudaPayQuickCommodite>(
-      NewHitaHttpUrls.getCountryProduct + '/$productId/$countryCode',
+    return await TrudaHttpUtil().post<TrudaPayQuickCommodite>(
+      TrudaHttpUrls.getCountryProduct + '/$productId/$countryCode',
       errCallback: (err) {
         // NewHitaLoading.toast(err.message);
       },

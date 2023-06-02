@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_end_type.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
@@ -23,7 +23,7 @@ import '../../../truda_entities/truda_gift_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_send_gift_result.dart';
-import '../../../truda_http/newhita_common_api.dart';
+import '../../../truda_http/truda_common_api.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../../truda_rtm/newhita_rtm_msg_sender.dart';
@@ -36,12 +36,12 @@ import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../chargedialog/newhita_charge_dialog_manager.dart';
 import '../../vip/newhita_vip_controller.dart';
-import '../end/newhita_end_controller.dart';
-import 'newhita_aiv_video_controller.dart';
+import '../end/truda_end_controller.dart';
+import 'truda_aiv_video_controller.dart';
 
-class NewHitaAivController extends GetxController {
+class TrudaAivController extends GetxController {
   static startMeAndOff(String herId, int isCard, TrudaAivBean aiv,
-      NewHitaAivVideoController aivVideoController) {
+      TrudaAivVideoController aivVideoController) {
     Map<String, dynamic> map = {};
     map['herId'] = herId;
     map['isCard'] = isCard;
@@ -66,7 +66,7 @@ class NewHitaAivController extends GetxController {
   late String herId;
   late String content;
   late String token;
-  late NewHitaAivVideoController aivVideoController;
+  late TrudaAivVideoController aivVideoController;
 
   late TrudaAivBean aiv;
 
@@ -300,8 +300,8 @@ class NewHitaAivController extends GetxController {
 
   /// 消耗掉一张体验卡
   void consumeOneCard() {
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.useCardByAIBApi, errCallback: (err) {});
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.useCardByAIBApi, errCallback: (err) {});
   }
 
   // 视频播放结束和有体验卡的倒计时结束
@@ -351,7 +351,7 @@ class NewHitaAivController extends GetxController {
     }
     if (aicUseCard) {
       callTime = callTime + callCardDurationSecond;
-      NewHitaEndController.startMeAndOff(
+      TrudaEndController.startMeAndOff(
         herId: herId,
         channelId: '',
         portrait: detail?.portrait ?? '',
@@ -363,7 +363,7 @@ class NewHitaAivController extends GetxController {
         callHadShowCount20: callHadShowCount20,
       );
     } else {
-      NewHitaEndController.startMeAndOff(
+      TrudaEndController.startMeAndOff(
         herId: herId,
         channelId: '',
         portrait: detail?.portrait ?? '',
@@ -450,8 +450,8 @@ class NewHitaAivController extends GetxController {
 
   void sendGift(TrudaGiftEntity gift) {
     /// 这里送礼物要送给9999？好像是因为不让主播有收益
-    NewHitaHttpUtil().post<TrudaSendGiftResult>(
-      NewHitaHttpUrls.sendGiftApi,
+    TrudaHttpUtil().post<TrudaSendGiftResult>(
+      TrudaHttpUrls.sendGiftApi,
       data: {
         "receiverId": TrudaConstants.systemId,
         "quantity": 1,
@@ -492,7 +492,7 @@ class NewHitaAivController extends GetxController {
   }
 
   void _getHostDetail() {
-    NewHitaHttpUtil().post<TrudaHostDetail>(NewHitaHttpUrls.upDetailApi + herId,
+    TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
       NewHitaLog.debug(err);
       NewHitaLoading.toast(err.message);
@@ -510,7 +510,7 @@ class NewHitaAivController extends GetxController {
   }
 
   void handleFollow() {
-    NewHitaCommonApi.followHostOrCancel(herId).then((value) {
+    TrudaCommonApi.followHostOrCancel(herId).then((value) {
       detail?.followed = value;
       followed.value = value;
       update();

@@ -18,8 +18,8 @@ import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_dialog_invite_for_diamond.dart';
 import '../../../truda_dialogs/truda_dialog_service.dart';
-import '../../../truda_http/newhita_http_urls.dart';
-import '../../../truda_http/newhita_http_util.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/ai/newhita_ai_logic_utils.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../chat/newhita_chat_controller.dart';
@@ -734,9 +734,9 @@ class NewHitaMePage extends StatelessWidget {
         title: TrudaLanguageKey.newhita_cancellation.tr,
         text: null,
         onTap: () {
-          NewHitaHttpUtil()
+          TrudaHttpUtil()
               .post(
-            NewHitaHttpUrls.delete_current_account,
+            TrudaHttpUrls.delete_current_account,
             showLoading: true,
           )
               .then((value) {

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_common_type.dart';
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_pages/charge/success/newhita_success_controller.dart';
 import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:web_socket_channel/io.dart';
@@ -48,7 +48,7 @@ class NewHitaSocketManager extends GetxService {
     headers["user-language"] = Get.deviceLocale?.languageCode ?? "en";
     headers["device-id"] = appInfo.deviceIdentifier;
     NewHitaLog.debug("socket connecting");
-    channel = IOWebSocketChannel.connect(NewHitaHttpUrls.getSocketBaseUrl(),
+    channel = IOWebSocketChannel.connect(TrudaHttpUrls.getSocketBaseUrl(),
         headers: headers, pingInterval: const Duration(seconds: 20));
     _connected = true;
     channel.stream.listen((message) {

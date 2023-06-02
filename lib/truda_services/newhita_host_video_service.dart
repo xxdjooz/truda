@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import '../truda_database/entity/truda_her_entity.dart';
 import '../truda_entities/truda_host_entity.dart';
 import '../truda_entities/truda_hot_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 import 'newhita_storage_service.dart';
 
 class NewHitaHostVideoService extends GetxService {
@@ -29,8 +29,8 @@ class NewHitaHostVideoService extends GetxService {
   }
 
   Future<List<TrudaHostDetail>> getMore() async {
-    var data = await NewHitaHttpUtil().post<TrudaUpListData>(
-        NewHitaHttpUrls.upListApi + areaCode.toString(),
+    var data = await TrudaHttpUtil().post<TrudaUpListData>(
+        TrudaHttpUrls.upListApi + areaCode.toString(),
         data: {
           "page": currentPage++,
           "pageSize": 10,

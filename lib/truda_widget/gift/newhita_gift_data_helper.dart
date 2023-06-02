@@ -3,8 +3,8 @@ import 'dart:convert';
 import '../../generated/json/base/json_convert_content.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_entities/truda_gift_entity.dart';
-import '../../truda_http/newhita_http_urls.dart';
-import '../../truda_http/newhita_http_util.dart';
+import '../../truda_http/truda_http_urls.dart';
+import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/newhita_storage_service.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../newhita_cache_manager.dart';
@@ -22,8 +22,8 @@ class NewHitaGiftDataHelper {
     if (listStore != null && listStore.isNotEmpty) {
       NewHitaLog.debug('NewHitaGiftDataHelper Store');
     } else {
-      var list = await NewHitaHttpUtil().post<List<TrudaGiftEntity>>(
-          NewHitaHttpUrls.allGiftListApi, errCallback: (err) {
+      var list = await TrudaHttpUtil().post<List<TrudaGiftEntity>>(
+          TrudaHttpUrls.allGiftListApi, errCallback: (err) {
         // NewHitaLoading.toast(err.message);
       });
       if (list.isNotEmpty) {

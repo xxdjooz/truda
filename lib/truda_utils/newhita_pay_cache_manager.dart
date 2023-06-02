@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_pay_event_track.dart';
 
 import '../truda_database/entity/truda_order_entity.dart';
 import '../truda_entities/truda_order_check_entity.dart';
-import '../truda_http/newhita_http_urls.dart';
+import '../truda_http/truda_http_urls.dart';
 
 class NewHitaPayCacheManager {
   // 检查缓存的订单，支付成功的上报后台和三方平台
@@ -34,8 +34,8 @@ class NewHitaPayCacheManager {
       }
     }
     if (orderMap.isEmpty) return;
-    NewHitaHttpUtil().post<List<TrudaOrderCheckEntity>>(
-        NewHitaHttpUrls.getOrderStatusApi,
+    TrudaHttpUtil().post<List<TrudaOrderCheckEntity>>(
+        TrudaHttpUrls.getOrderStatusApi,
         data: {'orderNos': orderIds}).then((value) {
       for (var orderCheck in value) {
         var ord = orderMap[orderCheck.orderNo];
@@ -51,8 +51,8 @@ class NewHitaPayCacheManager {
   }
 
   static submitToServer(NewHitaOrderEntity orderEntity) {
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.uploadLogApi, data: orderEntity.toJson())
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.uploadLogApi, data: orderEntity.toJson())
         .then((value) {
       orderEntity.isUploadServer = true;
       NewHitaStorageService.to.objectBoxOrder.orderBox.put(orderEntity);

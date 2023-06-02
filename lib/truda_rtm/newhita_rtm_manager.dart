@@ -7,8 +7,8 @@ import 'package:truda/truda_rtm/newhita_rtm_msg_handler.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
-import '../truda_http/newhita_http_urls.dart';
-import '../truda_http/newhita_http_util.dart';
+import '../truda_http/truda_http_urls.dart';
+import '../truda_http/truda_http_util.dart';
 
 class NewHitaRtmManager {
   // 0未连接，1已连接，2连接中
@@ -119,9 +119,9 @@ class NewHitaRtmManager {
 
   /// 刷新rtmToken再登录
   static void _getRtmTokenToLog() {
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<String>(
-      NewHitaHttpUrls.genRtmToken,
+      TrudaHttpUrls.genRtmToken,
     )
         .then((value) {
       NewHitaMyInfoService.to.token?.rtmToken = value;

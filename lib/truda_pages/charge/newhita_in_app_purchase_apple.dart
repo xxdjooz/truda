@@ -20,8 +20,8 @@ class NewHitaAppleInAppPurchase {
 // import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
 //
 // import '../../truda_common/truda_language_key.dart';
-// import '../../truda_http/newhita_http_urls.dart';
-// import '../../truda_http/newhita_http_util.dart';
+// import '../../truda_http/truda_http_urls.dart';
+// import '../../truda_http/truda_http_util.dart';
 // import '../../truda_services/newhita_storage_service.dart';
 // import '../../truda_utils/newhita_loading.dart';
 // import '../../truda_utils/newhita_log.dart';

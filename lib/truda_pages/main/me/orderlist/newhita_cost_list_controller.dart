@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_language_key.dart';
@@ -146,8 +146,8 @@ class NewHitaCostListController extends GetxController {
   Future getList() async {
     _page++;
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil().post<List<TrudaCostBean>>(
-        NewHitaHttpUrls.costListApi + choosedMonth(),
+    await TrudaHttpUtil().post<List<TrudaCostBean>>(
+        TrudaHttpUrls.costListApi + choosedMonth(),
         data: {
           "page": _page,
           "pageSize": _pageSize,

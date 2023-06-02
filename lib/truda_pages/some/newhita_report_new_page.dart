@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 
@@ -122,8 +122,8 @@ class _NewHitaReportNewWidgetState extends State<NewHitaReportNewWidget>
       return;
     }
 
-    NewHitaHttpUtil()
-        .post<void>(NewHitaHttpUrls.reportUpApi,
+    TrudaHttpUtil()
+        .post<void>(TrudaHttpUrls.reportUpApi,
             data: {
               "type": "2",
               "anchorUserId": herId,
@@ -147,9 +147,9 @@ class _NewHitaReportNewWidgetState extends State<NewHitaReportNewWidget>
     if (NewHitaStorageService.to.checkBlackList(herId)) {
       return;
     }
-    NewHitaHttpUtil()
+    TrudaHttpUtil()
         .post<int>(
-      NewHitaHttpUrls.blacklistActionApi + herId,
+      TrudaHttpUrls.blacklistActionApi + herId,
     )
         .then((value) {
       if (value == 1) {

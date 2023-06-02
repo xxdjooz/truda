@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_call_record_entity.dart';
-import 'package:truda/truda_http/newhita_http_urls.dart';
-import 'package:truda/truda_http/newhita_http_util.dart';
+import 'package:truda/truda_http/truda_http_urls.dart';
+import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_utils/newhita_loading.dart';
@@ -72,8 +72,8 @@ class NewHitaCallListController extends GetxController {
   Future getList() async {
     _page++;
     // var areaCode = NewHitaStorageService.to.getAreaCode();
-    await NewHitaHttpUtil()
-        .post<List<TrudaCallRecordEntity>?>(NewHitaHttpUrls.calllistApi, data: {
+    await TrudaHttpUtil()
+        .post<List<TrudaCallRecordEntity>?>(TrudaHttpUrls.calllistApi, data: {
       "page": _page,
       "pageSize": _pageSize,
     }, pageCallback: (has) {
