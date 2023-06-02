@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_pages/call/remote/newhita_remote_page.dart';
-import 'package:truda/truda_pages/charge/success/newhita_success_page.dart';
+import 'package:truda/truda_pages/call/remote/truda_remote_page.dart';
+import 'package:truda/truda_pages/charge/success/truda_success_page.dart';
 import 'package:truda/truda_pages/chat/newhita_chat_binding.dart';
 import 'package:truda/truda_pages/chat/newhita_chat_page.dart';
 import 'package:truda/truda_pages/invite/bonus/newhita_invite_bonus_page.dart';
@@ -34,16 +34,16 @@ import '../truda_pages/call/aic/truda_aic_page.dart';
 import '../truda_pages/call/aiv/truda_aiv_binding.dart';
 import '../truda_pages/call/aiv/truda_aiv_page.dart';
 import '../truda_pages/call/end/truda_end_page.dart';
-import '../truda_pages/call/newhita_call_binding.dart';
-import '../truda_pages/call/newhita_call_page.dart';
+import '../truda_pages/call/truda_call_binding.dart';
+import '../truda_pages/call/truda_call_page.dart';
 import '../truda_pages/call/local/truda_local_binding.dart';
 import '../truda_pages/call/local/truda_local_page.dart';
-import '../truda_pages/call/remote/newhita_remote_binding.dart';
-import '../truda_pages/charge/newhita_charge_new_binding.dart';
-import '../truda_pages/charge/newhita_charge_new_page.dart';
-import '../truda_pages/charge/ios/newhita_charge_ios_binding.dart';
-import '../truda_pages/charge/ios/newhita_charge_ios_page.dart';
-import '../truda_pages/charge/success/newhita_success_binding.dart';
+import '../truda_pages/call/remote/truda_remote_binding.dart';
+import '../truda_pages/charge/truda_charge_new_binding.dart';
+import '../truda_pages/charge/truda_charge_new_page.dart';
+import '../truda_pages/charge/ios/truda_charge_ios_binding.dart';
+import '../truda_pages/charge/ios/truda_charge_ios_page.dart';
+import '../truda_pages/charge/success/truda_success_binding.dart';
 import '../truda_pages/her_video/newhita_her_video_page_view.dart';
 import '../truda_pages/host/newhita_host_binding.dart';
 import '../truda_pages/host/newhita_host_page.dart';
@@ -146,8 +146,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: callCome,
-      page: () => NewHitaRemotePage(),
-      binding: NewHitaRemoteBinding(),
+      page: () => TrudaRemotePage(),
+      binding: TrudaRemoteBinding(),
     ),
     GetPage(
       name: callOut,
@@ -156,8 +156,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: call,
-      page: () => NewHitaCallPage(),
-      binding: NewHitaCallBinding(),
+      page: () => TrudaCallPage(),
+      binding: TrudaCallBinding(),
     ),
     GetPage(
       name: callEnd,
@@ -216,13 +216,13 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: googleCharge,
-      page: () => NewHitaChargeNewPage(),
-      binding: NewHitaChargeNewBinding(),
+      page: () => TrudaChargeNewPage(),
+      binding: TrudaChargeNewBinding(),
     ),
     GetPage(
       name: iosCharge,
-      page: () => NewHitaChargeIosPage(),
-      binding: NewHitaChargeIosBinding(),
+      page: () => TrudaChargeIosPage(),
+      binding: TrudaChargeIosBinding(),
     ),
     GetPage(
       name: reportPage,
@@ -243,8 +243,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: chargeSuccess,
-      page: () => NewHitaSuccessPage(),
-      binding: NewHitaSuccessBinding(),
+      page: () => TrudaSuccessPage(),
+      binding: TrudaSuccessBinding(),
     ),
     GetPage(
       name: createMoment,

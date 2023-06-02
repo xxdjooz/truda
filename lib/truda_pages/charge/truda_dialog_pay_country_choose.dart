@@ -9,12 +9,12 @@ import '../../truda_entities/truda_hot_entity.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
-class NewHitaDialogPayCountryChoose extends StatelessWidget {
+class TrudaDialogPayCountryChoose extends StatelessWidget {
   List<TrudaAreaData> areaList;
   TrudaCallback<TrudaAreaData> callback;
   int curArea;
 
-  NewHitaDialogPayCountryChoose({
+  TrudaDialogPayCountryChoose({
     Key? key,
     required this.areaList,
     required this.curArea,

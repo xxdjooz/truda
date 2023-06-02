@@ -10,7 +10,7 @@ import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_utils/newhita_loading.dart';
 
-class NewHitaContributeController extends GetxController
+class TrudaContributeController extends GetxController
     with StateMixin<List<TrudaContributeBean>> {
   // List<NewHitaContributeBean> dataList = [];
   late String herId;
@@ -34,10 +34,10 @@ class NewHitaContributeController extends GetxController
   }
 }
 
-class NewHitaContributeView extends GetView<NewHitaContributeController> {
+class TrudaContributeView extends GetView<TrudaContributeController> {
   String herId;
 
-  NewHitaContributeView({Key? key, required this.herId}) : super(key: key);
+  TrudaContributeView({Key? key, required this.herId}) : super(key: key);
 
   Color getColor(int index) {
     return index == 0
@@ -51,7 +51,7 @@ class NewHitaContributeView extends GetView<NewHitaContributeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(NewHitaContributeController()..herId = herId);
+    Get.put(TrudaContributeController()..herId = herId);
     return Container(
       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       decoration: BoxDecoration(

@@ -13,8 +13,8 @@ import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_services/newhita_storage_service.dart';
 import '../../truda_utils/newhita_loading.dart';
-import '../charge/newhita_charge_new_channel_dialog.dart';
-import '../charge/newhita_google_billing.dart';
+import '../charge/truda_charge_new_channel_dialog.dart';
+import '../charge/truda_google_billing.dart';
 import '../some/newhita_web_page.dart';
 import 'newhita_vip_page.dart';
 
@@ -124,7 +124,7 @@ class NewHitaVipController extends GetxController {
       if (comm.channelPays != null) {
         for (var channel in comm.channelPays!) {
           if (channel.payType == googlePayType) {
-            NewHitaGoogleBilling.correctQuickGooglePrice(channel).then((value) {
+            TrudaGoogleBilling.correctQuickGooglePrice(channel).then((value) {
               // 正在选择渠道的时候刷新页面
               if (value && choosedCommodite != null) {
                 update();
@@ -145,7 +145,7 @@ class NewHitaVipController extends GetxController {
       return;
     }
     // update();
-    Get.bottomSheet(NewHitaChargeChannelDialog(
+    Get.bottomSheet(TrudaChargeChannelDialog(
       isVip: true,
       payCommodite: choosedCommodite,
       callback: (comm, channel, countryCode) {
@@ -191,7 +191,7 @@ class NewHitaVipController extends GetxController {
         orderCreateTime: DateTime.now().millisecondsSinceEpoch.toString(),
       ));
       if (channel.payType == googlePayType) {
-        NewHitaGoogleBilling.callPay(channel.productCode, value.orderNo);
+        TrudaGoogleBilling.callPay(channel.productCode, value.orderNo);
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {

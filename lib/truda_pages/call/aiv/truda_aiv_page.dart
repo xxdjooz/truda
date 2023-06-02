@@ -13,7 +13,7 @@ import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
-import '../newhita_contribute_view.dart';
+import '../truda_contribute_view.dart';
 import 'truda_aiv_controller.dart';
 import 'truda_aiv_widget.dart';
 

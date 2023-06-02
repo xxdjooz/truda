@@ -17,18 +17,18 @@ import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
 import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/newhita_net_image.dart';
-import 'newhita_call_controller.dart';
-import 'newhita_call_widget.dart';
-import 'newhita_contribute_view.dart';
+import 'truda_call_controller.dart';
+import 'truda_call_widget.dart';
+import 'truda_contribute_view.dart';
 
-class NewHitaCallPage extends StatefulWidget {
-  NewHitaCallPage({Key? key}) : super(key: key);
+class TrudaCallPage extends StatefulWidget {
+  TrudaCallPage({Key? key}) : super(key: key);
 
   @override
-  State<NewHitaCallPage> createState() => _NewHitaCallPageState();
+  State<TrudaCallPage> createState() => _TrudaCallPageState();
 }
 
-class _NewHitaCallPageState extends State<NewHitaCallPage> with RouteAware {
+class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -44,9 +44,9 @@ class _NewHitaCallPageState extends State<NewHitaCallPage> with RouteAware {
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('NewHitaCallPage didPopNext');
+    NewHitaLog.debug('TrudaCallPage didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
-    Get.find<NewHitaCallController>().didPopNext();
+    Get.find<TrudaCallController>().didPopNext();
   }
 
   @override
@@ -55,7 +55,7 @@ class _NewHitaCallPageState extends State<NewHitaCallPage> with RouteAware {
     double statusBarHeight = MediaQuery.of(context).padding.top;
     // AppBar 高度
     double appBarHeight = kToolbarHeight;
-    return GetBuilder<NewHitaCallController>(builder: (controller) {
+    return GetBuilder<TrudaCallController>(builder: (controller) {
       return controller.connecting
           ? _connectWidget(controller)
           : WillPopScope(
@@ -254,7 +254,7 @@ class _NewHitaCallPageState extends State<NewHitaCallPage> with RouteAware {
                       children: [
                         Positioned.fill(
                           /// 这里是打电话Rtc页面
-                          child: NewHitaCallWidget(),
+                          child: TrudaCallWidget(),
                         ),
                         Positioned(
                           child: NewHitaGiftFollowTip(
@@ -510,7 +510,7 @@ class _NewHitaCallPageState extends State<NewHitaCallPage> with RouteAware {
     });
   }
 
-  Widget _connectWidget(NewHitaCallController controller) {
+  Widget _connectWidget(TrudaCallController controller) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

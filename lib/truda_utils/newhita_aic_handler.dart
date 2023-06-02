@@ -1,6 +1,6 @@
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:truda/truda_database/entity/truda_aic_entity.dart';
-import 'package:truda/truda_pages/call/remote/newhita_remote_controller.dart';
+import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 
@@ -122,7 +122,7 @@ class NewHitaAicHandler {
     //   return;
     // }
     // await videoController.dispose();
-    await NewHitaRemoteController.startMeAic(aic);
+    await TrudaRemoteController.startMeAic(aic);
   }
 
   // 每次启动app的时候调一下
@@ -187,7 +187,7 @@ class NewHitaAicHandler {
           duration: Duration(seconds: 4),
         );
       } else {
-        NewHitaLog.debug('NewHitaRemoteController 有钱屏蔽aic');
+        NewHitaLog.debug('TrudaRemoteController 有钱屏蔽aic');
         return false;
       }
     }
@@ -213,7 +213,7 @@ class NewHitaAicHandler {
     //设置这一次的 uid
     previousUid = aic.userId ?? "";
     eventss(7);
-    NewHitaRemoteController.startMeAic(aic);
+    TrudaRemoteController.startMeAic(aic);
     return true;
   }
 

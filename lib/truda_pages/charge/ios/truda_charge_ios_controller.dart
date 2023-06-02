@@ -1,25 +1,27 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_common/truda_charge_path.dart';
-import 'package:truda/truda_database/entity/truda_order_entity.dart';
-import 'package:truda/truda_entities/truda_charge_entity.dart';
-import 'package:truda/truda_http/truda_http_urls.dart';
-import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/some/newhita_web_page.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_common/truda_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../truda_common/truda_charge_path.dart';
+import '../../../truda_database/entity/truda_order_entity.dart';
+import '../../../truda_entities/truda_charge_entity.dart';
+import '../../../truda_entities/truda_charge_quick_entity.dart';
+import '../../../truda_entities/truda_info_entity.dart';
+import '../../../truda_entities/truda_lottery_user_entity.dart';
+import '../../../truda_http/truda_http_urls.dart';
+import '../../../truda_http/truda_http_util.dart';
+import '../../../truda_services/newhita_event_bus_bean.dart';
+import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
+import '../../some/newhita_web_page.dart';
+import '../truda_charge_new_channel_dialog.dart';
+import '../truda_in_app_purchase_apple.dart';
 
-import '../../truda_common/truda_constants.dart';
-import '../../truda_entities/truda_charge_quick_entity.dart';
-import '../../truda_entities/truda_lottery_user_entity.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
-import 'newhita_charge_new_channel_dialog.dart';
-import 'newhita_google_billing.dart';
-
-class NewHitaChargeNewController extends GetxController {
+class TrudaChargeIosController extends GetxController {
   static const idMoreList = 'idMoreList';
   List<TrudaPayChannelBean> dataList = [];
   bool googleOnly = true;
@@ -31,16 +33,18 @@ class NewHitaChargeNewController extends GetxController {
   TrudaPayQuickCommodite? cutCommodite;
 
   TrudaPayQuickCommodite? choosedCommodite;
-  NewHitaLotteryWinnerController lotteryController =
-      NewHitaLotteryWinnerController();
+
+  NewHitaLotteryWinnerController lotteryController = NewHitaLotteryWinnerController();
   Timer? showTimer;
   List<TrudaLotteryUser> users = [];
 
   @override
   void onInit() {
     super.onInit();
-    // var arguments = Get.arguments as Map<String, dynamic>;
-    // herId = arguments['herId']!;
+
+    if(!TrudaConstants.isFakeMode) {
+      _getDrawUser();
+    }
   }
 
   @override
@@ -48,11 +52,27 @@ class NewHitaChargeNewController extends GetxController {
     super.onReady();
     getDatas();
     firstIn = false;
-    NewHitaGoogleBilling.fixNoEndPurchase();
+    TrudaAppleInAppPurchase.fixNoEndPurchase();
+    TrudaAppleInAppPurchase.resultStream.listen((event) {
+      NewHitaLoading.dismiss();
+      if (event == 0) {
+        refreshMe();
+      }
+    });
+  }
 
-    if (!TrudaConstants.isFakeMode) {
-      _getDrawUser();
-    }
+  Future refreshMe() async {
+    NewHitaLog.debug('NewHitaMeController refreshMe()');
+    await TrudaHttpUtil()
+        .post<TrudaInfoDetail>(
+      TrudaHttpUrls.userInfoApi,
+      showLoading: true,
+    )
+        .then((value) {
+      NewHitaMyInfoService.to.setMyDetail = value;
+      update();
+      NewHitaStorageService.to.eventBus.fire(eventBusUpdateMe);
+    });
   }
 
   void getDatas() {
@@ -65,23 +85,20 @@ class NewHitaChargeNewController extends GetxController {
       allProducts = value.normalProducts;
       cutCommodite = value.discountProduct;
       update();
-      _tryCorrectGooglePrice();
+      // _tryCorrectGooglePrice();
     });
   }
 
   // 修正一下Google渠道的显示价格
   void _tryCorrectGooglePrice() {
-    List<TrudaPayQuickCommodite> allList = [];
-
-    if (allProducts != null) {
-      allList.addAll(allProducts!);
-    }
-    if (cutCommodite != null) {
-      allList.add(cutCommodite!);
-    }
-
-    NewHitaGoogleBilling.correctShopGooglePrice(allList)
-        .then((value) => update());
+    // List<NewHitaPayQuickCommodite> allList = [];
+    //
+    // if (allProducts != null) {
+    //   allList.addAll(allProducts!);
+    // }
+    // if (cutCommodite != null) {
+    //   allList.add(cutCommodite!);
+    // }
     // for (var comm in allList) {
     //   if (comm.channelPays != null) {
     //     for (var channel in comm.channelPays!) {
@@ -127,7 +144,7 @@ class NewHitaChargeNewController extends GetxController {
       return;
     }
 
-    Get.bottomSheet(NewHitaChargeChannelDialog(
+    Get.bottomSheet(TrudaChargeChannelDialog(
       payCommodite: element,
       callback: (comm, channel, countryCode) {
         createOrder(comm, channel, countryCode: countryCode);
@@ -135,8 +152,7 @@ class NewHitaChargeNewController extends GetxController {
     ));
   }
 
-  void createOrder(
-      TrudaPayQuickCommodite element, TrudaPayQuickChannel channel,
+  void createOrder(TrudaPayQuickCommodite element, TrudaPayQuickChannel channel,
       {int? countryCode}) {
     TrudaHttpUtil()
         .post<TrudaCreateOrderBean>(
@@ -156,8 +172,7 @@ class NewHitaChargeNewController extends GetxController {
     )
         .then((value) {
       // 放进数据库
-      NewHitaStorageService.to.objectBoxOrder
-          .putOrUpdateOrder(NewHitaOrderEntity(
+      NewHitaStorageService.to.objectBoxOrder.putOrUpdateOrder(NewHitaOrderEntity(
         userId: NewHitaMyInfoService.to.myDetail?.userId ?? '',
         orderNo: value.orderNo,
         productId: channel.productCode ?? "",
@@ -170,8 +185,9 @@ class NewHitaChargeNewController extends GetxController {
         payTime: '',
         orderCreateTime: DateTime.now().millisecondsSinceEpoch.toString(),
       ));
-      if (channel.payType == 1) {
-        NewHitaGoogleBilling.callPay(channel.productCode, value.orderNo);
+      if (channel.payType == 2) {
+        TrudaAppleInAppPurchase.checkPurchaseAndPay(
+            value.productCode!, value.orderNo!, (success) {});
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {
@@ -187,13 +203,13 @@ class NewHitaChargeNewController extends GetxController {
   }
 
   void _getDrawUser() {
-    TrudaHttpUtil().post<List<TrudaLotteryUser>>(
-        TrudaHttpUrls.getDrawUser, errCallback: (err) {
-      var bean = TrudaLotteryUser();
-      bean.nickname = "haha";
-      bean.name = "hehe";
-      lotteryController.showOne(bean);
-    }).then((value) {
+    TrudaHttpUtil().post<List<TrudaLotteryUser>>(TrudaHttpUrls.getDrawUser,
+        errCallback: (err) {
+          var bean = TrudaLotteryUser();
+          bean.nickname = "haha";
+          bean.name = "hehe";
+          lotteryController.showOne(bean);
+        }).then((value) {
       users = value;
       if (users.isNotEmpty) {
         var bean = value.removeAt(0);
@@ -213,7 +229,6 @@ class NewHitaChargeNewController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
     showTimer?.cancel();
   }

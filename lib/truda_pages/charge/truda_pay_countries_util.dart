@@ -3,7 +3,7 @@ import '../../truda_entities/truda_hot_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 
-class NewHitaPayCountriesUtil {
+class TrudaPayCountriesUtil {
   static List<TrudaAreaData>? areaList;
 
   static Future<List<TrudaAreaData>> getCountries() async {

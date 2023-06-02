@@ -3,7 +3,7 @@ import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../truda_entities/truda_charge_quick_entity.dart';
 
-class NewHitaGoogleBilling {
+class TrudaGoogleBilling {
   static Future correctCutGooglePrice(TrudaPayCutCommodite product) async {
     return;
   }
@@ -46,16 +46,16 @@ class NewHitaGoogleBilling {
 // import '../../truda_common/truda_constants.dart';
 // import '../../truda_utils/newhita_billing_err_statistics.dart';
 //
-// class NewHitaGoogleBilling {
+// class TrudaGoogleBilling {
 //   static BillingClient billingClient =
 //       BillingClient((PurchasesResultWrapper purchasesResult) {
 //     if (purchasesResult.responseCode == BillingResponse.ok) {
 //       purchasesResult.purchasesList.forEach((purchaseWrapper) {
-//         NewHitaGoogleBilling.consumeAsync(purchaseWrapper);
+//         TrudaGoogleBilling.consumeAsync(purchaseWrapper);
 //       });
 //     } else {
 //       NewHitaLog.debug(
-//           'NewHitaGoogleBilling purchasesResult err ${purchasesResult.responseCode}');
+//           'TrudaGoogleBilling purchasesResult err ${purchasesResult.responseCode}');
 //       final code =
 //           const BillingResponseConverter().toJson(purchasesResult.responseCode);
 //       NewHitaBillingErrStatistics.err(code);
@@ -105,15 +105,15 @@ class NewHitaGoogleBilling {
 //       PurchasesResultWrapper purchasesResultWrapper =
 //           await billingClient.queryPurchases(SkuType.inapp);
 //       NewHitaLog.debug(
-//           'NewHitaGoogleBilling fixNoEndPurchase ${purchasesResultWrapper.purchasesList.length}');
+//           'TrudaGoogleBilling fixNoEndPurchase ${purchasesResultWrapper.purchasesList.length}');
 //       purchasesResultWrapper.purchasesList.forEach((purchaseWrapper) {
 //         //  调用接口获取该交易的状态 成功则结束该交易
 //         NewHitaLog.debug("执行补单操作 ${purchaseWrapper.originalJson}");
-//         NewHitaGoogleBilling.consumeAsync(purchaseWrapper, isFixOrder: true);
+//         TrudaGoogleBilling.consumeAsync(purchaseWrapper, isFixOrder: true);
 //       });
 //     } else {
 //       NewHitaLog.debug(
-//           'NewHitaGoogleBilling fixNoEndPurchase ${connection_billingResultWrapper.responseCode}');
+//           'TrudaGoogleBilling fixNoEndPurchase ${connection_billingResultWrapper.responseCode}');
 //     }
 //   }
 //
@@ -151,10 +151,10 @@ class NewHitaGoogleBilling {
 //           obfuscatedProfileId: orderNo,
 //         );
 //         if (billingResultWrapper.responseCode == BillingResponse.ok) {
-//           NewHitaLog.debug('NewHitaGoogleBilling ok');
+//           NewHitaLog.debug('TrudaGoogleBilling ok');
 //         } else {
 //           NewHitaLog.debug(
-//               'NewHitaGoogleBilling err ${billingResultWrapper.responseCode}');
+//               'TrudaGoogleBilling err ${billingResultWrapper.responseCode}');
 //           NewHitaBillingErrStatistics.err(
 //               NewHitaBillingErrStatistics.launchBillingErr);
 //         }
@@ -418,7 +418,7 @@ class NewHitaGoogleBilling {
 //         }
 //       }
 //       NewHitaLog.debug(_defaultIds);
-//       NewHitaGoogleBilling.getDefaultSkuDetails(_defaultIds.toList());
+//       TrudaGoogleBilling.getDefaultSkuDetails(_defaultIds.toList());
 //     });
 //   }
 // }

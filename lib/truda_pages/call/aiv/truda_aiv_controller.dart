@@ -180,7 +180,7 @@ class TrudaAivController extends GetxController {
     Future.delayed(Duration(seconds: 3), () {
       // 这里有个坑,被叫的dispose里面有关闭的调用，加延迟防止在他之前调用这个
       Wakelock.enable();
-      NewHitaLog.debug('Wakelock enable NewHitaCallController');
+      NewHitaLog.debug('Wakelock enable TrudaCallController');
     });
     _timerLink = Timer.periodic(const Duration(seconds: 1), (timer) {
       NewHitaLog.debug('timer -- ${timer.tick}');
@@ -316,7 +316,7 @@ class TrudaAivController extends GetxController {
     callHadShowCount20 = true;
     // if (doingShowCount20) return;
     // doingShowCount20 = true;
-    // Get.bottomSheet(NewHitaCount20(
+    // Get.bottomSheet(TrudaCount20(
     //   leftSecond: 20,
     //   callback: (go) {
     //     if (go) {
@@ -432,7 +432,7 @@ class TrudaAivController extends GetxController {
         TrudaChargePath.aib_chating_click_recharge,
         upid: herId, closeCallBack: () {
       chargeing = false;
-      NewHitaLog.debug('NewHitaCallController showChargeDialog() $playFinish');
+      NewHitaLog.debug('TrudaCallController showChargeDialog() $playFinish');
       if (playFinish) {
         Future.delayed(const Duration(milliseconds: 60),
             () => _endCall(TrudaEndType.upHangoff));
@@ -521,7 +521,7 @@ class TrudaAivController extends GetxController {
   void onClose() {
     cameraController?.dispose();
     super.onClose();
-    NewHitaLog.debug('NewHitaCallController onClose()');
+    NewHitaLog.debug('TrudaCallController onClose()');
     // sub.cancel();
     _timer?.cancel();
     _timerLink?.cancel();

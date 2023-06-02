@@ -11,14 +11,14 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../../truda_utils/newhita_permission_handler.dart';
-import 'newhita_remote_controller.dart';
+import 'truda_remote_controller.dart';
 
-class NewHitaRemotePage extends GetView<NewHitaRemoteController> {
-  NewHitaRemotePage({Key? key}) : super(key: key);
+class TrudaRemotePage extends GetView<TrudaRemoteController> {
+  TrudaRemotePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaRemoteController>(builder: (controller) {
+    return GetBuilder<TrudaRemoteController>(builder: (controller) {
       return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(

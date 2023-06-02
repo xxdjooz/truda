@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_pages/charge/newhita_charge_new_controller.dart';
+import 'package:truda/truda_pages/charge/truda_charge_new_controller.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 
 import '../../truda_common/truda_colors.dart';
@@ -13,13 +13,13 @@ import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
-class NewHitaChargeNewPage extends GetView<NewHitaChargeNewController> {
-  NewHitaChargeNewPage({Key? key}) : super(key: key);
+class TrudaChargeNewPage extends GetView<TrudaChargeNewController> {
+  TrudaChargeNewPage({Key? key}) : super(key: key);
   final itemColor = const Color(0x33A965F5);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaChargeNewController>(builder: (contro) {
+    return GetBuilder<TrudaChargeNewController>(builder: (contro) {
       final topPicH = context.width * 627 / 1125;
       return Stack(
         fit: StackFit.expand,
@@ -182,7 +182,7 @@ class NewHitaChargeNewPage extends GetView<NewHitaChargeNewController> {
   }
 
   //
-  Widget _top(NewHitaChargeNewController controller) {
+  Widget _top(TrudaChargeNewController controller) {
     return Padding(
       padding: EdgeInsets.all(14),
       child: AspectRatio(
@@ -230,7 +230,7 @@ class NewHitaChargeNewPage extends GetView<NewHitaChargeNewController> {
   }
 
   // 折扣商品的展示
-  Widget _cutProduct(NewHitaChargeNewController controller) {
+  Widget _cutProduct(TrudaChargeNewController controller) {
     if (controller.cutCommodite == null) {
       return const SizedBox();
     }
@@ -365,7 +365,7 @@ class NewHitaChargeNewPage extends GetView<NewHitaChargeNewController> {
   }
 
   Widget getGoogleItem(TrudaPayQuickCommodite commodite,
-      NewHitaChargeNewController controller) {
+      TrudaChargeNewController controller) {
     return NewHitaClickWidget(
       onTap: () async {
         // bool hasNotCompleteTransactions =

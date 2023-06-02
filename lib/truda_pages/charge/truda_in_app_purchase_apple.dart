@@ -1,6 +1,6 @@
 import 'dart:async';
 
-class NewHitaAppleInAppPurchase {
+class TrudaAppleInAppPurchase {
   static final StreamController<int> _streamController =
       StreamController.broadcast(sync: false);
   // 0 notify成功，1
@@ -27,13 +27,13 @@ class NewHitaAppleInAppPurchase {
 // import '../../truda_utils/newhita_log.dart';
 // import '../../truda_utils/newhita_pay_cache_manager.dart';
 //
-// class NewHitaAppleInAppPurchase {
+// class TrudaAppleInAppPurchase {
 //   static final StreamController<int> _streamController =
 //       StreamController.broadcast(sync: false);
 //   // 0 notify成功，1
 //   static Stream<int> get resultStream => _streamController.stream;
 //
-//   static final _appInAppPurchase = NewHitaAppleInAppPurchase._intal();
+//   static final _appInAppPurchase = TrudaAppleInAppPurchase._intal();
 //   static late final Stream purchaseUpdated;
 //   static final String _notFoundProduct =
 //       TrudaLanguageKey.newhita_google_billing_goods_not_find.tr;
@@ -44,7 +44,7 @@ class NewHitaAppleInAppPurchase {
 //   static final String _BaseCancel = TrudaLanguageKey.newhita_base_cancel.tr;
 //   static final String _OperateError = TrudaLanguageKey.newhita_invoke_err.tr;
 //
-//   NewHitaAppleInAppPurchase._intal() {
+//   TrudaAppleInAppPurchase._intal() {
 //     purchaseUpdated = InAppPurchase.instance.purchaseStream;
 //     purchaseUpdated.listen((purchaseDetailsList) {
 //       NewHitaLog.debug("内购交易状态变动");
@@ -134,12 +134,12 @@ class NewHitaAppleInAppPurchase {
 //     });
 //   }
 //
-//   factory NewHitaAppleInAppPurchase() {
+//   factory TrudaAppleInAppPurchase() {
 //     return _appInAppPurchase;
 //   }
 //
 //   static initAppPurchase() async {
-//     NewHitaAppleInAppPurchase();
+//     TrudaAppleInAppPurchase();
 //     NewHitaLog.debug("苹果内购初始化完成");
 //   }
 //
@@ -242,7 +242,7 @@ class NewHitaAppleInAppPurchase {
 //   /// 核查苹果内购能否被调起(未完成交易检查 商品信息检查)
 //   static checkAppleInAppPurchase(String productId,
 //       Function(bool, ProductDetails?) callBackInAppPurchaseProduct) async {
-//     NewHitaAppleInAppPurchase.checkUnCompletePurchases((hasUnComplete) async {
+//     TrudaAppleInAppPurchase.checkUnCompletePurchases((hasUnComplete) async {
 //       if (hasUnComplete == true) {
 //         NewHitaLog.debug("有未完成的交易 本次内购请求取消");
 //         callBackInAppPurchaseProduct.call(false, null);
@@ -265,7 +265,7 @@ class NewHitaAppleInAppPurchase {
 //         } else {
 //           callBackInAppPurchaseProduct.call(false, null);
 //           NewHitaLoading.toast(_purchaseError);
-//           NewHitaAppleInAppPurchase.initAppPurchase();
+//           TrudaAppleInAppPurchase.initAppPurchase();
 //         }
 //       }
 //     });
@@ -283,7 +283,7 @@ class NewHitaAppleInAppPurchase {
 //   static checkPurchaseAndPay(
 //       String productId, String orderNo, Function(bool) callBack) async {
 //     NewHitaLoading.show();
-//     NewHitaAppleInAppPurchase.checkUnCompletePurchases((hasUnComplete) async {
+//     TrudaAppleInAppPurchase.checkUnCompletePurchases((hasUnComplete) async {
 //       if (hasUnComplete == true) {
 //         NewHitaLog.debug("有未完成的交易 本次内购请求取消");
 //         callBack.call(false);
@@ -307,7 +307,7 @@ class NewHitaAppleInAppPurchase {
 //         } else {
 //           callBack.call(false);
 //           NewHitaLoading.toast(_purchaseError);
-//           NewHitaAppleInAppPurchase.initAppPurchase();
+//           TrudaAppleInAppPurchase.initAppPurchase();
 //           NewHitaLoading.dismiss();
 //         }
 //       }

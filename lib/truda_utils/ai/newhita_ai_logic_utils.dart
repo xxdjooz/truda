@@ -12,7 +12,7 @@ import '../../truda_entities/truda_ai_config_entity.dart';
 import '../../truda_entities/truda_aiv_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_pages/call/remote/newhita_remote_controller.dart';
+import '../../truda_pages/call/remote/truda_remote_controller.dart';
 import '../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../truda_services/newhita_event_bus_bean.dart';
 import '../../truda_services/newhita_my_info_service.dart';
@@ -383,7 +383,7 @@ class NewHitaAiLogicUtils {
         previousUid = value.userId!;
         // if (value.userId != previousUid) {
         //判断 获取到的主播和上一次的不一样才调起被叫
-        NewHitaRemoteController.startMeAib(value.userId!, json.encode(value));
+        TrudaRemoteController.startMeAib(value.userId!, json.encode(value));
         aibShowTimes++;
         interceptTime = 5;
         if (TrudaConstants.isTestMode) {
@@ -458,7 +458,7 @@ class NewHitaAiLogicUtils {
       // 有运营测到了有钻石调起了aiv，没找到原因，这里拦截一下 todo
       return;
     }
-    var result = NewHitaRemoteController.startMeAiv(bean);
+    var result = TrudaRemoteController.startMeAiv(bean);
     if (result) {
       aivShowTimes++;
       setNextTimer();
@@ -502,7 +502,7 @@ class NewHitaAiLogicUtils {
         'https://oss.hanilink.com/users_test/107780487/upload/media/2022-03-29/_1648521386627_sendimg.JPEG';
     aiv.nickname = 'test test';
     // aiv.isCard = 0;
-    var result = NewHitaRemoteController.startMeAiv(aiv);
+    var result = TrudaRemoteController.startMeAiv(aiv);
     if (result) {
       aivShowTimes++;
       setNextTimer();

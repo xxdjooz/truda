@@ -8,15 +8,15 @@ import '../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import '../../host/newhita_host_controller.dart';
 import '../../main/home/newhita_host_widget.dart';
-import 'newhita_success_controller.dart';
+import 'truda_success_controller.dart';
 
 @Deprecated('message')
-class NewHitaSuccessPage extends GetView<NewHitaSuccessController> {
-  NewHitaSuccessPage({Key? key}) : super(key: key);
+class TrudaSuccessPage extends GetView<TrudaSuccessController> {
+  TrudaSuccessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaSuccessController>(builder: (contro) {
+    return GetBuilder<TrudaSuccessController>(builder: (contro) {
       return Scaffold(
         backgroundColor: TrudaColors.baseColorBlackBg,
         // appBar: NewHitaAppBarSearch(
@@ -82,7 +82,7 @@ class NewHitaSuccessPage extends GetView<NewHitaSuccessController> {
                     padding: const EdgeInsets.all(10),
                     itemBuilder: (context, index) {
                       var bean = controller.list![index];
-                      return NewHitaRecommendWidget(
+                      return TrudaRecommendWidget(
                         detail: bean,
                       );
                     }),
@@ -95,10 +95,10 @@ class NewHitaSuccessPage extends GetView<NewHitaSuccessController> {
   }
 }
 
-class NewHitaRecommendWidget extends StatelessWidget {
+class TrudaRecommendWidget extends StatelessWidget {
   final TrudaHostDetail detail;
 
-  const NewHitaRecommendWidget({Key? key, required this.detail}) : super(key: key);
+  const TrudaRecommendWidget({Key? key, required this.detail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:truda/truda_entities/truda_match_host_entity.dart';
-import 'package:truda/truda_pages/call/remote/newhita_remote_controller.dart';
+import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_pages/her_video/newhitavideo_test.dart';
 import 'package:truda/truda_pages/main/me/demo_test/newhita_test_image_picker.dart';
 import 'package:truda/truda_pages/main/me/demo_test/newhita_test_webp.dart';
@@ -142,7 +142,7 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaRemoteController.startMeAib('107780488', '');
+                    TrudaRemoteController.startMeAib('107780488', '');
                   },
                   child: Text('startMeAib'),
                 ),
@@ -360,7 +360,7 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
     aiv.nickname = 'test test';
     aiv.muteStatus = 0;
     // aiv.isCard = 0;
-    NewHitaRemoteController.startMeAiv(aiv);
+    TrudaRemoteController.startMeAiv(aiv);
   }
 }
 

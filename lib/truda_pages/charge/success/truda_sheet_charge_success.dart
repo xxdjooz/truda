@@ -7,18 +7,18 @@ import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_widget/newhita_sheet_header.dart';
 
-class NewHitaSheetChargeSuccess extends StatefulWidget {
+class TrudaSheetChargeSuccess extends StatefulWidget {
   final int lottery;
 
-  NewHitaSheetChargeSuccess({Key? key, required this.lottery})
+  TrudaSheetChargeSuccess({Key? key, required this.lottery})
       : super(key: key);
 
   @override
-  State<NewHitaSheetChargeSuccess> createState() =>
-      _NewHitaSheetChargeSuccessState();
+  State<TrudaSheetChargeSuccess> createState() =>
+      _TrudaSheetChargeSuccessState();
 }
 
-class _NewHitaSheetChargeSuccessState extends State<NewHitaSheetChargeSuccess> {
+class _TrudaSheetChargeSuccessState extends State<TrudaSheetChargeSuccess> {
   @override
   void initState() {
     super.initState();

@@ -118,7 +118,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
     //   return;
     // }
     //
-    // NewHitaRemoteController.startMeAib(aib.userId!, messageContent);
+    // TrudaRemoteController.startMeAib(aib.userId!, messageContent);
     return;
   } else if (msgType == NewHitaRTMMsgAIC.typeCode) {
     // if (NewHitaConstants.isFakeMode) {

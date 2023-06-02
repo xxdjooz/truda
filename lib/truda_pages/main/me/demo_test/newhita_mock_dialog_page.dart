@@ -25,8 +25,8 @@ import '../../../../truda_services/newhita_storage_service.dart';
 import '../../../../truda_utils/newhita_app_rate.dart';
 import '../../../../truda_utils/newhita_permission_handler.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
-import '../../../call/newhita_count_20.dart';
-import '../../../charge/success/newhita_success_controller.dart';
+import '../../../call/truda_count_20.dart';
+import '../../../charge/success/truda_success_controller.dart';
 import '../../../vip/newhita_vip_dialog.dart';
 
 class NewHitaMockDailogPage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _NewHitaMockDailogPageState extends State<NewHitaMockDailogPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaSuccessController.startMeCheck(lottery: 2);
+                    TrudaSuccessController.startMeCheck(lottery: 2);
                   },
                   child: const Text('充值成功'),
                 ),
@@ -139,7 +139,7 @@ class _NewHitaMockDailogPageState extends State<NewHitaMockDailogPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    Get.bottomSheet(NewHitaCount20(
+                    Get.bottomSheet(TrudaCount20(
                       leftSecond: 20,
                       callback: (go) {},
                     ));

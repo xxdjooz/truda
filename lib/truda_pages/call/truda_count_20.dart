@@ -11,21 +11,21 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../truda_common/truda_constants.dart';
 
-class NewHitaCount20 extends StatefulWidget {
+class TrudaCount20 extends StatefulWidget {
   int leftSecond;
   TrudaCallback<bool> callback;
 
-  NewHitaCount20({
+  TrudaCount20({
     Key? key,
     required this.leftSecond,
     required this.callback,
   }) : super(key: key);
 
   @override
-  State<NewHitaCount20> createState() => _NewHitaCount20State();
+  State<TrudaCount20> createState() => _TrudaCount20State();
 }
 
-class _NewHitaCount20State extends State<NewHitaCount20> {
+class _TrudaCount20State extends State<TrudaCount20> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -48,7 +48,7 @@ class _NewHitaCount20State extends State<NewHitaCount20> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              NewHitaTipRechargeCircle(() {
+              TrudaTipRechargeCircle(() {
                 widget.callback.call(false);
               }, widget.leftSecond, 50),
               Expanded(
@@ -149,7 +149,7 @@ class _NewHitaCount20State extends State<NewHitaCount20> {
   }
 }
 
-class NewHitaTipRechargeCircle extends StatefulWidget {
+class TrudaTipRechargeCircle extends StatefulWidget {
   //在20s之前关闭充值弹窗 避免在通话页面结束的瞬间 点击了充值
   Function beforeDismiss;
 
@@ -157,18 +157,18 @@ class NewHitaTipRechargeCircle extends StatefulWidget {
   int leftSecond;
   double size;
 
-  NewHitaTipRechargeCircle(
+  TrudaTipRechargeCircle(
     this.beforeDismiss,
     this.leftSecond,
     this.size,
   );
 
   @override
-  _NewHitaTipRechargeCircleState createState() =>
-      _NewHitaTipRechargeCircleState();
+  _TrudaTipRechargeCircleState createState() =>
+      _TrudaTipRechargeCircleState();
 }
 
-class _NewHitaTipRechargeCircleState extends State<NewHitaTipRechargeCircle> {
+class _TrudaTipRechargeCircleState extends State<TrudaTipRechargeCircle> {
   var test = 10.obs;
   Timer? _timerLink;
   var countTime = 0.obs;
@@ -281,7 +281,7 @@ class _NewHitaTipRechargeCircleState extends State<NewHitaTipRechargeCircle> {
   }
 }
 
-// class _NewHitaCount20State extends State<NewHitaCount20> {
+// class _TrudaCount20State extends State<TrudaCount20> {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Container(

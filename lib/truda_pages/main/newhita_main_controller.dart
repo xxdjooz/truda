@@ -27,8 +27,8 @@ import '../../truda_utils/ai/newhita_ai_logic_utils.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_pay_cache_manager.dart';
 import '../../truda_utils/newhita_permission_handler.dart';
-import '../charge/newhita_google_billing.dart';
-import '../charge/newhita_in_app_purchase_apple.dart';
+import '../charge/truda_google_billing.dart';
+import '../charge/truda_in_app_purchase_apple.dart';
 
 class NewHitaMainController extends GetxController {
   // 页控制器
@@ -108,9 +108,9 @@ class NewHitaMainController extends GetxController {
       if (remainder30 == 0) {
         // GoogleBillingManager.fixNoEndPurchase();
         if (GetPlatform.isIOS) {
-          NewHitaAppleInAppPurchase.fixNoEndPurchase();
+          TrudaAppleInAppPurchase.fixNoEndPurchase();
         } else {
-          NewHitaGoogleBilling.fixNoEndPurchase();
+          TrudaGoogleBilling.fixNoEndPurchase();
         }
         NewHitaPayCacheManager.checkOrderList();
       }
@@ -124,10 +124,10 @@ class NewHitaMainController extends GetxController {
 
     ///初始化内购
     if (GetPlatform.isIOS == true) {
-      NewHitaAppleInAppPurchase.initAppPurchase();
+      TrudaAppleInAppPurchase.initAppPurchase();
     } else if (GetPlatform.isAndroid == true) {
       //谷歌内购
-      NewHitaGoogleBilling.getGooglePrice();
+      TrudaGoogleBilling.getGooglePrice();
     }
   }
 

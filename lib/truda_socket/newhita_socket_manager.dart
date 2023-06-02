@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_common_type.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
-import 'package:truda/truda_pages/charge/success/newhita_success_controller.dart';
+import 'package:truda/truda_pages/charge/success/truda_success_controller.dart';
 import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -203,7 +203,7 @@ class NewHitaSocketManager extends GetxService {
             if (jsonMap['drawCount'] is int) {
               lottery = jsonMap['drawCount'];
             }
-            NewHitaSuccessController.startMeCheck(lottery: lottery);
+            TrudaSuccessController.startMeCheck(lottery: lottery);
             // 更新缓存信息
             NewHitaMyInfoService.to.saveHadCharge();
             NewHitaStorageService.to.eventBus.fire(eventBusRefreshMe);

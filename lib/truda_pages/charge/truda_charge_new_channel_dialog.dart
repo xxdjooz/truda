@@ -9,20 +9,20 @@ import '../../truda_entities/truda_hot_entity.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/newhita_net_image.dart';
-import 'newhita_dialog_pay_country_choose.dart';
-import 'newhita_pay_countries_util.dart';
+import 'truda_dialog_pay_country_choose.dart';
+import 'truda_pay_countries_util.dart';
 
-typedef NewHitaChannelDialogCallback = Function(
+typedef TrudaChannelDialogCallback = Function(
     TrudaPayQuickCommodite comm, TrudaPayQuickChannel channel, int? countryCode);
 
 /// 选择钻石后可以选择渠道去充值
-class NewHitaChargeChannelDialog extends StatefulWidget {
+class TrudaChargeChannelDialog extends StatefulWidget {
   Function? closeCallBack;
   TrudaPayQuickCommodite payCommodite;
-  NewHitaChannelDialogCallback callback;
+  TrudaChannelDialogCallback callback;
   bool isVip;
 
-  NewHitaChargeChannelDialog({
+  TrudaChargeChannelDialog({
     Key? key,
     this.closeCallBack,
     required this.payCommodite,
@@ -31,11 +31,11 @@ class NewHitaChargeChannelDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaChargeChannelDialog> createState() =>
-      _NewHitaChargeChannelDialogState();
+  State<TrudaChargeChannelDialog> createState() =>
+      _TrudaChargeChannelDialogState();
 }
 
-class _NewHitaChargeChannelDialogState extends State<NewHitaChargeChannelDialog> {
+class _TrudaChargeChannelDialogState extends State<TrudaChargeChannelDialog> {
   var countryChoosed = Rx<TrudaAreaData?>(null);
   List<TrudaAreaData>? areaList;
 
@@ -45,7 +45,7 @@ class _NewHitaChargeChannelDialogState extends State<NewHitaChargeChannelDialog>
   @override
   void initState() {
     super.initState();
-    NewHitaPayCountriesUtil.getCountries().then((value) {
+    TrudaPayCountriesUtil.getCountries().then((value) {
       setState(() {
         areaList = value;
       });
@@ -130,12 +130,12 @@ class _NewHitaChargeChannelDialogState extends State<NewHitaChargeChannelDialog>
               GestureDetector(onTap: () {
                 var curArea = countryChoosed.value?.countryCode ?? -1;
                 Get.bottomSheet(
-                  NewHitaDialogPayCountryChoose(
+                  TrudaDialogPayCountryChoose(
                     areaList: areaList!,
                     curArea: curArea,
                     callback: (area) {
                       countryChoosed.value = area;
-                      NewHitaPayCountriesUtil.getCountryProduct(
+                      TrudaPayCountriesUtil.getCountryProduct(
                               commodite.productId!,
                               (area.countryCode ?? -1).toString())
                           .then((value) {
@@ -298,7 +298,7 @@ class _NewHitaChargeChannelDialogState extends State<NewHitaChargeChannelDialog>
   /// 渠道列表
   Widget buildPayChannel(
     TrudaPayQuickCommodite payCommodite,
-    NewHitaChannelDialogCallback callback,
+    TrudaChannelDialogCallback callback,
   ) {
     // if (channelsAll.length > 0) {
     List<TrudaPayQuickChannel> channelsAll = payCommodite.channelPays ?? [];

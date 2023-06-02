@@ -12,14 +12,14 @@ import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
 import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
-import 'newhita_charge_ios_controller.dart';
+import 'truda_charge_ios_controller.dart';
 
-class NewHitaChargeIosPage extends GetView<NewHitaChargeIosController> {
-  NewHitaChargeIosPage({Key? key}) : super(key: key);
+class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
+  TrudaChargeIosPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaChargeIosController>(builder: (contro) {
+    return GetBuilder<TrudaChargeIosController>(builder: (contro) {
       return Stack(
         fit: StackFit.expand,
         children: [
@@ -127,7 +127,7 @@ class NewHitaChargeIosPage extends GetView<NewHitaChargeIosController> {
   }
 
   // 折扣商品的展示
-  Widget _cutProduct(NewHitaChargeIosController controller) {
+  Widget _cutProduct(TrudaChargeIosController controller) {
     if (controller.cutCommodite == null) {
       return const SizedBox();
     }
@@ -231,7 +231,7 @@ class NewHitaChargeIosPage extends GetView<NewHitaChargeIosController> {
   }
 
   Widget getGoogleItem(
-      TrudaPayQuickCommodite commodite, NewHitaChargeIosController controller) {
+      TrudaPayQuickCommodite commodite, TrudaChargeIosController controller) {
     return NewHitaClickWidget(
       onTap: () async {
         // bool hasNotCompleteTransactions =

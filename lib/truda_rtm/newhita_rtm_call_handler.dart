@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:agora_rtm/agora_rtm.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:truda/truda_pages/call/remote/newhita_remote_controller.dart';
+import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
 import 'package:truda/truda_services/newhita_event_bus_bean.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
@@ -63,7 +63,7 @@ class NewHitaRtmCallHandler {
     // if (Get.currentRoute == NewHitaAppPages.callEnd) {
     //   Get.offNamed(NewHitaAppPages.callEnd);
     // }
-    NewHitaRemoteController.startMe(
+    TrudaRemoteController.startMe(
         invite.callerId, invite.channelId!, invite.content ?? '');
   }
 

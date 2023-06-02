@@ -9,9 +9,9 @@ import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_services/newhita_storage_service.dart';
 import '../../truda_utils/newhita_loading.dart';
-import '../charge/newhita_charge_new_channel_dialog.dart';
-import '../charge/newhita_google_billing.dart';
-import '../charge/newhita_in_app_purchase_apple.dart';
+import '../charge/truda_charge_new_channel_dialog.dart';
+import '../charge/truda_google_billing.dart';
+import '../charge/truda_in_app_purchase_apple.dart';
 import '../some/newhita_web_page.dart';
 
 class NewHitaChargeQuickController extends GetxController {
@@ -93,7 +93,7 @@ class NewHitaChargeQuickController extends GetxController {
     if (cutCommodite != null) {
       allList.add(cutCommodite!);
     }
-    NewHitaGoogleBilling.correctShopGooglePrice(allList).then((value) => update());
+    TrudaGoogleBilling.correctShopGooglePrice(allList).then((value) => update());
     // for (var comm in allList) {
     //   if (comm.channelPays != null) {
     //     for (var channel in comm.channelPays!) {
@@ -135,7 +135,7 @@ class NewHitaChargeQuickController extends GetxController {
       return;
     }
     // update();
-    Get.bottomSheet(NewHitaChargeChannelDialog(
+    Get.bottomSheet(TrudaChargeChannelDialog(
       payCommodite: choosedCommodite,
       callback: (comm, channel, countryCode) {
         doCharge(channel, countryCode: countryCode);
@@ -179,9 +179,9 @@ class NewHitaChargeQuickController extends GetxController {
         orderCreateTime: DateTime.now().millisecondsSinceEpoch.toString(),
       ));
       if (channel.payType == googlePayType) {
-        NewHitaGoogleBilling.callPay(channel.productCode, value.orderNo);
+        TrudaGoogleBilling.callPay(channel.productCode, value.orderNo);
       } else if (channel.payType == applePayType) {
-        NewHitaAppleInAppPurchase.checkPurchaseAndPay(
+        TrudaAppleInAppPurchase.checkPurchaseAndPay(
             value.productCode!, value.orderNo!, (success) {});
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);

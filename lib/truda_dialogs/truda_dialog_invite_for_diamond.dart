@@ -27,7 +27,7 @@ class TrudaDialogInvite extends StatefulWidget {
     }
     NewHitaStorageService.to.prefs.setInt(strInviteOthers, 0);
     // 这一步检查很重要，会出现打开被叫页面同时打开这个弹窗，
-    // 导致在NewHitaRemoteController取参数时为null
+    // 导致在TrudaRemoteController取参数时为null
     // 这个得研究下
     if (!NewHitaCheckCallingUtil.checkCalling()) {
       TrudaCommonDialog.dialog(const TrudaDialogInvite());

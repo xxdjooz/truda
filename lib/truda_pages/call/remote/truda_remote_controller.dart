@@ -34,7 +34,7 @@ import '../aic/truda_aic_controller.dart';
 import '../aiv/truda_aiv_controller.dart';
 import '../aiv/truda_aiv_video_controller.dart';
 
-class NewHitaRemoteController extends GetxController {
+class TrudaRemoteController extends GetxController {
   static startMeAic(TrudaAicEntity aic) async {
     var myDiamonds =
         NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
@@ -46,7 +46,7 @@ class NewHitaRemoteController extends GetxController {
           duration: Duration(seconds: 4),
         );
       } else {
-        NewHitaLog.debug('NewHitaRemoteController 有钱屏蔽aic');
+        NewHitaLog.debug('TrudaRemoteController 有钱屏蔽aic');
         return;
       }
     }

@@ -46,9 +46,9 @@ import '../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
 import '../vip/newhita_vip_controller.dart';
 import 'end/truda_end_controller.dart';
-import 'newhita_count_20.dart';
+import 'truda_count_20.dart';
 
-class NewHitaCallController extends GetxController {
+class TrudaCallController extends GetxController {
   static const String idAgora = 'idAgora';
   static const String idSwitch = 'idSwitch';
   late String herId;
@@ -403,7 +403,7 @@ class NewHitaCallController extends GetxController {
       if (showCount2Min.value > 0 && count2MinLeft.value == 20) {
         chargeing = true;
         callHadShowCount20 = true;
-        Get.bottomSheet(NewHitaCount20(
+        Get.bottomSheet(TrudaCount20(
           leftSecond: 20,
           callback: (go) {
             if (go) {
@@ -740,7 +740,7 @@ class NewHitaCallController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    NewHitaLog.debug('NewHitaCallController onClose()');
+    NewHitaLog.debug('TrudaCallController onClose()');
     _engine?.stopPreview();
     _engine?.leaveChannel();
     _engine?.destroy();

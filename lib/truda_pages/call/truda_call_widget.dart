@@ -13,15 +13,15 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
 import '../../truda_widget/newhita_net_image.dart';
-import 'newhita_call_controller.dart';
+import 'truda_call_controller.dart';
 
-class NewHitaCallWidget extends GetView<NewHitaCallController> {
+class TrudaCallWidget extends GetView<TrudaCallController> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GetBuilder<NewHitaCallController>(
-            id: NewHitaCallController.idAgora,
+        GetBuilder<TrudaCallController>(
+            id: TrudaCallController.idAgora,
             builder: (controller) {
               return GestureDetector(
                 onTap: () {
@@ -249,8 +249,8 @@ class NewHitaCallWidget extends GetView<NewHitaCallController> {
           start: 20,
           end: 20,
           bottom: 30,
-          child: GetBuilder<NewHitaCallController>(
-            id: NewHitaCallController.idSwitch,
+          child: GetBuilder<TrudaCallController>(
+            id: TrudaCallController.idSwitch,
             builder: (controller) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
@@ -508,8 +508,8 @@ class NewHitaCallWidget extends GetView<NewHitaCallController> {
         PositionedDirectional(
           end: 20,
           bottom: 30,
-          child: GetBuilder<NewHitaCallController>(
-            id: NewHitaCallController.idSwitch,
+          child: GetBuilder<TrudaCallController>(
+            id: TrudaCallController.idSwitch,
             builder: (controller) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
