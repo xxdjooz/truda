@@ -1,40 +1,40 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'newhita_extra_info_constraints.dart';
+import 'truda_extra_info_constraints.dart';
 
-typedef NewHitaSliverPersistentHeaderToBoxBuilder = Widget Function(
+typedef TrudaSliverPersistentHeaderToBoxBuilder = Widget Function(
   BuildContext context,
   double maxExtent,
   bool fixed,
 );
 
-/// A sliver like [SliverPersistentHeader], the difference is [NewHitaSliverPersistentHeaderToBox]
+/// A sliver like [SliverPersistentHeader], the difference is [TrudaSliverPersistentHeaderToBox]
 /// can contain a box widget and use the height of its child directly.
-/// 和 [SliverPersistentHeader]功能类似，但不同是[NewHitaSliverPersistentHeaderToBox]
+/// 和 [SliverPersistentHeader]功能类似，但不同是[TrudaSliverPersistentHeaderToBox]
 /// 能够直接包含一个盒模型子组件（Box widget），并且高度会使用子组件高度。
-class NewHitaSliverPersistentHeaderToBox extends StatelessWidget {
-  NewHitaSliverPersistentHeaderToBox({
+class TrudaSliverPersistentHeaderToBox extends StatelessWidget {
+  TrudaSliverPersistentHeaderToBox({
     Key? key,
     required Widget child,
   })  : builder = ((a, b, c) => child),
         super(key: key);
 
-  const NewHitaSliverPersistentHeaderToBox.builder({
+  const TrudaSliverPersistentHeaderToBox.builder({
     Key? key,
     required this.builder,
   }) : super(key: key);
 
-  final NewHitaSliverPersistentHeaderToBoxBuilder builder;
+  final TrudaSliverPersistentHeaderToBoxBuilder builder;
 
   @override
   Widget build(BuildContext context) {
-    return _NewHitaSliverPersistentHeaderToBox(
+    return _TrudaSliverPersistentHeaderToBox(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return builder(
             context,
             constraints.maxHeight,
-            (constraints as NewHitaExtraInfoBoxConstraints<bool>).extra,
+            (constraints as TrudaExtraInfoBoxConstraints<bool>).extra,
           );
         },
       ),
@@ -42,19 +42,19 @@ class NewHitaSliverPersistentHeaderToBox extends StatelessWidget {
   }
 }
 
-class _NewHitaSliverPersistentHeaderToBox extends SingleChildRenderObjectWidget {
-  const _NewHitaSliverPersistentHeaderToBox({
+class _TrudaSliverPersistentHeaderToBox extends SingleChildRenderObjectWidget {
+  const _TrudaSliverPersistentHeaderToBox({
     Key? key,
     Widget? child,
   }) : super(key: key, child: child);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _RenderNewHitaSliverPersistentHeaderToBox();
+    return _RenderTrudaSliverPersistentHeaderToBox();
   }
 }
 
-class _RenderNewHitaSliverPersistentHeaderToBox extends RenderSliverSingleBoxAdapter {
+class _RenderTrudaSliverPersistentHeaderToBox extends RenderSliverSingleBoxAdapter {
   @override
   void performLayout() {
     if (child == null) {
@@ -62,7 +62,7 @@ class _RenderNewHitaSliverPersistentHeaderToBox extends RenderSliverSingleBoxAda
       return;
     }
     child!.layout(
-      NewHitaExtraInfoBoxConstraints(
+      TrudaExtraInfoBoxConstraints(
         // 只要constraints.scrollOffset不为0，则表示已经有内容在当前Sliver下面了（重叠了）
         constraints.scrollOffset != .0,
         constraints.asBoxConstraints(

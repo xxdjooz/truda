@@ -1,7 +1,7 @@
 import 'dart:math';
 
 /// 饼状图 各种计算工具
-class NewHitaChartUtils {
+class TrudaChartUtils {
   ///弧度换算成角度
   static double radianToAngle(double radian) {
     return radian * 180 / (pi);

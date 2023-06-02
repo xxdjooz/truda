@@ -8,7 +8,7 @@ import 'package:truda/truda_pages/chat/msgitem/truda_chat_msg_image.dart';
 import 'package:truda/truda_pages/chat/msgitem/truda_chat_msg_voice.dart';
 import 'package:truda/truda_pages/chat/widget/truda_chat_input_controller.dart';
 import 'package:truda/truda_pages/chat/widget/truda_chat_input_widget.dart';
-import 'package:truda/truda_widget/gift/newhita_vap_player.dart';
+import 'package:truda/truda_widget/gift/truda_vap_player.dart';
 
 import '../../truda_common/truda_charge_path.dart';
 import '../../truda_dialogs/truda_sheet_host_chat_option.dart';
@@ -311,7 +311,7 @@ class TrudaChatPage extends GetView<TrudaChatController> {
               ],
             ),
             Positioned.fill(
-                child: NewHitaVapPlayer(
+                child: TrudaVapPlayer(
               vapController: controller.myVapController,
             ))
           ],

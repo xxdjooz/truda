@@ -34,9 +34,9 @@ import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/truda_format_util.dart';
 import '../../../truda_utils/truda_loading.dart';
 import '../../../truda_utils/truda_log.dart';
-import '../../../truda_widget/gift/newhita_gift_data_helper.dart';
-import '../../../truda_widget/gift/newhita_gift_list_view.dart';
-import '../../../truda_widget/gift/newhita_vap_player.dart';
+import '../../../truda_widget/gift/truda_gift_data_helper.dart';
+import '../../../truda_widget/gift/truda_gift_list_view.dart';
+import '../../../truda_widget/gift/truda_vap_player.dart';
 import '../../../truda_widget/newhita_cache_manager.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/truda_vip_controller.dart';
@@ -120,7 +120,7 @@ class TrudaAicController extends GetxController {
 
   // 体验卡可以用的时长 s
   int callCardDurationSecond = 0;
-  var myVapController = NewHitaVapController();
+  var myVapController = TrudaVapController();
 
   // 充值中，这个时候不要因为电话的挂断而关闭
   bool chargeing = false;
@@ -196,7 +196,7 @@ class TrudaAicController extends GetxController {
     super.onReady();
     initCamera();
 
-    NewHitaGiftDataHelper.getGifts().then((value) {
+    TrudaGiftDataHelper.getGifts().then((value) {
       if (value != null && value.isNotEmpty) {
         giftToQuickSend.value = value.first;
       }
@@ -419,7 +419,7 @@ class TrudaAicController extends GetxController {
     //       );
     //     });
     Get.bottomSheet(
-      NewHitaLianGiftListView(
+      TrudaLianGiftListView(
         choose: (TrudaGiftEntity gift) {
           sendGift(gift);
         },

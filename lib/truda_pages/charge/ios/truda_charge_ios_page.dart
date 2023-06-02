@@ -11,7 +11,7 @@ import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
-import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
+import '../../../truda_widget/lottery_winner/truda_lottery_show_player.dart';
 import 'truda_charge_ios_controller.dart';
 
 class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
@@ -118,7 +118,7 @@ class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
               ),
             ),
           ),
-          NewHitaLotteryWinnerPlayer(
+          TrudaLotteryWinnerPlayer(
             vapController: controller.lotteryController,
           )
         ],

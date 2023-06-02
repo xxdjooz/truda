@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-typedef NewHitaSliverHeaderBuilder = Widget Function(
+typedef TrudaSliverHeaderBuilder = Widget Function(
     BuildContext context, double shrinkOffset, bool overlapsContent);
 
 /// Delegate helper for [SliverPersistentHeader].
@@ -14,9 +14,9 @@ typedef NewHitaSliverHeaderBuilder = Widget Function(
 ///       ),
 ///     ),
 ///   ),
-class NewHitaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
+class TrudaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   // child 为 header
-  NewHitaSliverHeaderDelegate({
+  TrudaSliverHeaderDelegate({
     required this.maxHeight,
     this.minHeight = 0,
     required Widget child,
@@ -24,7 +24,7 @@ class NewHitaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
         assert(minHeight <= maxHeight && minHeight >= 0);
 
   //最大和最小高度相同
-  NewHitaSliverHeaderDelegate.fixedHeight({
+  TrudaSliverHeaderDelegate.fixedHeight({
     required double height,
     required Widget child,
   })  : builder = ((a, b, c) => child),
@@ -32,7 +32,7 @@ class NewHitaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
         minHeight = height;
 
   //需要自定义builder时使用
-  NewHitaSliverHeaderDelegate.builder({
+  TrudaSliverHeaderDelegate.builder({
     required this.maxHeight,
     this.minHeight = 0,
     required this.builder,
@@ -40,7 +40,7 @@ class NewHitaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   final double maxHeight;
   final double minHeight;
-  final NewHitaSliverHeaderBuilder builder;
+  final TrudaSliverHeaderBuilder builder;
 
   @override
   Widget build(
@@ -69,7 +69,7 @@ class NewHitaSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => minHeight;
 
   @override
-  bool shouldRebuild(NewHitaSliverHeaderDelegate old) {
+  bool shouldRebuild(TrudaSliverHeaderDelegate old) {
     // return old.maxExtent != maxExtent || old.minExtent != minExtent;
     // 这里原作者写法在里面widget需要更新时不能更新
     return true;

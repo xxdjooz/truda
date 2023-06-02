@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 /// A box constraints with extra information.
 ///
 /// See also:
-///   * [NewHitaSliverFlexibleHeader], which use [NewHitaExtraInfoBoxConstraints].
-///   * [NewHitaSliverPersistentHeaderToBox], which use [NewHitaExtraInfoBoxConstraints].
-class NewHitaExtraInfoBoxConstraints<T> extends BoxConstraints {
-  NewHitaExtraInfoBoxConstraints(
+///   * [NewHitaSliverFlexibleHeader], which use [TrudaExtraInfoBoxConstraints].
+///   * [NewHitaSliverPersistentHeaderToBox], which use [TrudaExtraInfoBoxConstraints].
+class TrudaExtraInfoBoxConstraints<T> extends BoxConstraints {
+  TrudaExtraInfoBoxConstraints(
     this.extra,
     BoxConstraints constraints,
   ) : super(
@@ -24,7 +24,7 @@ class NewHitaExtraInfoBoxConstraints<T> extends BoxConstraints {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is NewHitaExtraInfoBoxConstraints &&
+    return other is TrudaExtraInfoBoxConstraints &&
         super == other &&
         other.extra == extra;
   }

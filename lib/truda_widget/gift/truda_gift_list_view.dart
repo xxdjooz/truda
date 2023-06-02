@@ -8,23 +8,23 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_utils/truda_log.dart';
-import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
+import 'package:truda/truda_widget/gift/truda_gift_data_helper.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_services/truda_my_info_service.dart';
 
-typedef NewHitaGiftChoose = Function(TrudaGiftEntity entity);
+typedef TrudaGiftChoose = Function(TrudaGiftEntity entity);
 
 /// 送礼物弹窗列表
-class NewHitaLianGiftListView extends StatefulWidget {
-  late NewHitaGiftChoose choose;
+class TrudaLianGiftListView extends StatefulWidget {
+  late TrudaGiftChoose choose;
 
   // 主播id
   String? herId;
   bool? isChatOrCall;
 
-  NewHitaLianGiftListView({
+  TrudaLianGiftListView({
     Key? key,
     required this.choose,
     this.herId,
@@ -32,10 +32,10 @@ class NewHitaLianGiftListView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaLianGiftListView> createState() => _NewHitaLianGiftListViewState();
+  State<TrudaLianGiftListView> createState() => _TrudaLianGiftListViewState();
 }
 
-class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
+class _TrudaLianGiftListViewState extends State<TrudaLianGiftListView>
     with SingleTickerProviderStateMixin {
   List<TrudaGiftEntity>? list;
   List<TrudaGiftEntity> vipList = [];
@@ -73,7 +73,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
   }
 
   void getGift() {
-    NewHitaGiftDataHelper.getGifts().then((value) {
+    TrudaGiftDataHelper.getGifts().then((value) {
       setState(() {
         list = value;
         // ios审核模式不要vip

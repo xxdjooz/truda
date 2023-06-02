@@ -23,8 +23,8 @@ import '../../../../truda_http/truda_http_util.dart';
 import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_utils/truda_third_util.dart';
 import '../../../../truda_utils/truda_voice_player.dart';
-import '../../../../truda_widget/gift/newhita_gift_data_helper.dart';
-import '../../../../truda_widget/gift/newhita_vap_player.dart';
+import '../../../../truda_widget/gift/truda_gift_data_helper.dart';
+import '../../../../truda_widget/gift/truda_vap_player.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
 import '../../../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
 import '../../../../truda_widget/newhita_stacked_list.dart';
@@ -40,7 +40,7 @@ class TrudaTestPage extends StatefulWidget {
 }
 
 class _TrudaTestPageState extends State<TrudaTestPage> {
-  var myVapController = NewHitaVapController();
+  var myVapController = TrudaVapController();
 
   @override
   void initState() {
@@ -231,7 +231,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaGiftDataHelper.getGifts().then((value) {
+                    TrudaGiftDataHelper.getGifts().then((value) {
                       myVapController.playGift(value!.first);
                     });
                   },
@@ -271,7 +271,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
             ),
           ),
           Positioned.fill(
-              child: NewHitaVapPlayer(
+              child: TrudaVapPlayer(
             vapController: myVapController,
           )),
           Row(

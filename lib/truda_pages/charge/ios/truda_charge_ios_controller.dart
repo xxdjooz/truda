@@ -16,7 +16,7 @@ import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/truda_loading.dart';
 import '../../../truda_utils/truda_log.dart';
-import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
+import '../../../truda_widget/lottery_winner/truda_lottery_show_player.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_charge_new_channel_dialog.dart';
 import '../truda_in_app_purchase_apple.dart';
@@ -34,7 +34,7 @@ class TrudaChargeIosController extends GetxController {
 
   TrudaPayQuickCommodite? choosedCommodite;
 
-  NewHitaLotteryWinnerController lotteryController = NewHitaLotteryWinnerController();
+  TrudaLotteryWinnerController lotteryController = TrudaLotteryWinnerController();
   Timer? showTimer;
   List<TrudaLotteryUser> users = [];
 

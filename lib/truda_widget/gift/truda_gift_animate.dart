@@ -12,11 +12,11 @@ import '../../truda_common/truda_colors.dart';
  * @discripe: 弹幕区礼物横幅动画队列
  */
 // 暴露给直播间调用的礼物横幅类
-class NewHitaGiftPusher {
+class TrudaGiftPusher {
   // 在礼物横幅队列中增加
-  NewHitaGiftPusher.add(
+  TrudaGiftPusher.add(
       List<Map> giftBannerView, Map json, int removeTime, Function cb) {
-    json['widget'] = NewHitaGiftBanner(
+    json['widget'] = TrudaGiftBanner(
       giftInfo: json['config'],
       queueLength: giftBannerView.length,
     );
@@ -35,17 +35,17 @@ class NewHitaGiftPusher {
   }
 }
 
-class NewHitaGiftBanner extends StatefulWidget {
+class TrudaGiftBanner extends StatefulWidget {
   final TrudaGiftEntity giftInfo;
   final int queueLength;
-  NewHitaGiftBanner({required this.giftInfo, required this.queueLength});
+  TrudaGiftBanner({required this.giftInfo, required this.queueLength});
 
   @override
-  _NewHitaGiftBannerState createState() => _NewHitaGiftBannerState();
+  _TrudaGiftBannerState createState() => _TrudaGiftBannerState();
 }
 
 // 单个礼物横幅的动画Widget
-class _NewHitaGiftBannerState extends State<NewHitaGiftBanner>
+class _TrudaGiftBannerState extends State<TrudaGiftBanner>
     with SingleTickerProviderStateMixin {
   late Animation<double> animationGiftNum_1,
       animationGiftNum_2,

@@ -30,7 +30,7 @@ import '../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../truda_widget/newhita_border.dart';
 import '../../truda_widget/newhita_image_indicator.dart';
 import '../../truda_widget/newhita_net_image.dart';
-import '../../truda_widget/sliver/newhita_sliver_header_delegate.dart';
+import '../../truda_widget/sliver/truda_sliver_header_delegate.dart';
 import '../chat/truda_chat_controller.dart';
 import '../main/home/truda_host_widget.dart';
 import '../some/truda_media_view_page.dart';
@@ -327,7 +327,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                       ),
                       SliverPersistentHeader(
                         pinned: true,
-                        delegate: NewHitaSliverHeaderDelegate.fixedHeight(
+                        delegate: TrudaSliverHeaderDelegate.fixedHeight(
                           height: kTextTabBarHeight,
                           child: Builder(builder: (context) {
                             TrudaLog.debug(

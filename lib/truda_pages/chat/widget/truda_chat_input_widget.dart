@@ -6,7 +6,7 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_entities/truda_gift_entity.dart';
 import '../../../truda_utils/truda_choose_image_util.dart';
-import '../../../truda_widget/gift/newhita_gift_list_view.dart';
+import '../../../truda_widget/gift/truda_gift_list_view.dart';
 import '../../../truda_widget/newhita_keybord_logic.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
 import '../../../truda_widget/newhita_voice_widget_record_new.dart';
@@ -243,7 +243,7 @@ class _TrudaChatInputWidgetState extends State<TrudaChatInputWidget>
                         backgroundColor: TrudaColors.transparent,
                         context: context,
                         builder: (context) {
-                          return NewHitaLianGiftListView(
+                          return TrudaLianGiftListView(
                             choose: (TrudaGiftEntity gift) {
                               Get.find<TrudaChatController>().sendGift(gift);
                             },

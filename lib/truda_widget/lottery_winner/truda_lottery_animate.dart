@@ -11,11 +11,11 @@ import '../../truda_entities/truda_lottery_user_entity.dart';
  * @discripe: 弹幕区礼物横幅动画队列
  */
 // 暴露给直播间调用的礼物横幅类
-class NewHitaLotteryPusher {
+class TrudaLotteryPusher {
   // 在礼物横幅队列中增加
-  NewHitaLotteryPusher.add(
+  TrudaLotteryPusher.add(
       List<Map> giftBannerView, Map json, int removeTime, Function cb) {
-    json['widget'] = NewHitaLotteryBanner(
+    json['widget'] = TrudaLotteryBanner(
       bean: json['config'],
       queueLength: giftBannerView.length,
     );
@@ -34,17 +34,17 @@ class NewHitaLotteryPusher {
   }
 }
 
-class NewHitaLotteryBanner extends StatefulWidget {
+class TrudaLotteryBanner extends StatefulWidget {
   final TrudaLotteryUser bean;
   final int queueLength;
-  NewHitaLotteryBanner({required this.bean, required this.queueLength});
+  TrudaLotteryBanner({required this.bean, required this.queueLength});
 
   @override
-  _NewHitaLotteryBannerState createState() => _NewHitaLotteryBannerState();
+  _TrudaLotteryBannerState createState() => _TrudaLotteryBannerState();
 }
 
 // 单个礼物横幅的动画Widget
-class _NewHitaLotteryBannerState extends State<NewHitaLotteryBanner>
+class _TrudaLotteryBannerState extends State<TrudaLotteryBanner>
     with SingleTickerProviderStateMixin {
   late Animation<double> animationGiftNum_1,
       animationGiftNum_2,

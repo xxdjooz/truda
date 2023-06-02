@@ -9,7 +9,7 @@ import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/truda_log.dart';
 import '../newhita_cache_manager.dart';
 
-class NewHitaGiftDataHelper {
+class TrudaGiftDataHelper {
   static Future<List<TrudaGiftEntity>?> getGifts({bool vip = false}) async {
     List<TrudaGiftEntity>? listStore;
     List<TrudaGiftEntity> vipList = [];

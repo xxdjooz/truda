@@ -5,19 +5,19 @@ import 'package:truda/truda_widget/newhita_cache_manager.dart';
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_utils/truda_log.dart';
 import '../../truda_utils/truda_queue_util.dart';
-import 'newhita_gift_animate.dart';
+import 'truda_gift_animate.dart';
 
-class NewHitaVapPlayer extends StatefulWidget {
-  late NewHitaVapController vapController;
+class TrudaVapPlayer extends StatefulWidget {
+  late TrudaVapController vapController;
 
-  NewHitaVapPlayer({Key? key, required this.vapController}) : super(key: key);
+  TrudaVapPlayer({Key? key, required this.vapController}) : super(key: key);
 
   @override
-  _NewHitaVapPlayerState createState() => _NewHitaVapPlayerState();
+  _TrudaVapPlayerState createState() => _TrudaVapPlayerState();
 }
 
-class NewHitaVapController {
-  _NewHitaVapPlayerState? state;
+class TrudaVapController {
+  _TrudaVapPlayerState? state;
 
   void playGift(TrudaGiftEntity gift) {
     TrudaLog.debug('NewHitaVapPlayer addGift ${gift.animEffectUrl}');
@@ -44,7 +44,7 @@ class NewHitaVapController {
   }
 }
 
-class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
+class _TrudaVapPlayerState extends State<TrudaVapPlayer> {
   bool playing = false;
   List<Map> giftBannerView = []; // 礼物横幅列表JSON
   // late VapViewController vapViewController;
@@ -89,7 +89,7 @@ class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
   void showPush(TrudaGiftEntity gift) {
     var now = DateTime.now();
     var obj = {'stamp': now.millisecondsSinceEpoch, 'config': gift};
-    NewHitaGiftPusher.add(giftBannerView, obj, 6500, (giftBannerViewNew) {
+    TrudaGiftPusher.add(giftBannerView, obj, 6500, (giftBannerViewNew) {
       if (mounted) {
         setState(() {
           giftBannerView = giftBannerViewNew;
@@ -119,7 +119,7 @@ class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
           child: !playing
               ? const SizedBox()
               : IgnorePointer(
-                  child: NewHitaVapView(
+                  child: TrudaVapView(
                       path: path,
                       vapPlayCompleteCallBack: () {
                         setState(() {
@@ -143,18 +143,18 @@ class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
   }
 }
 
-class NewHitaVapView extends StatefulWidget {
+class TrudaVapView extends StatefulWidget {
   final String path;
   VoidCallback? vapPlayCompleteCallBack;
 
-  NewHitaVapView({Key? key, required this.path, this.vapPlayCompleteCallBack})
+  TrudaVapView({Key? key, required this.path, this.vapPlayCompleteCallBack})
       : super(key: key);
 
   @override
-  _NewHitaVapViewState createState() => _NewHitaVapViewState();
+  _TrudaVapViewState createState() => _TrudaVapViewState();
 }
 
-class _NewHitaVapViewState extends State<NewHitaVapView> {
+class _TrudaVapViewState extends State<TrudaVapView> {
   @override
   void initState() {
     super.initState();

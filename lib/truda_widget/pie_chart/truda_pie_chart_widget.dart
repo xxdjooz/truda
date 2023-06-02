@@ -5,10 +5,10 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'newhita_chart_utils.dart';
+import 'truda_chart_utils.dart';
 
-class NewHitaPieChartController {
-  _NewHitaPieChartWidgetState? _state;
+class TrudaPieChartController {
+  _TrudaPieChartWidgetState? _state;
   Function(int index)? arrivePosition;
   void beginRoll() {
     _state?._beginToRotate();
@@ -24,7 +24,7 @@ class NewHitaPieChartController {
   }
 }
 
-class NewHitaPieChartWidget extends StatefulWidget {
+class TrudaPieChartWidget extends StatefulWidget {
   ///比例集合
   List<double> proportions;
 
@@ -39,8 +39,8 @@ class NewHitaPieChartWidget extends StatefulWidget {
 
   double startTurns = pi / 2;
   double radius = 130;
-  NewHitaPieChartController controller;
-  NewHitaPieChartWidget(this.proportions, this.colors,
+  TrudaPieChartController controller;
+  TrudaPieChartWidget(this.proportions, this.colors,
       {Key? key,
       required this.contents,
       required this.radius,
@@ -50,10 +50,10 @@ class NewHitaPieChartWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NewHitaPieChartWidgetState createState() => _NewHitaPieChartWidgetState();
+  _TrudaPieChartWidgetState createState() => _TrudaPieChartWidgetState();
 }
 
-class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
+class _TrudaPieChartWidgetState extends State<TrudaPieChartWidget>
     with TickerProviderStateMixin {
   ///这个是 自动
   AnimationController? autoAnimationController;
@@ -121,7 +121,7 @@ class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
         // onTap: _beginToRotate,
         // onDoubleTap: () => _stopRotateAndToPosition(3),
         child: CustomPaint(
-          painter: NewHitaPieChartPainter(turns, widget.startTurns, widget.proportions,
+          painter: TrudaPieChartPainter(turns, widget.startTurns, widget.proportions,
               widget.colors, widget.images, widget.contents, _key, currentPosi),
           key: _key,
         ),
@@ -252,11 +252,11 @@ class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
     /// A点 （pAx,pAy）,
     /// B点  (pBx,pBy).
     /// AC距离
-    double acDistance = NewHitaChartUtils.distanceForTwoPoint(
+    double acDistance = TrudaChartUtils.distanceForTwoPoint(
         offset.dx + 2 * widget.radius, offset.dy + widget.radius, pAx, pAy);
 
     /// AO距离
-    double aoDistance = NewHitaChartUtils.distanceForTwoPoint(
+    double aoDistance = TrudaChartUtils.distanceForTwoPoint(
         offset.dx + widget.radius, offset.dy + widget.radius, pAx, pAy);
 
     ///计算 cos aoc 的值 ，然后拿到 角 aoc
@@ -276,11 +276,11 @@ class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
     double AOC = c * acos(cosAOC);
 
     /// BC距离
-    double bcDistance = NewHitaChartUtils.distanceForTwoPoint(
+    double bcDistance = TrudaChartUtils.distanceForTwoPoint(
         offset.dx + 2 * widget.radius, offset.dy + widget.radius, pBx, pBy);
 
     /// BO距离
-    double boDistance = NewHitaChartUtils.distanceForTwoPoint(
+    double boDistance = TrudaChartUtils.distanceForTwoPoint(
         offset.dx + widget.radius, offset.dy + widget.radius, pBx, pBy);
 
     c = 1;
@@ -310,21 +310,21 @@ class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
   void onFling(double velocityX, double velocityY) {
     //获取触点到中心点的线与水平线正方向的夹角
     double levelAngle =
-        NewHitaChartUtils.getPointAngle(mCenterX, mCenterY, pBx, pBy);
+        TrudaChartUtils.getPointAngle(mCenterX, mCenterY, pBx, pBy);
     //获取象限
-    int quadrant = NewHitaChartUtils.getQuadrant(pBx - mCenterX, pBy - mCenterY);
+    int quadrant = TrudaChartUtils.getQuadrant(pBx - mCenterX, pBy - mCenterY);
     //到中心点距离
     double distance =
-        NewHitaChartUtils.distanceForTwoPoint(mCenterX, mCenterY, pBx, pBy);
+        TrudaChartUtils.distanceForTwoPoint(mCenterX, mCenterY, pBx, pBy);
     //获取惯性绘制的初始角度
-    double inertiaInitAngle = NewHitaChartUtils.calculateAngleFromVelocity(
+    double inertiaInitAngle = TrudaChartUtils.calculateAngleFromVelocity(
         velocityX, velocityY, levelAngle, quadrant, distance);
 
     if (inertiaInitAngle != null && inertiaInitAngle != 0) {
       //如果角速度不为0； 则进行滚动
 
       /// 按照 va的加速度 拿到 滚动的时间 。 也就是 结束后 惯性动画的 执行 时间， 高中物理
-      double t = NewHitaChartUtils.abs(inertiaInitAngle) / vA;
+      double t = TrudaChartUtils.abs(inertiaInitAngle) / vA;
       double s = t * inertiaInitAngle / 2;
 
       animalValue = turns;
@@ -360,7 +360,7 @@ class _NewHitaPieChartWidgetState extends State<NewHitaPieChartWidget>
   }
 }
 
-class NewHitaPieChartPainter extends CustomPainter {
+class TrudaPieChartPainter extends CustomPainter {
   GlobalKey _key = GlobalKey();
 
   double turns = .0;
@@ -376,7 +376,7 @@ class NewHitaPieChartPainter extends CustomPainter {
   double startAngles = 0;
   int currentPosi;
 
-  NewHitaPieChartPainter(this.turns, this.startTurns, this.angles, this.colors,
+  TrudaPieChartPainter(this.turns, this.startTurns, this.angles, this.colors,
       this.images, this.contents, this._key, this.currentPosi);
 
   @override

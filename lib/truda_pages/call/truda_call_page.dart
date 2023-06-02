@@ -14,7 +14,7 @@ import '../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_gift_follow_tip.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/gift/newhita_vap_player.dart';
+import '../../truda_widget/gift/truda_vap_player.dart';
 import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import 'truda_call_controller.dart';
@@ -497,7 +497,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                             right: 10,
                             top: 10,
                             bottom: 10,
-                            child: NewHitaVapPlayer(
+                            child: TrudaVapPlayer(
                               vapController: controller.myVapController,
                             )),
                       ],

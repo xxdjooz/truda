@@ -41,9 +41,9 @@ import '../../truda_socket/truda_socket_entity.dart';
 import '../../truda_utils/truda_gift_follow_tip.dart';
 import '../../truda_utils/truda_loading.dart';
 import '../../truda_utils/truda_log.dart';
-import '../../truda_widget/gift/newhita_gift_data_helper.dart';
-import '../../truda_widget/gift/newhita_gift_list_view.dart';
-import '../../truda_widget/gift/newhita_vap_player.dart';
+import '../../truda_widget/gift/truda_gift_data_helper.dart';
+import '../../truda_widget/gift/truda_gift_list_view.dart';
+import '../../truda_widget/gift/truda_vap_player.dart';
 import '../vip/truda_vip_controller.dart';
 import 'end/truda_end_controller.dart';
 import 'truda_count_20.dart';
@@ -140,7 +140,7 @@ class TrudaCallController extends GetxController {
   late final StreamSubscription<TrudaRTMMsgBeginCall> subBeginCall;
   late final StreamSubscription<TrudaRTMMsgGift> giftSub;
 
-  var myVapController = NewHitaVapController();
+  var myVapController = TrudaVapController();
   late final TrudaCallback<TrudaSocketBalance> _balanceListener;
 
   Rx<TrudaGiftEntity> giftToQuickSend = TrudaGiftEntity().obs;
@@ -246,7 +246,7 @@ class TrudaCallController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    NewHitaGiftDataHelper.getGifts().then((value) {
+    TrudaGiftDataHelper.getGifts().then((value) {
       if (value != null && value.isNotEmpty) {
         giftToQuickSend.value = value.first;
       }
@@ -487,7 +487,7 @@ class TrudaCallController extends GetxController {
   // 点击了礼物
   void clickGift() {
     Get.bottomSheet(
-      NewHitaLianGiftListView(
+      TrudaLianGiftListView(
         choose: (TrudaGiftEntity gift) {
           sendGift(gift);
         },

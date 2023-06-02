@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_entities/truda_lottery_user_entity.dart';
 
-import 'newhita_lottery_animate.dart';
+import 'truda_lottery_animate.dart';
 
-class NewHitaLotteryWinnerPlayer extends StatefulWidget {
-  late NewHitaLotteryWinnerController vapController;
+class TrudaLotteryWinnerPlayer extends StatefulWidget {
+  late TrudaLotteryWinnerController vapController;
 
-  NewHitaLotteryWinnerPlayer({Key? key, required this.vapController})
+  TrudaLotteryWinnerPlayer({Key? key, required this.vapController})
       : super(key: key);
 
   @override
-  _NewHitaLotteryWinnerPlayerState createState() =>
-      _NewHitaLotteryWinnerPlayerState();
+  _TrudaLotteryWinnerPlayerState createState() =>
+      _TrudaLotteryWinnerPlayerState();
 }
 
-class NewHitaLotteryWinnerController {
-  _NewHitaLotteryWinnerPlayerState? state;
+class TrudaLotteryWinnerController {
+  _TrudaLotteryWinnerPlayerState? state;
 
   void showOne(TrudaLotteryUser gift) {
     if (state == null) return;
@@ -23,7 +23,7 @@ class NewHitaLotteryWinnerController {
   }
 }
 
-class _NewHitaLotteryWinnerPlayerState extends State<NewHitaLotteryWinnerPlayer> {
+class _TrudaLotteryWinnerPlayerState extends State<TrudaLotteryWinnerPlayer> {
   List<Map> giftBannerView = []; // 礼物横幅列表JSON
 
   @override
@@ -35,7 +35,7 @@ class _NewHitaLotteryWinnerPlayerState extends State<NewHitaLotteryWinnerPlayer>
   void showPush(TrudaLotteryUser bean) {
     var now = DateTime.now();
     var obj = {'stamp': now.millisecondsSinceEpoch, 'config': bean};
-    NewHitaLotteryPusher.add(giftBannerView, obj, 6500, (giftBannerViewNew) {
+    TrudaLotteryPusher.add(giftBannerView, obj, 6500, (giftBannerViewNew) {
       if (mounted) {
         setState(() {
           giftBannerView = giftBannerViewNew;

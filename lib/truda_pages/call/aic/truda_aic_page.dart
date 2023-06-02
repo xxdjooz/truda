@@ -10,7 +10,7 @@ import 'package:truda/truda_widget/newhita_net_image.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../../truda_dialogs/truda_sheet_host_option.dart';
-import '../../../truda_widget/gift/newhita_vap_player.dart';
+import '../../../truda_widget/gift/truda_vap_player.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
 import '../truda_contribute_view.dart';
 import 'truda_aic_controller.dart';
@@ -410,7 +410,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                         right: 10,
                         top: 10,
                         bottom: 10,
-                        child: NewHitaVapPlayer(
+                        child: TrudaVapPlayer(
                           vapController: controller.myVapController,
                         ))
                   ],

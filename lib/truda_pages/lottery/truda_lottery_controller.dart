@@ -11,14 +11,14 @@ import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/truda_ui_image_util.dart';
-import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
+import '../../truda_widget/pie_chart/truda_pie_chart_widget.dart';
 
 class TrudaLotteryController extends GetxController {
   Map<int, ui.Image> images = {};
   List<TrudaLotteryBean> data = [];
   var haveLotteryTimes = 0;
   final lastTimes = TrudaMyInfoService.to.haveLotteryTimes;
-  NewHitaPieChartController controller = NewHitaPieChartController();
+  TrudaPieChartController controller = TrudaPieChartController();
   bool rolling = false;
   var emptyPosition = 0;
 

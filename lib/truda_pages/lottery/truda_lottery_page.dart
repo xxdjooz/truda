@@ -6,7 +6,7 @@ import 'package:truda/truda_widget/newhita_app_bar.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
+import '../../truda_widget/pie_chart/truda_pie_chart_widget.dart';
 import 'truda_lottery_controller.dart';
 
 class TrudaLotteryPage extends GetView<TrudaLotteryController> {
@@ -132,7 +132,7 @@ class TrudaLotteryPage extends GetView<TrudaLotteryController> {
                                             }
                                             return '${element.name}';
                                           }).toList();
-                                          return NewHitaPieChartWidget(
+                                          return TrudaPieChartWidget(
                                             angles,
                                             colors,
                                             radius: 130,

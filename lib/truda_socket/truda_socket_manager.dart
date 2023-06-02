@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_common_type.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_pages/charge/success/truda_success_controller.dart';
-import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
+import 'package:truda/truda_widget/gift/truda_gift_data_helper.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -181,7 +181,7 @@ class TrudaSocketManager extends GetxService {
           }
 
           if (entity.diamonds > 0) {
-            NewHitaGiftDataHelper.checkGiftDownload();
+            TrudaGiftDataHelper.checkGiftDownload();
           }
         }
         break;

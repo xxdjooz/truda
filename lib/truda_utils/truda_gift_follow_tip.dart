@@ -8,7 +8,7 @@ import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_gift_entity.dart';
 import '../truda_routes/truda_pages.dart';
 import '../truda_widget/newhita_net_image.dart';
-import '../truda_widget/gift/newhita_gift_data_helper.dart';
+import '../truda_widget/gift/truda_gift_data_helper.dart';
 
 class TrudaGiftFollowTipController {
   bool _hadSendGift = false;
@@ -19,7 +19,7 @@ class TrudaGiftFollowTipController {
   TrudaCallback<int>? callback;
 
   TrudaGiftFollowTipController() {
-    NewHitaGiftDataHelper.getGifts().then((value) {
+    TrudaGiftDataHelper.getGifts().then((value) {
       if (value != null && value.isNotEmpty) {
         gift = value.first;
       }

@@ -11,7 +11,7 @@ import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/truda_log.dart';
-import 'package:truda/truda_widget/gift/newhita_vap_player.dart';
+import 'package:truda/truda_widget/gift/truda_vap_player.dart';
 
 import '../../truda_common/truda_charge_path.dart';
 import '../../truda_common/truda_common_dialog.dart';
@@ -47,7 +47,7 @@ class TrudaChatController extends GetxController {
   /// 加载历史列表时的最上面一条的时间戳，根据这个分页加载
   var time = DateTime.now().millisecondsSinceEpoch;
   var scroller = ScrollController();
-  var myVapController = NewHitaVapController();
+  var myVapController = TrudaVapController();
 
   // 它等于0说明列表在底部
   double extentAfter = 0;

@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'newhita_extra_info_constraints.dart';
+import 'truda_extra_info_constraints.dart';
 
-typedef NewHitaSliverFlexibleHeaderBuilder = Widget Function(
+typedef TrudaSliverFlexibleHeaderBuilder = Widget Function(
   BuildContext context,
   double maxExtent,
   ScrollDirection direction,
@@ -13,19 +13,19 @@ typedef NewHitaSliverFlexibleHeaderBuilder = Widget Function(
 /// dragging over scroll . Typically as the first child  of [CustomScrollView].
 /// 一个随着用户下拉，高度可以伸缩的 sliver header，通常为 CustomScrollView 的第一子sliver。
 /// 常见的场景是微信朋友圈个人主页顶部图下拉时的弹性效果。
-class NewHitaSliverFlexibleHeader extends StatelessWidget {
-  const NewHitaSliverFlexibleHeader({
+class TrudaSliverFlexibleHeader extends StatelessWidget {
+  const TrudaSliverFlexibleHeader({
     Key? key,
     this.visibleExtent = 0,
     required this.builder,
   }) : super(key: key);
 
-  final NewHitaSliverFlexibleHeaderBuilder builder;
+  final TrudaSliverFlexibleHeaderBuilder builder;
   final double visibleExtent;
 
   @override
   Widget build(BuildContext context) {
-    return _NewHitaSliverFlexibleHeader(
+    return _TrudaSliverFlexibleHeader(
       visibleExtent: visibleExtent,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -33,7 +33,7 @@ class NewHitaSliverFlexibleHeader extends StatelessWidget {
             context,
             constraints.maxHeight,
             // 获取滑动方向
-            (constraints as NewHitaExtraInfoBoxConstraints<ScrollDirection>).extra,
+            (constraints as TrudaExtraInfoBoxConstraints<ScrollDirection>).extra,
           );
         },
       ),
@@ -41,8 +41,8 @@ class NewHitaSliverFlexibleHeader extends StatelessWidget {
   }
 }
 
-class _NewHitaSliverFlexibleHeader extends SingleChildRenderObjectWidget {
-  const _NewHitaSliverFlexibleHeader({
+class _TrudaSliverFlexibleHeader extends SingleChildRenderObjectWidget {
+  const _TrudaSliverFlexibleHeader({
     Key? key,
     required Widget child,
     this.visibleExtent = 0,
@@ -51,17 +51,17 @@ class _NewHitaSliverFlexibleHeader extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return _NewHitaFlexibleHeaderRenderSliver(visibleExtent);
+    return _TrudaFlexibleHeaderRenderSliver(visibleExtent);
   }
 
   @override
-  void updateRenderObject(context, _NewHitaFlexibleHeaderRenderSliver renderObject) {
+  void updateRenderObject(context, _TrudaFlexibleHeaderRenderSliver renderObject) {
     renderObject.visibleExtent = visibleExtent;
   }
 }
 
-class _NewHitaFlexibleHeaderRenderSliver extends RenderSliverSingleBoxAdapter {
-  _NewHitaFlexibleHeaderRenderSliver(double visibleExtent)
+class _TrudaFlexibleHeaderRenderSliver extends RenderSliverSingleBoxAdapter {
+  _TrudaFlexibleHeaderRenderSliver(double visibleExtent)
       : _visibleExtent = visibleExtent;
   double _lastOverScroll = 0;
   double _lastScrollOffset = 0;
@@ -114,7 +114,7 @@ class _NewHitaFlexibleHeaderRenderSliver extends RenderSliverSingleBoxAdapter {
       if (!_reported) {
         _reported = true;
         child!.layout(
-          NewHitaExtraInfoBoxConstraints(
+          TrudaExtraInfoBoxConstraints(
             _direction, //传递滑动方向
             constraints.asBoxConstraints(maxExtent: 0),
           ),
@@ -162,7 +162,7 @@ class _NewHitaFlexibleHeaderRenderSliver extends RenderSliverSingleBoxAdapter {
 
     //对子组件进行布局，子组件通过 LayoutBuilder可以拿到这里我们传递的约束对象（NewHitaExtraInfoBoxConstraints）
     child!.layout(
-      NewHitaExtraInfoBoxConstraints(
+      TrudaExtraInfoBoxConstraints(
         _direction, //传递滑动方向
         constraints.asBoxConstraints(maxExtent: paintExtent),
       ),
