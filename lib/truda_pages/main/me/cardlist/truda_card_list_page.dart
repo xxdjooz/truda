@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_pages/main/newhita_main_controller.dart';
+import 'package:truda/truda_pages/main/truda_main_controller.dart';
 import 'package:truda/truda_routes/newhita_pages.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -78,7 +78,7 @@ class TrudaCardListPage extends GetView<TrudaCardListController> {
                                   !Get.isBottomSheetOpen! &&
                                   Get.currentRoute == NewHitaAppPages.main);
                             });
-                            Get.find<NewHitaMainController>()
+                            Get.find<TrudaMainController>()
                                 .handleNavBarTap(0);
                           }
                         },

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_pages/main/home/truda_home_ios_controller.dart';
 import 'package:truda/truda_pages/main/home/truda_home_page.dart';
-import 'package:truda/truda_pages/main/moment/newhita_moment_list_page.dart';
+import 'package:truda/truda_pages/main/moment/truda_moment_list_page.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
@@ -130,7 +130,7 @@ class _TrudaHomeIosPageState extends State<TrudaHomeIosPage>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [NewHitaMomentListPage(iosMock:true), TrudaFollowPage()],
+        children: [TrudaMomentListPage(iosMock:true), TrudaFollowPage()],
       ),
     );
   }
