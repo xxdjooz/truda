@@ -22,8 +22,8 @@ import '../../../../truda_dialogs/truda_dialog_visitor_tip.dart';
 import '../../../../truda_entities/truda_leval_entity.dart';
 import '../../../../truda_entities/truda_lottery_entity.dart';
 import '../../../../truda_services/truda_storage_service.dart';
-import '../../../../truda_utils/newhita_app_rate.dart';
-import '../../../../truda_utils/newhita_permission_handler.dart';
+import '../../../../truda_utils/truda_app_rate.dart';
+import '../../../../truda_utils/truda_permission_handler.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
 import '../../../call/truda_count_20.dart';
 import '../../../charge/success/truda_success_controller.dart';
@@ -80,7 +80,7 @@ class _TrudaMockDailogPageState extends State<TrudaMockDailogPage> {
                 OutlinedButton(
                   onPressed: () {
                     // NewHitaAppRate.showFakeRateApp();
-                    NewHitaAppRate.showGoogleRate();
+                    TrudaAppRate.showGoogleRate();
                   },
                   child: const Text('app评分'),
                 ),
@@ -205,7 +205,7 @@ class _TrudaMockDailogPageState extends State<TrudaMockDailogPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaPermissionHandler.showPermissionNotify();
+                    TrudaPermissionHandler.showPermissionNotify();
                   },
                   child: const Text('通知权限'),
                 ),

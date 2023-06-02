@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
@@ -51,7 +51,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
       } else {
         widget.choose.call(list![index]);
       }
-      NewHitaLog.debug('NewHitaLianGiftListView click ${list![index].name}');
+      TrudaLog.debug('NewHitaLianGiftListView click ${list![index].name}');
     } else {
       setState(() {
         selectedIndex = index;
@@ -264,9 +264,9 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
                 });
               }),
           itemBuilder: (BuildContext context, int indexOut, int realIndex) {
-            NewHitaLog.debug(
+            TrudaLog.debug(
                 'CarouselSlider indexOut=$indexOut realIndex=$realIndex');
-            NewHitaLog.debug(
+            TrudaLog.debug(
                 'CarouselSlider pageCount=$pageCount lastPageSize=$lastPageSize pageSize=$pageSize');
             return GridView.builder(
               shrinkWrap: true,
@@ -276,7 +276,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
                 var gift = list![ind];
 
                 bool needVip = gift.vipVisible == 1;
-                NewHitaLog.debug('CarouselSlider ind=$ind');
+                TrudaLog.debug('CarouselSlider ind=$ind');
                 return GestureDetector(
                   onTap: () {
                     click(ind, vip);

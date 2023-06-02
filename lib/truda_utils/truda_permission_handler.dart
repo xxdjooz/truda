@@ -5,17 +5,17 @@ import 'package:permission_handler/permission_handler.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
-import 'newhita_facebook_util.dart';
-import 'newhita_log.dart';
+import 'truda_facebook_util.dart';
+import 'truda_log.dart';
 
 /// 被叫页面初始化完成后，先调askCallPermission提示需要权限
 /// 点击拨打按钮或者被叫页面的接听按钮，先调checkCallPermission检查权限
-class NewHitaPermissionHandler {
+class TrudaPermissionHandler {
   /// 每次打开app时检查下这个通知权限
   static void checkNotificationPermission() {
     // 这个通知权限一般默认有
     Permission.notification.request().then((value) {
-      NewHitaLog.debug(value);
+      TrudaLog.debug(value);
       if (value != PermissionStatus.granted) {
         showPermissionNotify();
       }

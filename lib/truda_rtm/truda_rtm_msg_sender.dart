@@ -5,8 +5,8 @@ import 'package:truda/truda_entities/truda_gift_entity.dart';
 import 'package:truda/truda_rtm/truda_rtm_manager.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 class TrudaRtmMsgSender {
   // meHangup, // 1001 视频谁申请谁发消息 自己挂断自己的视频申请
@@ -30,7 +30,7 @@ class TrudaRtmMsgSender {
         herId: herId);
     var agoraRtm = AgoraRtmMessage.fromText(json.encode(text));
     TrudaRtmManager.sendRtmMsg(herId, agoraRtm, (success) {
-      NewHitaLog.debug('sendRtmMsg success = $success');
+      TrudaLog.debug('sendRtmMsg success = $success');
     });
   }
 

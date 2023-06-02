@@ -8,17 +8,17 @@ import 'package:image_picker/image_picker.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_http/truda_http_util.dart';
-import 'newhita_loading.dart';
-import 'newhita_log.dart';
+import 'truda_loading.dart';
+import 'truda_log.dart';
 
-class NewHitaSimpleS3Upload extends StatefulWidget {
-  const NewHitaSimpleS3Upload({Key? key}) : super(key: key);
+class TrudaSimpleS3Upload extends StatefulWidget {
+  const TrudaSimpleS3Upload({Key? key}) : super(key: key);
 
   @override
-  NewHitaSimpleS3UploadState createState() => NewHitaSimpleS3UploadState();
+  TrudaSimpleS3UploadState createState() => TrudaSimpleS3UploadState();
 }
 
-class NewHitaSimpleS3UploadState extends State<NewHitaSimpleS3Upload> {
+class TrudaSimpleS3UploadState extends State<TrudaSimpleS3Upload> {
   File? selectedFile;
 
   String? selectFileString;
@@ -176,10 +176,10 @@ class NewHitaSimpleS3UploadState extends State<NewHitaSimpleS3Upload> {
         });
         TrudaHttpUtil().post<String>('/user/s3/storage/upload/pre-signed',
             data: {'endType': '.jpg'}, errCallback: (err) {
-          NewHitaLog.debug(err);
-          NewHitaLoading.toast(err.message);
+          TrudaLog.debug(err);
+          TrudaLoading.toast(err.message);
         }).then((value) {
-          NewHitaLog.debug(value);
+          TrudaLog.debug(value);
           // dioUpload2(value, selectedFile?.path ?? "");
           //
           uploadFile(File(selectedFile?.path ?? ""), value);

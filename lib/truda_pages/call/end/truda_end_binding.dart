@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import 'truda_end_controller.dart';
 
@@ -9,7 +9,7 @@ class TrudaEndBinding implements Bindings {
   void dependencies() {
     /// 这个页面是有可能出现多个的，Controller要注意处理！！！
     Get.create<TrudaEndController>(() {
-      NewHitaLog.debug('TrudaEndBinding create TrudaEndController');
+      TrudaLog.debug('TrudaEndBinding create TrudaEndController');
       return TrudaEndController();
     });
   }

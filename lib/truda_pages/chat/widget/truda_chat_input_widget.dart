@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_entities/truda_gift_entity.dart';
-import '../../../truda_utils/newhita_choose_image_util.dart';
+import '../../../truda_utils/truda_choose_image_util.dart';
 import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/newhita_keybord_logic.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
@@ -155,7 +155,7 @@ class _TrudaChatInputWidgetState extends State<TrudaChatInputWidget>
                         _controller.askVip();
                         return;
                       }
-                      NewHitaChooseImageUtil(
+                      TrudaChooseImageUtil(
                               type: 1, callBack: _controller.upLoadCallBack)
                           .openChooseDialog();
                     },

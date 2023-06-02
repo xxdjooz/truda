@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NewHitaUiImageUtil {
+class TrudaUiImageUtil {
   // 获取图片 本地为false 网络为true
   static Future<ui.Image> loadImage(var path, bool isUrl) async {
     ImageStream stream;

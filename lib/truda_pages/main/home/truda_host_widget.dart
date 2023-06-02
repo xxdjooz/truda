@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
-import 'package:truda/truda_utils/newhita_some_extension.dart';
+import 'package:truda/truda_utils/truda_some_extension.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../../truda_common/truda_colors.dart';

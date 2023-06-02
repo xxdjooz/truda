@@ -10,7 +10,7 @@ import '../../../truda_entities/truda_hot_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_socket/truda_socket_entity.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 import 'truad_home_controller.dart';
 
 class TrudaOnlineController extends GetxController {
@@ -88,7 +88,7 @@ class TrudaOnlineController extends GetxController {
         pageCallback: (has) {
       enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       if (_page == 1) {
         refreshController.refreshCompleted();
       } else {

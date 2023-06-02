@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_info_entity.dart';
 import 'package:truda/truda_services/truda_app_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../generated/json/base/json_convert_content.dart';
 import '../truda_entities/truda_config_entity.dart';
@@ -79,7 +79,7 @@ class TrudaMyInfoService extends GetxService {
 
   // 收到socket余额变动消息
   void handleBalanceChange(TrudaSocketBalance entity) {
-    NewHitaLog.debug('handleBalanceChange $entity');
+    TrudaLog.debug('handleBalanceChange $entity');
     _myDetail?.userBalance?.remainDiamonds = entity.diamonds;
     _myDetail?.userBalance?.expLevel = entity.expLevel;
   }

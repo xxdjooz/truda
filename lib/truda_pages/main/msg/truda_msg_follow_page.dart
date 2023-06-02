@@ -4,7 +4,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/main/msg/truda_msg_follow_controller.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +17,7 @@ class TrudaMsgFollowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NewHitaLog.debug("NewHitaMsgPage build");
+    TrudaLog.debug("NewHitaMsgPage build");
     return Scaffold(
       backgroundColor: Colors.transparent,
       // body: GetBuilder<NewHitaMsgController>(

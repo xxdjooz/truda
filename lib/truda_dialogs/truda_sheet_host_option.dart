@@ -8,7 +8,7 @@ import '../truda_common/truda_language_key.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_services/truda_storage_service.dart';
-import '../truda_utils/newhita_loading.dart';
+import '../truda_utils/truda_loading.dart';
 import 'truda_dialog_confirm.dart';
 
 class TrudaSheetHostOption extends StatefulWidget {
@@ -28,15 +28,15 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
   }
 
   void handleBlack() {
-    NewHitaLoading.show();
+    TrudaLoading.show();
     TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + widget.herId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       Get.back();
     }, doneCallback: (success, message) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
     }).then((value) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       TrudaStorageService.to.updateBlackList(widget.herId, value == 1);
       Get.back(result: value);
     });

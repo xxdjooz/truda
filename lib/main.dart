@@ -13,7 +13,7 @@ import 'package:truda/truda_services/truda_app_info_service.dart';
 import 'package:truda/truda_services/truda_host_video_service.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 import 'package:truda/truda_widget/newhita_ball_beat.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 // import 'package:sentry_flutter/sentry_flutter.dart';
@@ -55,7 +55,7 @@ class NewHitaGlobal {
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     setSystemUi();
-    NewHitaLoading();
+    TrudaLoading();
 
     await Get.putAsync<TrudaStorageService>(() => TrudaStorageService().init());
     await Get.putAsync<TrudaAppInfoService>(() => TrudaAppInfoService().init());

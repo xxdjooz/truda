@@ -14,7 +14,7 @@ import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_country_choose.dart';
 import '../../../truda_dialogs/truda_dialog_invite_for_diamond.dart';
-import '../../../truda_utils/newhita_ui_image_util.dart';
+import '../../../truda_utils/truda_ui_image_util.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
@@ -48,7 +48,7 @@ class _TrudaHomePageState extends State<TrudaHomePage>
       TrudaPageIndexManager.setHomeIndex(_tabController.index);
     });
 
-    NewHitaUiImageUtil.getAssetImage(
+    TrudaUiImageUtil.getAssetImage(
             'assets/images_sized/newhita_circle_indicator.png')
         .then((value) {
       setState(() {

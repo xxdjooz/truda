@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../truda_common/truda_colors.dart';
 
@@ -33,7 +33,7 @@ class _TrudaCachePageState extends State<TrudaCachePage> {
   bool showPic = true;
   @override
   void initState() {
-    NewHitaLog.debug('TrudaCachePage url=${widget.url}');
+    TrudaLog.debug('TrudaCachePage url=${widget.url}');
 
     listener = () {
       var value = _betterPlayerController.videoPlayerController!.value;
@@ -132,7 +132,7 @@ class _TrudaCachePageState extends State<TrudaCachePage> {
     super.dispose();
     _betterPlayerController.videoPlayerController?.removeListener(listener);
     _betterPlayerController.dispose();
-    NewHitaLog.debug('TrudaCachePage dispose');
+    TrudaLog.debug('TrudaCachePage dispose');
   }
 
   // _betterPlayerController.preCache(_betterPlayerDataSource);

@@ -14,8 +14,8 @@ import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/truda_event_bus_bean.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_charge_new_channel_dialog.dart';
@@ -54,7 +54,7 @@ class TrudaChargeIosController extends GetxController {
     firstIn = false;
     TrudaAppleInAppPurchase.fixNoEndPurchase();
     TrudaAppleInAppPurchase.resultStream.listen((event) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
       if (event == 0) {
         refreshMe();
       }
@@ -62,7 +62,7 @@ class TrudaChargeIosController extends GetxController {
   }
 
   Future refreshMe() async {
-    NewHitaLog.debug('NewHitaMeController refreshMe()');
+    TrudaLog.debug('NewHitaMeController refreshMe()');
     await TrudaHttpUtil()
         .post<TrudaInfoDetail>(
       TrudaHttpUrls.userInfoApi,
@@ -79,7 +79,7 @@ class TrudaChargeIosController extends GetxController {
     TrudaHttpUtil().post<TrudaPayQuickData>(
       TrudaHttpUrls.getCompositeProduct + '2',
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       },
     ).then((value) {
       allProducts = value.normalProducts;

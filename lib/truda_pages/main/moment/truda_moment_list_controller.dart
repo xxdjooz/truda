@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_moment_entity.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_storage_service.dart';
@@ -63,13 +63,13 @@ class TrudaMomentListController extends GetxController {
         enablePullUp = has;
       },
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
         if (_page == 1) {
           refreshController.refreshCompleted();
         } else {
           refreshController.loadComplete();
         }
-        NewHitaLog.debug('errCallback');
+        TrudaLog.debug('errCallback');
       },
       doneCallback: (suc, msg) {
         justOpen = false;
@@ -88,9 +88,9 @@ class TrudaMomentListController extends GetxController {
         }
         update();
       }
-      NewHitaLog.debug('then');
+      TrudaLog.debug('then');
     }).whenComplete(() {
-      NewHitaLog.debug('whenComplete');
+      TrudaLog.debug('whenComplete');
     });
   }
 
@@ -136,10 +136,10 @@ class TrudaMomentListController extends GetxController {
   void handleBlack(String herId) {
     TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       onRefresh();
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       TrudaStorageService.to.updateBlackList(herId, value == 1);
     });
   }

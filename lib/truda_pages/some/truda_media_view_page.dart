@@ -11,7 +11,7 @@ import 'package:wakelock/wakelock.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import '../../truda_widget/newhita_player_android.dart';
 
@@ -117,7 +117,7 @@ class _TrudaMediaPageState
   @override
   void didPushNext() {
     super.didPushNext();
-    NewHitaLog.debug('LindaMediaViewPage didPushNext');
+    TrudaLog.debug('LindaMediaViewPage didPushNext');
     // if (playing) _controller.pause();
     _streamController.add(0);
   }

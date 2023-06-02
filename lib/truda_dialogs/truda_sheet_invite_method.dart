@@ -5,7 +5,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TrudaSheetInviteMethod extends StatefulWidget {
@@ -31,7 +31,7 @@ class _TrudaSheetInviteMethodState extends State<TrudaSheetInviteMethod> {
       Get.back();
     } else {
       //没有安装 whatsApp 提示安装
-      NewHitaLoading.toast(
+      TrudaLoading.toast(
         TrudaLanguageKey.newhita_install_whatsapp.tr,
       );
     }
@@ -42,7 +42,7 @@ class _TrudaSheetInviteMethodState extends State<TrudaSheetInviteMethod> {
     // log("============= sharelink $shareWebLink");
     Clipboard.setData(ClipboardData(text: widget.link));
     _addShareCount();
-    NewHitaLoading.toast(
+    TrudaLoading.toast(
       TrudaLanguageKey.newhita_base_success.tr,
     );
     Get.back();

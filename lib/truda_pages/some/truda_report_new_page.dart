@@ -11,8 +11,8 @@ import 'package:truda/truda_services/truda_storage_service.dart';
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_dialog_confirm.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 
 class TrudaReportNewPage extends StatelessWidget {
@@ -133,7 +133,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
             },
             showLoading: true)
         .then((value) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_new_report_thanks.tr,
         onlyConfirm: true,
@@ -155,7 +155,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
       if (value == 1) {
         TrudaStorageService.to.updateBlackList(herId, true);
       }
-      NewHitaLog.debug("拉黑");
+      TrudaLog.debug("拉黑");
     });
   }
 

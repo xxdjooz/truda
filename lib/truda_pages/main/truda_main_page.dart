@@ -7,8 +7,8 @@ import 'package:truda/truda_socket/truda_socket_manager.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_log.dart';
-import '../../truda_utils/newhita_pay_cache_manager.dart';
+import '../../truda_utils/truda_log.dart';
+import '../../truda_utils/truda_pay_cache_manager.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
 import 'home/truda_home_page.dart';
 import 'match/truda_match_page.dart';
@@ -34,7 +34,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   @override
   void initState() {
     super.initState();
-    NewHitaPayCacheManager.clearValidOrder();
+    TrudaPayCacheManager.clearValidOrder();
     //App 的⽣命周期
     WidgetsBinding.instance?.addObserver(this);
   }
@@ -42,7 +42,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   @override
   void dispose() {
     super.dispose();
-    NewHitaLog.debug('NewHitaMainPage dispose');
+    TrudaLog.debug('NewHitaMainPage dispose');
     TrudaAppPages.observer.unsubscribe(this);
     //App 的⽣命周期
     WidgetsBinding.instance?.removeObserver(this);
@@ -51,9 +51,9 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('NewHitaMainPage didPopNext');
+    TrudaLog.debug('NewHitaMainPage didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
-    NewHitaPayCacheManager.checkOrderList();
+    TrudaPayCacheManager.checkOrderList();
     TrudaPageIndexManager.setMainShow(true);
   }
 
@@ -67,7 +67,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    NewHitaLog.debug('NewHitaMainPage didChangeAppLifecycleState $state');
+    TrudaLog.debug('NewHitaMainPage didChangeAppLifecycleState $state');
     if (state == AppLifecycleState.paused) {
       // went to Background
       TrudaAppPages.isAppBackground = true;

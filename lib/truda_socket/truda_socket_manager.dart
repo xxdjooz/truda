@@ -17,7 +17,7 @@ import '../truda_services/truda_app_info_service.dart';
 import '../truda_services/truda_event_bus_bean.dart';
 import '../truda_services/truda_my_info_service.dart';
 import '../truda_services/truda_storage_service.dart';
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_log.dart';
 import 'truda_socket_entity.dart';
 
 class TrudaSocketManager extends GetxService {
@@ -33,10 +33,10 @@ class TrudaSocketManager extends GetxService {
   // 审核模式没有做链接
   Future<TrudaSocketManager> init() async {
     if (TrudaConstants.appMode > 0) {
-      NewHitaLog.debug('isFakeMode 不初始化');
+      TrudaLog.debug('isFakeMode 不初始化');
       return this;
     }
-    NewHitaLog.debug('NewHitaSocketManager --------------------> 初始化');
+    TrudaLog.debug('NewHitaSocketManager --------------------> 初始化');
     Map<String, dynamic> headers = {};
     TrudaAppInfoService appInfo = TrudaAppInfoService.to;
     String userAgent =
@@ -47,7 +47,7 @@ class TrudaSocketManager extends GetxService {
     headers["user-id"] = TrudaMyInfoService.to.userLogin?.userId ?? "";
     headers["user-language"] = Get.deviceLocale?.languageCode ?? "en";
     headers["device-id"] = appInfo.deviceIdentifier;
-    NewHitaLog.debug("socket connecting");
+    TrudaLog.debug("socket connecting");
     channel = IOWebSocketChannel.connect(TrudaHttpUrls.getSocketBaseUrl(),
         headers: headers, pingInterval: const Duration(seconds: 20));
     _connected = true;
@@ -57,11 +57,11 @@ class TrudaSocketManager extends GetxService {
     }, onDone: () {
       // 发现在网络问题后，会走到这里
       // 有时网络问题，到了onDone。有时却onDone，onError一起调！！
-      NewHitaLog.debug("socket connect onDone");
+      TrudaLog.debug("socket connect onDone");
       _connected = false;
       reConnect();
     }, onError: (err) {
-      NewHitaLog.debug("socket connect onError !!");
+      TrudaLog.debug("socket connect onError !!");
       _connected = false;
     }, cancelOnError: false);
 
@@ -107,7 +107,7 @@ class TrudaSocketManager extends GetxService {
     this.dying = dying;
     channel.sink.close(status.normalClosure);
     _timer.cancel();
-    NewHitaLog.debug('socket ------------> breakenSocket');
+    TrudaLog.debug('socket ------------> breakenSocket');
   }
 
   /// 压缩字符串，有加密作用

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:truda/truda_common/truda_language_key.dart';
 
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 
 
 TrudaPayQuickData $TrudaPayQuickDataFromJson(Map<String, dynamic> json) {

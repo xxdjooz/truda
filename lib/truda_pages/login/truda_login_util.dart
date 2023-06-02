@@ -31,8 +31,8 @@ class TrudaLoginUtil {
 //
 // import '../../truda_common/truda_language_key.dart';
 // import '../../truda_services/truda_my_info_service.dart';
-// import '../../truda_utils/newhita_loading.dart';
-// import '../../truda_utils/newhita_log.dart';
+// import '../../truda_utils/truda_loading.dart';
+// import '../../truda_utils/truda_log.dart';
 //
 // class TrudaLoginData {
 //   bool success = false;

@@ -10,11 +10,11 @@ import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
 import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_socket/truda_socket_manager.dart';
-import 'package:truda/truda_utils/newhita_adjust_manager.dart';
-import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
-import 'package:truda/truda_utils/newhita_check_app_update.dart';
-import 'package:truda/truda_utils/newhita_firebase_manager.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_adjust_manager.dart';
+import 'package:truda/truda_utils/truda_ai_help_manager.dart';
+import 'package:truda/truda_utils/truda_check_app_update.dart';
+import 'package:truda/truda_utils/truda_firebase_manager.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../truda_dialogs/truda_dialog_new_user.dart';
 import '../../truda_entities/truda_gift_entity.dart';
@@ -24,9 +24,9 @@ import '../../truda_routes/truda_pages.dart';
 import '../../truda_rtm/truda_rtm_manager.dart';
 import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_utils/ai/truda_ai_logic_utils.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_pay_cache_manager.dart';
-import '../../truda_utils/newhita_permission_handler.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_pay_cache_manager.dart';
+import '../../truda_utils/truda_permission_handler.dart';
 import '../charge/truda_google_billing.dart';
 import '../charge/truda_in_app_purchase_apple.dart';
 
@@ -60,8 +60,8 @@ class TrudaMainController extends GetxController {
 
     Get.putAsync<TrudaSocketManager>(() => TrudaSocketManager().init());
 
-    NewHitaAdjustManager.checkAdjustUploadAttr();
-    NewHitaAdjustManager.getGoolgeReferrer();
+    TrudaAdjustManager.checkAdjustUploadAttr();
+    TrudaAdjustManager.getGoolgeReferrer();
     TrudaAiLogicUtils().init();
   }
 
@@ -73,21 +73,21 @@ class TrudaMainController extends GetxController {
     getSensitiveList();
     NewTrudaUserCardsTip.checkToShow();
     TrudaFirstTip.checkToShow();
-    NewHitaAihelpManager.initAIHelp();
+    TrudaAihelpManager.initAIHelp();
     TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
 
     // firebase 初始化
     if (!TrudaConstants.isFakeMode && !TrudaConstants.isTestMode) {
       // if (!NewHitaConstants.isFakeMode) {
-      NewHitaLog.debug('firebase init');
-      NewHitaFirebaseManager.init().then((value) {
-        NewHitaFirebaseManager.getToken();
+      TrudaLog.debug('firebase init');
+      TrudaFirebaseManager.init().then((value) {
+        TrudaFirebaseManager.getToken();
       });
     }
 
-    NewHitaPermissionHandler.checkNotificationPermission();
+    TrudaPermissionHandler.checkNotificationPermission();
 
-    NewHitaCheckAppUpdate.check();
+    TrudaCheckAppUpdate.check();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       final tick = timer.tick;
@@ -112,7 +112,7 @@ class TrudaMainController extends GetxController {
         } else {
           TrudaGoogleBilling.fixNoEndPurchase();
         }
-        NewHitaPayCacheManager.checkOrderList();
+        TrudaPayCacheManager.checkOrderList();
       }
     });
 
@@ -134,7 +134,7 @@ class TrudaMainController extends GetxController {
   void getGift() {
     TrudaHttpUtil().post<List<TrudaGiftEntity>>(TrudaHttpUrls.allGiftListApi,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       if (value.isNotEmpty) {
         String jsonGifts = json.encode(value);
@@ -174,7 +174,7 @@ class TrudaMainController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    NewHitaLog.debug('MainController onClose');
+    TrudaLog.debug('MainController onClose');
     _timer?.cancel();
     TrudaAiLogicUtils().cancel();
   }

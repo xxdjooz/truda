@@ -9,7 +9,7 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_services/truda_event_bus_bean.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../truda_common/truda_charge_path.dart';
@@ -21,14 +21,14 @@ import '../../../truda_rtm/truda_rtm_manager.dart';
 import '../../../truda_rtm/truda_rtm_msg_sender.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_log.dart';
-import '../../../truda_utils/newhita_permission_handler.dart';
-import '../../../truda_utils/newhita_voice_player.dart';
+import '../../../truda_utils/truda_log.dart';
+import '../../../truda_utils/truda_permission_handler.dart';
+import '../../../truda_utils/truda_voice_player.dart';
 
 class TrudaLocalController extends GetxController {
   static startMe(String herId, String? portrait, {bool closeSelf = false}) {
     //获取到权限再去拨打页面
-    NewHitaPermissionHandler.checkCallPermission().then((value) {
+    TrudaPermissionHandler.checkCallPermission().then((value) {
       if (!value) return;
       Map<String, dynamic> map = {};
       map['herId'] = herId;
@@ -80,7 +80,7 @@ class TrudaLocalController extends GetxController {
       } else if (event.type == 2) {
         _timer?.cancel();
         _timer = null;
-        NewHitaAudioCenter2.stopPlayRing();
+        TrudaAudioCenter2.stopPlayRing();
         TrudaCommonDialog.dialog(TrudaDialogConfirm(
           title: TrudaLanguageKey.newhita_video_hang_up_tip.tr,
           onlyConfirm: true,
@@ -113,8 +113,8 @@ class TrudaLocalController extends GetxController {
     TrudaHttpUtil().post<TrudaHostDetail>(
       TrudaHttpUrls.upDetailApi + herId,
       errCallback: (err) {
-        NewHitaLog.debug(err);
-        NewHitaLoading.toast(err.message);
+        TrudaLog.debug(err);
+        TrudaLoading.toast(err.message);
         _closeMe();
       },
       showLoading: true,
@@ -150,7 +150,7 @@ class TrudaLocalController extends GetxController {
         } else {
           str = TrudaLanguageKey.newhita_video_hang_up_tip_3.tr;
         }
-        NewHitaAudioCenter2.stopPlayRing();
+        TrudaAudioCenter2.stopPlayRing();
         callStatistics(0, 2);
         Get.dialog(TrudaDialogConfirm(
           title: str,
@@ -172,8 +172,8 @@ class TrudaLocalController extends GetxController {
     _startTimer();
     TrudaHttpUtil().post<int>(TrudaHttpUrls.createCallApi + herId,
         errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
 
       int callStatus = TrudaCallStatus.USER_NOT_DIAMONDS;
       if (err.code == 8) {
@@ -215,7 +215,7 @@ class TrudaLocalController extends GetxController {
   void _showChargeAndStopMusic() {
     _timer?.cancel();
     _timer = null;
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
     TrudaChargeDialogManager.showChargeDialog(
       TrudaChargePath.create_call_no_money,
       upid: herId,
@@ -245,7 +245,7 @@ class TrudaLocalController extends GetxController {
         hangUp(TrudaEndType2.callingTimeOut);
       }
     });
-    NewHitaAudioCenter2.playRing();
+    TrudaAudioCenter2.playRing();
   }
 
   void hangUp(int endType) {
@@ -302,6 +302,6 @@ class TrudaLocalController extends GetxController {
     super.onClose();
     sub.cancel();
     _timer?.cancel();
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
   }
 }

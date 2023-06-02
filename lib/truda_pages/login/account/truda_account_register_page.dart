@@ -11,7 +11,7 @@ import 'package:truda/truda_routes/truda_pages.dart';
 import '../../../truda_entities/truda_login_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_login_agree_dialog.dart';
@@ -57,15 +57,15 @@ class _TrudaAccountRegisterPageState extends State<TrudaAccountRegisterPage>
 
   void accountRegister() {
     if (_textEditingController.text.length <= 0) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_prompt_username.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_prompt_username.tr);
       return;
     }
     if (_textEditingController2.text.length <= 0) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_prompt_password.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_prompt_password.tr);
       return;
     }
     if (_textEditingController2.text.length <= 5) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_invalid_password.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_invalid_password.tr);
       return;
     }
     // NewHitaHttpManager.postRequest<NewHitaNetCodeEntity>(

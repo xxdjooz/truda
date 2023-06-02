@@ -9,8 +9,8 @@ import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_pages/her_video/trudavideo_test.dart';
 import 'package:truda/truda_pages/main/me/demo_test/truda_test_image_picker.dart';
 import 'package:truda/truda_pages/main/me/demo_test/truda_test_webp.dart';
-import 'package:truda/truda_utils/newhita_aic_handler.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_aic_handler.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -21,8 +21,8 @@ import '../../../../truda_entities/truda_aiv_entity.dart';
 import '../../../../truda_http/truda_http_urls.dart';
 import '../../../../truda_http/truda_http_util.dart';
 import '../../../../truda_services/truda_storage_service.dart';
-import '../../../../truda_utils/newhita_third_util.dart';
-import '../../../../truda_utils/newhita_voice_player.dart';
+import '../../../../truda_utils/truda_third_util.dart';
+import '../../../../truda_utils/truda_voice_player.dart';
 import '../../../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
@@ -50,7 +50,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
   @override
   void dispose() {
     super.dispose();
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
   }
 
   /// 消耗掉一张体验卡
@@ -129,14 +129,14 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                       // launch(url);
                     }
                     var can = await canLaunch(url);
-                    NewHitaLog.debug('$can');
+                    TrudaLog.debug('$can');
                     // launch(url);
                   },
                   child: Text('test url_launcher'),
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaAicHandler().testGetAicMsg();
+                    TrudaAicHandler().testGetAicMsg();
                   },
                   child: Text('aic'),
                 ),
@@ -188,7 +188,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaAudioCenter2.playRing();
+                    TrudaAudioCenter2.playRing();
                   },
                   child: Text('AudioCenter2'),
                 ),
@@ -225,7 +225,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                     map["fb_currency"] = 'USD';
                     // 这里有个坑，传null进去会导致上传失败
                     map["fb_search_string"] = "test test";
-                    NewHitaThirdUtil.facebookLog(1, 'USD', map);
+                    TrudaThirdUtil.facebookLog(1, 'USD', map);
                   },
                   child: Text('facebook pay 1'),
                 ),

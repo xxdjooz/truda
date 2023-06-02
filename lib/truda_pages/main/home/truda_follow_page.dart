@@ -7,7 +7,7 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_utils/newhita_format_util.dart';
+import '../../../truda_utils/truda_format_util.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../../chat/truda_chat_controller.dart';
@@ -161,7 +161,7 @@ class TrudaFollowWidget extends StatelessWidget {
                                     fit: BoxFit.fill,
                                   ),
                                   Text(
-                                    '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
+                                    '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
                                     style: const TextStyle(
                                         color: TrudaColors.baseColorRedLight,
                                         fontSize: 12),

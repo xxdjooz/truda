@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_services/truda_storage_service.dart';
-import '../truda_utils/newhita_check_calling_util.dart';
+import '../truda_utils/truda_check_calling_util.dart';
 
 class TrudaDialogInvite extends StatefulWidget {
   static const strInviteOthers = 'strInviteOthers';
@@ -19,7 +19,7 @@ class TrudaDialogInvite extends StatefulWidget {
     //   return;
     // }
     var hadShow = TrudaStorageService.to.prefs.getInt(strInviteOthers) ?? 0;
-    NewHitaLog.debug('TrudaDialogInvite $hadShow');
+    TrudaLog.debug('TrudaDialogInvite $hadShow');
     if (hadShow < 1) {
       hadShow++;
       TrudaStorageService.to.prefs.setInt(strInviteOthers, hadShow);
@@ -29,7 +29,7 @@ class TrudaDialogInvite extends StatefulWidget {
     // 这一步检查很重要，会出现打开被叫页面同时打开这个弹窗，
     // 导致在TrudaRemoteController取参数时为null
     // 这个得研究下
-    if (!NewHitaCheckCallingUtil.checkCalling()) {
+    if (!TrudaCheckCallingUtil.checkCalling()) {
       TrudaCommonDialog.dialog(const TrudaDialogInvite());
     }
   }

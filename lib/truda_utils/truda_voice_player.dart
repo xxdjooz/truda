@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sound/flutter_sound.dart' as sound;
 
 /// 铃声的播放器
-class NewHitaAudioCenter2 {
-  static final _audioCallingCenter = NewHitaAudioCenter2._intal();
+class TrudaAudioCenter2 {
+  static final _audioCallingCenter = TrudaAudioCenter2._intal();
 
-  NewHitaAudioCenter2._intal();
+  TrudaAudioCenter2._intal();
 
-  factory NewHitaAudioCenter2() {
+  factory TrudaAudioCenter2() {
     return _audioCallingCenter;
   }
 
@@ -49,14 +49,14 @@ class NewHitaAudioCenter2 {
 }
 
 /// 记录播放地址的播放器
-class NewHitaAudioPlayer extends AudioPlayer {
-  factory NewHitaAudioPlayer() {
+class TrudaAudioPlayer extends AudioPlayer {
+  factory TrudaAudioPlayer() {
     return _audioCallingCenter;
   }
 
-  static final _audioCallingCenter = NewHitaAudioPlayer._intal();
+  static final _audioCallingCenter = TrudaAudioPlayer._intal();
 
-  NewHitaAudioPlayer._intal() {}
+  TrudaAudioPlayer._intal() {}
   String _currentUrl = "-9999999999999999";
 
   String get currentUrl {

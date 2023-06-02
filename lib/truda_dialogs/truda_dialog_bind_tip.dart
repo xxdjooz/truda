@@ -9,7 +9,7 @@ import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/login/truda_login_util.dart';
 import '../truda_services/truda_my_info_service.dart';
-import '../truda_utils/newhita_loading.dart';
+import '../truda_utils/truda_loading.dart';
 import '../truda_widget/newhita_gradient_boder.dart';
 
 //提醒绑定弹窗
@@ -48,7 +48,7 @@ class _TrudaBindTipState extends State<TrudaBindTip> {
         _loginGoogle(
             callback.token, callback.id, callback.nickname, callback.cover);
       } else {
-        NewHitaLoading.toast(TrudaLanguageKey.newhita_err_unknown.tr);
+        TrudaLoading.toast(TrudaLanguageKey.newhita_err_unknown.tr);
       }
       _logining = false;
     });
@@ -63,12 +63,12 @@ class _TrudaBindTipState extends State<TrudaBindTip> {
       "token": token ?? '',
       "nickname": nickname ?? '',
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, doneCallback: (success, re) {
       _logining = false;
     }, showLoading: true);
     config.then((value) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       Get.back();
     });
   }

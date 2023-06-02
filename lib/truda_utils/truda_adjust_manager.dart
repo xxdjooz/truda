@@ -9,14 +9,14 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
-import 'package:truda/truda_utils/newhita_third_util.dart';
+import 'package:truda/truda_utils/truda_log.dart';
+import 'package:truda/truda_utils/truda_third_util.dart';
 
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/chargedialog/truda_charge_quick_controller.dart';
 
-class NewHitaAdjustManager {
+class TrudaAdjustManager {
   static AdjustAttribution? attributionChangedData; // adjust的归因数据
   static bool canUploadAdjust = false;
   static bool hadUploadAdjust = false;
@@ -36,61 +36,61 @@ class NewHitaAdjustManager {
         );
     config.attributionCallback = (AdjustAttribution attributionChangedData) {
       // 每次安装有这个回调
-      NewHitaLog.debug('[Adjust]: Attribution changed!');
+      TrudaLog.debug('[Adjust]: Attribution changed!');
       if (attributionChangedData.adid != null) {
-        NewHitaLog.debug('[Adjust]: Adid: ${attributionChangedData.adid!}');
+        TrudaLog.debug('[Adjust]: Adid: ${attributionChangedData.adid!}');
       }
       setAdjustInfo(attributionChangedData);
     };
 
     config.eventSuccessCallback = (AdjustEventSuccess eventSuccessData) {
-      NewHitaLog.debug('[Adjust]: Event tracking success!');
+      TrudaLog.debug('[Adjust]: Event tracking success!');
 
       if (eventSuccessData.eventToken != null) {
-        NewHitaLog.debug('[Adjust]: Event token: ${eventSuccessData.eventToken!}');
+        TrudaLog.debug('[Adjust]: Event token: ${eventSuccessData.eventToken!}');
       }
       if (eventSuccessData.message != null) {
-        NewHitaLog.debug('[Adjust]: Message: ${eventSuccessData.message!}');
+        TrudaLog.debug('[Adjust]: Message: ${eventSuccessData.message!}');
       }
       if (eventSuccessData.timestamp != null) {
-        NewHitaLog.debug('[Adjust]: Timestamp: ${eventSuccessData.timestamp!}');
+        TrudaLog.debug('[Adjust]: Timestamp: ${eventSuccessData.timestamp!}');
       }
       if (eventSuccessData.adid != null) {
-        NewHitaLog.debug('[Adjust]: Adid: ${eventSuccessData.adid!}');
+        TrudaLog.debug('[Adjust]: Adid: ${eventSuccessData.adid!}');
       }
       if (eventSuccessData.callbackId != null) {
-        NewHitaLog.debug('[Adjust]: Callback ID: ${eventSuccessData.callbackId!}');
+        TrudaLog.debug('[Adjust]: Callback ID: ${eventSuccessData.callbackId!}');
       }
       if (eventSuccessData.jsonResponse != null) {
-        NewHitaLog.debug(
+        TrudaLog.debug(
             '[Adjust]: JSON response: ${eventSuccessData.jsonResponse!}');
       }
     };
 
     config.eventFailureCallback = (AdjustEventFailure eventFailureData) {
-      NewHitaLog.debug('[Adjust]: Event tracking failure!');
+      TrudaLog.debug('[Adjust]: Event tracking failure!');
 
       if (eventFailureData.eventToken != null) {
-        NewHitaLog.debug('[Adjust]: Event token: ${eventFailureData.eventToken!}');
+        TrudaLog.debug('[Adjust]: Event token: ${eventFailureData.eventToken!}');
       }
       if (eventFailureData.message != null) {
-        NewHitaLog.debug('[Adjust]: Message: ${eventFailureData.message!}');
+        TrudaLog.debug('[Adjust]: Message: ${eventFailureData.message!}');
       }
       if (eventFailureData.timestamp != null) {
-        NewHitaLog.debug('[Adjust]: Timestamp: ${eventFailureData.timestamp!}');
+        TrudaLog.debug('[Adjust]: Timestamp: ${eventFailureData.timestamp!}');
       }
       if (eventFailureData.adid != null) {
-        NewHitaLog.debug('[Adjust]: Adid: ${eventFailureData.adid!}');
+        TrudaLog.debug('[Adjust]: Adid: ${eventFailureData.adid!}');
       }
       if (eventFailureData.callbackId != null) {
-        NewHitaLog.debug('[Adjust]: Callback ID: ${eventFailureData.callbackId!}');
+        TrudaLog.debug('[Adjust]: Callback ID: ${eventFailureData.callbackId!}');
       }
       if (eventFailureData.willRetry != null) {
-        NewHitaLog.debug(
+        TrudaLog.debug(
             '[Adjust]: Will retry: ${eventFailureData.willRetry}');
       }
       if (eventFailureData.jsonResponse != null) {
-        NewHitaLog.debug(
+        TrudaLog.debug(
             '[Adjust]: JSON response: ${eventFailureData.jsonResponse!}');
       }
     };
@@ -103,13 +103,13 @@ class NewHitaAdjustManager {
     if (TrudaConstants.isTestMode) {
       return;
     }
-    var referrer = await NewHitaThirdUtil.installReference();
+    var referrer = await TrudaThirdUtil.installReference();
     if (referrer == null || referrer.isEmpty) return;
     // 拿到Google的安装来源数据，如果是organic就不用管了
     if (referrer.contains('organic')) return;
     // 否则认为是广告的来源，调adjust的上传接口
     TrudaHttpUtil().post<void>(TrudaHttpUrls.attributionData, errCallback: (e) {
-      NewHitaLog.debug("upload adjust attribution  failed");
+      TrudaLog.debug("upload adjust attribution  failed");
     }, data: {
       "trackerToken": "",
       "trackerName": "",
@@ -131,27 +131,27 @@ class NewHitaAdjustManager {
   static requestTracking() {
     // Ask for tracking consent.
     Adjust.requestTrackingAuthorizationWithCompletionHandler().then((status) {
-      NewHitaLog.debug('[Adjust]: Authorization status update!');
+      TrudaLog.debug('[Adjust]: Authorization status update!');
       switch (status) {
         case 0:
-          NewHitaLog.debug(
+          TrudaLog.debug(
               '[Adjust]: Authorization status update: ATTrackingManagerAuthorizationStatusNotDetermined');
           break;
         case 1:
-          NewHitaLog.debug(
+          TrudaLog.debug(
               '[Adjust]: Authorization status update: ATTrackingManagerAuthorizationStatusRestricted');
           break;
         case 2:
-          NewHitaLog.debug(
+          TrudaLog.debug(
               '[Adjust]: Authorization status update: ATTrackingManagerAuthorizationStatusDenied');
           // ios要的
-          NewHitaThirdUtil.facebookSetAdvertiserTracking(false);
+          TrudaThirdUtil.facebookSetAdvertiserTracking(false);
           break;
         case 3:
-          NewHitaLog.debug(
+          TrudaLog.debug(
               '[Adjust]: Authorization status update: ATTrackingManagerAuthorizationStatusAuthorized');
           // ios要的
-          NewHitaThirdUtil.facebookSetAdvertiserTracking(true);
+          TrudaThirdUtil.facebookSetAdvertiserTracking(true);
           break;
       }
 
@@ -188,7 +188,7 @@ class NewHitaAdjustManager {
     if (TrudaMyInfoService.to.myDetail == null) return;
     if (attributionChangedData == null) return;
     if (hadUploadAdjust) return;
-    NewHitaLog.debug("upload adjust attribution");
+    TrudaLog.debug("upload adjust attribution");
     // 有上传了数据，但是network是空的情况, 不懂为啥，再次获取上传
     bool isNetworkNull = attributionChangedData?.network?.isNotEmpty != true;
     num cost = attributionChangedData!.costAmount ?? 0;
@@ -196,7 +196,7 @@ class NewHitaAdjustManager {
       cost = 0;
     }
     TrudaHttpUtil().post<void>(TrudaHttpUrls.attributionData, errCallback: (e) {
-      NewHitaLog.debug("upload adjust attribution  failed");
+      TrudaLog.debug("upload adjust attribution  failed");
     }, data: {
       "trackerToken": attributionChangedData!.trackerToken ?? "",
       "trackerName": attributionChangedData!.trackerName ?? "",
@@ -215,7 +215,7 @@ class NewHitaAdjustManager {
         _timer?.cancel();
         _timer == null;
       }
-      NewHitaLog.debug("upload adjust attribution   success");
+      TrudaLog.debug("upload adjust attribution   success");
       TrudaChargeQuickController.cleanCacheData();
     });
   }

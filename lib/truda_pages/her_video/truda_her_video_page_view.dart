@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_services/truda_host_video_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../truda_entities/truda_host_entity.dart';
@@ -42,14 +42,14 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
   @override
   void didPushNext() {
     super.didPushNext();
-    NewHitaLog.debug('_HerVideoPageState didPushNext');
+    TrudaLog.debug('_HerVideoPageState didPushNext');
     _streamController.add(0);
   }
 
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('_HerVideoPageState didPopNext');
+    TrudaLog.debug('_HerVideoPageState didPopNext');
   }
 
   @override
@@ -79,7 +79,7 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
       TrudaHostDetail detail = host as TrudaHostDetail;
       for (var index = 0; index < videoDataList.length; index++) {
         var video = videoDataList[index];
-        NewHitaLog.debug(
+        TrudaLog.debug(
             '_HerVideoPageState initState video.userId=${video.userId}  detail.userId=${detail.userId}');
         if (video.userId == detail.userId) {
           initIndex = index;
@@ -87,7 +87,7 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
         }
       }
     }
-    NewHitaLog.debug('_HerVideoPageState initState initIndex=$initIndex');
+    TrudaLog.debug('_HerVideoPageState initState initIndex=$initIndex');
     _pageController = PageController(initialPage: initIndex);
     WidgetsBinding.instance!.addObserver(this);
     DisableScreenshots().disableScreenshots(true);
@@ -97,7 +97,7 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
 
     _pageController.addListener(() {
       var p = _pageController.page!;
-      NewHitaLog.debug('NewHitaHerVideoPage2 _pageController $p');
+      TrudaLog.debug('NewHitaHerVideoPage2 _pageController $p');
       if (p % 1 == 0) {
         // loadIndex(p ~/ 1);
         final lastPage = currentPage;

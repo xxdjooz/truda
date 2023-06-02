@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
+import 'package:truda/truda_utils/truda_ai_help_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -91,7 +91,7 @@ class _TrudaShowServiceState extends State<TrudaShowService> {
             GestureDetector(
               onTap: () {
                 //  aihelp
-                NewHitaAihelpManager.enterMinAIHelp(
+                TrudaAihelpManager.enterMinAIHelp(
                     TrudaMyInfoService.to.getMyLeval()?.grade ?? 1, 0);
                 Get.back();
               },

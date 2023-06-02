@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../truda_entities/truda_order_entity.dart';
 import '../../../../truda_services/truda_my_info_service.dart';
-import '../../../../truda_utils/newhita_ai_help_manager.dart';
+import '../../../../truda_utils/truda_ai_help_manager.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 
 class TrudaOrderDetailPage extends StatefulWidget {
@@ -139,7 +139,7 @@ class _TrudaOrderDetailPageState extends State<TrudaOrderDetailPage> {
                                     color: TrudaColors.textColor999,
                                     fontSize: 14)),
                             Text(
-                                "${NewHitaFormatUtil.currencyToSymbol(data?.currencyCode)} ${data?.currencyFee != null ? data!.currencyFee! / 100.0 : '--'}",
+                                "${TrudaFormatUtil.currencyToSymbol(data?.currencyCode)} ${data?.currencyFee != null ? data!.currencyFee! / 100.0 : '--'}",
                                 style: TextStyle(
                                     color: TrudaColors.baseColorRed,
                                     fontSize: 16)),
@@ -257,7 +257,7 @@ class _TrudaOrderDetailPageState extends State<TrudaOrderDetailPage> {
                     //     CblAihelp.enterOrderAIHelp(level, data?.orderNo ?? "");
                     //   }
                     // }, (b) {}, null, true);
-                    NewHitaAihelpManager.enterOrderAIHelp(
+                    TrudaAihelpManager.enterOrderAIHelp(
                         TrudaMyInfoService.to.getMyLeval()?.grade ?? 1,
                         data?.orderNo ?? "");
                   },

@@ -10,7 +10,7 @@ import 'package:truda/truda_rtm/truda_rtm_msg_sender.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/ai/truda_ai_logic_utils.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 
 import '../../../truda_entities/truda_end_call_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
@@ -18,7 +18,7 @@ import '../../../truda_http/truda_common_api.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_event_bus_bean.dart';
 import '../../../truda_socket/truda_socket_entity.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_log.dart';
 
 /// 这个页面是有可能出现多个的，Controller要注意处理！！！
 class TrudaEndController extends GetxController {
@@ -33,7 +33,7 @@ class TrudaEndController extends GetxController {
     bool? useCard,
     bool? callHadShowCount20,
   }) {
-    NewHitaLog.debug('TrudaEndController startMeAndOff');
+    TrudaLog.debug('TrudaEndController startMeAndOff');
     Map<String, dynamic> map = {};
     map['herId'] = herId;
     map['channelId'] = channelId;
@@ -129,14 +129,14 @@ class TrudaEndController extends GetxController {
 
   /// 结束通话
   void _endCall() {
-    NewHitaLog.debug('TrudaEndController _endCall');
+    TrudaLog.debug('TrudaEndController _endCall');
     // aic没有 channelId
     if (channelId.isEmpty) {
       var entity = TrudaEndCallEntity();
       // 这个1为了触发页面显示时间
       entity.callAmount = 0;
       entity.giftAmount = 0;
-      entity.callTime = NewHitaFormatUtil.getTimeStrFromSecond(callTime);
+      entity.callTime = TrudaFormatUtil.getTimeStrFromSecond(callTime);
       entity.usedProp = useCard;
       endCallEntity.value = entity;
 
@@ -147,7 +147,7 @@ class TrudaEndController extends GetxController {
           callType: callType,
           callStatus: TrudaCallStatus.PICK_UP,
           dateInsert: DateTime.now().millisecondsSinceEpoch,
-          duration: NewHitaFormatUtil.getTimeStrFromSecond(callTime));
+          duration: TrudaFormatUtil.getTimeStrFromSecond(callTime));
       return;
     }
     TrudaHttpUtil()
@@ -164,7 +164,7 @@ class TrudaEndController extends GetxController {
       endCallEntity.value = value;
       // 拨打方发消息 aib在拨打时如果传了aiType,主播端会发消息
       if (callType == 0) {
-        NewHitaLog.debug('TrudaEndController _endCall endCallApi');
+        TrudaLog.debug('TrudaEndController _endCall endCallApi');
         TrudaRtmMsgSender.sendCallState(
             herId, TrudaCallStatus.PICK_UP, value.totalCallTime);
 

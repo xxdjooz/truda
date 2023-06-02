@@ -12,8 +12,8 @@ import '../../truda_common/truda_language_key.dart';
 import '../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_gift_follow_tip.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_gift_follow_tip.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
 import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/newhita_net_image.dart';
@@ -44,7 +44,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('TrudaCallPage didPopNext');
+    TrudaLog.debug('TrudaCallPage didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
     Get.find<TrudaCallController>().didPopNext();
   }
@@ -257,7 +257,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                           child: TrudaCallWidget(),
                         ),
                         Positioned(
-                          child: NewHitaGiftFollowTip(
+                          child: TrudaGiftFollowTip(
                             controller: controller.tipController,
                           ),
                         ),

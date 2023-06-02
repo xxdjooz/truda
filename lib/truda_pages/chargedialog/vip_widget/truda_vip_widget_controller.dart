@@ -12,7 +12,7 @@ import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 import '../../charge/truda_charge_new_channel_dialog.dart';
 import '../../charge/truda_google_billing.dart';
 import '../../some/truda_web_page.dart';
@@ -94,7 +94,7 @@ class TrudaVipWidgetController extends GetxController {
     TrudaHttpUtil().post<List<TrudaPayQuickCommodite>>(
       TrudaHttpUrls.getVipProduct,
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       },
     ).then((value) {
       setData(value);

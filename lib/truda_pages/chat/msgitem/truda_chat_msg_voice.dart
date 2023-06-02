@@ -5,7 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
-import 'package:truda/truda_utils/newhita_voice_player.dart';
+import 'package:truda/truda_utils/truda_voice_player.dart';
 
 import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_database/entity/truda_msg_entity.dart';
@@ -41,9 +41,9 @@ class _TrudaChatMsgVoiceState extends State<TrudaChatMsgVoice> {
     // 收到的消息有rtmMsg，发送中的图片消息还没有
     url = rtmMsg?.voiceUrl;
     // NewHitaLog.debug("_NewHitaChatMsgVoiceState url=$url ${rtmMsg?.duration}");
-    sub = NewHitaAudioPlayer().onPlayerStateChanged.listen((event) {
+    sub = TrudaAudioPlayer().onPlayerStateChanged.listen((event) {
       // NewHitaLog.debug("state change event=$event");
-      final bool isCurrent = url == NewHitaAudioPlayer().currentUrl;
+      final bool isCurrent = url == TrudaAudioPlayer().currentUrl;
       switch (event) {
         case PlayerState.playing:
           setState(() {
@@ -66,7 +66,7 @@ class _TrudaChatMsgVoiceState extends State<TrudaChatMsgVoice> {
 
   void playIt() {
     if (url == null) return;
-    NewHitaAudioPlayer().playUrl(url!);
+    TrudaAudioPlayer().playUrl(url!);
   }
 
   @override

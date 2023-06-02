@@ -6,7 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_entities/truda_link_content_entity.dart';
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 
 class TrudaMyMomentController extends GetxController {
   List<TrudaLinkContent> dataList = [];
@@ -49,7 +49,7 @@ class TrudaMyMomentController extends GetxController {
       //   "pageSize": _pageSize,
       // },
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       },
       showLoading: true,
     ).then((value) {
@@ -62,10 +62,10 @@ class TrudaMyMomentController extends GetxController {
   void removeBlack(String rId) {
     TrudaHttpUtil().post<void>(TrudaHttpUrls.delContent + rId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }, showLoading: true).then((value) {
       onRefresh();
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
     });
   }
 }

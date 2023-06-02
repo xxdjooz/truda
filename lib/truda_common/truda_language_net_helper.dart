@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_translate_entity.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
 import '../truda_services/truda_app_info_service.dart';
@@ -17,7 +17,7 @@ import 'truda_constants.dart';
 class TrudaLanguageNetHelper {
   @Deprecated('改用新的获取加密的翻译文案的方法 handleLanguageJsonV2')
   static handleLanguageJson() {
-    NewHitaLog.debug("updateLanguage postRequest");
+    TrudaLog.debug("updateLanguage postRequest");
     //请求接口 返回支持的 languagecode 以及 翻译json文件
     TrudaHttpUtil()
         .post<TrudaTranslateData>(TrudaHttpUrls.getTransationsApi)
@@ -25,7 +25,7 @@ class TrudaLanguageNetHelper {
       //转服务器语言数据为map =》用户端
       String languageurl = value.configUrl!;
       int configVersion = value.configVersion ?? 0;
-      NewHitaLog.debug(
+      TrudaLog.debug(
           "updateLanguage languageurl= $languageurl?v=$configVersion");
       // 这里拼接?v=是为了每次有新版本就去下载，没有新版本用缓存的
       DefaultCacheManager().downloadFile("$languageurl?v=$configVersion")
@@ -94,7 +94,7 @@ class TrudaLanguageNetHelper {
     if (map.keys.length > 0) {
       String languageCode = Get.deviceLocale?.languageCode ?? "en";
       var oldMap = Get.translations[languageCode];
-      NewHitaLog.debug("updateLanguage languageCode = $languageCode");
+      TrudaLog.debug("updateLanguage languageCode = $languageCode");
       var newMap = <String, String>{};
       if (oldMap != null && oldMap.isNotEmpty) {
         newMap.addAll(oldMap);
@@ -104,7 +104,7 @@ class TrudaLanguageNetHelper {
       } else {
         newMap.addAll(map);
       }
-      NewHitaLog.debug(
+      TrudaLog.debug(
           "updateLanguage map->${map.length} newMap->${newMap.length}");
       Get.addTranslations({languageCode: newMap});
       Get.updateLocale(Locale(languageCode));
@@ -113,7 +113,7 @@ class TrudaLanguageNetHelper {
 
   // 下载
   static Future<String?> _downLoadLanguageStr(String url, int appNumber) async {
-    NewHitaLog.debug("updateLanguage languageurl= $url");
+    TrudaLog.debug("updateLanguage languageurl= $url");
     final dio = Dio();
     final response = await dio.get<String>(url);
     dio.close();

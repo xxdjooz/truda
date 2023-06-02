@@ -5,7 +5,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_rtm/truda_rtm_call_handler.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_handler.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
@@ -55,14 +55,14 @@ class TrudaRtmManager {
           str = "state 5:CONNECTION_STATE_ABORTED";
           break;
       }
-      NewHitaLog.debug("rtm connect $str reason=$reason");
+      TrudaLog.debug("rtm connect $str reason=$reason");
       switch (state) {
         case 2:
         case 4:
           loginState = 2;
           break;
         case 3:
-          NewHitaLog.debug("rtm connected!!!!! 😁");
+          TrudaLog.debug("rtm connected!!!!! 😁");
           loginState = 1;
           break;
         default:

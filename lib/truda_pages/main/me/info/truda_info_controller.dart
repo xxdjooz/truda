@@ -5,13 +5,13 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_choose_image_util.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_choose_image_util.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_entities/truda_info_entity.dart';
-import '../../../../truda_utils/newhita_log.dart';
+import '../../../../truda_utils/truda_log.dart';
 
 class TrudaInfoController extends GetxController {
   var dnd = false.obs;
@@ -27,18 +27,18 @@ class TrudaInfoController extends GetxController {
   }
 
   void changeAvatar() {
-    NewHitaChooseImageUtil(
+    TrudaChooseImageUtil(
         type: 0,
         callBack: (uploader, type, url, path) {
           switch (type) {
-            case NewHitaUploadType.cancel:
+            case TrudaUploadType.cancel:
               {}
               break;
-            case NewHitaUploadType.begin:
-              NewHitaLoading.show();
+            case TrudaUploadType.begin:
+              TrudaLoading.show();
               break;
-            case NewHitaUploadType.success:
-              NewHitaLoading.dismiss();
+            case TrudaUploadType.success:
+              TrudaLoading.dismiss();
               TrudaHttpUtil()
                   .post<void>(
                 TrudaHttpUrls.updateUserInfoApi,
@@ -50,8 +50,8 @@ class TrudaInfoController extends GetxController {
                 update();
               });
               break;
-            case NewHitaUploadType.failed:
-              NewHitaLoading.dismiss();
+            case TrudaUploadType.failed:
+              TrudaLoading.dismiss();
               break;
           }
         }).openChooseDialog();
@@ -74,7 +74,7 @@ class TrudaInfoController extends GetxController {
             baseOffset: nameTextController.text.length,
             extentOffset: nameTextController.text.length);
       }
-      NewHitaLog.debug("输入的内容 = ${nameTextController.text}");
+      TrudaLog.debug("输入的内容 = ${nameTextController.text}");
     });
 
     nameTextController.text = name;
@@ -83,16 +83,16 @@ class TrudaInfoController extends GetxController {
 
   void changeGender(int gender) {
     if (TrudaStorageService.to.getHadSetGender()) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_mine_edit_sex.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_mine_edit_sex.tr);
       return;
     }
     TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
         data: {"gender": gender}, errCallback: (e) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
     }).then((value) {
       myDetail?.gender = gender;
       update();
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
       TrudaStorageService.to.saveHadSetGender();
     });
   }
@@ -116,24 +116,24 @@ class TrudaInfoController extends GetxController {
 
       if (hasSenstiveWord == true) {
         // NewHitaLoading.show("您输入的文字含有违规内容${containSensitiveWord}，请重新输入");
-        NewHitaLoading.toast(TrudaLanguageKey.newhita_edit_is_sensitive.tr);
+        TrudaLoading.toast(TrudaLanguageKey.newhita_edit_is_sensitive.tr);
         return;
       }
 
-      NewHitaLog.debug("去除尾部的空格符");
+      TrudaLog.debug("去除尾部的空格符");
       String finalS = nameTextController.text.replaceAll(RegExp(r'\s*$'), "");
       finalS = finalS.replaceAll(RegExp(r"\d"), "*");
-      NewHitaLoading.show();
+      TrudaLoading.show();
       TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
           data: {"nickname": finalS}, errCallback: (e) {
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
       }).then((value) {
         myDetail?.nickname = finalS;
         update();
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
       });
     } else {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_not_entered.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_not_entered.tr);
     }
   }
 
@@ -151,7 +151,7 @@ class TrudaInfoController extends GetxController {
             baseOffset: introTextController.text.length,
             extentOffset: introTextController.text.length);
       }
-      NewHitaLog.debug("输入的内容 = ${introTextController.text}");
+      TrudaLog.debug("输入的内容 = ${introTextController.text}");
     });
 
     introTextController.text = intro;
@@ -176,20 +176,20 @@ class TrudaInfoController extends GetxController {
       String finalS = introTextController.text.replaceAll(RegExp(r'\s*$'), "");
       finalS = finalS.replaceAll(RegExp(r"\d"), "*");
       if (hasSenstiveWord == true) {
-        NewHitaLoading.toast(TrudaLanguageKey.newhita_edit_is_sensitive.tr);
+        TrudaLoading.toast(TrudaLanguageKey.newhita_edit_is_sensitive.tr);
         return;
       }
-      NewHitaLoading.show();
+      TrudaLoading.show();
       TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
           data: {"intro": finalS}, errCallback: (e) {
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
       }).then((value) {
         myDetail?.intro = finalS;
         update();
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
       });
     } else {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_not_entered.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_not_entered.tr);
     }
   }
 
@@ -216,14 +216,14 @@ class TrudaInfoController extends GetxController {
       maxTime: DateTime(dateTime.year - 18, dateTime.month, dateTime.day),
       onChanged: (date) {},
       onConfirm: (date) {
-        NewHitaLoading.show();
+        TrudaLoading.show();
         TrudaHttpUtil().post<void>(TrudaHttpUrls.updateUserInfoApi,
             data: {"birthday": date.millisecondsSinceEpoch}, errCallback: (e) {
-          NewHitaLoading.dismiss();
+          TrudaLoading.dismiss();
         }).then((value) {
           myDetail?.birthday = date.millisecondsSinceEpoch;
           update();
-          NewHitaLoading.dismiss();
+          TrudaLoading.dismiss();
         });
       },
       currentTime: birthday ?? DateTime.now(),

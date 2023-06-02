@@ -21,8 +21,8 @@ import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_rtm/truda_rtm_manager.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../some/truda_web_page.dart';
 import '../truda_login_agree_dialog.dart';
@@ -87,11 +87,11 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
 
   void accountLogin() {
     if (_textEditingController.text.length <= 0) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_prompt_username.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_prompt_username.tr);
       return;
     }
     if (_textEditingController2.text.length <= 0) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_prompt_password.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_prompt_password.tr);
       return;
     }
     TrudaHttpUtil()
@@ -106,13 +106,13 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
     });
   }
   void _getDetail() {
-    NewHitaLoading.show();
-    NewHitaLog.debug('NewHitaMeController refreshMe()');
+    TrudaLoading.show();
+    TrudaLog.debug('NewHitaMeController refreshMe()');
     TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
         errCallback: (err) {
-          NewHitaLoading.dismiss();
+          TrudaLoading.dismiss();
         }).then((value) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
       //线上版本
       if (value.startBirthday == "fail" &&
           value.timeBirthday == false &&

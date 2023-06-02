@@ -1,4 +1,4 @@
-class NewHitaFirebaseManager {
+class TrudaFirebaseManager {
   static Future<void> init() async {}
 
   static Future<String> getToken() async {
@@ -24,7 +24,7 @@ class NewHitaFirebaseManager {
 // import '../truda_rtm/truda_rtm_msg_entity.dart';
 // import '../truda_services/truda_my_info_service.dart';
 // import '../truda_services/truda_storage_service.dart';
-// import 'newhita_log.dart';
+// import 'truda_log.dart';
 //
 // /**
 //  *
@@ -35,7 +35,7 @@ class NewHitaFirebaseManager {
 //
 // ///FCM配置
 //
-// class NewHitaFirebaseManager {
+// class TrudaFirebaseManager {
 //   static bool isAppFront = true;
 //   static Future<String> getToken() async {
 //     var token = await FirebaseMessaging.instance.getToken();

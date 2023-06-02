@@ -11,7 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../truda_common/truda_constants.dart';
-import '../../../truda_utils/newhita_format_util.dart';
+import '../../../truda_utils/truda_format_util.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../../host/truda_host_controller.dart';

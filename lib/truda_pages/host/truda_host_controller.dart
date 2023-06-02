@@ -9,10 +9,10 @@ import '../../truda_database/entity/truda_her_entity.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_entities/truda_moment_entity.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../../truda_utils/newhita_loading.dart';
+import '../../truda_utils/truda_loading.dart';
 import 'dart:ui' as ui;
 
-import '../../truda_utils/newhita_ui_image_util.dart';
+import '../../truda_utils/truda_ui_image_util.dart';
 
 class TrudaHostController extends GetxController {
   late String herId;
@@ -38,7 +38,7 @@ class TrudaHostController extends GetxController {
     _getHostDetail();
     _getMomentList();
 
-    NewHitaUiImageUtil.getAssetImage(
+    TrudaUiImageUtil.getAssetImage(
         'assets/images_sized/newhita_circle_indicator.png')
         .then((value) {
       indicatorImage = value;
@@ -47,11 +47,11 @@ class TrudaHostController extends GetxController {
   }
 
   void _getHostDetail() {
-    NewHitaLoading.show();
+    TrudaLoading.show();
     TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         data: {'vipVideo': 1}, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
-      NewHitaLoading.dismiss();
+      TrudaLoading.toast(err.message);
+      TrudaLoading.dismiss();
     }).then((value) {
       detail = value;
       portrait = value.portrait ?? '';
@@ -60,7 +60,7 @@ class TrudaHostController extends GetxController {
       TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           value.nickname ?? '', value.userId!,
           portrait: value.portrait));
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
     });
   }
 
@@ -81,10 +81,10 @@ class TrudaHostController extends GetxController {
   void handleBlack() {
     TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       update();
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
     });
   }
 

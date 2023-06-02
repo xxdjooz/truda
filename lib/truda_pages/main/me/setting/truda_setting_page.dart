@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_dialogs/truda_dialog_confirm.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
@@ -35,7 +35,7 @@ class TrudaSettingPage extends GetView<TrudaSettingController> {
                 ),
                 onTap: () async {
                   var result = await Get.toNamed(TrudaAppPages.test);
-                  NewHitaLog.debug('NewHitaSettingPage test result=$result');
+                  TrudaLog.debug('NewHitaSettingPage test result=$result');
                 },
               )
           ],

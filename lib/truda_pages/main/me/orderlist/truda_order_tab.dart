@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../../truda_routes/truda_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
@@ -44,13 +44,13 @@ class _TrudaOrderTabState extends State<TrudaOrderTab>
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('NewHitaMsgTab didPopNext');
+    TrudaLog.debug('NewHitaMsgTab didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
   }
 
   @override
   Widget build(BuildContext context) {
-    NewHitaLog.debug("NewHitaMsgPage build");
+    TrudaLog.debug("NewHitaMsgPage build");
     return Scaffold(
       backgroundColor: TrudaColors.baseColorBlackBg,
       appBar: NewHitaAppBar(

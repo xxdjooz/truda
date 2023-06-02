@@ -6,7 +6,7 @@ import 'package:truda/truda_services/truda_my_info_service.dart';
 import '../truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import '../truda_routes/truda_pages.dart';
 
-class NewHitaCheckCallingUtil {
+class TrudaCheckCallingUtil {
   // 刚给这个主播打完电话，就不弹出她的aib了
   // static String? herIdRecently;
   // static int herIdTime = 0;

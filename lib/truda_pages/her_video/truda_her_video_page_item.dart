@@ -12,7 +12,7 @@ import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/her_video/truda_cache_page.dart';
 import 'package:truda/truda_pages/her_video/truda_video_progress.dart';
 import 'package:truda/truda_pages/host/truda_host_controller.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:truda/truda_widget/newhita_app_bar.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
@@ -21,8 +21,8 @@ import '../../truda_dialogs/truda_sheet_host_video_option.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_format_util.dart';
-import '../../truda_utils/newhita_loading.dart';
+import '../../truda_utils/truda_format_util.dart';
+import '../../truda_utils/truda_loading.dart';
 import '../main/home/truda_host_widget.dart';
 
 ///
@@ -115,7 +115,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
   void dispose() {
     WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
-    NewHitaLog.debug('_TikTokVideoPageState  dispose');
+    TrudaLog.debug('_TikTokVideoPageState  dispose');
     sub.cancel();
   }
 
@@ -254,7 +254,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
                                             height: 12,
                                           ),
                                           Text(
-                                            '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(widget.detail.birthday ?? 0))}',
+                                            '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(widget.detail.birthday ?? 0))}',
                                             style: const TextStyle(
                                                 color: TrudaColors.white,
                                                 fontSize: 12),

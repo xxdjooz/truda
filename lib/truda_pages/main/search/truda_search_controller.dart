@@ -5,7 +5,7 @@ import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_rtm/truda_rtm_manager.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
 import '../../../truda_entities/truda_config_entity.dart';
 import '../../host/truda_host_controller.dart';
@@ -27,10 +27,10 @@ class TrudaSearchController extends GetxController {
   }
 
   void search(String str) {
-    NewHitaLoading.show();
+    TrudaLoading.show();
     TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.searchUpApi + str,
         doneCallback: (bool success, String message) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
     }).then((value) {
       TrudaHostController.startMe(value.userId!, value.portrait);
     });
@@ -42,7 +42,7 @@ class TrudaSearchController extends GetxController {
         TrudaHttpUrls.commandUpListApi + "-1",
         data: {},
         pageCallback: (has) {}, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       list = value;
       update();

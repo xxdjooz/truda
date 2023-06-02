@@ -9,8 +9,8 @@ import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_rtm/truda_rtm_manager.dart';
 import '../../truda_services/truda_my_info_service.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_log.dart';
 
 // 拿到登录数据后先获取详情再去主页面
 void whenGotLoginToMain(TrudaLogin theLogin){
@@ -18,10 +18,10 @@ void whenGotLoginToMain(TrudaLogin theLogin){
   _getDetail();
 }
 void _getDetail() {
-  NewHitaLog.debug('NewHitaMeController refreshMe()');
+  TrudaLog.debug('NewHitaMeController refreshMe()');
   TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
       errCallback: (err) {
-        NewHitaLoading.toast(err.toString());
+        TrudaLoading.toast(err.toString());
       }, showLoading: true).then((value) {
     getDetailToMain(value);
   });

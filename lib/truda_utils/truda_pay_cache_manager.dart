@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
-import 'package:truda/truda_utils/newhita_pay_event_track.dart';
+import 'package:truda/truda_utils/truda_log.dart';
+import 'package:truda/truda_utils/truda_pay_event_track.dart';
 
 import '../truda_database/entity/truda_order_entity.dart';
 import '../truda_entities/truda_order_check_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 
-class NewHitaPayCacheManager {
+class TrudaPayCacheManager {
   // 检查缓存的订单，支付成功的上报后台和三方平台
   static checkOrderList() async {
     List<NewHitaOrderEntity>? list =
@@ -56,7 +56,7 @@ class NewHitaPayCacheManager {
         .then((value) {
       orderEntity.isUploadServer = true;
       TrudaStorageService.to.objectBoxOrder.orderBox.put(orderEntity);
-      NewHitaPayEventTrack.instance.trackPay(orderEntity);
+      TrudaPayEventTrack.instance.trackPay(orderEntity);
     });
   }
 

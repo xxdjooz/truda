@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../truda_dialogs/truda_sheet_msg_option.dart';
 import '../../../truda_routes/truda_pages.dart';
-import '../../../truda_utils/newhita_ui_image_util.dart';
+import '../../../truda_utils/truda_ui_image_util.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
 import '../home/truda_home_page.dart';
 import 'truda_msg_page.dart';
@@ -33,7 +33,7 @@ class _TrudaMsgTabState extends State<TrudaMsgTab>
   void initState() {
     super.initState();
     controller = TabController(length: 1, vsync: this);
-    NewHitaUiImageUtil.getAssetImage('assets/images_sized/newhita_circle_indicator.png')
+    TrudaUiImageUtil.getAssetImage('assets/images_sized/newhita_circle_indicator.png')
         .then((value) {
       setState(() {
         indicator = value;
@@ -56,13 +56,13 @@ class _TrudaMsgTabState extends State<TrudaMsgTab>
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('NewHitaMsgTab didPopNext');
+    TrudaLog.debug('NewHitaMsgTab didPopNext');
     // 发现Get.bottomSheet的弹窗关闭也会走到这里
   }
 
   @override
   Widget build(BuildContext context) {
-    NewHitaLog.debug("NewHitaMsgPage build");
+    TrudaLog.debug("NewHitaMsgPage build");
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(

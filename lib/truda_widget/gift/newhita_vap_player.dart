@@ -3,8 +3,8 @@ import 'package:flutter_vap2/vap_view.dart';
 import 'package:truda/truda_widget/newhita_cache_manager.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
-import '../../truda_utils/newhita_log.dart';
-import '../../truda_utils/newhita_queue_util.dart';
+import '../../truda_utils/truda_log.dart';
+import '../../truda_utils/truda_queue_util.dart';
 import 'newhita_gift_animate.dart';
 
 class NewHitaVapPlayer extends StatefulWidget {
@@ -20,15 +20,15 @@ class NewHitaVapController {
   _NewHitaVapPlayerState? state;
 
   void playGift(TrudaGiftEntity gift) {
-    NewHitaLog.debug('NewHitaVapPlayer addGift ${gift.animEffectUrl}');
+    TrudaLog.debug('NewHitaVapPlayer addGift ${gift.animEffectUrl}');
     if (state == null) return;
     state?.showPush(gift);
     if (gift.animEffectUrl == null || gift.animEffectUrl!.isEmpty) return;
     NewHitaGiftCacheManager.instance
         .getSingleFile(gift.animEffectUrl ?? '')
         .then((value) {
-      NewHitaLog.debug('NewHitaVapPlayer getSingleFile ${value.path}');
-      NewHitaQueueUtil.get("vapQueue")?.addTask(() async {
+      TrudaLog.debug('NewHitaVapPlayer getSingleFile ${value.path}');
+      TrudaQueueUtil.get("vapQueue")?.addTask(() async {
         // if (state != null) {
         //   state?.play(true);
         //   await state?.vapViewController.playAsset(value.path);
@@ -40,7 +40,7 @@ class NewHitaVapController {
   }
 
   void stop() {
-    NewHitaQueueUtil.get("vapQueue")?.cancelTask();
+    TrudaQueueUtil.get("vapQueue")?.cancelTask();
   }
 }
 
@@ -57,14 +57,14 @@ class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
   }
 
   void play(bool playing) {
-    NewHitaLog.debug('NewHitaVapPlayer play = ${playing}');
+    TrudaLog.debug('NewHitaVapPlayer play = ${playing}');
     setState(() {
       this.playing = playing;
     });
   }
 
   Future playPath(String path) async {
-    NewHitaLog.debug('NewHitaVapPlayer playPath = ${path}');
+    TrudaLog.debug('NewHitaVapPlayer playPath = ${path}');
     setState(() {
       playing = true;
     });
@@ -75,7 +75,7 @@ class _NewHitaVapPlayerState extends State<NewHitaVapPlayer> {
   }
 
   Future playPath2(String path) async {
-    NewHitaLog.debug('NewHitaVapPlayer playPath = ${path}');
+    TrudaLog.debug('NewHitaVapPlayer playPath = ${path}');
     setState(() {
       playing = true;
       this.path = path;

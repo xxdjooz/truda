@@ -6,7 +6,7 @@ import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 
 class TrudaWebPage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
             JavascriptChannel(
                 name: "flutterapp",
                 onMessageReceived: (JavascriptMessage message) {
-                  NewHitaLog.debug("js交互传值 ${message.message}");
+                  TrudaLog.debug("js交互传值 ${message.message}");
                   if (message.message == "goback") {
                     Get.back();
                   } else if (message.message == "grade") {
@@ -141,7 +141,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
           navigationDelegate: (NavigationRequest request) async {
             // 不以http开头, 可能是要打开三方app,使用框架url_launcher试试
             if (!request.url.startsWith('http')) {
-              NewHitaLog.debug('blocking navigation to $request');
+              TrudaLog.debug('blocking navigation to $request');
               // if (await canLaunch(request.url)) {
               //   launch(request.url);
               //   return NavigationDecision.prevent;
@@ -152,7 +152,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
                 return NavigationDecision.prevent;
               }
             }
-            NewHitaLog.debug('allowing navigation to $request');
+            TrudaLog.debug('allowing navigation to $request');
             // return NavigationDecision.navigate;
             //已经被拦截过一次 表示referer已经放置 跳转通过
             if (_lastUrl == request.url) {

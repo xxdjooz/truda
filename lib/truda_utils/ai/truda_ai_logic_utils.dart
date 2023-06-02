@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
 import '../../truda_common/truda_constants.dart';
 import '../../truda_database/entity/truda_her_entity.dart';
@@ -16,7 +16,7 @@ import '../../truda_pages/call/remote/truda_remote_controller.dart';
 import '../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../../truda_services/truda_event_bus_bean.dart';
 import '../../truda_services/truda_my_info_service.dart';
-import '../newhita_check_calling_util.dart';
+import '../truda_check_calling_util.dart';
 
 /// 需求：获取到配置后，按接听能力（钻石体验卡）分组，
 /// aiv逻辑，次数走完，再走aib
@@ -130,7 +130,7 @@ class TrudaAiLogicUtils {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (dead) return;
       // 打电话时停止计时
-      if (NewHitaCheckCallingUtil.checkCalling()) return;
+      if (TrudaCheckCallingUtil.checkCalling()) return;
       // NewHitaLog.debug("==============   ${nextTime}     $rejectCount");
       // 本轮间隔时间
       final intervals = totalTime - startingTime;
@@ -144,9 +144,9 @@ class TrudaAiLogicUtils {
       // arrive 小于等于0，说明该拨打了
       final arrive = needNextTime - intervals;
       // 如果不能发起aib,aiv的情况,arrive快到了，先不增加计时
-      bool canNotAib = (aiType == TrudaAiType.aib) && !NewHitaCheckCallingUtil.checkCanAib();
+      bool canNotAib = (aiType == TrudaAiType.aib) && !TrudaCheckCallingUtil.checkCanAib();
       bool canNotAic = (aiType == TrudaAiType.aiv) &&
-          !NewHitaCheckCallingUtil.checkCanAic();
+          !TrudaCheckCallingUtil.checkCanAic();
       // 就是说剩下2秒要拨打了，但是此时不能拨打，先不增加计时
       if (canNotAib && arrive < 3) {
         return;
@@ -370,7 +370,7 @@ class TrudaAiLogicUtils {
   ///触发 aib通话逻辑
   void startAibCall() {
     _log("==============   aib");
-    if (NewHitaCheckCallingUtil.checkCanAib()) {
+    if (TrudaCheckCallingUtil.checkCanAib()) {
       //检查是否能调起aib
       TrudaHttpUtil().post<TrudaRTMMsgAIB>(TrudaHttpUrls.getAibAnchor,
           errCallback: (error) {}, doneCallback: (isSuccess, msg) {
@@ -387,7 +387,7 @@ class TrudaAiLogicUtils {
         aibShowTimes++;
         interceptTime = 5;
         if (TrudaConstants.isTestMode) {
-          NewHitaLoading.toast('测试提示：aib ');
+          TrudaLoading.toast('测试提示：aib ');
         }
         // } else {
         //   //否者重新调起
@@ -411,7 +411,7 @@ class TrudaAiLogicUtils {
   /// 触发 aic 通话逻辑
   void startAicCall() {
     _log("==============   aic");
-    if (NewHitaCheckCallingUtil.checkCanAic()) {
+    if (TrudaCheckCallingUtil.checkCanAic()) {
       if (_aivBean != null) {
         _startAicBean(_aivBean!);
         _aivBean = null;
@@ -427,7 +427,7 @@ class TrudaAiLogicUtils {
         }
       }).then((value) {
         //  不能拨打就缓存一次
-        if (!NewHitaCheckCallingUtil.checkCanAic()) {
+        if (!TrudaCheckCallingUtil.checkCanAic()) {
           _aivBean = value;
           _intercept();
           return;
@@ -437,7 +437,7 @@ class TrudaAiLogicUtils {
         // _intercept();
         if (error == 0) {
           if (TrudaConstants.isTestMode) {
-            NewHitaLoading.toast('测试提示：没拉到aiv,先拉aib ',
+            TrudaLoading.toast('测试提示：没拉到aiv,先拉aib ',
                 duration: const Duration(seconds: 4));
           }
           startAibCall();
@@ -464,7 +464,7 @@ class TrudaAiLogicUtils {
       setNextTimer();
       interceptTime = 5;
       if (TrudaConstants.isTestMode) {
-        NewHitaLoading.toast('测试：aiv 第$aivShowTimes次 （共${_aivMaxTimes()}）');
+        TrudaLoading.toast('测试：aiv 第$aivShowTimes次 （共${_aivMaxTimes()}）');
       }
     }
     TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
@@ -508,7 +508,7 @@ class TrudaAiLogicUtils {
       setNextTimer();
 
       if (TrudaConstants.isTestMode) {
-        NewHitaLoading.toast('测试提示：aiv 第$aivShowTimes次 （共${_aivMaxTimes()}）');
+        TrudaLoading.toast('测试提示：aiv 第$aivShowTimes次 （共${_aivMaxTimes()}）');
       }
     }
   }

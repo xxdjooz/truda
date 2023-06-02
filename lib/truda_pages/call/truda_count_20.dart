@@ -6,7 +6,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_common_type.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../truda_common/truda_constants.dart';
@@ -179,7 +179,7 @@ class _TrudaTipRechargeCircleState extends State<TrudaTipRechargeCircle> {
     countTime.value = widget.leftSecond;
     _timerLink = Timer.periodic(const Duration(seconds: 1), (timer) {
       countTime--;
-      NewHitaLog.debug('countTime.value == $countTime');
+      TrudaLog.debug('countTime.value == $countTime');
       if (countTime.value == 1) {
         _timerLink?.cancel();
         _timerLink = null;
@@ -224,7 +224,7 @@ class _TrudaTipRechargeCircleState extends State<TrudaTipRechargeCircle> {
       // }
       currentChatTime = countTime.value;
       percent = currentChatTime / widget.leftSecond;
-      NewHitaLog.debug('countTime == $currentChatTime $percent');
+      TrudaLog.debug('countTime == $currentChatTime $percent');
       if (percent < 0 || percent > 1) {
         percent = 0;
       }

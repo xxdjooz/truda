@@ -25,7 +25,7 @@ import 'package:truda/truda_rtm/truda_rtm_manager.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_socket/truda_socket_manager.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
@@ -295,7 +295,7 @@ class TrudaAppPages {
   ];
 
   static void logout() {
-    NewHitaLog.debug('logout()');
+    TrudaLog.debug('logout()');
     TrudaMyInfoService.to.clear();
     Get.offAllNamed(login);
     TrudaRtmManager.closeRtm();

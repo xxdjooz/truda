@@ -6,21 +6,21 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_database/entity/truda_order_entity.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
-import 'package:truda/truda_utils/newhita_third_util.dart';
+import 'package:truda/truda_utils/truda_log.dart';
+import 'package:truda/truda_utils/truda_third_util.dart';
 
 import '../truda_entities/truda_config_entity.dart';
 
-class NewHitaPayEventTrack {
-  factory NewHitaPayEventTrack() => _getInstance();
+class TrudaPayEventTrack {
+  factory TrudaPayEventTrack() => _getInstance();
 
-  static NewHitaPayEventTrack get instance => _getInstance();
+  static TrudaPayEventTrack get instance => _getInstance();
 
-  static NewHitaPayEventTrack? _instance;
+  static TrudaPayEventTrack? _instance;
 
-  NewHitaPayEventTrack._internal();
-  static NewHitaPayEventTrack _getInstance() {
-    _instance ??= NewHitaPayEventTrack._internal();
+  TrudaPayEventTrack._internal();
+  static TrudaPayEventTrack _getInstance() {
+    _instance ??= TrudaPayEventTrack._internal();
     return _instance!;
   }
 
@@ -40,7 +40,7 @@ class NewHitaPayEventTrack {
         adScale = payScale.adjustScale ?? 1.0;
       }
     }
-    NewHitaLog.debug(
+    TrudaLog.debug(
         "trackPay order=${order.price} ${order.currency} ${order.orderNo}");
     double price = double.parse(order.price ?? "0") / 100; // yuan
     // double scale = double.parse(NewHitaMyInfoService.to.config?.scale ?? "1");
@@ -61,7 +61,7 @@ class NewHitaPayEventTrack {
       // map["fb_search_string"] = order.orderNo ?? "1";
       map["fb_search_string"] =
       "${order.orderNo ?? '1'};${order.productId ?? '1'};${order.payType ?? 1}";
-      NewHitaThirdUtil.facebookLog(price * fbScale, currency, map);
+      TrudaThirdUtil.facebookLog(price * fbScale, currency, map);
     }
 
     // adjust

@@ -3,16 +3,16 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:truda/truda_dialogs/truda_dialog_confirm.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_entities/truda_config_entity.dart';
 import '../truda_services/truda_app_info_service.dart';
-import 'newhita_facebook_util.dart';
+import 'truda_facebook_util.dart';
 
-class NewHitaCheckAppUpdate {
+class TrudaCheckAppUpdate {
   static void check() async {
     final str = TrudaMyInfoService.to.config?.appUpdate ?? '';
     if (str.isEmpty) return;
@@ -23,7 +23,7 @@ class NewHitaCheckAppUpdate {
       print(e);
     }
     if (update == null) return;
-    NewHitaLog.debug(update.content ?? 'aa');
+    TrudaLog.debug(update.content ?? 'aa');
     if (update.isShow != true || update.url == null) return;
     TrudaCommonDialog.dialog(
       TrudaDialogConfirm(

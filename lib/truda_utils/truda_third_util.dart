@@ -1,8 +1,8 @@
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
-class NewHitaThirdUtil {
+class TrudaThirdUtil {
   static void askReview() {
-    NewHitaLoading.toast('test');
+    TrudaLoading.toast('test');
   }
   static void facebookSetAdvertiserTracking(bool enabled) {}
   static void facebookLog(
@@ -18,7 +18,7 @@ class NewHitaThirdUtil {
 // import 'package:facebook_app_events/facebook_app_events.dart';
 // import 'package:in_app_review/in_app_review.dart';
 //
-// class NewHitaThirdUtil {
+// class TrudaThirdUtil {
 //   static FacebookAppEvents facebookAppEvents = FacebookAppEvents();
 //
 //   static void askReview() {

@@ -4,7 +4,7 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 
 class TrudaCardListController extends GetxController {
   List<TrudaCardBean> dataList = [];
@@ -31,7 +31,7 @@ class TrudaCardListController extends GetxController {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
     await TrudaHttpUtil().post<List<TrudaCardBean>>(TrudaHttpUrls.toolsApi,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }, showLoading: true).then((value) {
       dataList.clear();
       dataList.addAll(value);

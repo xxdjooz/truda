@@ -23,9 +23,9 @@ class TrudaAppleInAppPurchase {
 // import '../../truda_http/truda_http_urls.dart';
 // import '../../truda_http/truda_http_util.dart';
 // import '../../truda_services/truda_storage_service.dart';
-// import '../../truda_utils/newhita_loading.dart';
-// import '../../truda_utils/newhita_log.dart';
-// import '../../truda_utils/newhita_pay_cache_manager.dart';
+// import '../../truda_utils/truda_loading.dart';
+// import '../../truda_utils/truda_log.dart';
+// import '../../truda_utils/truda_pay_cache_manager.dart';
 //
 // class TrudaAppleInAppPurchase {
 //   static final StreamController<int> _streamController =

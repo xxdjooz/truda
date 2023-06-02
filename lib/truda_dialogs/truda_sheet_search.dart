@@ -8,7 +8,7 @@ import '../truda_entities/truda_host_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/host/truda_host_controller.dart';
-import '../truda_utils/newhita_loading.dart';
+import '../truda_utils/truda_loading.dart';
 
 class TrudaSheetSearch extends StatefulWidget {
   static void openMe() {
@@ -38,7 +38,7 @@ class _TrudaSheetSearchState extends State<TrudaSheetSearch> {
     TrudaHttpUtil().post<TrudaHostDetail>(
       TrudaHttpUrls.searchUpApi + str,
       doneCallback: (bool success, String message) {
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
       },
       showLoading: true,
     ).then((value) {

@@ -9,7 +9,7 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_voice_player.dart';
+import 'package:truda/truda_utils/truda_voice_player.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../../truda_common/truda_call_status.dart';
@@ -25,11 +25,11 @@ import '../../../truda_rtm/truda_rtm_manager.dart';
 import '../../../truda_services/truda_event_bus_bean.dart';
 import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/ai/truda_ai_logic_utils.dart';
-import '../../../truda_utils/newhita_check_calling_util.dart';
-import '../../../truda_utils/newhita_facebook_util.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
-import '../../../truda_utils/newhita_permission_handler.dart';
+import '../../../truda_utils/truda_check_calling_util.dart';
+import '../../../truda_utils/truda_facebook_util.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
+import '../../../truda_utils/truda_permission_handler.dart';
 import '../aic/truda_aic_controller.dart';
 import '../aiv/truda_aiv_controller.dart';
 import '../aiv/truda_aiv_video_controller.dart';
@@ -41,12 +41,12 @@ class TrudaRemoteController extends GetxController {
     if (myDiamonds > 60) {
       if (TrudaConstants.isTestMode &&
           TrudaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
-        NewHitaLoading.toast(
+        TrudaLoading.toast(
           '测试时，有钱也打开aic',
           duration: Duration(seconds: 4),
         );
       } else {
-        NewHitaLog.debug('TrudaRemoteController 有钱屏蔽aic');
+        TrudaLog.debug('TrudaRemoteController 有钱屏蔽aic');
         return;
       }
     }
@@ -63,7 +63,7 @@ class TrudaRemoteController extends GetxController {
     //   // startMeAic前面已经检查过了，这里再检查一遍
     //
     // });
-    if (NewHitaCheckCallingUtil.checkCanAic()) {
+    if (TrudaCheckCallingUtil.checkCanAic()) {
       await _toThisPage(map);
     } else {
       TrudaHttpUtil().post(TrudaHttpUrls.hanAIA_Api + '/${aic.userId}/0');
@@ -88,7 +88,7 @@ class TrudaRemoteController extends GetxController {
     // map['content'] = json.encode(bean);
     map['callType'] = 4;
     map['aiv'] = bean;
-    if (NewHitaCheckCallingUtil.checkCanAic()) {
+    if (TrudaCheckCallingUtil.checkCanAic()) {
       _toThisPage(map);
       return true;
     } else {
@@ -182,7 +182,7 @@ class TrudaRemoteController extends GetxController {
       _aivVideoController = TrudaAivVideoController.make(aiv!.filename!);
     }
 
-    NewHitaLog.debug(content);
+    TrudaLog.debug(content);
     if (content.isNotEmpty) {
       detail = TrudaHostDetail.fromJson(json.decode(content));
       portrait = detail?.portrait ?? '';
@@ -222,7 +222,7 @@ class TrudaRemoteController extends GetxController {
     // askPermission();
     _startTimer();
     _getHostDetail();
-    NewHitaPermissionHandler.askCallPermission();
+    TrudaPermissionHandler.askCallPermission();
   }
 
   // void askPermission() async {
@@ -263,7 +263,7 @@ class TrudaRemoteController extends GetxController {
       }
     });
 
-    NewHitaAudioCenter2.playRing();
+    TrudaAudioCenter2.playRing();
   }
 
   void hangUp({bool timeOut = false}) {
@@ -422,7 +422,7 @@ class TrudaRemoteController extends GetxController {
   void _getHostDetail() {
     TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
-      NewHitaLog.debug(err);
+      TrudaLog.debug(err);
     }).then((value) {
       detail = value;
       portrait = value.portrait ?? '';
@@ -443,8 +443,8 @@ class TrudaRemoteController extends GetxController {
     TrudaHttpUtil().post<int>(
       TrudaHttpUrls.createAIBCallApi + herId,
       errCallback: (err) {
-        NewHitaLog.debug(err);
-        NewHitaLoading.toast(err.message);
+        TrudaLog.debug(err);
+        TrudaLoading.toast(err.message);
         if (err.code == 8) {
           _showChargeAndStopMusic();
           callStatistics(1, 5);
@@ -491,7 +491,7 @@ class TrudaRemoteController extends GetxController {
     } else {
       str = TrudaLanguageKey.newhita_video_hang_up_tip_3.tr;
     }
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
     callStatistics(1, 1);
     Get.dialog(TrudaDialogConfirm(
       title: str,
@@ -504,7 +504,7 @@ class TrudaRemoteController extends GetxController {
   }
 
   void _showChargeAndStopMusic() {
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
     _timer?.cancel();
     _timer = null;
     TrudaChargeDialogManager.showChargeDialog(
@@ -555,7 +555,7 @@ class TrudaRemoteController extends GetxController {
       "isRobot": 0,
       // "isRobot": isRobot,
     }, errCallback: (err) {
-      NewHitaLog.debug(err);
+      TrudaLog.debug(err);
     });
   }
 
@@ -577,7 +577,7 @@ class TrudaRemoteController extends GetxController {
     super.onClose();
     _timer?.cancel();
     sub.cancel();
-    NewHitaAudioCenter2.stopPlayRing();
+    TrudaAudioCenter2.stopPlayRing();
     Wakelock.disable();
   }
 }

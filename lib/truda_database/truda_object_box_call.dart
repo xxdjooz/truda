@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../truda_rtm/truda_rtm_msg_entity.dart';
 import '../truda_services/truda_storage_service.dart';
@@ -137,7 +137,7 @@ class TrudaObjectBoxCall {
         extra: extra);
     callBox.put(entity);
     // 插入消息数据库
-    NewHitaLog.debug('savaCallHistory duration=$duration');
+    TrudaLog.debug('savaCallHistory duration=$duration');
     var call = TrudaRTMMsgCallState()
       ..statusType = callStatus
       ..duration = duration;

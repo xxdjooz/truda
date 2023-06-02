@@ -14,7 +14,7 @@ import '../../truda_common/truda_charge_path.dart';
 import '../../truda_dialogs/truda_sheet_host_chat_option.dart';
 import '../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../../truda_utils/ad/truda_ads_utils.dart';
-import '../../truda_utils/newhita_gift_follow_tip.dart';
+import '../../truda_utils/truda_gift_follow_tip.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 import '../vip/truda_vip_controller.dart';
 import 'truda_chat_controller.dart';

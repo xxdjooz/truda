@@ -7,17 +7,17 @@ import 'package:image_picker/image_picker.dart';
 import '../truda_database/entity/truda_msg_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import 'newhita_loading.dart';
-import 'newhita_log.dart';
-import 'newhita_upload_isolate.dart';
+import 'truda_loading.dart';
+import 'truda_log.dart';
+import 'truda_upload_isolate.dart';
 
-typedef NewHitaUpLoadCallBack = Function(NewHitaChooseImageUtil upLoader,
-    NewHitaUploadType type, String? url, String? partPath);
+typedef TrudaUpLoadCallBack = Function(TrudaChooseImageUtil upLoader,
+    TrudaUploadType type, String? url, String? partPath);
 
-enum NewHitaUploadType { cancel, begin, success, failed }
+enum TrudaUploadType { cancel, begin, success, failed }
 
-class NewHitaChooseImageUtil {
-  final NewHitaUpLoadCallBack callBack;
+class TrudaChooseImageUtil {
+  final TrudaUpLoadCallBack callBack;
 
   // type 0头像，1图片，2声音
   final int type;
@@ -25,7 +25,7 @@ class NewHitaChooseImageUtil {
   // 如果他是发消息，做暂时的存储
   TrudaMsgEntity? msg;
 
-  NewHitaChooseImageUtil({required this.type, required this.callBack});
+  TrudaChooseImageUtil({required this.type, required this.callBack});
 
   void openChooseDialog() {
     Get.bottomSheet(
@@ -115,9 +115,9 @@ class NewHitaChooseImageUtil {
         .then((value) {
       if (value != null) {
         loadOssAndUpload(value.path);
-        callBack.call(this, NewHitaUploadType.begin, null, value.path);
+        callBack.call(this, TrudaUploadType.begin, null, value.path);
       } else {
-        callBack.call(this, NewHitaUploadType.failed, null, null);
+        callBack.call(this, TrudaUploadType.failed, null, null);
       }
     });
   }
@@ -132,9 +132,9 @@ class NewHitaChooseImageUtil {
     // });
     TrudaHttpUtil().post<String>(TrudaHttpUrls.s3UploadUrl,
         data: {'endType': '.jpg'}, errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
-      callBack.call(this, NewHitaUploadType.failed, null, null);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
+      callBack.call(this, TrudaUploadType.failed, null, null);
     }, showLoading: true).then((url) {
       uploadWithFilePath(path, url);
     });
@@ -174,16 +174,16 @@ class NewHitaChooseImageUtil {
       //     endpoint: endPoint ?? "oss-cn-hongkong.aliyuncs.com",
       //     bucket: ossConfig.bucket ?? "yesme-public",
       //     path: path);
-      NewHitaUploadIsolate().loadData(url, filePath, 'image/jpeg').then((value) {
+      TrudaUploadIsolate().loadData(url, filePath, 'image/jpeg').then((value) {
         if (value == 200) {
           var realUrl = url.split('?')[0];
-          NewHitaLog.debug("图片上传成功 URL= ${realUrl}");
-          callBack.call(this, NewHitaUploadType.success, realUrl, filePath);
+          TrudaLog.debug("图片上传成功 URL= ${realUrl}");
+          callBack.call(this, TrudaUploadType.success, realUrl, filePath);
         } else {
-          callBack.call(this, NewHitaUploadType.failed, null, null);
+          callBack.call(this, TrudaUploadType.failed, null, null);
         }
       }).catchError((e) {
-        callBack.call(this, NewHitaUploadType.failed, null, null);
+        callBack.call(this, TrudaUploadType.failed, null, null);
       });
 
       // if (object.url.isNotEmpty) {
@@ -193,9 +193,9 @@ class NewHitaChooseImageUtil {
       //   callBack.call(this, NewHitaUploadType.failed, null, null);
       // }
     } catch (e) {
-      NewHitaLog.debug(e);
+      TrudaLog.debug(e);
       // showToast(LangMap.cbl_err_unknown.tr);
-      callBack.call(this, NewHitaUploadType.failed, null, null);
+      callBack.call(this, TrudaUploadType.failed, null, null);
     } finally {
       // CbldeLoding();
     }

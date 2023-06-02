@@ -9,7 +9,7 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_my_info_service.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../vip/truda_vip_controller.dart';
 import 'truda_jellyfish_game.dart';
 import 'truda_match_controller.dart';
@@ -56,7 +56,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
         break;
       // 从后台切前台，界面可见
       case AppLifecycleState.resumed:
-        NewHitaLog.debug("TrudaMatchPage route=${Get.currentRoute}");
+        TrudaLog.debug("TrudaMatchPage route=${Get.currentRoute}");
         if (Get.currentRoute != TrudaAppPages.main) return;
         handleMusic(true);
         break;
@@ -88,14 +88,14 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
   void didPopNext() {
     super.didPopNext();
     handleMusic(true);
-    NewHitaLog.debug('TrudaMatchPage didPopNext');
+    TrudaLog.debug('TrudaMatchPage didPopNext');
   }
 
   @override
   void didPushNext() {
     handleMusic(false);
     super.didPushNext();
-    NewHitaLog.debug('TrudaMatchPage didPushNext');
+    TrudaLog.debug('TrudaMatchPage didPushNext');
   }
 
   // 分为正常的模式和ios审核模式
@@ -114,10 +114,10 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
       Get.put(TrudaMatchController());
       return GetBuilder<TrudaMatchController>(
         initState: (c) {
-          NewHitaLog.debug('TrudaMatchPage initState');
+          TrudaLog.debug('TrudaMatchPage initState');
         },
         dispose: (c) {
-          NewHitaLog.debug('TrudaMatchPage dispose');
+          TrudaLog.debug('TrudaMatchPage dispose');
           Get.delete<TrudaMatchController>();
         },
         builder: (contr) {
@@ -238,10 +238,10 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
     Get.put(TrudaMatchFakeController());
     return GetBuilder<TrudaMatchFakeController>(
       initState: (c) {
-        NewHitaLog.debug('TrudaMatchPage initState');
+        TrudaLog.debug('TrudaMatchPage initState');
       },
       dispose: (c) {
-        NewHitaLog.debug('TrudaMatchPage dispose');
+        TrudaLog.debug('TrudaMatchPage dispose');
         Get.delete<TrudaMatchFakeController>();
       },
       builder: (contr) {

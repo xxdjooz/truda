@@ -5,8 +5,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_info_entity.dart';
 import 'package:truda/truda_services/truda_event_bus_bean.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../truda_common/truda_charge_path.dart';
 import '../../../truda_common/truda_common_dialog.dart';
@@ -38,7 +38,7 @@ class TrudaMeController extends GetxController {
     super.onInit();
     myDetail = TrudaMyInfoService.to.myDetail;
     _balanceListener = (balance) {
-      NewHitaLog.debug(balance);
+      TrudaLog.debug(balance);
       myDetail?.userBalance?.remainDiamonds = balance.diamonds;
       // 邀请码
       if (balance.inviterCode?.isNotEmpty == true) {
@@ -51,11 +51,11 @@ class TrudaMeController extends GetxController {
     /// event bus 监听
     sub = TrudaStorageService.to.eventBus.on<String>().listen((event) {
       if (event == eventBusRefreshMe) {
-        NewHitaLog.debug('eventBus eventBusRefreshMe');
+        TrudaLog.debug('eventBus eventBusRefreshMe');
         refreshMe();
       }
       if (event == eventBusUpdateMe) {
-        NewHitaLog.debug('eventBus eventBusUpdateMe');
+        TrudaLog.debug('eventBus eventBusUpdateMe');
         myDetail = TrudaMyInfoService.to.myDetail;
         update();
       }
@@ -74,7 +74,7 @@ class TrudaMeController extends GetxController {
   }
 
   Future refreshMe() async {
-    NewHitaLog.debug('NewHitaMeController refreshMe()');
+    TrudaLog.debug('NewHitaMeController refreshMe()');
     await TrudaHttpUtil()
         .post<TrudaInfoDetail>(
       TrudaHttpUrls.userInfoApi,
@@ -123,7 +123,7 @@ class TrudaMeController extends GetxController {
           onlyConfirm: true,
         ));
       } else {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       }
     }).then((value) {
       // NewHitaStorageService.to.prefs
@@ -169,7 +169,7 @@ class TrudaMeController extends GetxController {
         _loginGoogle(
             callback.token, callback.id, callback.nickname, callback.cover);
       } else {
-        NewHitaLoading.toast(TrudaLanguageKey.newhita_err_unknown.tr);
+        TrudaLoading.toast(TrudaLanguageKey.newhita_err_unknown.tr);
       }
       _logining = false;
     });
@@ -184,12 +184,12 @@ class TrudaMeController extends GetxController {
       "token": token ?? '',
       "nickname": nickname ?? '',
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, doneCallback: (success, re) {
       _logining = false;
     }, showLoading: true);
     config.then((value) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
     });
   }
 }

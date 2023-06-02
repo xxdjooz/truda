@@ -2,7 +2,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:truda/truda_database/entity/truda_aic_entity.dart';
 import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_check_calling_util.dart';
+import 'package:truda/truda_utils/truda_check_calling_util.dart';
 
 import '../truda_common/truda_constants.dart';
 import '../truda_database/entity/truda_her_entity.dart';
@@ -11,18 +11,18 @@ import '../truda_http/truda_http_util.dart';
 import '../truda_rtm/truda_rtm_msg_entity.dart';
 import '../truda_services/truda_my_info_service.dart';
 import '../truda_widget/newhita_cache_manager.dart';
-import 'newhita_loading.dart';
-import 'newhita_log.dart';
+import 'truda_loading.dart';
+import 'truda_log.dart';
 
-class NewHitaAicHandler {
+class TrudaAicHandler {
   // NewHitaAicHandler() 返回单例
-  static final NewHitaAicHandler _instance = NewHitaAicHandler._();
+  static final TrudaAicHandler _instance = TrudaAicHandler._();
 
-  factory NewHitaAicHandler() {
+  factory TrudaAicHandler() {
     return _instance;
   }
 
-  NewHitaAicHandler._();
+  TrudaAicHandler._();
 
   // 这是个模拟收到aic的方法
   void testGetAicMsg() {
@@ -65,7 +65,7 @@ class NewHitaAicHandler {
         // NewHitaLog.debug(fileResponse);
       }
       if (fileResponse is FileInfo) {
-        NewHitaLog.debug('aic download --> ${fileResponse.file.path}');
+        TrudaLog.debug('aic download --> ${fileResponse.file.path}');
         var ob = TrudaStorageService.to.objectBoxCall;
         var aic = ob.queryAic(fileResponse.originalUrl);
         if (aic == null) return;
@@ -86,11 +86,11 @@ class NewHitaAicHandler {
   bool checkingAic = false;
   // 取出一个aic显示
   void checkAicToShow() {
-    if (!NewHitaCheckCallingUtil.checkCanAic()) return;
+    if (!TrudaCheckCallingUtil.checkCanAic()) return;
     if (checkingAic) return;
     checkingAic = true;
     checkAic().catchError((err) {
-      NewHitaLog.debug('aic catchError =$err');
+      TrudaLog.debug('aic catchError =$err');
       checkingAic = false;
     }).then((value) {
       checkingAic = false;
@@ -98,7 +98,7 @@ class NewHitaAicHandler {
   }
 
   Future checkAic() async {
-    if (!NewHitaCheckCallingUtil.checkCanAic()) {
+    if (!TrudaCheckCallingUtil.checkCanAic()) {
       checkingAic = false;
       return;
     }
@@ -138,19 +138,19 @@ class NewHitaAicHandler {
   // 取出一个aic显示
   Future<bool> checkAicToShowExcept(String userId) async {
     eventss(1);
-    if (!NewHitaCheckCallingUtil.checkCanAic() || checkingAic) {
+    if (!TrudaCheckCallingUtil.checkCanAic() || checkingAic) {
       return false;
     }
     eventss(2);
     checkingAic = true;
     bool isShowAic = false;
     await checkAicExcept(userId).catchError((err) {
-      NewHitaLog.debug('aic catchError =$err');
+      TrudaLog.debug('aic catchError =$err');
       checkingAic = false;
     }).then((value) {
       checkingAic = false;
       isShowAic = value;
-      NewHitaLog.debug('aic========== =$value');
+      TrudaLog.debug('aic========== =$value');
     });
     checkingAic = false;
 
@@ -159,7 +159,7 @@ class NewHitaAicHandler {
 
   Future<bool> checkAicExcept(String userId) async {
     eventss(3);
-    if (!NewHitaCheckCallingUtil.checkCanAic()) {
+    if (!TrudaCheckCallingUtil.checkCanAic()) {
       checkingAic = false;
       return false;
     }
@@ -182,12 +182,12 @@ class NewHitaAicHandler {
       if (TrudaConstants.isTestMode &&
           //判断是不是测试
           TrudaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
-        NewHitaLoading.toast(
+        TrudaLoading.toast(
           '测试时，有钱也打开aic',
           duration: Duration(seconds: 4),
         );
       } else {
-        NewHitaLog.debug('TrudaRemoteController 有钱屏蔽aic');
+        TrudaLog.debug('TrudaRemoteController 有钱屏蔽aic');
         return false;
       }
     }
@@ -204,7 +204,7 @@ class NewHitaAicHandler {
     // await videoController.dispose();
     // eventss(7);
     // startMeAic前面已经检查过了，这里再检查一遍
-    if (!NewHitaCheckCallingUtil.checkCanAic()) {
+    if (!TrudaCheckCallingUtil.checkCanAic()) {
       return false;
     }
     // 把这个aic设为已经弹出

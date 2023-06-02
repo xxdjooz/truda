@@ -5,13 +5,13 @@ import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/login/truda_login_to_main_api.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
 import '../../truda_entities/truda_config_entity.dart';
 import '../../truda_entities/truda_info_entity.dart';
-import '../../truda_utils/newhita_adjust_manager.dart';
-import '../../truda_utils/newhita_log.dart';
-import '../../truda_utils/newhita_third_util.dart';
+import '../../truda_utils/truda_adjust_manager.dart';
+import '../../truda_utils/truda_log.dart';
+import '../../truda_utils/truda_third_util.dart';
 
 class TrudaSplashController extends GetxController {
   var counter = 0.obs;
@@ -24,7 +24,7 @@ class TrudaSplashController extends GetxController {
   void getConfig() {
     TrudaHttpUtil().post<TrudaConfigData>(TrudaHttpUrls.configApi,
         errCallback: (e) {
-      NewHitaLoading.toast(e.message);
+      TrudaLoading.toast(e.message);
       Future.delayed(Duration(seconds: 2), () {
         getConfig();
       });
@@ -37,9 +37,9 @@ class TrudaSplashController extends GetxController {
       }
       // 初始化adjust
       if (GetPlatform.isAndroid) {
-        NewHitaAdjustManager.initAdjust();
+        TrudaAdjustManager.initAdjust();
       } else {
-        NewHitaAdjustManager.requestTracking();
+        TrudaAdjustManager.requestTracking();
       }
 
       // 测试拿到的数据
@@ -57,10 +57,10 @@ class TrudaSplashController extends GetxController {
 
   // 已经登陆过，加载个人信息后去主页
   void _getDetail() {
-    NewHitaLog.debug('NewHitaSplashController refreshMe()');
+    TrudaLog.debug('NewHitaSplashController refreshMe()');
     TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
         errCallback: (err) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
       Get.offAllNamed(TrudaAppPages.login);
     }, showLoading: true,).then((value) {
       getDetailToMain(value);
@@ -93,6 +93,6 @@ class TrudaSplashController extends GetxController {
     // map["fb_content_type"] = 'gora';
     // map["fb_content_id"] = str;
     map["fb_search_string"] = str;
-    NewHitaThirdUtil.facebookLog(1.0, 'USD', map);
+    TrudaThirdUtil.facebookLog(1.0, 'USD', map);
   }
 }

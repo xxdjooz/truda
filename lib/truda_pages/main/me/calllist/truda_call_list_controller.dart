@@ -4,7 +4,7 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 
 class TrudaCallListController extends GetxController {
   List<TrudaCallRecordEntity> dataList = [];
@@ -79,7 +79,7 @@ class TrudaCallListController extends GetxController {
     }, pageCallback: (has) {
       enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       if (_page == 1) {
         refreshController.refreshCompleted();
       } else {

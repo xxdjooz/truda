@@ -12,7 +12,7 @@ import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 
 // 修改密码
 class TrudaAccountPasswordPage extends StatefulWidget {
@@ -67,21 +67,21 @@ class _TrudaAccountPasswordPageState
 
   void accountLogin() {
     if (_textEditingController.text.length <= 0) {
-      NewHitaLoading.toast(
+      TrudaLoading.toast(
         TrudaLanguageKey.newhita_prompt_password.tr,
         position: EasyLoadingToastPosition.top,
       );
       return;
     }
     if (_textEditingController2.text.length <= 0) {
-      NewHitaLoading.toast(
+      TrudaLoading.toast(
         TrudaLanguageKey.newhita_visitor_pw_enter.tr,
         position: EasyLoadingToastPosition.top,
       );
       return;
     }
     if (_textEditingController3.text.length <= 0) {
-      NewHitaLoading.toast(
+      TrudaLoading.toast(
         TrudaLanguageKey.newhita_visitor_pw_enter_again.tr,
         position: EasyLoadingToastPosition.top,
       );
@@ -89,7 +89,7 @@ class _TrudaAccountPasswordPageState
     }
     if (_textEditingController3.text.length !=
         _textEditingController2.text.length) {
-      NewHitaLoading.toast(
+      TrudaLoading.toast(
         TrudaLanguageKey.newhita_visitor_pw_different.tr,
         position: EasyLoadingToastPosition.top,
       );
@@ -106,7 +106,7 @@ class _TrudaAccountPasswordPageState
             },
             showLoading: true)
         .then((value) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       Get.back();
       // 修改本地存储的密码
       var visitorAccount = TrudaStorageService.to.prefs

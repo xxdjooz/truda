@@ -8,7 +8,7 @@ import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_entities/truda_host_entity.dart';
 import '../../../../truda_entities/truda_order_entity.dart';
 import '../../../../truda_services/truda_storage_service.dart';
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 
 class TrudaCostListController extends GetxController {
   List<TrudaCostBean> dataList = [];
@@ -154,7 +154,7 @@ class TrudaCostListController extends GetxController {
         }, pageCallback: (has) {
       enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       if (_page == 1) {
         refreshController.refreshCompleted();
       } else {

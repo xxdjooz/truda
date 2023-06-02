@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../truda_database/entity/truda_conversation_entity.dart';
@@ -13,7 +13,7 @@ import '../../../truda_entities/truda_hot_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_socket/truda_socket_entity.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 
 class TrudaFollowController extends GetxController {
   List<TrudaHostDetail> dataList = [];
@@ -48,7 +48,7 @@ class TrudaFollowController extends GetxController {
 
     // 监听本页面被显示
     ever<bool>(TrudaPageIndexManager.followShow, (o) {
-      NewHitaLog.debug('follow show $o');
+      TrudaLog.debug('follow show $o');
       if (o){
         if (shouldReload){
           onRefresh();
@@ -88,7 +88,7 @@ class TrudaFollowController extends GetxController {
     }, pageCallback: (has) {
       enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       if (_page == 1) {
         refreshController.refreshCompleted();
       } else {

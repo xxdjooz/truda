@@ -7,7 +7,7 @@ import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_entities/truda_host_entity.dart';
 import '../../../../truda_services/truda_storage_service.dart';
-import '../../../../truda_utils/newhita_loading.dart';
+import '../../../../truda_utils/truda_loading.dart';
 
 class TrudaBlackListController extends GetxController {
   List<TrudaHostDetail> dataList = [];
@@ -56,7 +56,7 @@ class TrudaBlackListController extends GetxController {
         enablePullUp = has;
       },
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
         if (_page == 1) {
           refreshController.refreshCompleted();
         } else {
@@ -85,17 +85,17 @@ class TrudaBlackListController extends GetxController {
 
   void removeBlack(String herId) {
     if (herId == TrudaConstants.serviceId) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       TrudaStorageService.to.updateBlackList(herId, false);
       onRefresh();
       return;
     }
     TrudaHttpUtil().post<int>(TrudaHttpUrls.blacklistActionApi + herId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }, showLoading: true).then((value) {
       onRefresh();
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       TrudaStorageService.to.updateBlackList(herId, value == 1);
     });
   }

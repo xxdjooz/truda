@@ -8,13 +8,13 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_utils/newhita_third_util.dart';
+import 'package:truda/truda_utils/truda_third_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_http/truda_http_util.dart';
 
-class NewHitaAppRate {
+class TrudaAppRate {
   static void rateApp(String msg) async {
     //用户打开了充值弹窗 屏蔽评分弹窗
     if (TrudaChargeDialogManager.isShowingChargeDialog) {
@@ -33,7 +33,7 @@ class NewHitaAppRate {
       }
     } else {
       try {
-        NewHitaThirdUtil.askReview();
+        TrudaThirdUtil.askReview();
       } catch (e) {
         //无法弹出内部评分
         if (GetPlatform.isIOS) {
@@ -55,7 +55,7 @@ class NewHitaAppRate {
 
   // google的
   static void showGoogleRate() {
-    Get.bottomSheet(const NewHitaGoogleRate());
+    Get.bottomSheet(const TrudaGoogleRate());
   }
 
   // ios的
@@ -107,7 +107,7 @@ class NewHitaAppRate {
               textAlign: TextAlign.center,
             ),
           ),
-          NewHitaBottomBtns((action, rate) {
+          TrudaBottomBtns((action, rate) {
             Get.back();
 
             // if (action == false) {
@@ -124,18 +124,18 @@ class NewHitaAppRate {
   }
 }
 
-typedef NewHitaRateBtnAction = Function(bool, double);
+typedef TrudaRateBtnAction = Function(bool, double);
 
-class NewHitaBottomBtns extends StatefulWidget {
-  NewHitaRateBtnAction actionFun;
+class TrudaBottomBtns extends StatefulWidget {
+  TrudaRateBtnAction actionFun;
 
-  NewHitaBottomBtns(this.actionFun);
+  TrudaBottomBtns(this.actionFun);
 
   @override
-  _NewHitaBottomBtnsState createState() => _NewHitaBottomBtnsState();
+  _TrudaBottomBtnsState createState() => _TrudaBottomBtnsState();
 }
 
-class _NewHitaBottomBtnsState extends State<NewHitaBottomBtns> {
+class _TrudaBottomBtnsState extends State<TrudaBottomBtns> {
   double minRating = 0;
   double currentRating = 0;
 
@@ -252,14 +252,14 @@ class _NewHitaBottomBtnsState extends State<NewHitaBottomBtns> {
 }
 
 /// google打分
-class NewHitaGoogleRate extends StatefulWidget {
-  const NewHitaGoogleRate({Key? key}) : super(key: key);
+class TrudaGoogleRate extends StatefulWidget {
+  const TrudaGoogleRate({Key? key}) : super(key: key);
 
   @override
-  State<NewHitaGoogleRate> createState() => _NewHitaGoogleRateState();
+  State<TrudaGoogleRate> createState() => _TrudaGoogleRateState();
 }
 
-class _NewHitaGoogleRateState extends State<NewHitaGoogleRate> {
+class _TrudaGoogleRateState extends State<TrudaGoogleRate> {
   TextEditingController _textEditingController = TextEditingController();
 
   int _step = 0;

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:truda/generated/json/base/json_field.dart';
 import 'package:truda/generated/json/truda_charge_quick_entity.g.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 
 @JsonSerializable()
 class TrudaPayQuickData {
@@ -141,7 +141,7 @@ class TrudaPayQuickChannel {
   //     googleCurrencySymbol ?? HiDataConvert.currencyToSymbol(realCurrency);
 
   String? get realCurrencySymbol =>
-      NewHitaFormatUtil.currencyToSymbol(realCurrency);
+      TrudaFormatUtil.currencyToSymbol(realCurrency);
 
   @override
   String toString() {

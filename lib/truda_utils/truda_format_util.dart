@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:intl/intl.dart';
 
-class NewHitaFormatUtil {
+class TrudaFormatUtil {
   static String currencyToSymbol(String? currency) {
     if (currency == null) {
       return "";

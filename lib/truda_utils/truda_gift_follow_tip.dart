@@ -10,7 +10,7 @@ import '../truda_routes/truda_pages.dart';
 import '../truda_widget/newhita_net_image.dart';
 import '../truda_widget/gift/newhita_gift_data_helper.dart';
 
-class NewHitaGiftFollowTipController {
+class TrudaGiftFollowTipController {
   bool _hadSendGift = false;
   bool hadFollow = false;
   String? herId;
@@ -18,7 +18,7 @@ class NewHitaGiftFollowTipController {
   TrudaGiftEntity? gift;
   TrudaCallback<int>? callback;
 
-  NewHitaGiftFollowTipController() {
+  TrudaGiftFollowTipController() {
     NewHitaGiftDataHelper.getGifts().then((value) {
       if (value != null && value.isNotEmpty) {
         gift = value.first;
@@ -41,16 +41,16 @@ class NewHitaGiftFollowTipController {
   }
 }
 
-class NewHitaGiftFollowTip extends StatefulWidget {
-  NewHitaGiftFollowTipController controller;
+class TrudaGiftFollowTip extends StatefulWidget {
+  TrudaGiftFollowTipController controller;
 
-  NewHitaGiftFollowTip({Key? key, required this.controller}) : super(key: key);
+  TrudaGiftFollowTip({Key? key, required this.controller}) : super(key: key);
 
   @override
-  State<NewHitaGiftFollowTip> createState() => _NewHitaGiftFollowTipState();
+  State<TrudaGiftFollowTip> createState() => _TrudaGiftFollowTipState();
 }
 
-class _NewHitaGiftFollowTipState extends State<NewHitaGiftFollowTip> {
+class _TrudaGiftFollowTipState extends State<TrudaGiftFollowTip> {
   OverlayEntry? overlayEntry;
   Timer? _timer;
   int _time = 0;
@@ -79,11 +79,11 @@ class _NewHitaGiftFollowTipState extends State<NewHitaGiftFollowTip> {
           padding:
           const EdgeInsetsDirectional.only(start: 15, end: 15, bottom: 30),
           child: type
-              ? NewHitaSendGiftTip(
+              ? TrudaSendGiftTip(
             callback: _callback,
             gift: widget.controller.gift,
           )
-              : NewHitaFollowTip(
+              : TrudaFollowTip(
             callback: _callback,
             portrait: widget.controller.portrait,
           ),
@@ -144,11 +144,11 @@ class _NewHitaGiftFollowTipState extends State<NewHitaGiftFollowTip> {
   }
 }
 
-class NewHitaFollowTip extends StatelessWidget {
+class TrudaFollowTip extends StatelessWidget {
   TrudaCallback<int> callback;
   String? portrait;
 
-  NewHitaFollowTip({
+  TrudaFollowTip({
     Key? key,
     required this.callback,
     required this.portrait,
@@ -225,12 +225,12 @@ class NewHitaFollowTip extends StatelessWidget {
   }
 }
 
-class NewHitaSendGiftTip extends StatelessWidget {
+class TrudaSendGiftTip extends StatelessWidget {
   TrudaCallback<int> callback;
 
   TrudaGiftEntity? gift;
 
-  NewHitaSendGiftTip({
+  TrudaSendGiftTip({
     Key? key,
     required this.callback,
     required this.gift,

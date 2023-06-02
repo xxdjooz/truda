@@ -10,7 +10,7 @@ import '../../truda_dialogs/truda_dialog_lottery_get.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_ui_image_util.dart';
+import '../../truda_utils/truda_ui_image_util.dart';
 import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
 
 class TrudaLotteryController extends GetxController {
@@ -90,7 +90,7 @@ class TrudaLotteryController extends GetxController {
   }
 
   void initImage() {
-    NewHitaUiImageUtil.load('assets/images/3.0x/newhita_lottery_face.png')
+    TrudaUiImageUtil.load('assets/images/3.0x/newhita_lottery_face.png')
         .then((value) {
       for (int index = 0; index < data.length; index++) {
         var bean = data[index];
@@ -101,7 +101,7 @@ class TrudaLotteryController extends GetxController {
       }
       update();
     });
-    NewHitaUiImageUtil.load('assets/images/3.0x/newhita_lottery_diamond.png')
+    TrudaUiImageUtil.load('assets/images/3.0x/newhita_lottery_diamond.png')
         .then((value) {
       for (int index = 0; index < data.length; index++) {
         var bean = data[index];
@@ -111,7 +111,7 @@ class TrudaLotteryController extends GetxController {
       }
       update();
     });
-    NewHitaUiImageUtil.load('assets/images/3.0x/newhita_lottery_vip.png')
+    TrudaUiImageUtil.load('assets/images/3.0x/newhita_lottery_vip.png')
         .then((value) {
       for (int index = 0; index < data.length; index++) {
         var bean = data[index];
@@ -121,7 +121,7 @@ class TrudaLotteryController extends GetxController {
       }
       update();
     });
-    NewHitaUiImageUtil.load('assets/images/3.0x/newhita_lottery_upgrade.png')
+    TrudaUiImageUtil.load('assets/images/3.0x/newhita_lottery_upgrade.png')
         .then((value) {
       for (int index = 0; index < data.length; index++) {
         var bean = data[index];

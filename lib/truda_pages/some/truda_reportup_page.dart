@@ -8,8 +8,8 @@ import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
 
 class TrudaReportUpPage extends StatefulWidget {
@@ -163,7 +163,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
                         _focusNode?.unfocus();
 
                         if (selectIndex == -1) {
-                          NewHitaLoading.toast(
+                          TrudaLoading.toast(
                               TrudaLanguageKey.newhita_report_edit_topic.tr);
                           return;
                         }
@@ -188,7 +188,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
                                 },
                                 showLoading: true)
                             .then((value) {
-                          NewHitaLoading.toast(
+                          TrudaLoading.toast(
                               TrudaLanguageKey.newhita_base_success.tr);
                           Get.back(result: 1);
 
@@ -211,7 +211,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
                             TrudaStorageService.to
                                 .updateBlackList(widget.upid, true);
                           }
-                          NewHitaLog.debug("拉黑");
+                          TrudaLog.debug("拉黑");
                         });
                       },
                       child: Container(

@@ -19,8 +19,8 @@ import '../truda_pages/host/truda_host_controller.dart';
 import '../truda_pages/main/home/truda_host_widget.dart';
 import '../truda_pages/some/truda_media_view_page.dart';
 import '../truda_routes/truda_pages.dart';
-import '../truda_utils/newhita_format_util.dart';
-import '../truda_utils/newhita_loading.dart';
+import '../truda_utils/truda_format_util.dart';
+import '../truda_utils/truda_loading.dart';
 import '../truda_widget/newhita_net_image.dart';
 import 'truda_dialog_match_one.dart';
 

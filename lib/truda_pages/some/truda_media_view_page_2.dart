@@ -6,7 +6,7 @@ import 'package:wakelock/wakelock.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/truda_pages.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
 class TrudaFullscreenSliderDemo extends StatefulWidget {
@@ -369,19 +369,19 @@ class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
   @override
   void didPopNext() {
     super.didPopNext();
-    NewHitaLog.debug('LindaMediaViewPage didPopNext');
+    TrudaLog.debug('LindaMediaViewPage didPopNext');
   }
 
   @override
   void didPush() {
     super.didPush();
-    NewHitaLog.debug('LindaMediaViewPage didPush');
+    TrudaLog.debug('LindaMediaViewPage didPush');
   }
 
   @override
   void didPushNext() {
     super.didPushNext();
-    NewHitaLog.debug('LindaMediaViewPage didPushNext');
+    TrudaLog.debug('LindaMediaViewPage didPushNext');
     if (playing) _betterPlayerController.pause();
   }
 

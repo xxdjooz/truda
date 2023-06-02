@@ -1,4 +1,4 @@
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 
 import '../generated/json/base/json_field.dart';
 import '../generated/json/truda_charge_entity.g.dart';
@@ -73,7 +73,7 @@ class TrudaPayCommoditeBean {
   //     googleCurrencySymbol ?? HiDataConvert.currencyToSymbol(realCurrency);
 
   String? get realCurrencySymbol =>
-      NewHitaFormatUtil.currencyToSymbol(realCurrency);
+      TrudaFormatUtil.currencyToSymbol(realCurrency);
 }
 
 @JsonSerializable()
@@ -250,7 +250,7 @@ class TrudaPayCutCommodite {
   //     googleCurrencySymbol ?? HiDataConvert.currencyToSymbol(realCurrency);
 
   String? get realCurrencySymbol =>
-      NewHitaFormatUtil.currencyToSymbol(realCurrency);
+      TrudaFormatUtil.currencyToSymbol(realCurrency);
 }
 
 //  "areaCode":3,

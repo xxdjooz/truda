@@ -8,13 +8,13 @@ import '../../../../truda_dialogs/truda_dialog_create_moment.dart';
 import '../../../../truda_entities/truda_moment_entity.dart';
 import '../../../../truda_http/truda_http_urls.dart';
 import '../../../../truda_http/truda_http_util.dart';
-import '../../../../truda_utils/newhita_choose_image_util.dart';
-import '../../../../truda_utils/newhita_loading.dart';
-import '../../../../truda_utils/newhita_log.dart';
+import '../../../../truda_utils/truda_choose_image_util.dart';
+import '../../../../truda_utils/truda_loading.dart';
+import '../../../../truda_utils/truda_log.dart';
 
 class TrudaCreateController extends GetxController {
   final Map<String, int> pathUploadState = {};
-  late final NewHitaUpLoadCallBack upLoadCallBack;
+  late final TrudaUpLoadCallBack upLoadCallBack;
   final TrudaMomentDetail goraMomentDetail = TrudaMomentDetail();
 
   @override
@@ -22,18 +22,18 @@ class TrudaCreateController extends GetxController {
     super.onInit();
     goraMomentDetail.medias = [];
     upLoadCallBack = (uploader, type, url, path) {
-      NewHitaLog.debug('NewHitaUpLoadCallBack type=$type url=$url path=$path');
+      TrudaLog.debug('NewHitaUpLoadCallBack type=$type url=$url path=$path');
       switch (type) {
-        case NewHitaUploadType.cancel:
+        case TrudaUploadType.cancel:
           {}
           break;
-        case NewHitaUploadType.begin:
+        case TrudaUploadType.begin:
           goraMomentDetail.medias!.add(TrudaMomentMedia()
             ..localPath = path
             ..uploadState = 0);
           update();
           break;
-        case NewHitaUploadType.success:
+        case TrudaUploadType.success:
           for (var element in goraMomentDetail.medias!) {
             if (element.localPath == path) {
               element.mediaUrl = url;
@@ -42,7 +42,7 @@ class TrudaCreateController extends GetxController {
           }
           update();
           break;
-        case NewHitaUploadType.failed:
+        case TrudaUploadType.failed:
           for (var element in goraMomentDetail.medias!) {
             if (element.localPath == path) {
               element.uploadState = 2;
@@ -73,7 +73,7 @@ class TrudaCreateController extends GetxController {
     final str = StringBuffer();
     var m = goraMomentDetail.medias!;
     if (m.isEmpty || m.first.uploadState != 1) {
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_at_least_1_pic.tr);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_at_least_1_pic.tr);
       return;
     }
     for (int index = 0; index < m.length; index++) {
@@ -88,8 +88,8 @@ class TrudaCreateController extends GetxController {
           'paths': str.toString(),
         },
         showLoading: true, errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         callback: (i) {},
@@ -113,7 +113,7 @@ class TrudaCreateController extends GetxController {
             baseOffset: introTextController.text.length,
             extentOffset: introTextController.text.length);
       }
-      NewHitaLog.debug("输入的内容 = ${introTextController.text}");
+      TrudaLog.debug("输入的内容 = ${introTextController.text}");
     });
 
     introTextController.text = intro;

@@ -5,7 +5,7 @@ import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/truda_app_info_service.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../newhita_log.dart';
+import '../truda_log.dart';
 import 'truda_ads_spots_entity.dart';
 
 class TrudaAdsUtils {
@@ -296,12 +296,12 @@ class TrudaAdsUtils {
   static void getAdSpots({bool isRefresh = false}) {
     TrudaHttpUtil().post<List<TrudaAdsSpotsEntity>>(TrudaHttpUrls.getAdSpots,
         errCallback: (e) {
-      NewHitaLog.debug('ad spots call back success 3 ${e.toString()}');
+      TrudaLog.debug('ad spots call back success 3 ${e.toString()}');
     }).then((data) {
-      NewHitaLog.debug('ad spots call back success  1 ');
-      NewHitaLog.debug('ad spots call back success ${data.length.toString()}');
+      TrudaLog.debug('ad spots call back success  1 ');
+      TrudaLog.debug('ad spots call back success ${data.length.toString()}');
       data.forEach((element) {
-        NewHitaLog.debug('ad spots  ${element.keyCode}    ');
+        TrudaLog.debug('ad spots  ${element.keyCode}    ');
       });
       adMap =
           Map.fromEntries(data.map((value) => MapEntry(value.keyCode, value)));
@@ -313,6 +313,6 @@ class TrudaAdsUtils {
   }
 
   static void logi(String msg) {
-    NewHitaLog.debug("ads ===> $msg ");
+    TrudaLog.debug("ads ===> $msg ");
   }
 }

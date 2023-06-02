@@ -9,7 +9,7 @@ import 'package:truda/truda_pages/main/moment/create/truda_create_controller.dar
 import 'package:truda/truda_widget/newhita_click_widget.dart';
 
 import '../../../../truda_common/truda_colors.dart';
-import '../../../../truda_utils/newhita_choose_image_util.dart';
+import '../../../../truda_utils/truda_choose_image_util.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 
 class TrudaCreatePage extends GetView<TrudaCreateController> {
@@ -126,7 +126,7 @@ class TrudaCreatePage extends GetView<TrudaCreateController> {
                     if (index == controller.goraMomentDetail.medias!.length) {
                       return GestureDetector(
                         onTap: () {
-                          NewHitaChooseImageUtil(
+                          TrudaChooseImageUtil(
                                   type: 1, callBack: controller.upLoadCallBack)
                               .openChooseDialog();
                         },

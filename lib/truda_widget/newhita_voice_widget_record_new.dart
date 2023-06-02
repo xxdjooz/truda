@@ -11,8 +11,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../truda_common/truda_language_key.dart';
-import '../truda_utils/newhita_loading.dart';
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_loading.dart';
+import '../truda_utils/truda_log.dart';
 
 
 typedef NewHitaUploadCallBack = Function(String duration, String localPath);
@@ -210,9 +210,9 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
     });
 
     if (isUp) {
-      NewHitaLog.debug("取消发送");
+      TrudaLog.debug("取消发送");
     } else {
-      NewHitaLog.debug("进行发送");
+      TrudaLog.debug("进行发送");
     }
   }
 
@@ -221,7 +221,7 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
     if (isUp == isUpNow) return;
     setState(() {
       isUp = isUpNow;
-      NewHitaLog.debug("moveVoiceView--setState isUp=$isUp ");
+      TrudaLog.debug("moveVoiceView--setState isUp=$isUp ");
       if (isUp) {
         textShow = TrudaLanguageKey.newhita_cancel_send.tr;
         toastShow = textShow;
@@ -259,7 +259,7 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
 
         seconds = e.duration.inSeconds;
         text = DateFormat('mm:ss').format(date);
-        NewHitaLog.debug(
+        TrudaLog.debug(
             'NewHitaVoiceRecordWidget onProgress seconds=$seconds txt=$text');
 
         if (seconds == _countTotal) {
@@ -274,14 +274,14 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
 
   void stopRecorder() async {
     await _mRecorder!.stopRecorder().then((value) {
-      NewHitaLog.debug(
+      TrudaLog.debug(
           'NewHitaVoiceRecordWidget stopRecorder canSend=$canSend seconds=$seconds _mPath=$_mPath');
       bool timeEnough = seconds >= 1;
       if (canSend) {
         if (_mPath.isNotEmpty && timeEnough) {
           widget.uploadCallBack?.call(seconds.toString(), _mPath);
         } else if (timeEnough) {
-          NewHitaLoading.toast(TrudaLanguageKey.newhita_order_failed.tr);
+          TrudaLoading.toast(TrudaLanguageKey.newhita_order_failed.tr);
         }
       }
 
@@ -312,10 +312,10 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
         children: [
           GestureDetector(
             onPanDown: (d) {
-              NewHitaLog.debug('NewHitaVoiceRecordWidget pan onPanDown');
+              TrudaLog.debug('NewHitaVoiceRecordWidget pan onPanDown');
               dragToDeleteView = false;
               isUp = false;
-              NewHitaLog.debug('NewHitaVoiceRecordWidget GestureDetector onTapDown');
+              TrudaLog.debug('NewHitaVoiceRecordWidget GestureDetector onTapDown');
               showVoiceView();
             },
             onPanUpdate: (detail) {
@@ -324,16 +324,16 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
               Offset offset = renderBox.localToGlobal(Offset.zero);
               var rect = offset & renderBox.size;
               bool contain = rect.contains(detail.delta);
-              NewHitaLog.debug('NewHitaVoiceRecordWidget 拖动 $detail  $contain');
+              TrudaLog.debug('NewHitaVoiceRecordWidget 拖动 $detail  $contain');
               dragToDeleteView = !contain;
 
               moveVoiceView();
             },
             onPanStart: (d) {
-              NewHitaLog.debug('NewHitaVoiceRecordWidget pan onPanStart');
+              TrudaLog.debug('NewHitaVoiceRecordWidget pan onPanStart');
             },
             onPanEnd: (detail) {
-              NewHitaLog.debug('NewHitaVoiceRecordWidget pan onPanEnd');
+              TrudaLog.debug('NewHitaVoiceRecordWidget pan onPanEnd');
               hideVoiceView();
               // RenderBox renderBox =
               //     itKey.currentContext!.findRenderObject() as RenderBox;
@@ -344,7 +344,7 @@ class _NewHitaVoiceRecordNewState extends State<NewHitaVoiceRecordNew> {
               // dragToDeleteView = !contain;
             },
             onPanCancel: () {
-              NewHitaLog.debug('NewHitaVoiceRecordWidget pan onPanCancel');
+              TrudaLog.debug('NewHitaVoiceRecordWidget pan onPanCancel');
               hideVoiceView();
             },
             // onTapDown: (d) {

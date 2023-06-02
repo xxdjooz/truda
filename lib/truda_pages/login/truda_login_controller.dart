@@ -5,14 +5,14 @@ import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/login/truda_login_to_main_api.dart';
 import 'package:truda/truda_pages/login/truda_login_util.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
 import '../../truda_common/truda_constants.dart';
 import '../../truda_entities/truda_login_entity.dart';
 import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../../truda_utils/newhita_check_app_update.dart';
-import '../../truda_utils/newhita_string_util.dart';
+import '../../truda_utils/truda_check_app_update.dart';
+import '../../truda_utils/truda_string_util.dart';
 
 class TrudaLoginController extends GetxController {
   bool _logining = false;
@@ -39,7 +39,7 @@ class TrudaLoginController extends GetxController {
       "cover": _heads[_rnd.nextInt(5)],
       "nickname": "newhita_${getRandomString(5, _chars)}",
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, showLoading: true);
     config.then((value) {
       TrudaStorageService.to.prefs.setString("test_google_id", str);
@@ -50,7 +50,7 @@ class TrudaLoginController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    NewHitaCheckAppUpdate.check();
+    TrudaCheckAppUpdate.check();
   }
 
   void googleSignIn() {
@@ -76,7 +76,7 @@ class TrudaLoginController extends GetxController {
       "token": token ?? "",
       "nickname": nickname ?? "newhita_${getRandomString(5, _chars)}",
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, doneCallback: (success, re) {
       _logining = false;
     }, showLoading: true);
@@ -101,7 +101,7 @@ class TrudaLoginController extends GetxController {
         TrudaHttpUtil().post<TrudaLogin>(TrudaHttpUrls.facebookLoginApi, data: {
       "accessToken": accessToken ?? "",
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, doneCallback: (success, re) {
       _logining = false;
     }, showLoading: true);
@@ -127,7 +127,7 @@ class TrudaLoginController extends GetxController {
       "identityToken": token ?? "",
       "nickname": nickname ?? "gora_${getRandomString(5, _chars)}",
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.toString());
+      TrudaLoading.toast(err.toString());
     }, doneCallback: (success, re) {
       _logining = false;
     }, showLoading: true);

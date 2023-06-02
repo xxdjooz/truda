@@ -12,8 +12,8 @@ import '../../../truda_entities/truda_moment_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 
 /// 这个是审核模式下的匹配，匹配到的是一个动态
 class TrudaMatchFakeController extends GetxController with RouteAware {
@@ -52,7 +52,7 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
         sampleRate: 8000,
         codec: codec,
         whenFinished: () async {
-          NewHitaLog.debug('NewHitaMatchController playBgm whenFinished');
+          TrudaLog.debug('NewHitaMatchController playBgm whenFinished');
           await _mPlayer.seekToPlayer(Duration());
           playBgm();
         });
@@ -63,9 +63,9 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
     if (matching == 2) {
       _getOneHost(showLoading: true);
     } else if (matching == 0) {
-      NewHitaLoading.show();
+      TrudaLoading.show();
     } else if (matching == 1) {
-      NewHitaLoading.dismiss();
+      TrudaLoading.dismiss();
       shouldShowGirl = false;
       TrudaDialogMatchMoment.checkToShow(detail!).then((value) {
         _getOneHost();
@@ -78,8 +78,8 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
     matching = 0;
     TrudaHttpUtil().post<TrudaMomentDetail>(TrudaHttpUrls.momentRand,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
-      NewHitaLoading.dismiss();
+      TrudaLoading.toast(err.message);
+      TrudaLoading.dismiss();
       matching = 2;
     }, showLoading: showLoading).then((value) {
       detail = value;
@@ -111,7 +111,7 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
   }
 
   void setBgmPlay(bool play) {
-    NewHitaLog.debug('NewHitaMatchFake setBgmPlay $play');
+    TrudaLog.debug('NewHitaMatchFake setBgmPlay $play');
     if (play) {
       _mPlayer.resumePlayer();
     } else {
@@ -124,6 +124,6 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
     _mPlayer.stopPlayer();
     _mPlayer.closePlayer();
     super.onClose();
-    NewHitaLog.debug('NewHitaMatchController onClose');
+    TrudaLog.debug('NewHitaMatchController onClose');
   }
 }

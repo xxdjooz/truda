@@ -8,7 +8,7 @@ import '../../truda_database/entity/truda_order_entity.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../../truda_utils/newhita_loading.dart';
+import '../../truda_utils/truda_loading.dart';
 import '../charge/truda_charge_new_channel_dialog.dart';
 import '../charge/truda_google_billing.dart';
 import '../charge/truda_in_app_purchase_apple.dart';
@@ -66,7 +66,7 @@ class TrudaChargeQuickController extends GetxController {
     TrudaHttpUtil().post<TrudaPayQuickData>(
       TrudaHttpUrls.getCompositeProduct + '1',
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       },
     ).then((value) {
       setData(value);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart' as logger;
 import 'package:logger/logger.dart';
 
-class NewHitaLog {
+class TrudaLog {
   static logger.Logger? _loggerInstance;
 
   static logger.Logger get _logger => _loggerInstance ??= logger.Logger(
@@ -19,7 +19,7 @@ class NewHitaLog {
           methodCount: 3,
           errorMethodCount: 8,
         ),
-        output: NewHitaConsoleOutput(),
+        output: TrudaConsoleOutput(),
       );
 
   static void longLog(dynamic message) {
@@ -39,7 +39,7 @@ class NewHitaLog {
   }
 }
 
-class NewHitaConsoleOutput extends LogOutput {
+class TrudaConsoleOutput extends LogOutput {
   @override
   void output(OutputEvent event) {
     event.lines.forEach(printWrapped);

@@ -12,7 +12,7 @@ import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_socket/truda_socket_manager.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../truda_common/truda_call_status.dart';
@@ -38,9 +38,9 @@ import '../../truda_rtm/truda_rtm_msg_sender.dart';
 import '../../truda_services/truda_event_bus_bean.dart';
 import '../../truda_services/truda_storage_service.dart';
 import '../../truda_socket/truda_socket_entity.dart';
-import '../../truda_utils/newhita_gift_follow_tip.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_gift_follow_tip.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
@@ -152,7 +152,7 @@ class TrudaCallController extends GetxController {
   final DisableScreenshots _plugin = DisableScreenshots();
   StreamSubscription<void>? _screenshotsSubscription;
 
-  late NewHitaGiftFollowTipController tipController;
+  late TrudaGiftFollowTipController tipController;
   @override
   void onInit() {
     super.onInit();
@@ -200,7 +200,7 @@ class TrudaCallController extends GetxController {
     subBeginCall = TrudaStorageService.to.eventBus
         .on<TrudaRTMMsgBeginCall>()
         .listen((event) {
-      NewHitaLog.debug('subBeginCall hadBeginCall=$hadBeginCall');
+      TrudaLog.debug('subBeginCall hadBeginCall=$hadBeginCall');
       if (event.channelId != channelId) return;
       if (hadBeginCall) return;
       hadBeginCall = true;
@@ -233,7 +233,7 @@ class TrudaCallController extends GetxController {
     });
     Wakelock.enable();
 
-    tipController = NewHitaGiftFollowTipController()
+    tipController = TrudaGiftFollowTipController()
       ..listen((callback) {
         if (callback == 1) {
           handleFollow();
@@ -254,7 +254,7 @@ class TrudaCallController extends GetxController {
 
     if (GetPlatform.isIOS) {
       _screenshotsSubscription = _plugin.onScreenShots.listen((event) {
-        NewHitaLog.debug("用户进行了截屏");
+        TrudaLog.debug("用户进行了截屏");
         TrudaSocketManager.to.sendScreenshots(channelId ?? "");
       });
     } else {
@@ -268,8 +268,8 @@ class TrudaCallController extends GetxController {
     _startLinkTimer();
     TrudaHttpUtil().post<String>(TrudaHttpUrls.agoraTokenApi + channelId!,
         data: {}, errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
       _errBeforeCall(TrudaEndType2.linkErr);
     }).then((value) {
       token = value;
@@ -288,8 +288,8 @@ class TrudaCallController extends GetxController {
     _startLinkTimer();
     TrudaHttpUtil().post<TrudaJoinCall>(TrudaHttpUrls.joinCall + channelId!,
         data: {}, errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
       _errBeforeCall(TrudaEndType2.linkErr);
     }).then((value) {
       token = value.rtcToken!;
@@ -329,7 +329,7 @@ class TrudaCallController extends GetxController {
         remoteVideoStats: _remoteVideoStats,
         connectionBanned: () {
           _endCall(TrudaEndType2.hostBan);
-          NewHitaLog.debug('connectionBanned');
+          TrudaLog.debug('connectionBanned');
         }));
     await _engine?.setVideoEncoderConfiguration(
       VideoEncoderConfiguration(
@@ -417,7 +417,7 @@ class TrudaCallController extends GetxController {
       }
 
       callTimeShowCard.value = callTime < 0;
-      callTimeStr.value = NewHitaFormatUtil.getTimeStrFromSecond(callTime.abs());
+      callTimeStr.value = TrudaFormatUtil.getTimeStrFromSecond(callTime.abs());
     });
   }
 
@@ -442,7 +442,7 @@ class TrudaCallController extends GetxController {
     // 这个判断是为了监控端可能进入
     if (uid.toString() != herId) return;
     Future.delayed(const Duration(seconds: 2), (){
-      NewHitaLoading.toast(TrudaLanguageKey.newhita_video_hang_up_tip.tr,);
+      TrudaLoading.toast(TrudaLanguageKey.newhita_video_hang_up_tip.tr,);
     });
 
     _endCall(reason == UserOfflineReason.Quit
@@ -454,7 +454,7 @@ class TrudaCallController extends GetxController {
   void _remoteVideoStats(RemoteVideoStats stats) {
     // 这个判断是为了监控端可能进入
     if (stats.uid.toString() != herId) return;
-    NewHitaLog.debug('_remoteVideoStats ${stats.decoderOutputFrameRate}');
+    TrudaLog.debug('_remoteVideoStats ${stats.decoderOutputFrameRate}');
     if (stats.decoderOutputFrameRate <= 0) {
       audioMode.value = true;
       update();
@@ -540,7 +540,7 @@ class TrudaCallController extends GetxController {
         ));
         return;
       }
-      NewHitaLoading.toast(err.message, duration: const Duration(seconds: 3));
+      TrudaLoading.toast(err.message, duration: const Duration(seconds: 3));
     }).then((value) {
       myVapController.playGift(gift);
       var json =
@@ -692,7 +692,7 @@ class TrudaCallController extends GetxController {
         Wakelock.enable();
       }
       if (linkTime <= 0) {
-        NewHitaLog.debug('linkTime > 15');
+        TrudaLog.debug('linkTime > 15');
         _timerLink?.cancel();
         _timerLink = null;
         // hangUp();
@@ -740,7 +740,7 @@ class TrudaCallController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    NewHitaLog.debug('TrudaCallController onClose()');
+    TrudaLog.debug('TrudaCallController onClose()');
     _engine?.stopPreview();
     _engine?.leaveChannel();
     _engine?.destroy();
@@ -760,7 +760,7 @@ class TrudaCallController extends GetxController {
     // var areaCode = NewHitaStorageService.to.getAreaCode();
     await TrudaHttpUtil().post<List<TrudaContributeBean>>(
         TrudaHttpUrls.getExpendRanking + herId, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       for (var index = 0; index < value.length; index++) {
         if (value[index].userId == TrudaMyInfoService.to.myDetail?.userId &&

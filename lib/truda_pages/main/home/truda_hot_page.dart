@@ -11,7 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../truda_common/truda_colors.dart';
-import '../../../truda_utils/newhita_facebook_util.dart';
+import '../../../truda_utils/truda_facebook_util.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import 'truda_host_widget.dart';
 import 'truda_hot_controller.dart';

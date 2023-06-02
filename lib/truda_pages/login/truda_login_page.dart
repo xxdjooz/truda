@@ -9,7 +9,7 @@ import 'package:truda/truda_pages/login/account/truda_account_login_page.dart';
 import 'package:truda/truda_pages/splash/truda_splash_page.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_facebook_util.dart';
+import 'package:truda/truda_utils/truda_facebook_util.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../some/truda_web_page.dart';

@@ -19,9 +19,9 @@ import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/call/local/truda_local_controller.dart';
 import '../truda_pages/chat/truda_chat_controller.dart';
-import '../truda_utils/newhita_format_util.dart';
-import '../truda_utils/newhita_loading.dart';
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_format_util.dart';
+import '../truda_utils/truda_loading.dart';
+import '../truda_utils/truda_log.dart';
 import '../truda_widget/newhita_net_image.dart';
 import 'truda_sheet_host_option.dart';
 
@@ -462,7 +462,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
                             height: 12,
                           ),
                           Text(
-                            '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
+                            '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
                             style: const TextStyle(
                                 color: TrudaColors.white, fontSize: 12),
                           ),

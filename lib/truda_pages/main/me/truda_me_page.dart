@@ -9,9 +9,9 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
-import 'package:truda/truda_utils/newhita_some_extension.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
+import 'package:truda/truda_utils/truda_log.dart';
+import 'package:truda/truda_utils/truda_some_extension.dart';
 import 'package:intl/intl.dart';
 
 import '../../../truda_common/truda_common_dialog.dart';
@@ -34,10 +34,10 @@ class TrudaMePage extends StatelessWidget {
     final TrudaMeController meController = Get.put(TrudaMeController());
     return GetBuilder<TrudaMeController>(
       initState: (c) {
-        NewHitaLog.debug('NewHitaMePage initState()');
+        TrudaLog.debug('NewHitaMePage initState()');
       },
       dispose: (c) {
-        NewHitaLog.debug('NewHitaMePage dispose()');
+        TrudaLog.debug('NewHitaMePage dispose()');
       },
       builder: (controller) {
         return Stack(
@@ -619,7 +619,7 @@ class TrudaMePage extends StatelessWidget {
                                           }
                                         });
                                       } else {
-                                        NewHitaLoading.toast(TrudaLanguageKey
+                                        TrudaLoading.toast(TrudaLanguageKey
                                             .newhita_invite_bound.tr);
                                       }
                                     },

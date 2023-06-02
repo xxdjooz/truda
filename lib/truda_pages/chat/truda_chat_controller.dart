@@ -10,7 +10,7 @@ import 'package:truda/truda_pages/chat/truda_chat_msg_wrapper.dart';
 import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:truda/truda_widget/gift/newhita_vap_player.dart';
 
 import '../../truda_common/truda_charge_path.dart';
@@ -28,9 +28,9 @@ import '../../truda_services/truda_event_bus_bean.dart';
 import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/ad/truda_ads_native_utils.dart';
 import '../../truda_utils/ad/truda_ads_utils.dart';
-import '../../truda_utils/newhita_gift_follow_tip.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_voice_player.dart';
+import '../../truda_utils/truda_gift_follow_tip.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_voice_player.dart';
 import '../chargedialog/truda_charge_dialog_manager.dart';
 
 class TrudaChatController extends GetxController {
@@ -64,7 +64,7 @@ class TrudaChatController extends GetxController {
   late String herId;
   TrudaHerEntity? her;
   TrudaHostDetail? herDetail;
-  late NewHitaGiftFollowTipController tipController;
+  late TrudaGiftFollowTipController tipController;
 
   int leftFreeMsgNum = 5;
   bool showMsgTipView = true;
@@ -82,7 +82,7 @@ class TrudaChatController extends GetxController {
       var detail = Get.arguments as TrudaHostDetail;
       herId = detail.userId!;
     }
-    NewHitaLog.good("NewHitaChatController userId=$herId");
+    TrudaLog.good("NewHitaChatController userId=$herId");
     her = TrudaStorageService.to.objectBoxMsg.queryHer(herId);
     myId = TrudaMyInfoService.to.userLogin?.userId ?? "";
     // var firstList = NewHitaStorageService.to.objectBox.queryMsgs();
@@ -94,12 +94,12 @@ class TrudaChatController extends GetxController {
     var usedFree =
         TrudaMyInfoService.to.myDetail?.userBalance?.freeMsgCount ?? 0;
     leftFreeMsgNum = allFree - usedFree;
-    NewHitaLog.debug(
+    TrudaLog.debug(
         'NewHitaChatController allFree=$allFree usedFree=$usedFree leftFreeMsgNum=$leftFreeMsgNum');
 
     TrudaMyInfoService.to.chattingWithHer = herId;
 
-    tipController = NewHitaGiftFollowTipController()
+    tipController = TrudaGiftFollowTipController()
       ..listen((callback) {
         if (callback == 1) {
           handleFollow();
@@ -107,7 +107,7 @@ class TrudaChatController extends GetxController {
       });
     subClear =
         TrudaStorageService.to.eventBus.on<TrudaEventMsgClear>().listen((event) {
-      NewHitaLog.good("NewHitaChatController subClear");
+      TrudaLog.good("NewHitaChatController subClear");
       if (event.type == 3) {
         showOldData.clear();
         showNewData.clear();
@@ -130,7 +130,7 @@ class TrudaChatController extends GetxController {
     /// event bus 监听
     sub = TrudaStorageService.to.eventBus.on<TrudaMsgEntity>().listen((event) {
       if (event.herId != herId) return;
-      NewHitaLog.debug(
+      TrudaLog.debug(
           "NewHitaChatController eventbus listen:msgId=${event.msgId} msgEventType=${event.msgEventType}");
       if (event.msgEventType == NewHitaMsgEventType.sending ||
           event.msgEventType == NewHitaMsgEventType.none ||
@@ -161,7 +161,7 @@ class TrudaChatController extends GetxController {
     }
     TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       herDetail = value;
       update(['herInfo']);
@@ -227,7 +227,7 @@ class TrudaChatController extends GetxController {
   /// 下拉加载历史数据，放loadMoreData
   Future getOldList() async {
     var list = TrudaStorageService.to.objectBoxMsg.queryHostMsgs(herId, time);
-    NewHitaLog.debug('getOldList() list=${list.length}');
+    TrudaLog.debug('getOldList() list=${list.length}');
     if (list.isEmpty) return;
     showOldData.addAll(_getWrapperList(list, time));
     update();
@@ -310,7 +310,7 @@ class TrudaChatController extends GetxController {
           upid: herId,
           noMoneyShow: true,
         );
-        NewHitaLoading.toast(err.message, duration: const Duration(seconds: 3));
+        TrudaLoading.toast(err.message, duration: const Duration(seconds: 3));
       } else if (err.code == 25) {
         TrudaCommonDialog.dialog(TrudaDialogConfirm(
           callback: (i) {
@@ -375,8 +375,8 @@ class TrudaChatController extends GetxController {
     sub.cancel();
     subClear.cancel();
     TrudaMyInfoService.to.chattingWithHer = null;
-    NewHitaAudioPlayer().stop();
-    NewHitaAudioPlayer().release();
+    TrudaAudioPlayer().stop();
+    TrudaAudioPlayer().release();
 
     nativeUtils.closeSub();
   }

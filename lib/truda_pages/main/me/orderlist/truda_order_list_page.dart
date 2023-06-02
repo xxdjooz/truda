@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_order_entity.dart';
 import 'package:truda/truda_routes/truda_pages.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -196,7 +196,7 @@ class TrudaOrderItem extends StatelessWidget {
                   child: SizedBox(),
                 ),
                 Text(
-                  "${NewHitaFormatUtil.currencyToSymbol(data.currencyCode)} ${data.currencyFee != null ? data.currencyFee! / 100.0 : '--'}",
+                  "${TrudaFormatUtil.currencyToSymbol(data.currencyCode)} ${data.currencyFee != null ? data.currencyFee! / 100.0 : '--'}",
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ],

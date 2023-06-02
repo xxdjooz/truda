@@ -7,8 +7,8 @@ import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_services/truda_event_bus_bean.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_app_rate.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_app_rate.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../truda_common/truda_call_status.dart';
 import '../truda_database/entity/truda_msg_entity.dart';
@@ -20,7 +20,7 @@ import '../truda_socket/truda_socket_entity.dart';
 void handleMsg(AgoraRtmMessage message, String peerId) {
   final String myId = TrudaMyInfoService.to.userLogin?.userId ?? "emptyId";
   final int milliseconds = DateTime.now().millisecondsSinceEpoch;
-  NewHitaLog.debug('rtm message come !! \npeerId: $peerId \n$message');
+  TrudaLog.debug('rtm message come !! \npeerId: $peerId \n$message');
   final String text = message.text;
   final int ts = message.ts;
   final bool offline = message.offline;
@@ -40,7 +40,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       // 发现服务端下发的话术消息只有id,"userInfo":{"auth":2,"uid":"108172243"}
       TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + her.uid!,
           errCallback: (err) {
-        NewHitaLog.debug(err);
+        TrudaLog.debug(err);
       }).then((value) {
         var entity = TrudaHerEntity(value.nickname ?? '', her.uid!,
             portrait: value.portrait);
@@ -66,7 +66,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
     }
 
     /// app打分
-    NewHitaAppRate.rateApp(messageContent);
+    TrudaAppRate.rateApp(messageContent);
     return;
   }
   if (msgType == 29) {

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../../truda_database/entity/truda_conversation_entity.dart';
 import '../../../truda_database/entity/truda_her_entity.dart';
@@ -11,7 +11,7 @@ import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/truda_event_bus_bean.dart';
-import '../../../truda_utils/newhita_loading.dart';
+import '../../../truda_utils/truda_loading.dart';
 
 class TrudaMsgFollowController extends GetxController {
   /// 加载会话列表时的最下面一条的时间戳，根据这个分页加载
@@ -25,7 +25,7 @@ class TrudaMsgFollowController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    NewHitaLog.good("NewHitaMsgController onInit()");
+    TrudaLog.good("NewHitaMsgController onInit()");
     // _getList();
 
     /// event bus 监听
@@ -59,7 +59,7 @@ class TrudaMsgFollowController extends GetxController {
     }, pageCallback: (has) {
       // enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       // refreshController.refreshCompleted();
     }).then((value) {
       focusUpList.clear();
@@ -76,7 +76,7 @@ class TrudaMsgFollowController extends GetxController {
     dataList.clear();
     time = DateTime.now().millisecondsSinceEpoch;
     var list = TrudaStorageService.to.objectBoxMsg.queryHostCon(time);
-    NewHitaLog.debug("NewHitaMsgController _getList() length=${list.length}");
+    TrudaLog.debug("NewHitaMsgController _getList() length=${list.length}");
     // dataList.addAll(list);
     // update(['list']);
     focusUpList.forEach((uper) {

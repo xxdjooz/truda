@@ -6,7 +6,7 @@ import 'package:anythink_sdk/at_platformview/at_native_platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../truda_services/truda_storage_service.dart';
-import '../newhita_log.dart';
+import '../truda_log.dart';
 
 class TrudaAdsNativeUtils {
   String adCode;
@@ -180,6 +180,6 @@ class TrudaAdsNativeUtils {
   }
 
   static void logi(String msg) {
-    NewHitaLog.debug("ads ===> $msg ");
+    TrudaLog.debug("ads ===> $msg ");
   }
 }

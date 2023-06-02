@@ -12,9 +12,9 @@ import 'package:truda/truda_dialogs/truda_sheet_host_option.dart';
 import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import 'package:truda/truda_pages/host/truda_host_detail_indicator.dart';
 import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
-import 'package:truda/truda_utils/newhita_some_extension.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
+import 'package:truda/truda_utils/truda_some_extension.dart';
 import 'package:intl/intl.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
@@ -24,8 +24,8 @@ import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/truda_pages.dart';
 import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../../truda_utils/newhita_log.dart';
-import '../../truda_utils/newhita_ui_image_util.dart';
+import '../../truda_utils/truda_log.dart';
+import '../../truda_utils/truda_ui_image_util.dart';
 import '../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../truda_widget/newhita_border.dart';
 import '../../truda_widget/newhita_image_indicator.dart';
@@ -135,7 +135,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                                     return TrudaSheetHostOption(
                                         herId: _controller.detail!.userId!);
                                   });
-                              NewHitaLog.debug(
+                              TrudaLog.debug(
                                   'NewHitaHostPage showModalBottomSheet result=$result');
                               if (result == 1) {
                                 Get.back(result: 1);
@@ -330,7 +330,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                         delegate: NewHitaSliverHeaderDelegate.fixedHeight(
                           height: kTextTabBarHeight,
                           child: Builder(builder: (context) {
-                            NewHitaLog.debug(
+                            TrudaLog.debug(
                                 'NewHitaHostPage ${_controller.indicatorImage == null}');
                             return ColoredBox(
                               color: TrudaColors.white,
@@ -571,7 +571,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                 onTap: () {
                   Clipboard.setData(ClipboardData(
                       text: _controller.detail?.username ?? '--'));
-                  NewHitaLoading.toast(
+                  TrudaLoading.toast(
                       TrudaLanguageKey.newhita_base_success.tr);
                 },
                 child: Container(
@@ -619,7 +619,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
             height: 10,
           ),
           Text(
-            '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
+            '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(detail.birthday ?? 0))}',
             style: const TextStyle(color: Color(0xFFFF51A8), fontSize: 12),
           ),
         ],

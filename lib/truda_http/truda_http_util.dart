@@ -9,7 +9,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_services/truda_app_info_service.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 
 import '../generated/json/base/json_convert_content.dart';
@@ -17,7 +17,7 @@ import '../truda_routes/truda_pages.dart';
 import '../truda_rtm/truda_rtm_manager.dart';
 import '../truda_services/truda_my_info_service.dart';
 import '../truda_socket/truda_socket_manager.dart';
-import '../truda_utils/newhita_loading.dart';
+import '../truda_utils/truda_loading.dart';
 import 'truda_http_urls.dart';
 
 /*
@@ -125,7 +125,7 @@ class TrudaHttpUtil {
       },
       onError: (DioError e, handler) {
         // Do something with response error
-        NewHitaLoading.dismiss();
+        TrudaLoading.dismiss();
         TrudaErrorEntity eInfo = createErrorEntity(e);
         onError(eInfo);
         return handler.next(e); //continue
@@ -148,7 +148,7 @@ class TrudaHttpUtil {
 
   // 错误处理
   void onError(TrudaErrorEntity eInfo) {
-    NewHitaLog.debug('error.code -> ' +
+    TrudaLog.debug('error.code -> ' +
         eInfo.code.toString() +
         ', error.message -> ' +
         eInfo.message);
@@ -228,7 +228,7 @@ class TrudaHttpUtil {
     if (key.isEmpty) {
       return content;
     }
-    NewHitaLog.debug("encryptAes start");
+    TrudaLog.debug("encryptAes start");
     var aesKey =
         '-----BEGIN PUBLIC KEY-----\n' + key + "\n-----END PUBLIC KEY-----";
 
@@ -358,11 +358,11 @@ class TrudaHttpUtil {
     final root =
         _isSpecal ? TrudaHttpUrls.getConfigBaseUrl() : TrudaHttpUrls.getBaseUrl();
     _dio.options.baseUrl = root;
-    NewHitaLog.debug('$root $path， Http post: $json');
+    TrudaLog.debug('$root $path， Http post: $json');
 
     /// 一般接口path这里就直接不传值了，path放参数里面去了！！！！
     dio_response.Response<String> response;
-    if (showLoading) NewHitaLoading.show();
+    if (showLoading) TrudaLoading.show();
     // NewHitaLog.debug('$path， begin post');
     try {
       response = await _dio.post(
@@ -383,17 +383,17 @@ class TrudaHttpUtil {
         err = TrudaErrorEntity(code: -3, message: "try catch err");
       }
       if (errCallback == null) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       } else {
         errCallback.call(err);
       }
       doneCallback?.call(false, err.message);
       return Future.error(e);
     } finally {
-      if (showLoading) NewHitaLoading.dismiss();
+      if (showLoading) TrudaLoading.dismiss();
       // NewHitaLog.debug('$path，post done');
     }
-    NewHitaLog.longLog(response.data);
+    TrudaLog.longLog(response.data);
     // var baseEntity = response.data;
     var baseEntity = const JsonDecoder().convert(response.data ?? '{}');
     // try {
@@ -405,7 +405,7 @@ class TrudaHttpUtil {
     /// 返回的data是null,这个会发生吗？
     if (baseEntity == null) {
       if (errCallback == null) {
-        NewHitaLoading.toast("baseEntity == null");
+        TrudaLoading.toast("baseEntity == null");
       } else {
         errCallback
             .call(TrudaErrorEntity(code: -3, message: "baseEntity == null"));
@@ -413,7 +413,7 @@ class TrudaHttpUtil {
       doneCallback?.call(false, "baseEntity == null");
       return Future.error("baseEntity err");
     }
-    NewHitaLog.longLog(path + '->' + const JsonEncoder().convert(baseEntity));
+    TrudaLog.longLog(path + '->' + const JsonEncoder().convert(baseEntity));
     // int? code;
     // String? message
     // T? data;
@@ -423,14 +423,14 @@ class TrudaHttpUtil {
     if (code != 0) {
       if (errCallback == null) {
         if (code == 8) {
-          NewHitaLoading.toast("${baseEntity["message"]}");
+          TrudaLoading.toast("${baseEntity["message"]}");
         } else if (code == 2) {
           TrudaMyInfoService.to.clear();
           Get.offAllNamed(TrudaAppPages.login);
           TrudaRtmManager.closeRtm();
           TrudaSocketManager.to.breakenSocket();
         } else {
-          NewHitaLoading.toast("[${code}] ${baseEntity["message"]}");
+          TrudaLoading.toast("[${code}] ${baseEntity["message"]}");
         }
       } else {
         errCallback
@@ -469,7 +469,7 @@ class TrudaHttpUtil {
     // }
     /// code=0而data不是map和list,不用fromJson
     if (serverData is! Map<String, dynamic> && serverData is! List<dynamic>) {
-      NewHitaLog.debug('need not JsonConvert');
+      TrudaLog.debug('need not JsonConvert');
       return serverData as T;
     }
 

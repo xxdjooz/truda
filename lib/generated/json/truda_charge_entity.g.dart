@@ -1,6 +1,6 @@
 import 'package:truda/generated/json/base/json_convert_content.dart';
 import 'package:truda/truda_entities/truda_charge_entity.dart';
-import 'package:truda/truda_utils/newhita_format_util.dart';
+import 'package:truda/truda_utils/truda_format_util.dart';
 
 
 TrudaPayChannelBean $TrudaPayChannelBeanFromJson(Map<String, dynamic> json) {

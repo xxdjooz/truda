@@ -17,8 +17,8 @@ import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../vip/truda_vip_controller.dart';
 import 'truda_match_page.dart';
 
@@ -55,7 +55,7 @@ class TrudaMatchController extends GetxController with RouteAware {
         sampleRate: 8000,
         codec: codec,
         whenFinished: () async {
-          NewHitaLog.debug('NewHitaMatchController playBgm whenFinished');
+          TrudaLog.debug('NewHitaMatchController playBgm whenFinished');
           await _mPlayer.seekToPlayer(Duration());
           playBgm();
         });
@@ -80,8 +80,8 @@ class TrudaMatchController extends GetxController with RouteAware {
     matching = 0;
     TrudaHttpUtil().post<TrudaMatchHost>(TrudaHttpUrls.matchOneAnchor,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
-      NewHitaLoading.dismiss();
+      TrudaLoading.toast(err.message);
+      TrudaLoading.dismiss();
       matching = 2;
     }, showLoading: showLoading).then((value) {
       detail = value;
@@ -123,7 +123,7 @@ class TrudaMatchController extends GetxController with RouteAware {
     _mPlayer.stopPlayer();
     _mPlayer.closePlayer();
     super.onClose();
-    NewHitaLog.debug('NewHitaMatchController onClose');
+    TrudaLog.debug('NewHitaMatchController onClose');
   }
 
   final String keyEveryDay =

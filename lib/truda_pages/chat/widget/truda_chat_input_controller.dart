@@ -15,9 +15,9 @@ import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_choose_image_util.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_choose_image_util.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/truda_vip_controller.dart';
@@ -28,7 +28,7 @@ class TrudaChatInputController extends GetxController {
 
   TrudaChatInputController(this.userId);
 
-  late final NewHitaUpLoadCallBack upLoadCallBack;
+  late final TrudaUpLoadCallBack upLoadCallBack;
   late String myId;
   final TextEditingController textEditingController =
       TextEditingController(text: "");
@@ -192,17 +192,17 @@ class TrudaChatInputController extends GetxController {
       // NewHitaStorageService.to.eventBus.fire(msg);
       TrudaHttpUtil().post<String>(TrudaHttpUrls.s3UploadUrl,
           data: {'endType': '.wav'}, errCallback: (err) {
-        NewHitaLog.debug(err);
-        NewHitaLoading.toast(err.message);
+        TrudaLog.debug(err);
+        TrudaLoading.toast(err.message);
       }, showLoading: true).then((url) {
-        NewHitaLog.debug(url);
+        TrudaLog.debug(url);
         uploadFile(File(localPath), url).then((value) {
           var realUrl = url.split('?')[0];
           if (value == 200) {
             var json = TrudaRtmMsgSender.makeRTMMsgVoice(
                 userId, realUrl, int.parse(duration));
             msg.rawData = json;
-            NewHitaLog.debug(json);
+            TrudaLog.debug(json);
             // ios审核模式，假发送
             if (TrudaConstants.appMode == 2){
               TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
@@ -240,7 +240,7 @@ class TrudaChatInputController extends GetxController {
   }
 
   Future<int> uploadFile(File file, String uri) async {
-    NewHitaLog.debug('uploadFile $file');
+    TrudaLog.debug('uploadFile $file');
     // 初始化一个Http客户端，并加入自定义Header
     var req = await HttpClient().putUrl(Uri.parse(uri));
     // headers.forEach((key, value) {
@@ -282,13 +282,13 @@ class TrudaChatInputController extends GetxController {
 
   void initImageHandler() {
     upLoadCallBack = (uploader, type, url, path) {
-      NewHitaLog.debug('NewHitaUpLoadCallBack type=$type url=$url path=$path');
+      TrudaLog.debug('NewHitaUpLoadCallBack type=$type url=$url path=$path');
       switch (type) {
-        case NewHitaUploadType.cancel:
+        case TrudaUploadType.cancel:
           {}
           break;
-        case NewHitaUploadType.begin:
-          NewHitaLog.debug('NewHitaUpLoadCallBack begin url=$url path=$path');
+        case TrudaUploadType.begin:
+          TrudaLog.debug('NewHitaUpLoadCallBack begin url=$url path=$path');
           var msg = TrudaMsgEntity(
               myId,
               userId,
@@ -303,7 +303,7 @@ class TrudaChatInputController extends GetxController {
           TrudaStorageService.to.eventBus.fire(msg);
           uploader.msg = msg;
           break;
-        case NewHitaUploadType.success:
+        case TrudaUploadType.success:
           var json = TrudaRtmMsgSender.makeRTMMsgImage(userId, url!);
           var msg = uploader.msg!;
           msg.rawData = json;
@@ -339,7 +339,7 @@ class TrudaChatInputController extends GetxController {
             // _chatController.minusFreeMsg();
           });
           break;
-        case NewHitaUploadType.failed:
+        case TrudaUploadType.failed:
           {}
           break;
       }

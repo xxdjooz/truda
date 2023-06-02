@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
-import 'package:truda/truda_utils/newhita_check_calling_util.dart';
+import 'package:truda/truda_utils/truda_check_calling_util.dart';
 
 import '../../../truda_dialogs/truda_dialog_bind_tip.dart';
 import 'truda_sheet_charge_success.dart';
 
 class TrudaSuccessController extends GetxController {
   static startMeCheck({int lottery = 0}) {
-    if (NewHitaCheckCallingUtil.checkCalling()) return;
+    if (TrudaCheckCallingUtil.checkCalling()) return;
     if (TrudaConstants.isFakeMode) return;
     // Get.toNamed(
     //   NewHitaAppPages.chargeSuccess,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_utils/newhita_check_calling_util.dart';
+import 'package:truda/truda_utils/truda_check_calling_util.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_constants.dart';
@@ -31,7 +31,7 @@ class TrudaUserLevelUpdate extends StatelessWidget {
     // }
     TrudaMyInfoService.to.myDetail?.expLevel = expLevel;
     var leval = TrudaMyInfoService.to.getMyLeval();
-    if (NewHitaCheckCallingUtil.checkCalling()) {
+    if (TrudaCheckCallingUtil.checkCalling()) {
       return;
     }
     int lastLeval = TrudaMyInfoService.to.getLastShowLeval();

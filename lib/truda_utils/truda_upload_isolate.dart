@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:isolate';
 
-class NewHitaUploadIsolate {
+class TrudaUploadIsolate {
   Future<int> loadData(String url, String localPath, String contentType) async {
     // 通过spawn新建一个isolate，并绑定静态方法
     ReceivePort receivePort = ReceivePort();

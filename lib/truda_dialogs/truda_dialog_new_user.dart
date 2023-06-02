@@ -6,7 +6,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_check_calling_util.dart';
+import 'package:truda/truda_utils/truda_check_calling_util.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_entities/truda_info_entity.dart';
@@ -32,7 +32,7 @@ class NewTrudaUserCardsTip extends StatefulWidget {
         }
         if ((myDetail.callCardUsedCount ?? 1) <= 0 &&
             (myDetail.callCardCount ?? 0) > 0 &&
-            !NewHitaCheckCallingUtil.checkCalling()) {
+            !TrudaCheckCallingUtil.checkCalling()) {
           TrudaCommonDialog.dialog(NewTrudaUserCardsTip(
               myDetail.callCardCount!, myDetail.callCardDuration));
         }

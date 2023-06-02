@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_log.dart';
 import 'newhita_net_image.dart';
 
 // ignore: must_be_immutable
@@ -61,7 +61,7 @@ class _NewHitaPlayerAndroidState extends State<NewHitaPlayerAndroid> {
 
   @override
   Widget build(BuildContext context) {
-    NewHitaLog.debug("${context.widget.runtimeType} build");
+    TrudaLog.debug("${context.widget.runtimeType} build");
 
     return playing
         ? GestureDetector(

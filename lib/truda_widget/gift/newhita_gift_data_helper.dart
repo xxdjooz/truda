@@ -6,7 +6,7 @@ import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/truda_storage_service.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_log.dart';
 import '../newhita_cache_manager.dart';
 
 class NewHitaGiftDataHelper {
@@ -20,7 +20,7 @@ class NewHitaGiftDataHelper {
           .convertListNotNull<TrudaGiftEntity>(json.decode(giftsJson));
     }
     if (listStore != null && listStore.isNotEmpty) {
-      NewHitaLog.debug('NewHitaGiftDataHelper Store');
+      TrudaLog.debug('NewHitaGiftDataHelper Store');
     } else {
       var list = await TrudaHttpUtil().post<List<TrudaGiftEntity>>(
           TrudaHttpUrls.allGiftListApi, errCallback: (err) {
@@ -54,7 +54,7 @@ class NewHitaGiftDataHelper {
         NewHitaGiftCacheManager.instance
             .getSingleFile(gift.animEffectUrl ?? '')
             .then((value) {
-          NewHitaLog.debug('checkGiftDownload getSingleFile ${value.path}');
+          TrudaLog.debug('checkGiftDownload getSingleFile ${value.path}');
         });
       }
     });

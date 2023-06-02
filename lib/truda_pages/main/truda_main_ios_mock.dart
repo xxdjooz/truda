@@ -6,17 +6,17 @@ import 'package:truda/truda_entities/truda_leval_entity.dart';
 import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_socket/truda_socket_manager.dart';
-import 'package:truda/truda_utils/newhita_adjust_manager.dart';
-import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
-import 'package:truda/truda_utils/newhita_firebase_manager.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_adjust_manager.dart';
+import 'package:truda/truda_utils/truda_ai_help_manager.dart';
+import 'package:truda/truda_utils/truda_firebase_manager.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_services/truda_my_info_service.dart';
-import '../../truda_utils/newhita_loading.dart';
-import '../../truda_utils/newhita_permission_handler.dart';
+import '../../truda_utils/truda_loading.dart';
+import '../../truda_utils/truda_permission_handler.dart';
 import 'package:flutter/material.dart';
 
 import '../../truda_common/truda_colors.dart';
@@ -55,7 +55,7 @@ class NewHitaIOSMainController extends GetxController {
   void onInit() {
     super.onInit();
     pageController = PageController(initialPage: 0);
-    NewHitaAdjustManager.checkAdjustUploadAttr();
+    TrudaAdjustManager.checkAdjustUploadAttr();
     Get.putAsync<TrudaSocketManager>(() => TrudaSocketManager().init());
   }
 
@@ -66,26 +66,26 @@ class NewHitaIOSMainController extends GetxController {
     getLevalList();
     getSensitiveList();
     TrudaFirstTip.checkToShow();
-    NewHitaAihelpManager.initAIHelp();
+    TrudaAihelpManager.initAIHelp();
     TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
 
     // firebase 初始化
     if (!TrudaConstants.isFakeMode && !TrudaConstants.isTestMode) {
       // if (!NewHitaConstants.isFakeMode) {
-      NewHitaLog.debug('firebase init');
-      NewHitaFirebaseManager.init().then((value) {
-        NewHitaFirebaseManager.getToken();
+      TrudaLog.debug('firebase init');
+      TrudaFirebaseManager.init().then((value) {
+        TrudaFirebaseManager.getToken();
       });
     }
 
-    NewHitaPermissionHandler.checkNotificationPermission();
+    TrudaPermissionHandler.checkNotificationPermission();
 
   }
 
   void getGift() {
     TrudaHttpUtil().post<List<TrudaGiftEntity>>(TrudaHttpUrls.allGiftListApi,
         errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
     }).then((value) {
       if (value.isNotEmpty) {
         String jsonGifts = json.encode(value);

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -138,9 +138,9 @@ class _TrudaVisitorTipState extends State<TrudaVisitorTip> {
           await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
       if (result['isSuccess']) {
         TrudaStorageService.to.prefs.setBool('VisitorImageSave', true);
-        NewHitaLoading.toast(TrudaLanguageKey.newhita_save_success.tr);
+        TrudaLoading.toast(TrudaLanguageKey.newhita_save_success.tr);
       } else {}
-      NewHitaLog.debug(result['isSuccess']);
+      TrudaLog.debug(result['isSuccess']);
     }
     Get.back();
   }

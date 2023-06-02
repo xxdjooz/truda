@@ -31,9 +31,9 @@ import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../../../truda_rtm/truda_rtm_msg_sender.dart';
 import '../../../truda_services/truda_storage_service.dart';
-import '../../../truda_utils/newhita_format_util.dart';
-import '../../../truda_utils/newhita_loading.dart';
-import '../../../truda_utils/newhita_log.dart';
+import '../../../truda_utils/truda_format_util.dart';
+import '../../../truda_utils/truda_loading.dart';
+import '../../../truda_utils/truda_log.dart';
 import '../../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
@@ -180,7 +180,7 @@ class TrudaAicController extends GetxController {
         // NewHitaLog.debug(fileResponse);
       }
       if (fileResponse is FileInfo) {
-        NewHitaLog.debug(fileResponse);
+        TrudaLog.debug(fileResponse);
         file = fileResponse.file;
         connecting = false;
         update();
@@ -206,7 +206,7 @@ class TrudaAicController extends GetxController {
     Future.delayed(Duration(seconds: 3), () {
       // 这里有个坑,被叫的dispose里面有关闭的调用，加延迟防止在他之前调用这个
       Wakelock.enable();
-      NewHitaLog.debug('Wakelock enable TrudaCallController');
+      TrudaLog.debug('Wakelock enable TrudaCallController');
     });
 
     initPlayer();
@@ -215,7 +215,7 @@ class TrudaAicController extends GetxController {
   void initPlayer() async {
     await videoController.initialize();
     videoController.setVolume(haveVoice ? 1 : 0);
-    NewHitaLog.debug(
+    TrudaLog.debug(
         "AIAIAIAIAIA started()  isInitialized=${videoController.value.isInitialized}");
     videoController.addListener(() {
       if (videoController.value.isPlaying) {
@@ -241,7 +241,7 @@ class TrudaAicController extends GetxController {
       callCardDurationSecond = (myInfo.callCardDuration ?? 0) ~/ 1000;
       // 体验卡用一个负数
       callTime = -callCardDurationSecond;
-      NewHitaLog.debug('consumeOneCard() ----->');
+      TrudaLog.debug('consumeOneCard() ----->');
       consumeOneCard();
     }
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -253,7 +253,7 @@ class TrudaAicController extends GetxController {
       }
       if (callTime > 0 && callTime % 60 == 0) {}
 
-      callTimeStr.value = NewHitaFormatUtil.getTimeStrFromSecond(callTime.abs());
+      callTimeStr.value = TrudaFormatUtil.getTimeStrFromSecond(callTime.abs());
     });
   }
 
@@ -277,7 +277,7 @@ class TrudaAicController extends GetxController {
     cameraController = CameraController(camera, ResolutionPreset.low);
     await cameraController?.initialize();
     // HideLoding();
-    NewHitaLog.debug('initCamera');
+    TrudaLog.debug('initCamera');
     hadCameraInit = true;
     update();
   }
@@ -436,7 +436,7 @@ class TrudaAicController extends GetxController {
         TrudaChargePath.aib_chating_click_recharge,
         upid: herId, closeCallBack: () {
       chargeing = false;
-      NewHitaLog.debug('TrudaCallController showChargeDialog() $playFinish');
+      TrudaLog.debug('TrudaCallController showChargeDialog() $playFinish');
       if (playFinish) {
         Future.delayed(const Duration(milliseconds: 60),
             () => _endCall(TrudaEndType.upHangoff));
@@ -480,7 +480,7 @@ class TrudaAicController extends GetxController {
           ));
           return;
         }
-        NewHitaLoading.toast(err.message, duration: const Duration(seconds: 3));
+        TrudaLoading.toast(err.message, duration: const Duration(seconds: 3));
       },
     ).then((value) {
       myVapController.playGift(gift);
@@ -498,8 +498,8 @@ class TrudaAicController extends GetxController {
   void _getHostDetail() {
     TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + herId,
         errCallback: (err) {
-      NewHitaLog.debug(err);
-      NewHitaLoading.toast(err.message);
+      TrudaLog.debug(err);
+      TrudaLoading.toast(err.message);
       // _errBeforeCall(NewHitaEndType.linkFail);
     }).then((value) {
       detail = value;
@@ -525,7 +525,7 @@ class TrudaAicController extends GetxController {
   void onClose() {
     cameraController?.dispose();
     super.onClose();
-    NewHitaLog.debug('TrudaCallController onClose()');
+    TrudaLog.debug('TrudaCallController onClose()');
     // sub.cancel();
     _timer?.cancel();
     _timerLink?.cancel();

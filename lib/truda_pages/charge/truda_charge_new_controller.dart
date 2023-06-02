@@ -14,7 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_entities/truda_lottery_user_entity.dart';
-import '../../truda_utils/newhita_loading.dart';
+import '../../truda_utils/truda_loading.dart';
 import '../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
 import 'truda_charge_new_channel_dialog.dart';
 import 'truda_google_billing.dart';
@@ -59,7 +59,7 @@ class TrudaChargeNewController extends GetxController {
     TrudaHttpUtil().post<TrudaPayQuickData>(
       TrudaHttpUrls.getCompositeProduct + '2',
       errCallback: (err) {
-        NewHitaLoading.toast(err.message);
+        TrudaLoading.toast(err.message);
       },
     ).then((value) {
       allProducts = value.normalProducts;

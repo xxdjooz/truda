@@ -8,9 +8,9 @@
 // import 'package:path_provider/path_provider.dart';
 //
 // import '../truda_common/truda_colors.dart';
-// import '../truda_utils/newhita_format_util.dart';
-// import '../truda_utils/newhita_loading.dart';
-// import '../truda_utils/newhita_log.dart';
+// import '../truda_utils/truda_format_util.dart';
+// import '../truda_utils/truda_loading.dart';
+// import '../truda_utils/truda_log.dart';
 //
 // typedef NewHitaUploadCallBack = Function(String duration, String localPath);
 //

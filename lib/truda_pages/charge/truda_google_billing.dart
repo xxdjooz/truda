@@ -1,5 +1,5 @@
 import 'package:truda/truda_entities/truda_charge_entity.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../truda_entities/truda_charge_quick_entity.dart';
 
@@ -25,7 +25,7 @@ class TrudaGoogleBilling {
 
   static Future<bool> correctQuickGooglePrice(
       TrudaPayQuickChannel channel) async {
-    NewHitaLog.debug(channel);
+    TrudaLog.debug(channel);
     return false;
   }
 }
@@ -39,12 +39,12 @@ class TrudaGoogleBilling {
 // import 'package:truda/truda_http/truda_http_util.dart';
 // import 'package:truda/truda_services/truda_my_info_service.dart';
 // import 'package:truda/truda_services/truda_storage_service.dart';
-// import 'package:truda/truda_utils/newhita_loading.dart';
-// import 'package:truda/truda_utils/newhita_log.dart';
+// import 'package:truda/truda_utils/truda_loading.dart';
+// import 'package:truda/truda_utils/truda_log.dart';
 // import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 //
 // import '../../truda_common/truda_constants.dart';
-// import '../../truda_utils/newhita_billing_err_statistics.dart';
+// import '../../truda_utils/truda_billing_err_statistics.dart';
 //
 // class TrudaGoogleBilling {
 //   static BillingClient billingClient =

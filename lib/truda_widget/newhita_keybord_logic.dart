@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_log.dart';
 
 /// class _NewHitaDemoViewState extends State<DemoView> with WidgetsBindingObserver, KeyboardLogic {
 /// 监听键盘弹出
@@ -30,7 +30,7 @@ mixin NewHitaKeyboardLogic<T extends StatefulWidget>
     if (_keyboardVisible == temp) return;
     _keyboardVisible = temp;
     onKeyboardChanged(keyboardVisible);
-    NewHitaLog.debug('NewHitaKeyboardLogic bottom = ${getKeyBordHeight()}');
+    TrudaLog.debug('NewHitaKeyboardLogic bottom = ${getKeyBordHeight()}');
   }
 
   double getKeyBordHeight() {

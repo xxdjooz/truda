@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_services/truda_host_video_service.dart';
 import 'package:truda/truda_services/truda_storage_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../truda_database/entity/truda_her_entity.dart';
@@ -101,7 +101,7 @@ class TrudaHotController extends GetxController {
         }, pageCallback: (has) {
       enablePullUp = has;
     }, errCallback: (err) {
-      NewHitaLoading.toast(err.message);
+      TrudaLoading.toast(err.message);
       if (_page == 1) {
         refreshController.refreshCompleted();
       } else {

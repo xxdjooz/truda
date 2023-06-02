@@ -6,7 +6,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_entities/truda_hot_entity.dart';
-import '../../truda_utils/newhita_log.dart';
+import '../../truda_utils/truda_log.dart';
 import '../../truda_widget/newhita_click_widget.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import 'truda_dialog_pay_country_choose.dart';
@@ -50,7 +50,7 @@ class _TrudaChargeChannelDialogState extends State<TrudaChargeChannelDialog> {
         areaList = value;
       });
     }).catchError((e) {
-      NewHitaLog.debug(e);
+      TrudaLog.debug(e);
     });
   }
 

@@ -9,8 +9,8 @@ import 'package:truda/truda_widget/newhita_net_image.dart';
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm_hang.dart';
-import '../../../truda_utils/newhita_format_util.dart';
-import '../../../truda_utils/newhita_permission_handler.dart';
+import '../../../truda_utils/truda_format_util.dart';
+import '../../../truda_utils/truda_permission_handler.dart';
 import 'truda_remote_controller.dart';
 
 class TrudaRemotePage extends GetView<TrudaRemoteController> {
@@ -100,7 +100,7 @@ class TrudaRemotePage extends GetView<TrudaRemoteController> {
                                 height: 12,
                               ),
                               Text(
-                                '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(controller.detail?.birthday ?? 0))}',
+                                '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(controller.detail?.birthday ?? 0))}',
                                 style: const TextStyle(
                                     color: TrudaColors.white, fontSize: 12),
                               ),
@@ -276,7 +276,7 @@ class TrudaRemotePage extends GetView<TrudaRemoteController> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              NewHitaPermissionHandler.checkCallPermission()
+                              TrudaPermissionHandler.checkCallPermission()
                                   .then((value) {
                                 if (value) {
                                   controller.pickUp();

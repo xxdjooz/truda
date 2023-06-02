@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:truda/truda_utils/newhita_log.dart';
+import 'package:truda/truda_utils/truda_log.dart';
 
 import '../../truda_common/truda_colors.dart';
 
@@ -33,7 +33,7 @@ class _TrudaTimeCountWidgetState extends State<TrudaTimeCountWidget> {
           widget.cancel.call();
           return;
         }
-        NewHitaLog.debug('TrudaTimeCountWidget ${widget.left_time_inter}');
+        TrudaLog.debug('TrudaTimeCountWidget ${widget.left_time_inter}');
         setState(() {
           widget.left_time_inter = widget.left_time_inter! - 1000;
         });

@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:truda/truda_services/truda_my_info_service.dart';
-import 'package:truda/truda_utils/newhita_loading.dart';
+import 'package:truda/truda_utils/truda_loading.dart';
 
-import 'newhita_log.dart';
+import 'truda_log.dart';
 
-class NewHitaAihelpManager {
+class TrudaAihelpManager {
   static final aihelp_channel = MethodChannel("newhita_aihelp_channel");
 
   static Future<void> initAIHelp() async {
@@ -22,8 +22,8 @@ class NewHitaAihelpManager {
         final result = await aihelp_channel.invokeMethod('initAIHelp',
             {"apiKey": apiKey, "domainName": domainName, "appId": appId});
       } on PlatformException catch (e) {
-        NewHitaLog.debug("init aihelp err");
-        NewHitaLoading.toast('init aihelp err');
+        TrudaLog.debug("init aihelp err");
+        TrudaLoading.toast('init aihelp err');
       }
     }
   }
@@ -40,8 +40,8 @@ class NewHitaAihelpManager {
         "entranceType": entrance,
       });
     } on PlatformException catch (e) {
-      NewHitaLog.debug("aihelp err enterMinAIHelp");
-      NewHitaLoading.toast('aihelp err enterMinAIHelp');
+      TrudaLog.debug("aihelp err enterMinAIHelp");
+      TrudaLoading.toast('aihelp err enterMinAIHelp');
     }
   }
 
@@ -56,8 +56,8 @@ class NewHitaAihelpManager {
         "orderInfo": orderInfo,
       });
     } on PlatformException catch (e) {
-      NewHitaLog.debug("aihelp err enterOrderAIHelp");
-      NewHitaLoading.toast('aihelp err enterOrderAIHelp');
+      TrudaLog.debug("aihelp err enterOrderAIHelp");
+      TrudaLoading.toast('aihelp err enterOrderAIHelp');
     }
   }
 
@@ -65,7 +65,7 @@ class NewHitaAihelpManager {
     try {
       final result = await aihelp_channel.invokeMethod('exitapp');
     } on PlatformException catch (e) {
-      NewHitaLog.debug("退出APP失败");
+      TrudaLog.debug("退出APP失败");
     }
   }
 }

@@ -1,13 +1,13 @@
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import 'newhita_log.dart';
+import 'truda_log.dart';
 
 /// 上报统计一下Google支付的错误
-class NewHitaBillingErrStatistics {
+class TrudaBillingErrStatistics {
   static const billingErr = 100;
 
   static err(int err) {
-    NewHitaLog.debug('NewHitaBillingErrStatistics $err');
+    TrudaLog.debug('NewHitaBillingErrStatistics $err');
     TrudaHttpUtil().post<void>(
       TrudaHttpUrls.appCallStatistics + '/$billingErr/$err',
       errCallback: (e) {},

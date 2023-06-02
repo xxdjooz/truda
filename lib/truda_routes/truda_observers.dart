@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:truda/truda_utils/newhita_aic_handler.dart';
+import 'package:truda/truda_utils/truda_aic_handler.dart';
 
-import '../truda_utils/newhita_log.dart';
+import '../truda_utils/truda_log.dart';
 import 'truda_pages.dart';
 
 class TrudaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
@@ -11,14 +11,14 @@ class TrudaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
     var name = route.settings.name ?? '';
     if (name.isNotEmpty) TrudaAppPages.history.add(name);
 
-    NewHitaLog.debug('RouteObserver didPush; history:${TrudaAppPages.history}');
+    TrudaLog.debug('RouteObserver didPush; history:${TrudaAppPages.history}');
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
     TrudaAppPages.history.remove(route.settings.name);
-    NewHitaLog.debug('RouteObserver didPop; history:${TrudaAppPages.history}');
+    TrudaLog.debug('RouteObserver didPop; history:${TrudaAppPages.history}');
 
     var nowName = '';
     if (TrudaAppPages.history.isNotEmpty) {
@@ -44,7 +44,7 @@ class TrudaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
         }
       }
     }
-    NewHitaLog.debug('RouteObserver didReplace; history:${TrudaAppPages.history}');
+    TrudaLog.debug('RouteObserver didReplace; history:${TrudaAppPages.history}');
   }
 
   @override
@@ -52,7 +52,7 @@ class TrudaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
     super.didRemove(route, previousRoute);
     TrudaAppPages.history.remove(route.settings.name);
 
-    NewHitaLog.debug('RouteObserver didRemove; history:${TrudaAppPages.history}');
+    TrudaLog.debug('RouteObserver didRemove; history:${TrudaAppPages.history}');
   }
 
   @override

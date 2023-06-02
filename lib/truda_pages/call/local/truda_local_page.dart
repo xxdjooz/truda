@@ -8,7 +8,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_dialogs/truda_dialog_confirm_hang.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
-import '../../../truda_utils/newhita_format_util.dart';
+import '../../../truda_utils/truda_format_util.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import 'truda_local_controller.dart';
 
@@ -117,7 +117,7 @@ class TrudaLocalPage extends GetView<TrudaLocalController> {
                                 height: 12,
                               ),
                               Text(
-                                '${NewHitaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(controller.detail?.birthday ?? 0))}',
+                                '${TrudaFormatUtil.getAge(DateTime.fromMillisecondsSinceEpoch(controller.detail?.birthday ?? 0))}',
                                 style: const TextStyle(
                                     color: TrudaColors.white, fontSize: 12),
                               ),

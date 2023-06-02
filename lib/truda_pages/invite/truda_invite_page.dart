@@ -8,7 +8,7 @@ import 'package:truda/truda_widget/newhita_app_bar.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_sheet_invite_method.dart';
-import '../../truda_utils/newhita_loading.dart';
+import '../../truda_utils/truda_loading.dart';
 import '../../truda_widget/newhita_stacked_list.dart';
 import 'truda_invite_controller.dart';
 
@@ -228,7 +228,7 @@ class TrudaInvitePage extends GetView<TrudaInviteController> {
                                 text: controller.inviteBean?.inviteCode ?? '',
                               ),
                             );
-                            NewHitaLoading.toast(
+                            TrudaLoading.toast(
                                 TrudaLanguageKey.newhita_base_success.tr);
                           },
                           child: Container(
