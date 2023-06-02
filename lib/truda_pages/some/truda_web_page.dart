@@ -9,7 +9,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 
-class NewHitaWebPage extends StatefulWidget {
+class TrudaWebPage extends StatefulWidget {
   static startMe(String url, bool fullScreen) {
     Map<String, dynamic> map = {};
     map['url'] = url;
@@ -18,10 +18,10 @@ class NewHitaWebPage extends StatefulWidget {
   }
 
   @override
-  _NewHitaWebPageState createState() => _NewHitaWebPageState();
+  _TrudaWebPageState createState() => _TrudaWebPageState();
 }
 
-class _NewHitaWebPageState extends State<NewHitaWebPage> {
+class _TrudaWebPageState extends State<TrudaWebPage> {
   String url = "";
 
   String title = "";

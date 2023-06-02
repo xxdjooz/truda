@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_dialog.dart';
+import 'package:truda/truda_pages/vip/truda_vip_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../truda_database/entity/truda_order_entity.dart';
@@ -15,13 +15,13 @@ import '../../truda_services/newhita_storage_service.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../charge/truda_charge_new_channel_dialog.dart';
 import '../charge/truda_google_billing.dart';
-import '../some/newhita_web_page.dart';
-import 'newhita_vip_page.dart';
+import '../some/truda_web_page.dart';
+import 'truda_vip_page.dart';
 
-class NewHitaVipController extends GetxController {
+class TrudaVipController extends GetxController {
   static void openDialog({String createPath = ''}) {
     Get.bottomSheet(
-      NewHitaVipDialog(
+      TrudaVipDialog(
         createPath: createPath,
       ),
       // 不加这个默认最高屏幕一半
@@ -195,7 +195,7 @@ class NewHitaVipController extends GetxController {
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {
-        NewHitaWebPage.startMe(value.payUrl!, false);
+        TrudaWebPage.startMe(value.payUrl!, false);
       }
     });
   }

@@ -17,7 +17,7 @@ import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
-import '../../some/newhita_web_page.dart';
+import '../../some/truda_web_page.dart';
 import '../truda_charge_new_channel_dialog.dart';
 import '../truda_in_app_purchase_apple.dart';
 
@@ -191,7 +191,7 @@ class TrudaChargeIosController extends GetxController {
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {
-        NewHitaWebPage.startMe(value.payUrl!, false);
+        TrudaWebPage.startMe(value.payUrl!, false);
       }
     });
   }

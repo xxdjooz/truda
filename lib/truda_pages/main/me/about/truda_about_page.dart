@@ -7,7 +7,7 @@ import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_decoration_bg.dart';
-import '../../../some/newhita_web_page.dart';
+import '../../../some/truda_web_page.dart';
 import 'truda_about_controller.dart';
 
 class TrudaAboutPage extends GetView<TrudaAboutController> {
@@ -87,13 +87,13 @@ class TrudaAboutPage extends GetView<TrudaAboutController> {
                     // ),
                     _wItemSet(
                       onTap: () {
-                        NewHitaWebPage.startMe(TrudaConstants.privacyPolicy, true);
+                        TrudaWebPage.startMe(TrudaConstants.privacyPolicy, true);
                       },
                       title: TrudaLanguageKey.newhita_login_privacy_policy.tr,
                     ),
                     _wItemSet(
                       onTap: () {
-                        NewHitaWebPage.startMe(TrudaConstants.agreement, true);
+                        TrudaWebPage.startMe(TrudaConstants.agreement, true);
                       },
                       title: TrudaLanguageKey.newhita_login_terms_service.tr,
                     ),

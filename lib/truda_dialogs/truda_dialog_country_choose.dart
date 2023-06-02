@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
+import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
@@ -184,7 +184,7 @@ class TrudaDialogCountryChoose extends StatelessWidget {
                   // if (levalUrl != null) {
                   //   NewHitaWebPage.startMe(levalUrl, true);
                   // }
-                  NewHitaVipController.openDialog(
+                  TrudaVipController.openDialog(
                       createPath: TrudaChargePath.recharge_choose_area);
                 },
                 child: Container(

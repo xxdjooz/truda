@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_dialogs/truda_dialog_confirm.dart';
 import 'package:truda/truda_entities/truda_match_host_entity.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
+import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 
 import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_common/truda_language_key.dart';
@@ -27,7 +27,7 @@ import '../../../../truda_utils/newhita_permission_handler.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
 import '../../../call/truda_count_20.dart';
 import '../../../charge/success/truda_success_controller.dart';
-import '../../../vip/newhita_vip_dialog.dart';
+import '../../../vip/truda_vip_dialog.dart';
 
 class TrudaMockDailogPage extends StatefulWidget {
   const TrudaMockDailogPage({Key? key}) : super(key: key);
@@ -105,7 +105,7 @@ class _TrudaMockDailogPageState extends State<TrudaMockDailogPage> {
                 OutlinedButton(
                   onPressed: () {
                     Get.bottomSheet(
-                      NewHitaVipDialog(
+                      TrudaVipDialog(
                         createPath: '',
                       ),
                       // 不加这个默认最高屏幕一半

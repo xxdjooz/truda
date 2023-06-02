@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_pages/some/newhita_web_page.dart';
+import 'package:truda/truda_pages/some/truda_web_page.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_constants.dart';
@@ -73,7 +73,7 @@ showAgreeDialog(Function fun) {
                                   TrudaLanguageKey.newhita_login_privacy_policy.tr,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  NewHitaWebPage.startMe(
+                                  TrudaWebPage.startMe(
                                       TrudaConstants.privacyPolicy, true);
                                 }),
                           const TextSpan(text: ' '),
@@ -85,7 +85,7 @@ showAgreeDialog(Function fun) {
                               text: TrudaLanguageKey.newhita_login_terms_service.tr,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  NewHitaWebPage.startMe(
+                                  TrudaWebPage.startMe(
                                       TrudaConstants.agreement, true);
                                 }),
                           const TextSpan(text: ' '),

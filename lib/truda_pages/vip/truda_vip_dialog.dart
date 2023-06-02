@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
+import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
@@ -11,19 +11,19 @@ import '../../truda_services/newhita_my_info_service.dart';
 import '../../truda_widget/newhita_gradient_button.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
-class NewHitaVipDialog extends GetView<NewHitaVipController> {
+class TrudaVipDialog extends GetView<TrudaVipController> {
   static bool showing = false;
 
-  NewHitaVipDialog({Key? key, this.createPath = ''}) : super(key: key);
+  TrudaVipDialog({Key? key, this.createPath = ''}) : super(key: key);
   final currentIndex = 0.obs;
   final currentChargeIndex = 0.obs;
   final String createPath;
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<NewHitaVipController>(
-        () => NewHitaVipController()..createPath = createPath);
-    return GetBuilder<NewHitaVipController>(
+    Get.lazyPut<TrudaVipController>(
+        () => TrudaVipController()..createPath = createPath);
+    return GetBuilder<TrudaVipController>(
       initState: (state) {
         showing = true;
       },
@@ -172,7 +172,7 @@ class NewHitaVipDialog extends GetView<NewHitaVipController> {
                           crossAxisCount: 3,
                         ),
                         itemCount:
-                            NewHitaVipController.payQuickData?.length ?? 0,
+                            TrudaVipController.payQuickData?.length ?? 0,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return _getVipItem(index);
@@ -182,7 +182,7 @@ class NewHitaVipDialog extends GetView<NewHitaVipController> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                         onTap: () {
-                          final bean = NewHitaVipController
+                          final bean = TrudaVipController
                               .payQuickData![currentChargeIndex.value];
                           controller.chooseCommdite(bean);
                         },
@@ -282,7 +282,7 @@ class NewHitaVipDialog extends GetView<NewHitaVipController> {
   Widget _getVipItem(int index) {
     return Obx(() {
       final isChoosed = index == currentChargeIndex.value;
-      var list = NewHitaVipController.payQuickData!;
+      var list = TrudaVipController.payQuickData!;
       var bean = list[index];
       return GestureDetector(
         onTap: () {

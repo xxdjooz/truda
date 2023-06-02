@@ -15,8 +15,8 @@ import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 
-class NewHitaReportNewPage extends StatelessWidget {
-  const NewHitaReportNewPage({Key? key}) : super(key: key);
+class TrudaReportNewPage extends StatelessWidget {
+  const TrudaReportNewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +29,21 @@ class NewHitaReportNewPage extends StatelessWidget {
       body: Container(
           width: double.infinity,
           height: double.infinity,
-          child: NewHitaReportNewWidget(arguments)),
+          child: TrudaReportNewWidget(arguments)),
     );
   }
 }
 
-class NewHitaReportNewWidget extends StatefulWidget {
+class TrudaReportNewWidget extends StatefulWidget {
   Map<String, dynamic> arguments;
 
-  NewHitaReportNewWidget(this.arguments);
+  TrudaReportNewWidget(this.arguments);
 
   @override
-  _NewHitaReportNewWidgetState createState() => _NewHitaReportNewWidgetState();
+  _TrudaReportNewWidgetState createState() => _TrudaReportNewWidgetState();
 }
 
-class _NewHitaReportNewWidgetState extends State<NewHitaReportNewWidget>
+class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
     with RouteAware {
   int selectIndex = 0;
   List<String> reportList = [

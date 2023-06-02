@@ -13,7 +13,7 @@ import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../../truda_routes/newhita_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
-import '../../../some/newhita_media_view_page.dart';
+import '../../../some/truda_media_view_page.dart';
 
 class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
   TrudaMyMomentPage({Key? key}) : super(key: key);
@@ -143,7 +143,7 @@ class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
                                         var heroId = bean.createdAt ?? index;
                                         return GestureDetector(
                                           onTap: () {
-                                            NewHitaMediaViewPage.startMe(
+                                            TrudaMediaViewPage.startMe(
                                                 context,
                                                 path: media,
                                                 cover: '',

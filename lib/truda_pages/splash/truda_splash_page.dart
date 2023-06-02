@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_pages/splash/newhita_splash_controller.dart';
+import 'package:truda/truda_pages/splash/truda_splash_controller.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
 
-class NewHitaSplashPage extends GetView<NewHitaSplashController> {
-  NewHitaSplashPage({Key? key}) : super(key: key);
+class TrudaSplashPage extends GetView<TrudaSplashController> {
+  TrudaSplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<NewHitaSplashController>(() => NewHitaSplashController());
-    return GetBuilder<NewHitaSplashController>(builder: (contr) {
+    Get.lazyPut<TrudaSplashController>(() => TrudaSplashController());
+    return GetBuilder<TrudaSplashController>(builder: (contr) {
       return Scaffold(
         backgroundColor: TrudaColors.baseColorBlackBg,
         body: Container(

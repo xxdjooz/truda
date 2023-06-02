@@ -17,7 +17,7 @@ import '../truda_pages/call/local/truda_local_controller.dart';
 import '../truda_pages/chat/truda_chat_controller.dart';
 import '../truda_pages/host/truda_host_controller.dart';
 import '../truda_pages/main/home/truda_host_widget.dart';
-import '../truda_pages/some/newhita_media_view_page.dart';
+import '../truda_pages/some/truda_media_view_page.dart';
 import '../truda_routes/newhita_pages.dart';
 import '../truda_utils/newhita_format_util.dart';
 import '../truda_utils/newhita_loading.dart';
@@ -270,7 +270,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
                 var heroId = bean.createdAt ?? index;
                 return GestureDetector(
                   onTap: () {
-                    NewHitaMediaViewPage.startMe(context,
+                    TrudaMediaViewPage.startMe(context,
                         path: media.mediaUrl ?? '',
                         cover: media.screenshotUrl,
                         type: media.mediaType,

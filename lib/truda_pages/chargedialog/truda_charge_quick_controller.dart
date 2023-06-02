@@ -12,7 +12,7 @@ import '../../truda_utils/newhita_loading.dart';
 import '../charge/truda_charge_new_channel_dialog.dart';
 import '../charge/truda_google_billing.dart';
 import '../charge/truda_in_app_purchase_apple.dart';
-import '../some/newhita_web_page.dart';
+import '../some/truda_web_page.dart';
 
 class TrudaChargeQuickController extends GetxController {
   static const idMoreList = 'idMoreList';
@@ -186,7 +186,7 @@ class TrudaChargeQuickController extends GetxController {
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {
-        NewHitaWebPage.startMe(value.payUrl!, false);
+        TrudaWebPage.startMe(value.payUrl!, false);
       }
     });
   }

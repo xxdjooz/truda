@@ -16,7 +16,7 @@ import '../../truda_rtm/newhita_rtm_msg_entity.dart';
 import '../../truda_utils/ad/newhita_ads_utils.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_widget/newhita_app_bar.dart';
-import '../vip/newhita_vip_controller.dart';
+import '../vip/truda_vip_controller.dart';
 import 'truda_chat_controller.dart';
 import 'truda_chat_msg_wrapper.dart';
 import 'msgitem/truda_chat_msg_call.dart';
@@ -170,7 +170,7 @@ class TrudaChatPage extends GetView<TrudaChatController> {
                                       // NewHitaChargeDialogManager.showChargeDialog(
                                       //     TrudaChargePath.rtm_top_tip_click_recharge,
                                       //     upid: controller.herId);
-                                      NewHitaVipController.openDialog(
+                                      TrudaVipController.openDialog(
                                           createPath: TrudaChargePath
                                               .recharge_vip_for_message);
                                     },

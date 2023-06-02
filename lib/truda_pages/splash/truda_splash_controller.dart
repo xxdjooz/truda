@@ -13,7 +13,7 @@ import '../../truda_utils/newhita_adjust_manager.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_utils/newhita_third_util.dart';
 
-class NewHitaSplashController extends GetxController {
+class TrudaSplashController extends GetxController {
   var counter = 0.obs;
 
   void incrementCounter() {

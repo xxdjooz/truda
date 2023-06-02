@@ -15,16 +15,16 @@ import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import '../../truda_widget/newhita_player_android.dart';
 
-class NewHitaMediaPage extends StatefulWidget {
+class TrudaMediaPage extends StatefulWidget {
   int position;
-  List<NewHitaMediaViewBean> beanList = [];
+  List<TrudaMediaViewBean> beanList = [];
 
-  NewHitaMediaPage.hostMedia({
+  TrudaMediaPage.hostMedia({
     Key? key,
     required List<TrudaHostMedia> list,
     required this.position,
   })  : beanList = list
-            .map((item) => NewHitaMediaViewBean(
+            .map((item) => TrudaMediaViewBean(
                 (item.mid ?? 0).toString(),
                 item.path ?? '',
                 item.cover,
@@ -34,12 +34,12 @@ class NewHitaMediaPage extends StatefulWidget {
             .toList(),
         super(key: key);
 
-  NewHitaMediaPage.momentMedia({
+  TrudaMediaPage.momentMedia({
     Key? key,
     required List<TrudaMomentMedia> list,
     required this.position,
   })  : beanList = list
-            .map((item) => NewHitaMediaViewBean(
+            .map((item) => TrudaMediaViewBean(
                 item.mediaId ?? '',
                 item.mediaUrl ?? '',
                 item.screenshotUrl,
@@ -50,12 +50,12 @@ class NewHitaMediaPage extends StatefulWidget {
         super(key: key);
 
   @override
-  State<NewHitaMediaPage> createState() =>
-      _NewHitaMediaPageState();
+  State<TrudaMediaPage> createState() =>
+      _TrudaMediaPageState();
 }
 
-class _NewHitaMediaPageState
-    extends State<NewHitaMediaPage>
+class _TrudaMediaPageState
+    extends State<TrudaMediaPage>
     with WidgetsBindingObserver, RouteAware {
   int _current = 0;
   final CarouselController _controller = CarouselController();
@@ -152,7 +152,7 @@ class _NewHitaMediaPageState
                   items: widget.beanList.map((item) {
                     return Container(
                       child: Center(
-                          child: NewHitaMediaViewPage(
+                          child: TrudaMediaViewPage(
                         bean: item,
                             stream: _streamController.stream,
                       )),
@@ -188,7 +188,7 @@ class _NewHitaMediaPageState
   }
 }
 
-class NewHitaMediaViewBean {
+class TrudaMediaViewBean {
   String? mId;
   String path;
   String? cover;
@@ -196,20 +196,20 @@ class NewHitaMediaViewBean {
   int heroId;
   bool noAppBar;
 
-  NewHitaMediaViewBean(
+  TrudaMediaViewBean(
       this.mId, this.path, this.cover, this.type, this.heroId, this.noAppBar);
 }
 
-class NewHitaMediaViewPage extends StatefulWidget {
+class TrudaMediaViewPage extends StatefulWidget {
   // String path;
   // String? cover;
   // int type;
   // int heroId;
   // bool noAppBar;
-  NewHitaMediaViewBean bean;
+  TrudaMediaViewBean bean;
   Stream? stream;
 
-  NewHitaMediaViewPage({
+  TrudaMediaViewPage({
     Key? key,
     required this.bean,
     this.stream,
@@ -220,7 +220,7 @@ class NewHitaMediaViewPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaMediaViewPage> createState() => _NewHitaMediaViewPageState();
+  State<TrudaMediaViewPage> createState() => _TrudaMediaViewPageState();
 
   static void startMe(BuildContext context,
       {required int heroId,
@@ -228,11 +228,11 @@ class NewHitaMediaViewPage extends StatefulWidget {
       required String path,
       String? cover,
       int? type}) {
-    var bean = NewHitaMediaViewBean(mId, path, cover, type ?? 0, heroId, false);
+    var bean = TrudaMediaViewBean(mId, path, cover, type ?? 0, heroId, false);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => NewHitaMediaViewPage(
+        builder: (BuildContext context) => TrudaMediaViewPage(
           bean: bean,
           // cover: cover,
           // heroId: heroId,
@@ -243,7 +243,7 @@ class NewHitaMediaViewPage extends StatefulWidget {
   }
 }
 
-class _NewHitaMediaViewPageState extends State<NewHitaMediaViewPage> {
+class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
 
   @override
   Widget build(BuildContext context) {

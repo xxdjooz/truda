@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_dialogs/truda_dialog_match_one.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_dialog.dart';
+import 'package:truda/truda_pages/vip/truda_vip_dialog.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 
 import '../truda_pages/chargedialog/truda_charge_dialog_manager.dart';
@@ -82,7 +82,7 @@ class NewHitaCheckCallingUtil {
       return false;
     }
     //用户打开了Vip弹窗
-    if (NewHitaVipDialog.showing) {
+    if (TrudaVipDialog.showing) {
       return false;
     }
     if (pages.contains(NewHitaAppPages.vip)) {

@@ -19,7 +19,7 @@ import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 import 'truda_match_page.dart';
 
 class TrudaMatchController extends GetxController with RouteAware {
@@ -71,7 +71,7 @@ class TrudaMatchController extends GetxController with RouteAware {
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_vip_upgrade_ask.tr,
         callback: (int callback) {
-          NewHitaVipController.openDialog(
+          TrudaVipController.openDialog(
               createPath: TrudaChargePath.recharge_vip_dialog_match);
         },
       )).then((value) {});

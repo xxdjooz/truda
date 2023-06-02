@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/login/account/truda_account_login_page.dart';
-import 'package:truda/truda_pages/splash/newhita_splash_page.dart';
+import 'package:truda/truda_pages/splash/truda_splash_page.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_facebook_util.dart';
 
 import '../../truda_common/truda_colors.dart';
-import '../some/newhita_web_page.dart';
+import '../some/truda_web_page.dart';
 import 'truda_login_agree_dialog.dart';
 import 'truda_login_controller.dart';
 
@@ -298,7 +298,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
                                         .newhita_login_privacy_policy.tr,
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        NewHitaWebPage.startMe(
+                                        TrudaWebPage.startMe(
                                             TrudaConstants.privacyPolicy,
                                             true);
                                       }),
@@ -314,7 +314,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
                                         .newhita_login_terms_service.tr,
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        NewHitaWebPage.startMe(
+                                        TrudaWebPage.startMe(
                                             TrudaConstants.agreement, true);
                                       }),
                                 const TextSpan(text: ' '),
@@ -581,7 +581,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
               GestureDetector(
                 onTap: () async {
                   NewHitaStorageService.to.saveTestStyle(0);
-                  Get.offAll(NewHitaSplashPage());
+                  Get.offAll(TrudaSplashPage());
                 },
                 child: Container(
                   width: double.infinity,
@@ -602,7 +602,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
               GestureDetector(
                 onTap: () async {
                   NewHitaStorageService.to.saveTestStyle(1);
-                  Get.offAll(NewHitaSplashPage());
+                  Get.offAll(TrudaSplashPage());
                 },
                 child: Container(
                   width: double.infinity,
@@ -621,7 +621,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
               GestureDetector(
                 onTap: () async {
                   NewHitaStorageService.to.saveTestStyle(2);
-                  Get.offAll(NewHitaSplashPage());
+                  Get.offAll(TrudaSplashPage());
                 },
                 child: Container(
                   width: double.infinity,

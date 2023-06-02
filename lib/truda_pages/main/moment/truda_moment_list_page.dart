@@ -15,7 +15,7 @@ import '../../../truda_utils/newhita_format_util.dart';
 import '../../call/local/truda_local_controller.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../../host/truda_host_controller.dart';
-import '../../some/newhita_media_view_page.dart';
+import '../../some/truda_media_view_page.dart';
 import '../home/truda_host_widget.dart';
 
 class TrudaMomentListPage extends GetView<TrudaMomentListController> {
@@ -307,7 +307,7 @@ class TrudaMomentListPage extends GetView<TrudaMomentListController> {
                                                 bean.createdAt ?? index;
                                             return GestureDetector(
                                               onTap: () {
-                                                NewHitaMediaViewPage.startMe(
+                                                TrudaMediaViewPage.startMe(
                                                     context,
                                                     path: media.mediaUrl ?? '',
                                                     cover: media.screenshotUrl,

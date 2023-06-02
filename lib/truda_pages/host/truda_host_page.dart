@@ -11,7 +11,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_dialogs/truda_sheet_host_option.dart';
 import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import 'package:truda/truda_pages/host/truda_host_detail_indicator.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
+import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:truda/truda_utils/newhita_some_extension.dart';
@@ -33,7 +33,7 @@ import '../../truda_widget/newhita_net_image.dart';
 import '../../truda_widget/sliver/newhita_sliver_header_delegate.dart';
 import '../chat/truda_chat_controller.dart';
 import '../main/home/truda_host_widget.dart';
-import '../some/newhita_media_view_page.dart';
+import '../some/truda_media_view_page.dart';
 import 'truda_host_contribute_view.dart';
 import 'truda_host_controller.dart';
 
@@ -689,7 +689,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                     if (canNot) {
                       TrudaCommonDialog.dialog(TrudaDialogConfirm(
                         callback: (i) {
-                          NewHitaVipController.openDialog(
+                          TrudaVipController.openDialog(
                               createPath: TrudaChargePath
                                   .recharge_vip_dialog_anchor_details);
                         },
@@ -710,7 +710,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                NewHitaMediaPage.hostMedia(
+                                TrudaMediaPage.hostMedia(
                                   list: viewList,
                                   position: viewList.indexOf(bean),
                                 ))).then((value) {
@@ -859,7 +859,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                NewHitaMediaPage.momentMedia(
+                                                TrudaMediaPage.momentMedia(
                                                   list: bean.medias!,
                                                   position: index,
                                                 )));

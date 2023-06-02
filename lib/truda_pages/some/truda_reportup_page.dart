@@ -12,14 +12,14 @@ import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
 
-class NewHitaReportUpPage extends StatefulWidget {
-  const NewHitaReportUpPage({Key? key}) : super(key: key);
+class TrudaReportUpPage extends StatefulWidget {
+  const TrudaReportUpPage({Key? key}) : super(key: key);
 
   @override
-  _NewHitaReportUpPageState createState() => _NewHitaReportUpPageState();
+  _TrudaReportUpPageState createState() => _TrudaReportUpPageState();
 }
 
-class _NewHitaReportUpPageState extends State<NewHitaReportUpPage> {
+class _TrudaReportUpPageState extends State<TrudaReportUpPage> {
   String upid = (Get.arguments is String) ? Get.arguments : "";
 
   @override
@@ -34,22 +34,22 @@ class _NewHitaReportUpPageState extends State<NewHitaReportUpPage> {
           decoration: const NewHitaDecorationBg(),
           width: double.infinity,
           height: double.infinity,
-          child: NewHitaReportWdg(upid, null)),
+          child: TrudaReportWdg(upid, null)),
     );
   }
 }
 
-class NewHitaReportWdg extends StatefulWidget {
+class TrudaReportWdg extends StatefulWidget {
   String upid;
   String? channelid;
 
-  NewHitaReportWdg(this.upid, this.channelid);
+  TrudaReportWdg(this.upid, this.channelid);
 
   @override
-  _NewHitaReportWdgState createState() => _NewHitaReportWdgState();
+  _TrudaReportWdgState createState() => _TrudaReportWdgState();
 }
 
-class _NewHitaReportWdgState extends State<NewHitaReportWdg> with RouteAware {
+class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
   int selectIndex = 0;
   List<String> reportList = [
     TrudaLanguageKey.newhita_report_text_1.tr,

@@ -23,7 +23,7 @@ import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/ai/newhita_ai_logic_utils.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../chat/truda_chat_controller.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 import 'truda_me_controller.dart';
 
 class TrudaMePage extends StatelessWidget {

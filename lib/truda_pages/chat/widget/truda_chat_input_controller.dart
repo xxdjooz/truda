@@ -20,7 +20,7 @@ import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 import '../truda_chat_controller.dart';
 
 class TrudaChatInputController extends GetxController {
@@ -132,7 +132,7 @@ class TrudaChatInputController extends GetxController {
   void askVip() {
     TrudaCommonDialog.dialog(TrudaDialogConfirm(
       callback: (i) {
-        NewHitaVipController.openDialog(
+        TrudaVipController.openDialog(
             createPath: TrudaChargePath.recharge_vip_for_message);
       },
       title: TrudaLanguageKey.newhita_vip_for_message.tr,

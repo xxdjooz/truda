@@ -28,8 +28,8 @@ import '../../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
 import '../../../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
 import '../../../../truda_widget/newhita_stacked_list.dart';
-import '../../../some/newhita_media_view_page_2.dart';
-import '../../../vip/newhita_vip_controller.dart';
+import '../../../some/truda_media_view_page_2.dart';
+import '../../../vip/truda_vip_controller.dart';
 import 'truda_mock_dialog_page.dart';
 
 class TrudaTestPage extends StatefulWidget {
@@ -116,7 +116,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 OutlinedButton(
                   onPressed: () {
                     // Get.toNamed(NewHitaAppPages.vip);
-                    NewHitaVipController.openDialog();
+                    TrudaVipController.openDialog();
                   },
                   child: Text('vip'),
                 ),
@@ -161,7 +161,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaMediaViewPage2.startMe(context,
+                    TrudaMediaViewPage2.startMe(context,
                         path:
                             // 'https://wscdn.hanilink.com/users/111142380/upload/media/2022-05-24/_1653403481431_sendimg.mp4',
                             'http://yesme-public.oss-cn-hongkong.aliyuncs.com/app/resources/wang/green.mp4',

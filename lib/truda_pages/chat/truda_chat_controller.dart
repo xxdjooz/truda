@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_database/entity/truda_her_entity.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
 import 'package:truda/truda_pages/chat/truda_chat_msg_wrapper.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
+import 'package:truda/truda_pages/vip/truda_vip_controller.dart';
 import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
@@ -314,7 +314,7 @@ class TrudaChatController extends GetxController {
       } else if (err.code == 25) {
         TrudaCommonDialog.dialog(TrudaDialogConfirm(
           callback: (i) {
-            NewHitaVipController.openDialog(
+            TrudaVipController.openDialog(
                 createPath: TrudaChargePath.recharge_send_vip_gift);
           },
           title: TrudaLanguageKey.newhita_vip_for_gift.tr,

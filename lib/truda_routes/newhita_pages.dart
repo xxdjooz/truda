@@ -16,11 +16,11 @@ import 'package:truda/truda_pages/main/me/cardlist/truda_card_list_page.dart';
 import 'package:truda/truda_pages/main/me/moment_list/truda_my_moment_page.dart';
 import 'package:truda/truda_pages/main/me/orderlist/truda_order_detail_page.dart';
 import 'package:truda/truda_pages/main/me/orderlist/truda_order_tab.dart';
-import 'package:truda/truda_pages/some/newhita_reportup_page.dart';
-import 'package:truda/truda_pages/some/newhita_web_page.dart';
-import 'package:truda/truda_pages/splash/newhita_splash_binding.dart';
-import 'package:truda/truda_pages/splash/newhita_splash_page.dart';
-import 'package:truda/truda_pages/vip/newhita_vip_page.dart';
+import 'package:truda/truda_pages/some/truda_reportup_page.dart';
+import 'package:truda/truda_pages/some/truda_web_page.dart';
+import 'package:truda/truda_pages/splash/truda_splash_binding.dart';
+import 'package:truda/truda_pages/splash/truda_splash_page.dart';
+import 'package:truda/truda_pages/vip/truda_vip_page.dart';
 import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
@@ -70,7 +70,7 @@ import '../truda_pages/main/moment/create/truda_create_binding.dart';
 import '../truda_pages/main/moment/create/truda_create_page.dart';
 import '../truda_pages/main/search/truda_search_binding.dart';
 import '../truda_pages/main/search/truda_search_page.dart';
-import '../truda_pages/some/newhita_report_new_page.dart';
+import '../truda_pages/some/truda_report_new_page.dart';
 import 'newhita_observers.dart';
 
 class NewHitaAppPages {
@@ -121,8 +121,8 @@ class NewHitaAppPages {
     // 免登陆
     GetPage(
       name: initial,
-      page: () => NewHitaSplashPage(),
-      binding: NewHitaSplashBinding(),
+      page: () => TrudaSplashPage(),
+      binding: TrudaSplashBinding(),
       // middlewares: [
       //   RouteWelcomeMiddleware(priority: 1),
       // ],
@@ -226,15 +226,15 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: reportPage,
-      page: () => NewHitaReportUpPage(),
+      page: () => TrudaReportUpPage(),
     ),
     GetPage(
       name: reportPageNew,
-      page: () => NewHitaReportNewPage(),
+      page: () => TrudaReportNewPage(),
     ),
     GetPage(
       name: webPage,
-      page: () => NewHitaWebPage(),
+      page: () => TrudaWebPage(),
     ),
     GetPage(
       name: cardList,
@@ -258,7 +258,7 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: vip,
-      page: () => NewHitaVipPage(),
+      page: () => TrudaVipPage(),
     ),
     GetPage(
       name: orderTab,

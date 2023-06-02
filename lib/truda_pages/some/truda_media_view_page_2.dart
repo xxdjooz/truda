@@ -9,23 +9,23 @@ import '../../truda_routes/newhita_pages.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
-class NewHitaFullscreenSliderDemo extends StatefulWidget {
+class TrudaFullscreenSliderDemo extends StatefulWidget {
   List<TrudaHostMedia> list;
   int position;
 
-  NewHitaFullscreenSliderDemo({
+  TrudaFullscreenSliderDemo({
     Key? key,
     required this.list,
     required this.position,
   }) : super(key: key);
 
   @override
-  State<NewHitaFullscreenSliderDemo> createState() =>
-      _NewHitaFullscreenSliderDemoState();
+  State<TrudaFullscreenSliderDemo> createState() =>
+      _TrudaFullscreenSliderDemoState();
 }
 
-class _NewHitaFullscreenSliderDemoState
-    extends State<NewHitaFullscreenSliderDemo> {
+class _TrudaFullscreenSliderDemoState
+    extends State<TrudaFullscreenSliderDemo> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
@@ -69,7 +69,7 @@ class _NewHitaFullscreenSliderDemoState
                   items: widget.list
                       .map((item) => Container(
                             child: Center(
-                                child: NewHitaMediaViewPage2(
+                                child: TrudaMediaViewPage2(
                               path: item.path ?? '',
                               cover: item.cover,
                               type: item.type ?? 0,
@@ -108,14 +108,14 @@ class _NewHitaFullscreenSliderDemoState
   }
 }
 
-class NewHitaMediaViewPage2 extends StatefulWidget {
+class TrudaMediaViewPage2 extends StatefulWidget {
   String path;
   String? cover;
   int type;
   int heroId;
   bool noAppBar;
 
-  NewHitaMediaViewPage2({
+  TrudaMediaViewPage2({
     Key? key,
     required this.path,
     this.cover,
@@ -125,14 +125,14 @@ class NewHitaMediaViewPage2 extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaMediaViewPage2> createState() => _NewHitaMediaViewPage2State();
+  State<TrudaMediaViewPage2> createState() => _TrudaMediaViewPage2State();
 
   static void startMe(BuildContext context,
       {required int heroId, required String path, String? cover, int? type}) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => NewHitaMediaViewPage2(
+        builder: (BuildContext context) => TrudaMediaViewPage2(
           path: path,
           cover: cover,
           heroId: heroId,
@@ -143,7 +143,7 @@ class NewHitaMediaViewPage2 extends StatefulWidget {
   }
 }
 
-class _NewHitaMediaViewPage2State extends State<NewHitaMediaViewPage2>
+class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
     with WidgetsBindingObserver, RouteAware {
   bool playing = false;
   bool pause = false;

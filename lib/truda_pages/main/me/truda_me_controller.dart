@@ -19,7 +19,7 @@ import '../../../truda_services/newhita_storage_service.dart';
 import '../../../truda_socket/newhita_socket_entity.dart';
 import '../../../truda_socket/newhita_socket_manager.dart';
 import '../../login/truda_login_util.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 
 class TrudaMeController extends GetxController {
   /// 加载会话列表时的最下面一条的时间戳，根据这个分页加载
@@ -99,7 +99,7 @@ class TrudaMeController extends GetxController {
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_vip_upgrade_ask.tr,
         callback: (i) {
-          NewHitaVipController.openDialog(
+          TrudaVipController.openDialog(
               createPath: TrudaChargePath.recharge_vip_dialog_user_center);
         },
       ));

@@ -35,7 +35,7 @@ import '../../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
 import '../../chargedialog/truda_charge_dialog_manager.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 import '../end/truda_end_controller.dart';
 import 'truda_aiv_video_controller.dart';
 
@@ -468,7 +468,7 @@ class TrudaAivController extends GetxController {
         } else if (err.code == 25) {
           Get.dialog(TrudaDialogConfirm(
             callback: (i) {
-              NewHitaVipController.openDialog(
+              TrudaVipController.openDialog(
                   createPath: TrudaChargePath.recharge_send_vip_gift);
             },
             title: TrudaLanguageKey.newhita_vip_for_gift.tr,

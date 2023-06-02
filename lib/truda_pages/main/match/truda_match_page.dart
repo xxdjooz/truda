@@ -10,7 +10,7 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_routes/newhita_pages.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 import '../../../truda_utils/newhita_log.dart';
-import '../../vip/newhita_vip_controller.dart';
+import '../../vip/truda_vip_controller.dart';
 import 'truda_jellyfish_game.dart';
 import 'truda_match_controller.dart';
 import 'truda_match_fake_controller.dart';
@@ -189,7 +189,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
                             Center(
                               child: GestureDetector(
                                 onTap: () {
-                                  NewHitaVipController.openDialog(
+                                  TrudaVipController.openDialog(
                                       createPath: TrudaChargePath
                                           .recharge_vip_dialog_match);
                                 },

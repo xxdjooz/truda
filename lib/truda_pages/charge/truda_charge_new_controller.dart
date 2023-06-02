@@ -6,7 +6,7 @@ import 'package:truda/truda_database/entity/truda_order_entity.dart';
 import 'package:truda/truda_entities/truda_charge_entity.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/some/newhita_web_page.dart';
+import 'package:truda/truda_pages/some/truda_web_page.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -175,7 +175,7 @@ class TrudaChargeNewController extends GetxController {
       } else if (channel.browserOpen == 1) {
         openInOutBrowser(value.payUrl!);
       } else {
-        NewHitaWebPage.startMe(value.payUrl!, false);
+        TrudaWebPage.startMe(value.payUrl!, false);
       }
     });
   }
