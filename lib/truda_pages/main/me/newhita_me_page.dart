@@ -22,7 +22,7 @@ import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
 import '../../../truda_utils/ai/newhita_ai_logic_utils.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
-import '../../chat/newhita_chat_controller.dart';
+import '../../chat/truda_chat_controller.dart';
 import '../../vip/newhita_vip_controller.dart';
 import 'newhita_me_controller.dart';
 
@@ -589,7 +589,7 @@ class NewHitaMePage extends StatelessWidget {
                                   text: null,
                                   onTap: () {
                                     if (TrudaConstants.appMode > 0) {
-                                      NewHitaChatController.startMe(
+                                      TrudaChatController.startMe(
                                           TrudaConstants.systemId);
                                       return;
                                     }

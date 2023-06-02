@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:truda/truda_entities/truda_match_host_entity.dart';
 import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
-import 'package:truda/truda_pages/her_video/newhitavideo_test.dart';
+import 'package:truda/truda_pages/her_video/trudavideo_test.dart';
 import 'package:truda/truda_pages/main/me/demo_test/newhita_test_image_picker.dart';
 import 'package:truda/truda_pages/main/me/demo_test/newhita_test_webp.dart';
 import 'package:truda/truda_utils/newhita_aic_handler.dart';
@@ -173,7 +173,7 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaVideoTestPage.startMe(
+                    TrudaVideoTestPage.startMe(
                       context,
                       url:
                           // 'http://yesme-public.oss-cn-hongkong.aliyuncs.com/app/resources/wang/green.mp4',

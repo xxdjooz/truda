@@ -8,13 +8,13 @@ import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 import '../../../truda_common/truda_call_status.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../newhita_chat_msg_widget.dart';
-import '../newhita_chat_msg_wrapper.dart';
+import '../truda_chat_msg_widget.dart';
+import '../truda_chat_msg_wrapper.dart';
 
-class NewHitaChatMsgCall extends StatelessWidget {
-  final NewHitaChatMsgWrapper wrapper;
+class TrudaChatMsgCall extends StatelessWidget {
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaChatMsgCall({Key? key, required this.wrapper}) : super(key: key);
+  const TrudaChatMsgCall({Key? key, required this.wrapper}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class NewHitaChatMsgCall extends StatelessWidget {
         ? call.duration ?? ''
         : TrudaLanguageKey.newhita_call_disconnected.tr;
     return wrapper.herSend
-        ? NewHitaLianChatMsgHer(
+        ? TrudaLianChatMsgHer(
             wrapper: wrapper,
             child: GestureDetector(
               onTap: () {
@@ -65,7 +65,7 @@ class NewHitaChatMsgCall extends StatelessWidget {
               ),
             ),
           )
-        : NewHitaLianChatMsgMe(
+        : TrudaLianChatMsgMe(
             wrapper: wrapper,
             child: GestureDetector(
               onTap: () {

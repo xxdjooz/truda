@@ -5,17 +5,17 @@ import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../truda_common/truda_colors.dart';
 
-class NewHitaTimeCountWidget extends StatefulWidget {
+class TrudaTimeCountWidget extends StatefulWidget {
   int? left_time_inter;
   Function cancel;
 
-  NewHitaTimeCountWidget(this.left_time_inter, this.cancel);
+  TrudaTimeCountWidget(this.left_time_inter, this.cancel);
 
   @override
-  _NewHitaTimeCountWidgetState createState() => _NewHitaTimeCountWidgetState();
+  _TrudaTimeCountWidgetState createState() => _TrudaTimeCountWidgetState();
 }
 
-class _NewHitaTimeCountWidgetState extends State<NewHitaTimeCountWidget> {
+class _TrudaTimeCountWidgetState extends State<TrudaTimeCountWidget> {
   Timer? _timer;
 
   @override
@@ -33,7 +33,7 @@ class _NewHitaTimeCountWidgetState extends State<NewHitaTimeCountWidget> {
           widget.cancel.call();
           return;
         }
-        NewHitaLog.debug('NewHitaTimeCountWidget ${widget.left_time_inter}');
+        NewHitaLog.debug('TrudaTimeCountWidget ${widget.left_time_inter}');
         setState(() {
           widget.left_time_inter = widget.left_time_inter! - 1000;
         });

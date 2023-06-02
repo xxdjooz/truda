@@ -7,12 +7,12 @@ import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../truda_common/truda_colors.dart';
 
-class NewHitaCachePage extends StatefulWidget {
+class TrudaCachePage extends StatefulWidget {
   String url;
   Function(double)? callback;
   final StreamController<int> streamController;
 
-  NewHitaCachePage({
+  TrudaCachePage({
     Key? key,
     required this.url,
     required this.streamController,
@@ -20,10 +20,10 @@ class NewHitaCachePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NewHitaCachePageState createState() => _NewHitaCachePageState();
+  _TrudaCachePageState createState() => _TrudaCachePageState();
 }
 
-class _NewHitaCachePageState extends State<NewHitaCachePage> {
+class _TrudaCachePageState extends State<TrudaCachePage> {
   late BetterPlayerController _betterPlayerController;
   late BetterPlayerDataSource _betterPlayerDataSource;
   late VoidCallback listener;
@@ -33,7 +33,7 @@ class _NewHitaCachePageState extends State<NewHitaCachePage> {
   bool showPic = true;
   @override
   void initState() {
-    NewHitaLog.debug('NewHitaCachePage url=${widget.url}');
+    NewHitaLog.debug('TrudaCachePage url=${widget.url}');
 
     listener = () {
       var value = _betterPlayerController.videoPlayerController!.value;
@@ -84,7 +84,7 @@ class _NewHitaCachePageState extends State<NewHitaCachePage> {
         controlBarColor: Colors.transparent,
         showControlsOnInitialize: false,
         // customControlsBuilder: (controller, callBack) {
-        //   return NewHitaBetterPlayerMyControls(
+        //   return TrudaBetterPlayerMyControls(
         //     controlsConfiguration: controller.betterPlayerControlsConfiguration,
         //     onControlsVisibilityChanged: callBack,
         //   );
@@ -132,7 +132,7 @@ class _NewHitaCachePageState extends State<NewHitaCachePage> {
     super.dispose();
     _betterPlayerController.videoPlayerController?.removeListener(listener);
     _betterPlayerController.dispose();
-    NewHitaLog.debug('NewHitaCachePage dispose');
+    NewHitaLog.debug('TrudaCachePage dispose');
   }
 
   // _betterPlayerController.preCache(_betterPlayerDataSource);

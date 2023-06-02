@@ -8,13 +8,13 @@ import '../../truda_common/truda_constants.dart';
 import '../../truda_database/entity/truda_msg_entity.dart';
 import '../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../truda_widget/newhita_net_image.dart';
-import 'newhita_chat_msg_wrapper.dart';
+import 'truda_chat_msg_wrapper.dart';
 
-class NewHitaLianChatMsgHer extends StatelessWidget {
+class TrudaLianChatMsgHer extends StatelessWidget {
   final Widget child;
-  final NewHitaChatMsgWrapper wrapper;
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaLianChatMsgHer(
+  const TrudaLianChatMsgHer(
       {Key? key, required this.child, required this.wrapper})
       : super(key: key);
 
@@ -74,11 +74,11 @@ class NewHitaLianChatMsgHer extends StatelessWidget {
   }
 }
 
-class NewHitaLianChatMsgMe extends StatelessWidget {
+class TrudaLianChatMsgMe extends StatelessWidget {
   final Widget child;
-  final NewHitaChatMsgWrapper wrapper;
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaLianChatMsgMe(
+  const TrudaLianChatMsgMe(
       {Key? key, required this.child, required this.wrapper})
       : super(key: key);
 

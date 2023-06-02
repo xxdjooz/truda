@@ -18,7 +18,7 @@ import '../truda_http/truda_common_api.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/call/local/truda_local_controller.dart';
-import '../truda_pages/chat/newhita_chat_controller.dart';
+import '../truda_pages/chat/truda_chat_controller.dart';
 import '../truda_utils/newhita_format_util.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_utils/newhita_log.dart';
@@ -223,7 +223,7 @@ class _TrudaDialogMatchOneState extends State<TrudaDialogMatchOne> {
                                                   child: GestureDetector(
                                                   onTap: () {
                                                     Get.back();
-                                                    NewHitaChatController
+                                                    TrudaChatController
                                                         .startMe(widget
                                                             .detail.userId!);
                                                   },

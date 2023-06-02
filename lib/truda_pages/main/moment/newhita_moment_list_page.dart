@@ -13,7 +13,7 @@ import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../call/local/truda_local_controller.dart';
-import '../../chat/newhita_chat_controller.dart';
+import '../../chat/truda_chat_controller.dart';
 import '../../host/newhita_host_controller.dart';
 import '../../some/newhita_media_view_page.dart';
 import '../home/newhita_host_widget.dart';
@@ -225,7 +225,7 @@ class NewHitaMomentListPage extends GetView<NewHitaMomentListController> {
                                             )),
                                             GestureDetector(
                                               onTap: () {
-                                                NewHitaChatController.startMe(bean.userId!);
+                                                TrudaChatController.startMe(bean.userId!);
                                               },
                                               child: Container(
                                                 // padding: EdgeInsets.all(8),

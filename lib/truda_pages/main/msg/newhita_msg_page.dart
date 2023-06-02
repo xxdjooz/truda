@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_text_styles.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_controller.dart';
+import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
@@ -300,7 +300,7 @@ class NewHitaMsgWidget extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            NewHitaChatController.startMe(msg.herId);
+            TrudaChatController.startMe(msg.herId);
           },
           // onLongPress: () {
           //   NewHitaStorageService.to.objectBoxMsg.removeHer(msg.herId);

@@ -3,7 +3,7 @@ import 'package:truda/truda_database/entity/truda_her_entity.dart';
 import '../../truda_database/entity/truda_msg_entity.dart';
 
 /// 用于显示消息的bean的封装
-class NewHitaChatMsgWrapper {
+class TrudaChatMsgWrapper {
   TrudaMsgEntity msgEntity;
 
   // 时间
@@ -18,6 +18,6 @@ class NewHitaChatMsgWrapper {
   TrudaHerEntity? her;
   String herId;
 
-  NewHitaChatMsgWrapper(this.msgEntity, this.herSend, this.date,
+  TrudaChatMsgWrapper(this.msgEntity, this.herSend, this.date,
       {this.her, this.showTime = false, required this.herId});
 }

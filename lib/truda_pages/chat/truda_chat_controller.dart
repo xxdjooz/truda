@@ -6,7 +6,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_database/entity/truda_her_entity.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_msg_wrapper.dart';
+import 'package:truda/truda_pages/chat/truda_chat_msg_wrapper.dart';
 import 'package:truda/truda_pages/vip/newhita_vip_controller.dart';
 import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
@@ -31,9 +31,9 @@ import '../../truda_utils/ad/newhita_ads_utils.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_voice_player.dart';
-import '../chargedialog/newhita_charge_dialog_manager.dart';
+import '../chargedialog/truda_charge_dialog_manager.dart';
 
-class NewHitaChatController extends GetxController {
+class TrudaChatController extends GetxController {
   // static startMe(String herId, {NewHitaHostDetail? detail}) {
   //   Get.toNamed(NewHitaAppPages.chatPage, arguments: detail ?? herId);
   // }
@@ -57,8 +57,8 @@ class NewHitaChatController extends GetxController {
 
   /// 两个列表，分别添加下拉出来的旧数据和新发的数据
   /// 为啥这么做？实现不会跳动的双向列表
-  List<NewHitaChatMsgWrapper> showOldData = [];
-  List<NewHitaChatMsgWrapper> showNewData = [];
+  List<TrudaChatMsgWrapper> showOldData = [];
+  List<TrudaChatMsgWrapper> showNewData = [];
 
   late String myId;
   late String herId;
@@ -181,7 +181,7 @@ class NewHitaChatController extends GetxController {
         if (data.msgEntity.msgId == event.msgId) return;
       }
     }
-    var wrapper = NewHitaChatMsgWrapper(event, herSend, event.dateInsert,
+    var wrapper = TrudaChatMsgWrapper(event, herSend, event.dateInsert,
         her: her, herId: herId);
     wrapper.showTime = showNewData.isEmpty
         ? true
@@ -243,9 +243,9 @@ class NewHitaChatController extends GetxController {
     }
   }
 
-  List<NewHitaChatMsgWrapper> _getWrapperList(List<TrudaMsgEntity> list, int time) {
+  List<TrudaChatMsgWrapper> _getWrapperList(List<TrudaMsgEntity> list, int time) {
     var newList = list
-        .map((e) => NewHitaChatMsgWrapper(e, e.sendType == 1, e.dateInsert,
+        .map((e) => TrudaChatMsgWrapper(e, e.sendType == 1, e.dateInsert,
             her: her, herId: herId))
         .toList();
     // 遍历wrapper,判断是否显示时间，5分钟
@@ -305,7 +305,7 @@ class NewHitaChatController extends GetxController {
         ..msgEventType = NewHitaMsgEventType.sendErr
         ..sendState = 2);
       if (err.code == 8) {
-        NewHitaChargeDialogManager.showChargeDialog(
+        TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_send_gift_no_money,
           upid: herId,
           noMoneyShow: true,

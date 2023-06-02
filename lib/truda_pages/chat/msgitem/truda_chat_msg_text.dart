@@ -4,20 +4,20 @@ import 'package:truda/truda_common/truda_colors.dart';
 
 import '../../../truda_database/entity/truda_msg_entity.dart';
 import '../../../truda_services/newhita_storage_service.dart';
-import '../newhita_chat_msg_widget.dart';
-import '../newhita_chat_msg_wrapper.dart';
+import '../truda_chat_msg_widget.dart';
+import '../truda_chat_msg_wrapper.dart';
 
-class NewHitaChatMsgText extends StatelessWidget {
-  final NewHitaChatMsgWrapper wrapper;
+class TrudaChatMsgText extends StatelessWidget {
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaChatMsgText({Key? key, required this.wrapper}) : super(key: key);
+  const TrudaChatMsgText({Key? key, required this.wrapper}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var her = wrapper.her;
     var msg = wrapper.msgEntity;
     return wrapper.herSend
-        ? NewHitaLianChatMsgHer(
+        ? TrudaLianChatMsgHer(
             wrapper: wrapper,
             child: Container(
               decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class NewHitaChatMsgText extends StatelessWidget {
               ),
             ),
           )
-        : NewHitaLianChatMsgMe(
+        : TrudaLianChatMsgMe(
             wrapper: wrapper,
             child: Container(
               decoration: BoxDecoration(

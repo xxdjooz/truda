@@ -13,7 +13,7 @@ import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_sheet_host_option.dart';
 import '../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../truda_widget/newhita_gradient_button.dart';
-import '../../chat/newhita_chat_controller.dart';
+import '../../chat/truda_chat_controller.dart';
 import '../local/truda_local_controller.dart';
 import 'truda_end_controller.dart';
 
@@ -427,7 +427,7 @@ class TrudaEndPage extends StatelessWidget {
                                         detail.userId!, detail.portrait,
                                         closeSelf: true);
                                   } else {
-                                    NewHitaChatController.startMe(
+                                    TrudaChatController.startMe(
                                         detail.userId!);
                                   }
                                 },

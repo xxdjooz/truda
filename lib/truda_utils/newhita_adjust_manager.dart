@@ -14,7 +14,7 @@ import 'package:truda/truda_utils/newhita_third_util.dart';
 
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_pages/chargedialog/newhita_charge_quick_controller.dart';
+import '../truda_pages/chargedialog/truda_charge_quick_controller.dart';
 
 class NewHitaAdjustManager {
   static AdjustAttribution? attributionChangedData; // adjust的归因数据
@@ -123,7 +123,7 @@ class NewHitaAdjustManager {
       "costAmount": '',
       "costCurrency": "",
     }).then((value) {
-      NewHitaChargeQuickController.cleanCacheData();
+      TrudaChargeQuickController.cleanCacheData();
     });
   }
 
@@ -216,7 +216,7 @@ class NewHitaAdjustManager {
         _timer == null;
       }
       NewHitaLog.debug("upload adjust attribution   success");
-      NewHitaChargeQuickController.cleanCacheData();
+      TrudaChargeQuickController.cleanCacheData();
     });
   }
 }

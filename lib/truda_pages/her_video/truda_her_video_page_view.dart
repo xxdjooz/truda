@@ -12,17 +12,17 @@ import 'package:wakelock/wakelock.dart';
 
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_routes/newhita_pages.dart';
-import 'newhita_her_video_page_item.dart';
+import 'truda_her_video_page_item.dart';
 
 /// https://static.ybhospital.net/test-video-4.mp4
-class NewHitaHerVideoPageView extends StatefulWidget {
-  NewHitaHerVideoPageView({Key? key}) : super(key: key);
+class TrudaHerVideoPageView extends StatefulWidget {
+  TrudaHerVideoPageView({Key? key}) : super(key: key);
 
   @override
-  _NewHitaHerVideoPageViewState createState() => _NewHitaHerVideoPageViewState();
+  _TrudaHerVideoPageViewState createState() => _TrudaHerVideoPageViewState();
 }
 
-class _NewHitaHerVideoPageViewState extends State<NewHitaHerVideoPageView>
+class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
     with WidgetsBindingObserver, RouteAware {
   late PageController _pageController;
 
@@ -156,13 +156,13 @@ class _NewHitaHerVideoPageViewState extends State<NewHitaHerVideoPageView>
       children: [
         PageView.builder(
           // key: Key('HerVideoPage'),
-          physics: NewHitaQuickerScrollPhysics(),
+          physics: TrudaQuickerScrollPhysics(),
           controller: _pageController,
           scrollDirection: Axis.vertical,
           itemCount: videoDataList.length,
           itemBuilder: (context, i) {
             var detail = videoDataList[i];
-            return NewHitaHerVideoPageItem(
+            return TrudaHerVideoPageItem(
               detail: detail,
               streamController: _streamController,
             );
@@ -182,13 +182,13 @@ class _NewHitaHerVideoPageViewState extends State<NewHitaHerVideoPageView>
   }
 }
 
-class NewHitaQuickerScrollPhysics extends BouncingScrollPhysics {
-  const NewHitaQuickerScrollPhysics({ScrollPhysics? parent})
+class TrudaQuickerScrollPhysics extends BouncingScrollPhysics {
+  const TrudaQuickerScrollPhysics({ScrollPhysics? parent})
       : super(parent: parent);
 
   @override
-  NewHitaQuickerScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return NewHitaQuickerScrollPhysics(parent: buildParent(ancestor));
+  TrudaQuickerScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return TrudaQuickerScrollPhysics(parent: buildParent(ancestor));
   }
 
   @override

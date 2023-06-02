@@ -8,9 +8,9 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_host_entity.dart';
 import 'package:truda/truda_http/truda_common_api.dart';
 import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_controller.dart';
-import 'package:truda/truda_pages/her_video/newhita_cache_page.dart';
-import 'package:truda/truda_pages/her_video/newhita_video_progress.dart';
+import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
+import 'package:truda/truda_pages/her_video/truda_cache_page.dart';
+import 'package:truda/truda_pages/her_video/truda_video_progress.dart';
 import 'package:truda/truda_pages/host/newhita_host_controller.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/newhita_app_bar.dart';
@@ -33,7 +33,7 @@ import '../main/home/newhita_host_widget.dart';
 /// 长宽比控制
 /// 底部padding（用于适配有沉浸式底部状态栏时）
 ///
-class NewHitaHerVideoPageItem extends StatefulWidget {
+class TrudaHerVideoPageItem extends StatefulWidget {
   final Widget? video;
   final double aspectRatio;
   final String? tag;
@@ -46,7 +46,7 @@ class NewHitaHerVideoPageItem extends StatefulWidget {
   final Function? onSingleTap;
   final StreamController<int> streamController;
 
-  const NewHitaHerVideoPageItem({
+  const TrudaHerVideoPageItem({
     Key? key,
     this.bottomPadding = 16,
     this.tag,
@@ -60,11 +60,11 @@ class NewHitaHerVideoPageItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaHerVideoPageItem> createState() =>
-      _NewHitaHerVideoPageItemState();
+  State<TrudaHerVideoPageItem> createState() =>
+      _TrudaHerVideoPageItemState();
 }
 
-class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
+class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
     with WidgetsBindingObserver {
   double progress = 0;
   double progressBuff = 0;
@@ -129,7 +129,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
             width: double.infinity,
             color: Colors.black,
             alignment: Alignment.center,
-            child: NewHitaCachePage(
+            child: TrudaCachePage(
               key: ValueKey('$circle:$playStep'),
               url: videos[playStep].path!,
               streamController: widget.streamController,
@@ -154,7 +154,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
                   Row(
                     children: [
                       Expanded(
-                        child: NewHitaTikTokVideoProgress(
+                        child: TrudaTikTokVideoProgress(
                           index: 0,
                           step: playStep,
                           progress: progress,
@@ -167,7 +167,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
                       ),
                       if (widget.detail.videos!.length > 1)
                         Expanded(
-                          child: NewHitaTikTokVideoProgress(
+                          child: TrudaTikTokVideoProgress(
                             index: 1,
                             step: playStep,
                             progress: progress,
@@ -180,7 +180,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
                       ),
                       if (widget.detail.videos!.length > 2)
                         Expanded(
-                          child: NewHitaTikTokVideoProgress(
+                          child: TrudaTikTokVideoProgress(
                             index: 2,
                             step: playStep,
                             progress: progress,
@@ -350,7 +350,7 @@ class _NewHitaHerVideoPageItemState extends State<NewHitaHerVideoPageItem>
                               flex: 3,
                               child: GestureDetector(
                                 onTap: () {
-                                  NewHitaChatController.startMe(
+                                  TrudaChatController.startMe(
                                       widget.detail.userId!,
                                       detail: widget.detail);
                                 },

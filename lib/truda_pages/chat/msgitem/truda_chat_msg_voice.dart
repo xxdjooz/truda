@@ -9,19 +9,19 @@ import 'package:truda/truda_utils/newhita_voice_player.dart';
 
 import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_database/entity/truda_msg_entity.dart';
-import '../newhita_chat_msg_widget.dart';
-import '../newhita_chat_msg_wrapper.dart';
+import '../truda_chat_msg_widget.dart';
+import '../truda_chat_msg_wrapper.dart';
 
-class NewHitaChatMsgVoice extends StatefulWidget {
-  final NewHitaChatMsgWrapper wrapper;
+class TrudaChatMsgVoice extends StatefulWidget {
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaChatMsgVoice({Key? key, required this.wrapper}) : super(key: key);
+  const TrudaChatMsgVoice({Key? key, required this.wrapper}) : super(key: key);
 
   @override
-  State<NewHitaChatMsgVoice> createState() => _NewHitaChatMsgVoiceState();
+  State<TrudaChatMsgVoice> createState() => _TrudaChatMsgVoiceState();
 }
 
-class _NewHitaChatMsgVoiceState extends State<NewHitaChatMsgVoice> {
+class _TrudaChatMsgVoiceState extends State<TrudaChatMsgVoice> {
   TrudaHerEntity? her;
   late TrudaMsgEntity msg = widget.wrapper.msgEntity;
   NewHitaRTMMsgVoice? rtmMsg;
@@ -76,7 +76,7 @@ class _NewHitaChatMsgVoiceState extends State<NewHitaChatMsgVoice> {
             onTap: () {
               playIt();
             },
-            child: NewHitaLianChatMsgHer(
+            child: TrudaLianChatMsgHer(
               wrapper: widget.wrapper,
               child: Container(
                 decoration: BoxDecoration(
@@ -111,7 +111,7 @@ class _NewHitaChatMsgVoiceState extends State<NewHitaChatMsgVoice> {
             onTap: () {
               playIt();
             },
-            child: NewHitaLianChatMsgMe(
+            child: TrudaLianChatMsgMe(
               wrapper: widget.wrapper,
               child: Container(
                 decoration: BoxDecoration(

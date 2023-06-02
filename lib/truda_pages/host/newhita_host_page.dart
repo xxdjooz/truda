@@ -31,7 +31,7 @@ import '../../truda_widget/newhita_border.dart';
 import '../../truda_widget/newhita_image_indicator.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import '../../truda_widget/sliver/newhita_sliver_header_delegate.dart';
-import '../chat/newhita_chat_controller.dart';
+import '../chat/truda_chat_controller.dart';
 import '../main/home/newhita_host_widget.dart';
 import '../some/newhita_media_view_page.dart';
 import 'newhita_host_contribute_view.dart';
@@ -418,7 +418,7 @@ class _NewHitaHostPageState extends State<NewHitaHostPage>
                 flex: 3,
                 child: GestureDetector(
                   onTap: () {
-                    NewHitaChatController.startMe(_controller.herId,
+                    TrudaChatController.startMe(_controller.herId,
                         detail: _controller.detail);
                   },
                   child: Container(

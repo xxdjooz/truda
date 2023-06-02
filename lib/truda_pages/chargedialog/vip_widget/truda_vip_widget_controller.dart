@@ -17,7 +17,7 @@ import '../../charge/truda_charge_new_channel_dialog.dart';
 import '../../charge/truda_google_billing.dart';
 import '../../some/newhita_web_page.dart';
 
-class NewHitaVipWidgetController extends GetxController {
+class TrudaVipWidgetController extends GetxController {
   static const idMoreList = 'idMoreList';
   bool googleOnly = true;
   static List<TrudaPayQuickCommodite>? payQuickData;

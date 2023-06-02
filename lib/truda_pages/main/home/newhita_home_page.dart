@@ -17,7 +17,7 @@ import '../../../truda_dialogs/truda_dialog_invite_for_diamond.dart';
 import '../../../truda_utils/newhita_ui_image_util.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
 import '../../../truda_widget/newhita_net_image.dart';
-import '../../chargedialog/newhita_charge_dialog_manager.dart';
+import '../../chargedialog/truda_charge_dialog_manager.dart';
 import 'newhita_follow_page.dart';
 import 'newhita_home_controller.dart';
 
@@ -243,7 +243,7 @@ class _NewHitaMainFloatState extends State<NewHitaMainFloat> {
 
   var chargeWidget = GestureDetector(
       onTap: () {
-        NewHitaChargeDialogManager.showChargeDialog(
+        TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.home_float_recharge,
         ).then((value) {
           if (GetPlatform.isAndroid) {

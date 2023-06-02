@@ -7,13 +7,13 @@ import 'package:truda/truda_pages/some/newhita_media_view_page.dart';
 import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
-import '../newhita_chat_msg_widget.dart';
-import '../newhita_chat_msg_wrapper.dart';
+import '../truda_chat_msg_widget.dart';
+import '../truda_chat_msg_wrapper.dart';
 
-class NewHitaChatMsgImage extends StatelessWidget {
-  final NewHitaChatMsgWrapper wrapper;
+class TrudaChatMsgImage extends StatelessWidget {
+  final TrudaChatMsgWrapper wrapper;
 
-  const NewHitaChatMsgImage({Key? key, required this.wrapper}) : super(key: key);
+  const TrudaChatMsgImage({Key? key, required this.wrapper}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class NewHitaChatMsgImage extends StatelessWidget {
     // 收到的消息有rtmMsg，发送中的图片消息还没有
     var url = rtmMsg?.thumbnailUrl ?? rtmMsg?.imageUrl;
     return wrapper.herSend
-        ? NewHitaLianChatMsgHer(
+        ? TrudaLianChatMsgHer(
             wrapper: wrapper,
             child: Container(
               decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class NewHitaChatMsgImage extends StatelessWidget {
               ),
             ),
           )
-        : NewHitaLianChatMsgMe(
+        : TrudaLianChatMsgMe(
             wrapper: wrapper,
             child: Container(
               decoration: BoxDecoration(

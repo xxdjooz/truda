@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_pages/chargedialog/vip_widget/newhita_vip_widget.dart';
+import 'package:truda/truda_pages/chargedialog/vip_widget/truda_vip_widget.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_entities/truda_charge_quick_entity.dart';
 import '../../truda_widget/newhita_click_widget.dart';
-import 'newhita_charge_dialog_manager.dart';
-import 'newhita_charge_quick_controller.dart';
+import 'truda_charge_dialog_manager.dart';
+import 'truda_charge_quick_controller.dart';
 
-class NewHitaChargeQuickDialog extends StatefulWidget {
+class TrudaChargeQuickDialog extends StatefulWidget {
   String createPath;
   int? left_time_inter;
   String? upId;
   Function? closeCallBack;
   bool noMoneyShow;
 
-  NewHitaChargeQuickDialog({
+  TrudaChargeQuickDialog({
     Key? key,
     required this.createPath,
     required this.upId,
@@ -25,11 +25,11 @@ class NewHitaChargeQuickDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NewHitaChargeQuickDialog> createState() =>
-      _NewHitaChargeQuickDialogState();
+  State<TrudaChargeQuickDialog> createState() =>
+      _TrudaChargeQuickDialogState();
 }
 
-class _NewHitaChargeQuickDialogState extends State<NewHitaChargeQuickDialog> {
+class _TrudaChargeQuickDialogState extends State<TrudaChargeQuickDialog> {
   @override
   void dispose() {
     super.dispose();
@@ -38,15 +38,15 @@ class _NewHitaChargeQuickDialogState extends State<NewHitaChargeQuickDialog> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(NewHitaChargeQuickController()
+    Get.put(TrudaChargeQuickController()
       ..upId = widget.upId
       ..createPath = widget.createPath);
-    return GetBuilder<NewHitaChargeQuickController>(initState: (state) {
+    return GetBuilder<TrudaChargeQuickController>(initState: (state) {
       // NewHitaLog.debug('NewHitaChargeCutDialog initState state=$state');
-      NewHitaChargeDialogManager.isShowingChargeDialog = true;
+      TrudaChargeDialogManager.isShowingChargeDialog = true;
     }, dispose: (state) {
       // NewHitaLog.debug('NewHitaChargeCutDialog dispose state=$state');
-      NewHitaChargeDialogManager.isShowingChargeDialog = false;
+      TrudaChargeDialogManager.isShowingChargeDialog = false;
     }, builder: (controller) {
       return Center(
         // alignment: AlignmentDirectional.center,
@@ -155,7 +155,7 @@ class _NewHitaChargeQuickDialogState extends State<NewHitaChargeQuickDialog> {
     });
   }
 
-  Widget _cutProduct(NewHitaChargeQuickController controller) {
+  Widget _cutProduct(TrudaChargeQuickController controller) {
     if (controller.cutCommodite == null) {
       return const SizedBox();
     }
@@ -286,7 +286,7 @@ class _NewHitaChargeQuickDialogState extends State<NewHitaChargeQuickDialog> {
     );
   }
 
-  List<Widget> _commonProducts(NewHitaChargeQuickController controller) {
+  List<Widget> _commonProducts(TrudaChargeQuickController controller) {
     if (controller.normalProducts == null) {
       return [];
     }
@@ -298,7 +298,7 @@ class _NewHitaChargeQuickDialogState extends State<NewHitaChargeQuickDialog> {
     return list.map((e) => _commonProduct(controller, e)).toList();
   }
 
-  Widget _commonProduct(NewHitaChargeQuickController controller,
+  Widget _commonProduct(TrudaChargeQuickController controller,
       TrudaPayQuickCommodite commodite) {
     return NewHitaClickWidget(
       onTap: () => controller.chooseCommdite(commodite),

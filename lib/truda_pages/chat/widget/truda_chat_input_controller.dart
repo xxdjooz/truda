@@ -19,14 +19,14 @@ import '../../../truda_utils/newhita_choose_image_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
-import '../../chargedialog/newhita_charge_dialog_manager.dart';
+import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/newhita_vip_controller.dart';
-import '../newhita_chat_controller.dart';
+import '../truda_chat_controller.dart';
 
-class NewHitaChatInputController extends GetxController {
+class TrudaChatInputController extends GetxController {
   final String userId;
 
-  NewHitaChatInputController(this.userId);
+  TrudaChatInputController(this.userId);
 
   late final NewHitaUpLoadCallBack upLoadCallBack;
   late String myId;
@@ -37,7 +37,7 @@ class NewHitaChatInputController extends GetxController {
   final isShowEmoji = false.obs;
   final isShowRecord = false.obs;
   final isCanSendText = false.obs;
-  late NewHitaChatController _chatController;
+  late TrudaChatController _chatController;
 
   @override
   void onInit() {
@@ -50,7 +50,7 @@ class NewHitaChatInputController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _chatController = Get.find<NewHitaChatController>();
+    _chatController = Get.find<TrudaChatController>();
   }
 
   void onPointerDown() {
@@ -114,7 +114,7 @@ class NewHitaChatInputController extends GetxController {
         ..sendState = 2);
       NewHitaStorageService.to.eventBus.fire(msg);
       if (err.code == 8) {
-        NewHitaChargeDialogManager.showChargeDialog(
+        TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_click_recharge,
           upid: userId,
           noMoneyShow: true,
@@ -221,7 +221,7 @@ class NewHitaChatInputController extends GetxController {
                 ..msgEventType = NewHitaMsgEventType.sendErr
                 ..sendState = 2);
               if (err.code == 8) {
-                NewHitaChargeDialogManager.showChargeDialog(
+                TrudaChargeDialogManager.showChargeDialog(
                   TrudaChargePath.chating_click_recharge,
                   upid: userId,
                   noMoneyShow: true,
@@ -326,7 +326,7 @@ class NewHitaChatInputController extends GetxController {
               ..msgEventType = NewHitaMsgEventType.sendErr
               ..sendState = 2);
             if (err.code == 8) {
-              NewHitaChargeDialogManager.showChargeDialog(
+              TrudaChargeDialogManager.showChargeDialog(
                 TrudaChargePath.chating_click_recharge,
                 upid: userId,
                 noMoneyShow: true,

@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_pages/call/remote/truda_remote_page.dart';
 import 'package:truda/truda_pages/charge/success/truda_success_page.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_binding.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_page.dart';
+import 'package:truda/truda_pages/chat/truda_chat_binding.dart';
+import 'package:truda/truda_pages/chat/truda_chat_page.dart';
 import 'package:truda/truda_pages/invite/bonus/newhita_invite_bonus_page.dart';
 import 'package:truda/truda_pages/invite/newhita_invite_page.dart';
 import 'package:truda/truda_pages/login/newhita_login_page.dart';
@@ -44,7 +44,7 @@ import '../truda_pages/charge/truda_charge_new_page.dart';
 import '../truda_pages/charge/ios/truda_charge_ios_binding.dart';
 import '../truda_pages/charge/ios/truda_charge_ios_page.dart';
 import '../truda_pages/charge/success/truda_success_binding.dart';
-import '../truda_pages/her_video/newhita_her_video_page_view.dart';
+import '../truda_pages/her_video/truda_her_video_page_view.dart';
 import '../truda_pages/host/newhita_host_binding.dart';
 import '../truda_pages/host/newhita_host_page.dart';
 import '../truda_pages/invite/bind/newhita_invite_bind_binding.dart';
@@ -134,8 +134,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: chatPage,
-      page: () => NewHitaChatPage(),
-      binding: NewHitaChatBinding(),
+      page: () => TrudaChatPage(),
+      binding: TrudaChatBinding(),
     ),
     GetPage(
       name: main,
@@ -270,7 +270,7 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: herVideo,
-      page: () => NewHitaHerVideoPageView(),
+      page: () => TrudaHerVideoPageView(),
     ),
     GetPage(
       name: invitePage,

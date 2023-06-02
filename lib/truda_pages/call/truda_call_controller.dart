@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
+import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_socket/newhita_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
@@ -508,7 +508,7 @@ class TrudaCallController extends GetxController {
   // 点击了充值
   void clickCharge() {
     chargeing = true;
-    NewHitaChargeDialogManager.showChargeDialog(
+    TrudaChargeDialogManager.showChargeDialog(
         TrudaChargePath.chating_click_recharge,
         upid: herId, closeCallBack: () {
       chargeing = false;
@@ -524,7 +524,7 @@ class TrudaCallController extends GetxController {
         data: {"receiverId": herId, "quantity": 1, "gid": gift.gid},
         showLoading: true, errCallback: (err) {
       if (err.code == 8) {
-        NewHitaChargeDialogManager.showChargeDialog(
+        TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_send_gift_no_money,
           upid: herId,
           noMoneyShow: true,

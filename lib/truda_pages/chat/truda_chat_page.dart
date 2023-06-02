@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_pages/chat/msgitem/newhita_chat_msg_image.dart';
-import 'package:truda/truda_pages/chat/msgitem/newhita_chat_msg_voice.dart';
-import 'package:truda/truda_pages/chat/widget/newhita_chat_input_controller.dart';
-import 'package:truda/truda_pages/chat/widget/newhita_chat_input_widget.dart';
+import 'package:truda/truda_pages/chat/msgitem/truda_chat_msg_image.dart';
+import 'package:truda/truda_pages/chat/msgitem/truda_chat_msg_voice.dart';
+import 'package:truda/truda_pages/chat/widget/truda_chat_input_controller.dart';
+import 'package:truda/truda_pages/chat/widget/truda_chat_input_widget.dart';
 import 'package:truda/truda_widget/gift/newhita_vap_player.dart';
 
 import '../../truda_common/truda_charge_path.dart';
@@ -17,20 +17,20 @@ import '../../truda_utils/ad/newhita_ads_utils.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 import '../vip/newhita_vip_controller.dart';
-import 'newhita_chat_controller.dart';
-import 'newhita_chat_msg_wrapper.dart';
-import 'msgitem/newhita_chat_msg_call.dart';
-import 'msgitem/newhita_chat_msg_gift.dart';
-import 'msgitem/newhita_chat_msg_text.dart';
+import 'truda_chat_controller.dart';
+import 'truda_chat_msg_wrapper.dart';
+import 'msgitem/truda_chat_msg_call.dart';
+import 'msgitem/truda_chat_msg_gift.dart';
+import 'msgitem/truda_chat_msg_text.dart';
 
-class NewHitaChatPage extends GetView<NewHitaChatController> {
-  NewHitaChatPage({Key? key}) : super(key: key);
+class TrudaChatPage extends GetView<TrudaChatController> {
+  TrudaChatPage({Key? key}) : super(key: key);
 
   final centerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaChatController>(
+    return GetBuilder<TrudaChatController>(
         // init: controller,
         builder: (controller) {
       return Scaffold(
@@ -46,7 +46,7 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
               Get.back();
             },
           ),
-          title: GetBuilder<NewHitaChatController>(
+          title: GetBuilder<TrudaChatController>(
               id: 'herInfo',
               builder: (controller) {
                 return Row(
@@ -229,7 +229,7 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
                 Expanded(
                   child: Listener(
                     onPointerDown: (event) {
-                      Get.find<NewHitaChatInputController>().onPointerDown();
+                      Get.find<TrudaChatInputController>().onPointerDown();
                     },
                     child: NotificationListener(
                         onNotification: (notification) {
@@ -303,7 +303,7 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
                   ),
                 ),
                 if (controller.herId != TrudaConstants.systemId)
-                  NewHitaChatInputWidget(userId: controller.herId),
+                  TrudaChatInputWidget(userId: controller.herId),
                 // if (controller.herId != NewHitaConstants.systemId)
                 //   NewHitaGiftFollowTip(
                 //     controller: controller.tipController,
@@ -335,20 +335,20 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
     });
   }
 
-  Widget getMsgWidget(NewHitaChatMsgWrapper wrapper, int index) {
+  Widget getMsgWidget(TrudaChatMsgWrapper wrapper, int index) {
     if (NewHitaRTMMsgPhoto.typeCodes.contains(wrapper.msgEntity.msgType)) {
-      return NewHitaChatMsgImage(wrapper: wrapper);
+      return TrudaChatMsgImage(wrapper: wrapper);
     }
     if (NewHitaRTMMsgVoice.typeCodes.contains(wrapper.msgEntity.msgType)) {
-      return NewHitaChatMsgVoice(wrapper: wrapper);
+      return TrudaChatMsgVoice(wrapper: wrapper);
     }
     switch (wrapper.msgEntity.msgType) {
       case NewHitaRTMMsgText.typeCode:
-        return NewHitaChatMsgText(wrapper: wrapper);
+        return TrudaChatMsgText(wrapper: wrapper);
       case NewHitaRTMMsgGift.typeCode:
-        return NewHitaChatMsgGift(wrapper: wrapper);
+        return TrudaChatMsgGift(wrapper: wrapper);
       case NewHitaRTMMsgCallState.typeCode:
-        return NewHitaChatMsgCall(wrapper: wrapper);
+        return TrudaChatMsgCall(wrapper: wrapper);
       default:
         return const SizedBox();
     }
@@ -368,16 +368,16 @@ class NewHitaChatPage extends GetView<NewHitaChatController> {
 //   @override
 //   String toString() => 'FloatingActionButtonLocation.endFloat';
 // }
-class NewHitaChatFloatCall extends StatefulWidget {
+class TrudaChatFloatCall extends StatefulWidget {
   Function callBack;
 
-  NewHitaChatFloatCall({Key? key, required this.callBack}) : super(key: key);
+  TrudaChatFloatCall({Key? key, required this.callBack}) : super(key: key);
 
   @override
-  State<NewHitaChatFloatCall> createState() => _NewHitaChatFloatCallState();
+  State<TrudaChatFloatCall> createState() => _TrudaChatFloatCallState();
 }
 
-class _NewHitaChatFloatCallState extends State<NewHitaChatFloatCall> {
+class _TrudaChatFloatCallState extends State<TrudaChatFloatCall> {
   double toRight = 15;
   double toBottom = 15;
   double maxToRight = Get.width - 75;

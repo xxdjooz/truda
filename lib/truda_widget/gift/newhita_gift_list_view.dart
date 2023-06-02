@@ -6,7 +6,7 @@ import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
+import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
@@ -195,7 +195,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
                 ),
                 GestureDetector(
                   onTap: () {
-                    NewHitaChargeDialogManager.showChargeDialog(
+                    TrudaChargeDialogManager.showChargeDialog(
                         TrudaChargePath.gift_send_no_money,
                         upid: widget.herId);
                   },

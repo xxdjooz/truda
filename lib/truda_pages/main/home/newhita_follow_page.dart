@@ -10,7 +10,7 @@ import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../call/local/truda_local_controller.dart';
-import '../../chat/newhita_chat_controller.dart';
+import '../../chat/truda_chat_controller.dart';
 import '../../host/newhita_host_controller.dart';
 import 'newhita_follow_controller.dart';
 import 'newhita_host_widget.dart';
@@ -205,7 +205,7 @@ class NewHitaFollowWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      NewHitaChatController.startMe(detail.userId!,
+                      TrudaChatController.startMe(detail.userId!,
                           detail: detail);
                     },
                     child: Container(

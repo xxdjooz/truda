@@ -34,7 +34,7 @@ import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/gift/newhita_gift_data_helper.dart';
 import '../../../truda_widget/gift/newhita_gift_list_view.dart';
 import '../../../truda_widget/gift/newhita_vap_player.dart';
-import '../../chargedialog/newhita_charge_dialog_manager.dart';
+import '../../chargedialog/truda_charge_dialog_manager.dart';
 import '../../vip/newhita_vip_controller.dart';
 import '../end/truda_end_controller.dart';
 import 'truda_aiv_video_controller.dart';
@@ -428,7 +428,7 @@ class TrudaAivController extends GetxController {
   void clickCharge() {
     chargeing = true;
     callHadShowCount20 = true;
-    NewHitaChargeDialogManager.showChargeDialog(
+    TrudaChargeDialogManager.showChargeDialog(
         TrudaChargePath.aib_chating_click_recharge,
         upid: herId, closeCallBack: () {
       chargeing = false;
@@ -460,7 +460,7 @@ class TrudaAivController extends GetxController {
       showLoading: true,
       errCallback: (err) {
         if (err.code == 8) {
-          NewHitaChargeDialogManager.showChargeDialog(
+          TrudaChargeDialogManager.showChargeDialog(
             TrudaChargePath.chating_send_gift_no_money,
             upid: herId,
             noMoneyShow: true,

@@ -12,14 +12,14 @@ import 'package:better_player/src/video_player/video_player.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class NewHitaBetterPlayerMyControls extends StatefulWidget {
+class TrudaBetterPlayerMyControls extends StatefulWidget {
   ///Callback used to send information if player bar is hidden or not
   final Function(bool visbility) onControlsVisibilityChanged;
 
   ///Controls config
   final BetterPlayerControlsConfiguration controlsConfiguration;
 
-  const NewHitaBetterPlayerMyControls({
+  const TrudaBetterPlayerMyControls({
     Key? key,
     required this.onControlsVisibilityChanged,
     required this.controlsConfiguration,
@@ -27,12 +27,12 @@ class NewHitaBetterPlayerMyControls extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _NewHitaBetterPlayerMyControlsState();
+    return _TrudaBetterPlayerMyControlsState();
   }
 }
 
-class _NewHitaBetterPlayerMyControlsState
-    extends BetterPlayerControlsState<NewHitaBetterPlayerMyControls> {
+class _TrudaBetterPlayerMyControlsState
+    extends BetterPlayerControlsState<TrudaBetterPlayerMyControls> {
   VideoPlayerValue? _latestValue;
   double? _latestVolume;
   Timer? _hideTimer;

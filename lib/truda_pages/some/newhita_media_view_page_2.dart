@@ -209,7 +209,7 @@ class _NewHitaMediaViewPage2State extends State<NewHitaMediaViewPage2>
         controlBarColor: Colors.transparent,
         showControlsOnInitialize: false,
         // customControlsBuilder: (controller, callBack) {
-        //   return NewHitaBetterPlayerMyControls(
+        //   return TrudaBetterPlayerMyControls(
         //     controlsConfiguration: controller.betterPlayerControlsConfiguration,
         //     onControlsVisibilityChanged: callBack,
         //   );

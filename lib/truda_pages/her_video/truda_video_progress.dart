@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class NewHitaTikTokVideoProgress extends StatelessWidget {
+class TrudaTikTokVideoProgress extends StatelessWidget {
   double progress;
   double progressBuff;
   int index;
   int step;
 
-  NewHitaTikTokVideoProgress({
+  TrudaTikTokVideoProgress({
     Key? key,
     required this.progress,
     required this.progressBuff,

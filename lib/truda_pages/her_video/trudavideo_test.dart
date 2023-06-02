@@ -6,7 +6,7 @@ import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../truda_common/truda_colors.dart';
 
-class NewHitaVideoTestPage extends StatefulWidget {
+class TrudaVideoTestPage extends StatefulWidget {
   String url;
   Function(double)? callback;
 
@@ -14,24 +14,24 @@ class NewHitaVideoTestPage extends StatefulWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => NewHitaVideoTestPage(
+        builder: (BuildContext context) => TrudaVideoTestPage(
           url: url,
         ),
       ),
     );
   }
 
-  NewHitaVideoTestPage({
+  TrudaVideoTestPage({
     Key? key,
     required this.url,
     this.callback,
   }) : super(key: key);
 
   @override
-  _NewHitaVideoTestPageState createState() => _NewHitaVideoTestPageState();
+  _TrudaVideoTestPageState createState() => _TrudaVideoTestPageState();
 }
 
-class _NewHitaVideoTestPageState extends State<NewHitaVideoTestPage> {
+class _TrudaVideoTestPageState extends State<TrudaVideoTestPage> {
   late BetterPlayerController _betterPlayerController;
   late BetterPlayerDataSource _betterPlayerDataSource;
   late VoidCallback listener;
@@ -39,7 +39,7 @@ class _NewHitaVideoTestPageState extends State<NewHitaVideoTestPage> {
 
   @override
   void initState() {
-    NewHitaLog.debug('NewHitaCachePage url=${widget.url}');
+    NewHitaLog.debug('TrudaCachePage url=${widget.url}');
 
     listener = () {
       var value = _betterPlayerController.videoPlayerController!.value;
@@ -79,7 +79,7 @@ class _NewHitaVideoTestPageState extends State<NewHitaVideoTestPage> {
         controlBarColor: Colors.transparent,
         showControlsOnInitialize: false,
         // customControlsBuilder: (controller, callBack) {
-        //   return NewHitaBetterPlayerMyControls(
+        //   return TrudaBetterPlayerMyControls(
         //     controlsConfiguration: controller.betterPlayerControlsConfiguration,
         //     onControlsVisibilityChanged: callBack,
         //   );
@@ -148,7 +148,7 @@ class _NewHitaVideoTestPageState extends State<NewHitaVideoTestPage> {
     super.dispose();
     _betterPlayerController.videoPlayerController?.removeListener(listener);
     _betterPlayerController.dispose();
-    NewHitaLog.debug('NewHitaCachePage dispose');
+    NewHitaLog.debug('TrudaCachePage dispose');
   }
 
   // _betterPlayerController.preCache(_betterPlayerDataSource);

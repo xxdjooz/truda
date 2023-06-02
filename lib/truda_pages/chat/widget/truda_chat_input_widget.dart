@@ -11,29 +11,29 @@ import '../../../truda_widget/newhita_keybord_logic.dart';
 import '../../../truda_widget/newhita_voice_widget_record.dart';
 import '../../../truda_widget/newhita_voice_widget_record_new.dart';
 import '../../call/local/truda_local_controller.dart';
-import '../newhita_chat_controller.dart';
-import 'newhita_chat_input_controller.dart';
+import '../truda_chat_controller.dart';
+import 'truda_chat_input_controller.dart';
 
 /// 聊天页面的下面的输入框
-class NewHitaChatInputWidget extends StatefulWidget {
+class TrudaChatInputWidget extends StatefulWidget {
   final String userId;
 
-  NewHitaChatInputWidget({Key? key, required this.userId}) : super(key: key);
+  TrudaChatInputWidget({Key? key, required this.userId}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _NewHitaChatInputWidgetState();
+  State<StatefulWidget> createState() => _TrudaChatInputWidgetState();
 }
 
-class _NewHitaChatInputWidgetState extends State<NewHitaChatInputWidget>
+class _TrudaChatInputWidgetState extends State<TrudaChatInputWidget>
     with WidgetsBindingObserver, NewHitaKeyboardLogic {
-  late final NewHitaChatInputController _controller;
-  late final NewHitaChatController _chatController;
+  late final TrudaChatInputController _controller;
+  late final TrudaChatController _chatController;
   late final FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _controller = Get.put(NewHitaChatInputController(widget.userId));
+    _controller = Get.put(TrudaChatInputController(widget.userId));
     _chatController = Get.find();
     _focusNode = FocusNode();
     _focusNode.addListener(() {
@@ -202,7 +202,7 @@ class _NewHitaChatInputWidgetState extends State<NewHitaChatInputWidget>
                 ),
                 if (!TrudaConstants.isFakeMode &&
                     _chatController.herId != TrudaConstants.systemId)
-                  GetBuilder<NewHitaChatController>(
+                  GetBuilder<TrudaChatController>(
                       id: 'herInfo',
                       builder: (context) {
                         return InkWell(
@@ -245,7 +245,7 @@ class _NewHitaChatInputWidgetState extends State<NewHitaChatInputWidget>
                         builder: (context) {
                           return NewHitaLianGiftListView(
                             choose: (TrudaGiftEntity gift) {
-                              Get.find<NewHitaChatController>().sendGift(gift);
+                              Get.find<TrudaChatController>().sendGift(gift);
                             },
                             herId: _controller.userId,
                           );
@@ -352,7 +352,7 @@ class _NewHitaChatInputWidgetState extends State<NewHitaChatInputWidget>
         });
         hadKeyBordShow = true;
       }
-      Get.find<NewHitaChatController>().scrollWhenMsgAdd(false);
+      Get.find<TrudaChatController>().scrollWhenMsgAdd(false);
     }
   }
 

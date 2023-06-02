@@ -1,21 +1,21 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_pages/chargedialog/vip_widget/newhita_vip_widget_controller.dart';
+import 'package:truda/truda_pages/chargedialog/vip_widget/truda_vip_widget_controller.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_services/newhita_my_info_service.dart';
 
-class NewHitaVipWidget extends GetView<NewHitaVipWidgetController> {
-  NewHitaVipWidget({Key? key, this.createPath = ''}) : super(key: key);
+class TrudaVipWidget extends GetView<TrudaVipWidgetController> {
+  TrudaVipWidget({Key? key, this.createPath = ''}) : super(key: key);
   final String createPath;
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<NewHitaVipWidgetController>(
-        () => NewHitaVipWidgetController()..createPath = createPath);
-    return GetBuilder<NewHitaVipWidgetController>(builder: (contr) {
+    Get.lazyPut<TrudaVipWidgetController>(
+        () => TrudaVipWidgetController()..createPath = createPath);
+    return GetBuilder<TrudaVipWidgetController>(builder: (contr) {
       if (!contr.showMe) return const SizedBox();
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -90,7 +90,7 @@ class NewHitaVipWidget extends GetView<NewHitaVipWidgetController> {
               childAspectRatio: 105 / 145,
               crossAxisCount: 3,
             ),
-            itemCount: NewHitaVipWidgetController.payQuickData?.length ?? 0,
+            itemCount: TrudaVipWidgetController.payQuickData?.length ?? 0,
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               return _getVipItem(index, contr);
@@ -102,9 +102,9 @@ class NewHitaVipWidget extends GetView<NewHitaVipWidgetController> {
     });
   }
 
-  Widget _getVipItem(int index, NewHitaVipWidgetController controller) {
+  Widget _getVipItem(int index, TrudaVipWidgetController controller) {
     return Builder(builder: (context) {
-      var list = NewHitaVipWidgetController.payQuickData!;
+      var list = TrudaVipWidgetController.payQuickData!;
       var bean = list[index];
       return GestureDetector(
         onTap: () {

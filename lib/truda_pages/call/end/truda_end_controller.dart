@@ -5,7 +5,7 @@ import 'package:truda/truda_common/truda_call_status.dart';
 import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
+import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_rtm/newhita_rtm_msg_sender.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
@@ -121,7 +121,7 @@ class TrudaEndController extends GetxController {
         NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
     final callCost = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
     if (remain < callCost && !callHadShowCount20) {
-      NewHitaChargeDialogManager.showChargeDialog(
+      TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_end_showrecharge,
           upid: herId);
     }

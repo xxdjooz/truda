@@ -7,7 +7,7 @@ import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
-import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
+import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_utils/newhita_third_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,7 +17,7 @@ import '../truda_http/truda_http_util.dart';
 class NewHitaAppRate {
   static void rateApp(String msg) async {
     //用户打开了充值弹窗 屏蔽评分弹窗
-    if (NewHitaChargeDialogManager.isShowingChargeDialog) {
+    if (TrudaChargeDialogManager.isShowingChargeDialog) {
       return;
     }
 

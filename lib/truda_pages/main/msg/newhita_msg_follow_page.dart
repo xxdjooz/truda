@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_pages/chat/newhita_chat_controller.dart';
+import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/main/msg/newhita_msg_follow_controller.dart';
 import 'package:truda/truda_services/newhita_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
@@ -77,7 +77,7 @@ class NewHitaMsgWidget extends StatelessWidget {
     var str = DateFormat('MM.dd HH:mm').format(time);
     return InkWell(
       onTap: () {
-        NewHitaChatController.startMe(msg.herId);
+        TrudaChatController.startMe(msg.herId);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),

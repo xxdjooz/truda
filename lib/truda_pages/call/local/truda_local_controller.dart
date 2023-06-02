@@ -7,7 +7,7 @@ import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_pages/chargedialog/newhita_charge_dialog_manager.dart';
+import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
 import 'package:truda/truda_services/newhita_event_bus_bean.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -216,7 +216,7 @@ class TrudaLocalController extends GetxController {
     _timer?.cancel();
     _timer = null;
     NewHitaAudioCenter2.stopPlayRing();
-    NewHitaChargeDialogManager.showChargeDialog(
+    TrudaChargeDialogManager.showChargeDialog(
       TrudaChargePath.create_call_no_money,
       upid: herId,
       noMoneyShow: true,
