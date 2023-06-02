@@ -10,9 +10,9 @@ import 'package:truda/truda_pages/invite/truda_invite_page.dart';
 import 'package:truda/truda_pages/login/truda_login_page.dart';
 import 'package:truda/truda_pages/lottery/truda_lottery_binding.dart';
 import 'package:truda/truda_pages/main/newhita_main_ios_mock.dart';
-import 'package:truda/truda_pages/main/me/blacklist/newhita_black_list_page.dart';
-import 'package:truda/truda_pages/main/me/cardlist/newhita_card_list_binding.dart';
-import 'package:truda/truda_pages/main/me/cardlist/newhita_card_list_page.dart';
+import 'package:truda/truda_pages/main/me/blacklist/truda_black_list_page.dart';
+import 'package:truda/truda_pages/main/me/cardlist/truda_card_list_binding.dart';
+import 'package:truda/truda_pages/main/me/cardlist/truda_card_list_page.dart';
 import 'package:truda/truda_pages/main/me/moment_list/newhita_my_moment_page.dart';
 import 'package:truda/truda_pages/main/me/orderlist/newhita_order_detail_page.dart';
 import 'package:truda/truda_pages/main/me/orderlist/newhita_order_tab.dart';
@@ -55,12 +55,12 @@ import '../truda_pages/login/truda_login_binding.dart';
 import '../truda_pages/lottery/truda_lottery_page.dart';
 import '../truda_pages/main/newhita_main_binding.dart';
 import '../truda_pages/main/newhita_main_page.dart';
-import '../truda_pages/main/me/about/newhita_about_binding.dart';
-import '../truda_pages/main/me/about/newhita_about_page.dart';
-import '../truda_pages/main/me/blacklist/newhita_black_list_binding.dart';
-import '../truda_pages/main/me/calllist/newhita_call_list_binding.dart';
-import '../truda_pages/main/me/calllist/newhita_call_list_page.dart';
-import '../truda_pages/main/me/demo_test/newhitatest_page.dart';
+import '../truda_pages/main/me/about/truda_about_binding.dart';
+import '../truda_pages/main/me/about/truda_about_page.dart';
+import '../truda_pages/main/me/blacklist/truda_black_list_binding.dart';
+import '../truda_pages/main/me/calllist/truda_call_list_binding.dart';
+import '../truda_pages/main/me/calllist/truda_call_list_page.dart';
+import '../truda_pages/main/me/demo_test/trudatest_page.dart';
 import '../truda_pages/main/me/info/newhita_info_binding.dart';
 import '../truda_pages/main/me/info/newhita_info_page.dart';
 import '../truda_pages/main/me/moment_list/newhita_my_moment_binding.dart';
@@ -197,22 +197,22 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: aboutUs,
-      page: () => NewHitaAboutPage(),
-      binding: NewHitaAboutBinding(),
+      page: () => TrudaAboutPage(),
+      binding: TrudaAboutBinding(),
     ),
     GetPage(
       name: blackList,
-      page: () => NewHitaBlackListPage(),
-      binding: NewHitaBlackListBinding(),
+      page: () => TrudaBlackListPage(),
+      binding: TrudaBlackListBinding(),
     ),
     GetPage(
       name: test,
-      page: () => NewHitaTestPage(),
+      page: () => TrudaTestPage(),
     ),
     GetPage(
       name: callList,
-      page: () => NewHitaCallListPage(),
-      binding: NewHitaCallListBinding(),
+      page: () => TrudaCallListPage(),
+      binding: TrudaCallListBinding(),
     ),
     GetPage(
       name: googleCharge,
@@ -238,8 +238,8 @@ class NewHitaAppPages {
     ),
     GetPage(
       name: cardList,
-      page: () => NewHitaCardListPage(),
-      binding: NewHitaCardListBinding(),
+      page: () => TrudaCardListPage(),
+      binding: TrudaCardListBinding(),
     ),
     GetPage(
       name: chargeSuccess,

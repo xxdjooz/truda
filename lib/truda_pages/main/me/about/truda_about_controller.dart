@@ -6,7 +6,7 @@ import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
 import 'package:truda/truda_services/newhita_my_info_service.dart';
 import 'package:truda/truda_entities/truda_config_entity.dart';
 
-class NewHitaAboutController extends GetxController {
+class TrudaAboutController extends GetxController {
   late String herId;
   @override
   void onInit() {

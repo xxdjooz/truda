@@ -6,7 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_utils/newhita_loading.dart';
 
-class NewHitaCallListController extends GetxController {
+class TrudaCallListController extends GetxController {
   List<TrudaCallRecordEntity> dataList = [];
   // List<TrudaCallEntity> dataList = [];
   var _page = 0;

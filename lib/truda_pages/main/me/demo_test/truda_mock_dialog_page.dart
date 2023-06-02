@@ -29,14 +29,14 @@ import '../../../call/truda_count_20.dart';
 import '../../../charge/success/truda_success_controller.dart';
 import '../../../vip/newhita_vip_dialog.dart';
 
-class NewHitaMockDailogPage extends StatefulWidget {
-  const NewHitaMockDailogPage({Key? key}) : super(key: key);
+class TrudaMockDailogPage extends StatefulWidget {
+  const TrudaMockDailogPage({Key? key}) : super(key: key);
 
   @override
-  State<NewHitaMockDailogPage> createState() => _NewHitaMockDailogPageState();
+  State<TrudaMockDailogPage> createState() => _TrudaMockDailogPageState();
 }
 
-class _NewHitaMockDailogPageState extends State<NewHitaMockDailogPage> {
+class _TrudaMockDailogPageState extends State<TrudaMockDailogPage> {
   @override
   void initState() {
     super.initState();

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 
 // 普遍页面
-class NewHitaPageDemo extends StatefulWidget {
-  const NewHitaPageDemo({Key? key}) : super(key: key);
+class TrudaPageDemo extends StatefulWidget {
+  const TrudaPageDemo({Key? key}) : super(key: key);
 
   @override
-  State<NewHitaPageDemo> createState() => _NewHitaPageDemoState();
+  State<TrudaPageDemo> createState() => _TrudaPageDemoState();
 }
 
-class _NewHitaPageDemoState extends State<NewHitaPageDemo> {
+class _TrudaPageDemoState extends State<TrudaPageDemo> {
   int num = 0;
   void add(){
     setState(() {

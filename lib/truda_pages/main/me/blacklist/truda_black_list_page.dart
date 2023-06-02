@@ -8,14 +8,14 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
-import 'newhita_black_list_controller.dart';
+import 'truda_black_list_controller.dart';
 
-class NewHitaBlackListPage extends GetView<NewHitaBlackListController> {
-  NewHitaBlackListPage({Key? key}) : super(key: key);
+class TrudaBlackListPage extends GetView<TrudaBlackListController> {
+  TrudaBlackListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaBlackListController>(builder: (contro) {
+    return GetBuilder<TrudaBlackListController>(builder: (contro) {
       return Scaffold(
         appBar: NewHitaAppBar(
           title: Text(
@@ -24,7 +24,7 @@ class NewHitaBlackListPage extends GetView<NewHitaBlackListController> {
         ),
         extendBodyBehindAppBar: false,
         backgroundColor: TrudaColors.baseColorBlackBg,
-        body: GetBuilder<NewHitaBlackListController>(builder: (controller) {
+        body: GetBuilder<TrudaBlackListController>(builder: (controller) {
           return SmartRefresher(
             enablePullDown: true,
             enablePullUp: controller.enablePullUp,

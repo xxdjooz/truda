@@ -8,10 +8,10 @@ import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../some/newhita_web_page.dart';
-import 'newhita_about_controller.dart';
+import 'truda_about_controller.dart';
 
-class NewHitaAboutPage extends GetView<NewHitaAboutController> {
-  NewHitaAboutPage({Key? key}) : super(key: key);
+class TrudaAboutPage extends GetView<TrudaAboutController> {
+  TrudaAboutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

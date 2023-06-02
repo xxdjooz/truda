@@ -6,7 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_utils/newhita_loading.dart';
 
-class NewHitaCardListController extends GetxController {
+class TrudaCardListController extends GetxController {
   List<TrudaCardBean> dataList = [];
 
   @override

@@ -8,14 +8,14 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
-import 'newhita_card_list_controller.dart';
+import 'truda_card_list_controller.dart';
 
-class NewHitaCardListPage extends GetView<NewHitaCardListController> {
-  NewHitaCardListPage({Key? key}) : super(key: key);
+class TrudaCardListPage extends GetView<TrudaCardListController> {
+  TrudaCardListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaCardListController>(builder: (contro) {
+    return GetBuilder<TrudaCardListController>(builder: (contro) {
       return Scaffold(
         appBar: NewHitaAppBar(
           title: Text(
@@ -24,7 +24,7 @@ class NewHitaCardListPage extends GetView<NewHitaCardListController> {
         ),
         extendBodyBehindAppBar: false,
         backgroundColor: TrudaColors.baseColorBlackBg,
-        body: GetBuilder<NewHitaCardListController>(builder: (controller) {
+        body: GetBuilder<TrudaCardListController>(builder: (controller) {
           return SmartRefresher(
             enablePullDown: true,
             enablePullUp: false,

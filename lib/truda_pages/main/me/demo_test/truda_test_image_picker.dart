@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
-class NewHitaTestImagePickerPage extends StatefulWidget {
-  const NewHitaTestImagePickerPage({Key? key, this.title}) : super(key: key);
+class TrudaTestImagePickerPage extends StatefulWidget {
+  const TrudaTestImagePickerPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  State<NewHitaTestImagePickerPage> createState() =>
-      _NewHitaTestImagePickerPageState();
+  State<TrudaTestImagePickerPage> createState() =>
+      _TrudaTestImagePickerPageState();
 }
 
-class _NewHitaTestImagePickerPageState extends State<NewHitaTestImagePickerPage> {
+class _TrudaTestImagePickerPageState extends State<TrudaTestImagePickerPage> {
   List<XFile>? _imageFileList;
 
   void _setImageFileListFromFile(XFile? value) {
@@ -147,7 +147,7 @@ class _NewHitaTestImagePickerPageState extends State<NewHitaTestImagePickerPage>
     }
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: NewHitaAspectRatioVideo(_controller),
+      child: TrudaAspectRatioVideo(_controller),
     );
   }
 
@@ -401,16 +401,16 @@ class _NewHitaTestImagePickerPageState extends State<NewHitaTestImagePickerPage>
 typedef OnPickImageCallback = void Function(
     double? maxWidth, double? maxHeight, int? quality);
 
-class NewHitaAspectRatioVideo extends StatefulWidget {
-  const NewHitaAspectRatioVideo(this.controller, {Key? key}) : super(key: key);
+class TrudaAspectRatioVideo extends StatefulWidget {
+  const TrudaAspectRatioVideo(this.controller, {Key? key}) : super(key: key);
 
   final VideoPlayerController? controller;
 
   @override
-  NewHitaAspectRatioVideoState createState() => NewHitaAspectRatioVideoState();
+  TrudaAspectRatioVideoState createState() => TrudaAspectRatioVideoState();
 }
 
-class NewHitaAspectRatioVideoState extends State<NewHitaAspectRatioVideo> {
+class TrudaAspectRatioVideoState extends State<TrudaAspectRatioVideo> {
   VideoPlayerController? get controller => widget.controller;
   bool initialized = false;
 

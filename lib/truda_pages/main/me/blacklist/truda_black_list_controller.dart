@@ -9,7 +9,7 @@ import '../../../../truda_entities/truda_host_entity.dart';
 import '../../../../truda_services/newhita_storage_service.dart';
 import '../../../../truda_utils/newhita_loading.dart';
 
-class NewHitaBlackListController extends GetxController {
+class TrudaBlackListController extends GetxController {
   List<TrudaHostDetail> dataList = [];
   var _page = 0;
   final _pageSize = 10;

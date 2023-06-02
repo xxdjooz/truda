@@ -7,8 +7,8 @@ import 'dart:math' as math;
 import 'package:truda/truda_entities/truda_match_host_entity.dart';
 import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
 import 'package:truda/truda_pages/her_video/trudavideo_test.dart';
-import 'package:truda/truda_pages/main/me/demo_test/newhita_test_image_picker.dart';
-import 'package:truda/truda_pages/main/me/demo_test/newhita_test_webp.dart';
+import 'package:truda/truda_pages/main/me/demo_test/truda_test_image_picker.dart';
+import 'package:truda/truda_pages/main/me/demo_test/truda_test_webp.dart';
 import 'package:truda/truda_utils/newhita_aic_handler.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -30,16 +30,16 @@ import '../../../../truda_widget/newhita_gradient_circular_progress_indicator.da
 import '../../../../truda_widget/newhita_stacked_list.dart';
 import '../../../some/newhita_media_view_page_2.dart';
 import '../../../vip/newhita_vip_controller.dart';
-import 'newhita_mock_dialog_page.dart';
+import 'truda_mock_dialog_page.dart';
 
-class NewHitaTestPage extends StatefulWidget {
-  const NewHitaTestPage({Key? key}) : super(key: key);
+class TrudaTestPage extends StatefulWidget {
+  const TrudaTestPage({Key? key}) : super(key: key);
 
   @override
-  State<NewHitaTestPage> createState() => _NewHitaTestPageState();
+  State<TrudaTestPage> createState() => _TrudaTestPageState();
 }
 
-class _NewHitaTestPageState extends State<NewHitaTestPage> {
+class _TrudaTestPageState extends State<TrudaTestPage> {
   var myVapController = NewHitaVapController();
 
   @override
@@ -75,7 +75,7 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    Get.to(const NewHitaMockDailogPage());
+                    Get.to(const TrudaMockDailogPage());
                   },
                   child: Text('所有的弹窗到这里去看'),
                 ),
@@ -198,7 +198,7 @@ class _NewHitaTestPageState extends State<NewHitaTestPage> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            NewHitaTestImagePickerPage(
+                            TrudaTestImagePickerPage(
                           title: 'haha',
                         ),
                       ),

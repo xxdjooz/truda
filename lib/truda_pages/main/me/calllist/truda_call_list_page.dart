@@ -14,14 +14,14 @@ import '../../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../../call/local/truda_local_controller.dart';
 import '../../../chat/truda_chat_controller.dart';
 import '../../home/truda_host_widget.dart';
-import 'newhita_call_list_controller.dart';
+import 'truda_call_list_controller.dart';
 
-class NewHitaCallListPage extends GetView<NewHitaCallListController> {
-  NewHitaCallListPage({Key? key}) : super(key: key);
+class TrudaCallListPage extends GetView<TrudaCallListController> {
+  TrudaCallListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NewHitaCallListController>(builder: (contro) {
+    return GetBuilder<TrudaCallListController>(builder: (contro) {
       return Scaffold(
         appBar: NewHitaAppBar(
           title: Text(
@@ -30,7 +30,7 @@ class NewHitaCallListPage extends GetView<NewHitaCallListController> {
         ),
         extendBodyBehindAppBar: false,
         backgroundColor: TrudaColors.baseColorBlackBg,
-        body: GetBuilder<NewHitaCallListController>(builder: (controller) {
+        body: GetBuilder<TrudaCallListController>(builder: (controller) {
           return SmartRefresher(
             enablePullDown: true,
             enablePullUp: controller.enablePullUp,
