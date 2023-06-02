@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-class NewHitaAppInfoService extends GetxService {
-  static NewHitaAppInfoService get to => Get.find();
+class TrudaAppInfoService extends GetxService {
+  static TrudaAppInfoService get to => Get.find();
   late String deviceIdentifier;
   late String deviceModel;
   late String AppSystemVersionKey;
@@ -17,7 +17,7 @@ class NewHitaAppInfoService extends GetxService {
     return "${TrudaConstants.appNameLower}100";
   }
 
-  Future<NewHitaAppInfoService> init() async {
+  Future<TrudaAppInfoService> init() async {
     // 设备信息
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 

@@ -6,7 +6,7 @@ import 'package:truda/truda_utils/newhita_format_util.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../truda_entities/truda_order_entity.dart';
-import '../../../../truda_services/newhita_my_info_service.dart';
+import '../../../../truda_services/truda_my_info_service.dart';
 import '../../../../truda_utils/newhita_ai_help_manager.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 
@@ -258,7 +258,7 @@ class _TrudaOrderDetailPageState extends State<TrudaOrderDetailPage> {
                     //   }
                     // }, (b) {}, null, true);
                     NewHitaAihelpManager.enterOrderAIHelp(
-                        NewHitaMyInfoService.to.getMyLeval()?.grade ?? 1,
+                        TrudaMyInfoService.to.getMyLeval()?.grade ?? 1,
                         data?.orderNo ?? "");
                   },
                   child: Center(

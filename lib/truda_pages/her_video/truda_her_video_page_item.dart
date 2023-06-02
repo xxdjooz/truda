@@ -20,7 +20,7 @@ import '../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../truda_dialogs/truda_sheet_host_video_option.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_format_util.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../main/home/truda_host_widget.dart';
@@ -290,7 +290,7 @@ class _TrudaHerVideoPageItemState extends State<TrudaHerVideoPageItem>
                         GestureDetector(
                             onTap: () async {
                               var result = await Get.toNamed(
-                                NewHitaAppPages.reportPageNew,
+                                TrudaAppPages.reportPageNew,
                                 arguments: {
                                   'reportType': 0,
                                   'herId': widget.detail.userId!,

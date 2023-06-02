@@ -8,7 +8,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../../truda_dialogs/truda_sheet_msg_option.dart';
-import '../../../truda_routes/newhita_pages.dart';
+import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_utils/newhita_ui_image_util.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
 import '../home/truda_home_page.dart';
@@ -44,13 +44,13 @@ class _TrudaMsgTabState extends State<TrudaMsgTab>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   @override

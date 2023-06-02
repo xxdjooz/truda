@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_pages/host/truda_host_controller.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_app_info_service.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_app_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,7 +102,7 @@ class _TrudaHotPageState extends State<TrudaHotPage>
                                       detail: bean,
                                       callback: () {
                                         if (bean.videos?.isNotEmpty == true) {
-                                          Get.toNamed(NewHitaAppPages.herVideo,
+                                          Get.toNamed(TrudaAppPages.herVideo,
                                               arguments: bean);
                                         } else {
                                           TrudaHostController.startMe(
@@ -174,7 +174,7 @@ class TrudaBanner extends GetView<TrudaHotController> {
                     // GetPlatform.isIOS
                     //     ? CblRouterManager.pushNamed(AppChargeRouter)
                     //     : CblRouterManager.pushNamed(GoogleChargeRouter);
-                    Get.toNamed(NewHitaAppPages.googleCharge);
+                    Get.toNamed(TrudaAppPages.googleCharge);
                   } else if (bannerBean.link?.contains("/feedback") == true) {
                     // todo
                     //  打开客服
@@ -184,10 +184,10 @@ class TrudaBanner extends GetView<TrudaHotController> {
                     String? whatsappid = bannerBean.link?.split("=").last;
                     if (whatsappid != null) {
                       final info = await PackageInfo.fromPlatform();
-                      var appVersion = NewHitaAppInfoService.to.version;
+                      var appVersion = TrudaAppInfoService.to.version;
                       var AppSystemVersionKey =
-                          NewHitaAppInfoService.to.AppSystemVersionKey;
-                      var myId = NewHitaMyInfoService.to.userLogin?.username ??
+                          TrudaAppInfoService.to.AppSystemVersionKey;
+                      var myId = TrudaMyInfoService.to.userLogin?.username ??
                           "unkown";
                       String url =
                           "https://wa.me/${whatsappid}/?text=AppName:${info.appName},appVersion:${appVersion},"
@@ -205,7 +205,7 @@ class TrudaBanner extends GetView<TrudaHotController> {
                     }
                   } else if (bannerBean.link?.contains("/shareApp") == true) {
                     //打开google play
-                    Get.toNamed(NewHitaAppPages.invitePage);
+                    Get.toNamed(TrudaAppPages.invitePage);
                   }
                 }
               },

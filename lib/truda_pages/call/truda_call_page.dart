@@ -4,14 +4,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_widget/newhita_avatar_with_bg.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_language_key.dart';
 import '../../truda_dialogs/truda_dialog_confirm_hang.dart';
 import '../../truda_dialogs/truda_sheet_host_option.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/gift/newhita_vap_player.dart';
@@ -32,13 +32,13 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   @override
@@ -621,7 +621,7 @@ class _TrudaCallPageState extends State<TrudaCallPage> with RouteAware {
                                           ),
                                         ),
                                         child: NewHitaAvatarWithBg(
-                                          url: NewHitaMyInfoService
+                                          url: TrudaMyInfoService
                                                   .to.myDetail?.portrait ??
                                               "",
                                         ),

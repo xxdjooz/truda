@@ -4,7 +4,7 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
-import '../../../../truda_routes/newhita_pages.dart';
+import '../../../../truda_routes/truda_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import 'truda_cost_list_page.dart';
 import 'truda_order_list_page.dart';
@@ -32,13 +32,13 @@ class _TrudaOrderTabState extends State<TrudaOrderTab>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   @override

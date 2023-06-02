@@ -12,7 +12,7 @@ import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../truda_entities/truda_gift_entity.dart';
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
 
 typedef NewHitaGiftChoose = Function(TrudaGiftEntity entity);
 
@@ -180,7 +180,7 @@ class _NewHitaLianGiftListViewState extends State<NewHitaLianGiftListView>
                   children: [
                     Image.asset("assets/images/newhita_diamond_small.png"),
                     AutoSizeText(
-                      (NewHitaMyInfoService
+                      (TrudaMyInfoService
                                   .to.myDetail?.userBalance?.remainDiamonds ??
                               0)
                           .toString(),

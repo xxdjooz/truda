@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_widget/newhita_decoration_bg.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
@@ -460,7 +460,7 @@ class TrudaAicPage extends GetView<TrudaAicController> {
                       child: Transform.rotate(
                         angle: -pi / 12.0,
                         child: NewHitaNetImage(
-                          NewHitaMyInfoService.to.userLogin?.portrait ?? "",
+                          TrudaMyInfoService.to.userLogin?.portrait ?? "",
                           imageBuilder: (context, imageProvider) => Container(
                               width: 150,
                               height: 200,

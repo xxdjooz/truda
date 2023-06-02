@@ -5,8 +5,8 @@ import 'package:truda/truda_common/truda_language_key.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
-import '../../../../truda_services/newhita_event_bus_bean.dart';
-import '../../../../truda_services/newhita_storage_service.dart';
+import '../../../../truda_services/truda_event_bus_bean.dart';
+import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../../../truda_widget/newhita_decoration_bg.dart';
@@ -20,7 +20,7 @@ class TrudaInfoPage extends GetView<TrudaInfoController> {
   Widget build(BuildContext context) {
     return GetBuilder<TrudaInfoController>(
       dispose: (c) {
-        NewHitaStorageService.to.eventBus.fire(eventBusRefreshMe);
+        TrudaStorageService.to.eventBus.fire(eventBusRefreshMe);
       },
       builder: (contro) {
         return Scaffold(

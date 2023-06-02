@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_widget/newhita_sheet_header.dart';
 
 class TrudaSheetChargeSuccess extends StatefulWidget {
@@ -22,8 +22,8 @@ class _TrudaSheetChargeSuccessState extends State<TrudaSheetChargeSuccess> {
   @override
   void initState() {
     super.initState();
-    NewHitaMyInfoService.to.haveLotteryTimes.value =
-        NewHitaMyInfoService.to.haveLotteryTimes.value + widget.lottery;
+    TrudaMyInfoService.to.haveLotteryTimes.value =
+        TrudaMyInfoService.to.haveLotteryTimes.value + widget.lottery;
   }
 
   @override
@@ -142,7 +142,7 @@ class _TrudaSheetChargeSuccessState extends State<TrudaSheetChargeSuccess> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.offNamed(NewHitaAppPages.lotteryPage);
+                    Get.offNamed(TrudaAppPages.lotteryPage);
                   },
                   child: Container(
                     alignment: Alignment.center,

@@ -9,7 +9,7 @@ import 'package:truda/truda_pages/main/moment/truda_moment_list_page.dart';
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_routes/newhita_pages.dart';
+import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_widget/newhita_image_indicator.dart';
 import 'truda_follow_page.dart';
 
@@ -100,7 +100,7 @@ class _TrudaHomeIosPageState extends State<TrudaHomeIosPage>
           GestureDetector(
             child: Image.asset('assets/images/newhita_moment_create.png'),
             onTap: () {
-              Get.toNamed(NewHitaAppPages.createMoment);
+              Get.toNamed(TrudaAppPages.createMoment);
             },
           ),
           // const SizedBox(

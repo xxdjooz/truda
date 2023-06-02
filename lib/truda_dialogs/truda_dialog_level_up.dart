@@ -11,7 +11,7 @@ import '../truda_entities/truda_leval_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 import '../truda_pages/some/truda_web_page.dart';
-import '../truda_services/newhita_my_info_service.dart';
+import '../truda_services/truda_my_info_service.dart';
 import '../truda_widget/newhita_net_image.dart';
 
 //用户升级提示
@@ -29,19 +29,19 @@ class TrudaUserLevelUpdate extends StatelessWidget {
     //   print(e);
     //   return;
     // }
-    NewHitaMyInfoService.to.myDetail?.expLevel = expLevel;
-    var leval = NewHitaMyInfoService.to.getMyLeval();
+    TrudaMyInfoService.to.myDetail?.expLevel = expLevel;
+    var leval = TrudaMyInfoService.to.getMyLeval();
     if (NewHitaCheckCallingUtil.checkCalling()) {
       return;
     }
-    int lastLeval = NewHitaMyInfoService.to.getLastShowLeval();
+    int lastLeval = TrudaMyInfoService.to.getLastShowLeval();
     if (leval == null || lastLeval == 100) {
       return;
     }
     if ((leval.grade ?? 0) <= lastLeval) {
       return;
     }
-    NewHitaMyInfoService.to.saveLastLeval(leval.grade!);
+    TrudaMyInfoService.to.saveLastLeval(leval.grade!);
 
     // 每次等级变动都调一下，领取奖励
     TrudaHttpUtil()
@@ -112,7 +112,7 @@ class TrudaUserLevelUpdate extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Get.back();
-                      var levalUrl = NewHitaMyInfoService.to.getLevalUrl();
+                      var levalUrl = TrudaMyInfoService.to.getLevalUrl();
                       if (levalUrl != null) {
                         TrudaWebPage.startMe(levalUrl, false);
                       }

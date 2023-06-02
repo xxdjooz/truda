@@ -3,8 +3,8 @@ import 'package:truda/truda_common/truda_language_net_helper.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/login/truda_login_to_main_api.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 
 import '../../truda_entities/truda_config_entity.dart';
@@ -29,11 +29,11 @@ class TrudaSplashController extends GetxController {
         getConfig();
       });
     }).then((value) {
-      NewHitaMyInfoService.to.config = value;
-      if (NewHitaMyInfoService.to.authorization?.isNotEmpty == true) {
+      TrudaMyInfoService.to.config = value;
+      if (TrudaMyInfoService.to.authorization?.isNotEmpty == true) {
         _getDetail();
       } else {
-        Get.offAllNamed(NewHitaAppPages.login);
+        Get.offAllNamed(TrudaAppPages.login);
       }
       // 初始化adjust
       if (GetPlatform.isAndroid) {
@@ -61,7 +61,7 @@ class TrudaSplashController extends GetxController {
     TrudaHttpUtil().post<TrudaInfoDetail>(TrudaHttpUrls.userInfoApi,
         errCallback: (err) {
       NewHitaLoading.dismiss();
-      Get.offAllNamed(NewHitaAppPages.login);
+      Get.offAllNamed(TrudaAppPages.login);
     }, showLoading: true,).then((value) {
       getDetailToMain(value);
     });

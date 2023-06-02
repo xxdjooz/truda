@@ -11,9 +11,9 @@ import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_lottery_user_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_event_bus_bean.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_services/truda_event_bus_bean.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
@@ -69,9 +69,9 @@ class TrudaChargeIosController extends GetxController {
       showLoading: true,
     )
         .then((value) {
-      NewHitaMyInfoService.to.setMyDetail = value;
+      TrudaMyInfoService.to.setMyDetail = value;
       update();
-      NewHitaStorageService.to.eventBus.fire(eventBusUpdateMe);
+      TrudaStorageService.to.eventBus.fire(eventBusUpdateMe);
     });
   }
 
@@ -172,8 +172,8 @@ class TrudaChargeIosController extends GetxController {
     )
         .then((value) {
       // 放进数据库
-      NewHitaStorageService.to.objectBoxOrder.putOrUpdateOrder(NewHitaOrderEntity(
-        userId: NewHitaMyInfoService.to.myDetail?.userId ?? '',
+      TrudaStorageService.to.objectBoxOrder.putOrUpdateOrder(NewHitaOrderEntity(
+        userId: TrudaMyInfoService.to.myDetail?.userId ?? '',
         orderNo: value.orderNo,
         productId: channel.productCode ?? "",
         price: channel.uploadUsd == 1

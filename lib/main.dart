@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_translations.dart';
 import 'package:truda/truda_http/truda_http_overrides.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_app_info_service.dart';
-import 'package:truda/truda_services/newhita_host_video_service.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_app_info_service.dart';
+import 'package:truda/truda_services/truda_host_video_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:truda/truda_widget/newhita_ball_beat.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -57,11 +57,11 @@ class NewHitaGlobal {
     setSystemUi();
     NewHitaLoading();
 
-    await Get.putAsync<NewHitaStorageService>(() => NewHitaStorageService().init());
-    await Get.putAsync<NewHitaAppInfoService>(() => NewHitaAppInfoService().init());
-    await Get.putAsync<NewHitaMyInfoService>(() => NewHitaMyInfoService().init());
-    await Get.putAsync<NewHitaHostVideoService>(
-        () => NewHitaHostVideoService().init());
+    await Get.putAsync<TrudaStorageService>(() => TrudaStorageService().init());
+    await Get.putAsync<TrudaAppInfoService>(() => TrudaAppInfoService().init());
+    await Get.putAsync<TrudaMyInfoService>(() => TrudaMyInfoService().init());
+    await Get.putAsync<TrudaHostVideoService>(
+        () => TrudaHostVideoService().init());
 
     // Get.put<ConfigStore>(ConfigStore());
     // Get.put<UserStore>(UserStore());
@@ -133,9 +133,9 @@ class NewHitaApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: NewHitaAppPages.initial,
-        getPages: NewHitaAppPages.routes,
-        navigatorObservers: [NewHitaAppPages.observer],
+        initialRoute: TrudaAppPages.initial,
+        getPages: TrudaAppPages.routes,
+        navigatorObservers: [TrudaAppPages.observer],
         // home: MyHomePage(title: "test db"),
         // home: _Example(),
         // EasyLoading 吐司和进度条

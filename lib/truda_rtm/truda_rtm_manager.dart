@@ -2,21 +2,21 @@ import 'dart:convert';
 
 import 'package:agora_rtm/agora_rtm.dart';
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_rtm/newhita_rtm_call_handler.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_handler.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_rtm/truda_rtm_call_handler.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_handler.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
 
-class NewHitaRtmManager {
+class TrudaRtmManager {
   // 0未连接，1已连接，2连接中
   static var loginState = 0;
   static AgoraRtmClient? _client;
 
   static Future init() async {
-    var id = NewHitaMyInfoService.to.config?.agoraAppId;
+    var id = TrudaMyInfoService.to.config?.agoraAppId;
     if (id == null || id.isEmpty) return;
     if (TrudaConstants.appMode > 0) return;
     _client = await AgoraRtmClient.createInstance(id);
@@ -77,26 +77,26 @@ class NewHitaRtmManager {
 
     _client?.onMessageReceived = handleMsg;
     _client?.onLocalInvitationAccepted =
-        NewHitaRtmCallHandler.onLocalInvitationAccepted;
+        TrudaRtmCallHandler.onLocalInvitationAccepted;
     _client?.onLocalInvitationReceivedByPeer =
-        NewHitaRtmCallHandler.onLocalInvitationReceivedByPeer;
+        TrudaRtmCallHandler.onLocalInvitationReceivedByPeer;
     _client?.onLocalInvitationRefused =
-        NewHitaRtmCallHandler.onLocalInvitationRefused;
+        TrudaRtmCallHandler.onLocalInvitationRefused;
     _client?.onLocalInvitationCanceled =
-        NewHitaRtmCallHandler.onLocalInvitationCanceled;
+        TrudaRtmCallHandler.onLocalInvitationCanceled;
     _client?.onLocalInvitationFailure =
-        NewHitaRtmCallHandler.onLocalInvitationFailure;
+        TrudaRtmCallHandler.onLocalInvitationFailure;
 
     _client?.onRemoteInvitationAccepted =
-        NewHitaRtmCallHandler.onRemoteInvitationAccepted;
+        TrudaRtmCallHandler.onRemoteInvitationAccepted;
     _client?.onRemoteInvitationCanceled =
-        NewHitaRtmCallHandler.onRemoteInvitationCanceled;
+        TrudaRtmCallHandler.onRemoteInvitationCanceled;
     _client?.onRemoteInvitationFailure =
-        NewHitaRtmCallHandler.onRemoteInvitationFailure;
+        TrudaRtmCallHandler.onRemoteInvitationFailure;
     _client?.onRemoteInvitationReceivedByPeer =
-        NewHitaRtmCallHandler.onRemoteInvitationReceivedByPeer;
+        TrudaRtmCallHandler.onRemoteInvitationReceivedByPeer;
     _client?.onRemoteInvitationRefused =
-        NewHitaRtmCallHandler.onRemoteInvitationRefused;
+        TrudaRtmCallHandler.onRemoteInvitationRefused;
   }
 
   /// 三次连接不上就刷RtmToken
@@ -107,8 +107,8 @@ class NewHitaRtmManager {
     if (loginState == 0) {
       if (_connetTimes < 3) {
         _connetTimes++;
-        await _client?.login(NewHitaMyInfoService.to.token?.rtmToken,
-            NewHitaMyInfoService.to.userLogin?.userId ?? "");
+        await _client?.login(TrudaMyInfoService.to.token?.rtmToken,
+            TrudaMyInfoService.to.userLogin?.userId ?? "");
       } else {
         _connetTimes = 0;
         print('genRtmToken');
@@ -124,7 +124,7 @@ class NewHitaRtmManager {
       TrudaHttpUrls.genRtmToken,
     )
         .then((value) {
-      NewHitaMyInfoService.to.token?.rtmToken = value;
+      TrudaMyInfoService.to.token?.rtmToken = value;
       connectRTM();
     });
   }
@@ -158,7 +158,7 @@ class NewHitaRtmManager {
     try {
       AgoraRtmLocalInvitation localInvitation =
           AgoraRtmLocalInvitation(calleeId, channelId: channelId);
-      var me = NewHitaMyInfoService.to.myDetail!.toJson();
+      var me = TrudaMyInfoService.to.myDetail!.toJson();
       // 25 aib
       me['aiType'] = aiType;
       String sendUserInfo = const JsonEncoder().convert(me);

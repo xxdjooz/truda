@@ -11,7 +11,7 @@ import '../../../truda_dialogs/truda_dialog_match_moment.dart';
 import '../../../truda_entities/truda_moment_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 
@@ -84,7 +84,7 @@ class TrudaMatchFakeController extends GetxController with RouteAware {
     }, showLoading: showLoading).then((value) {
       detail = value;
       matching = 1;
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           value.nickname ?? '', value.userId!,
           portrait: value.portrait));
       if (shouldShowGirl) {

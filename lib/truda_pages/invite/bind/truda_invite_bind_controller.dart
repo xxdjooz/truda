@@ -6,7 +6,7 @@ import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 
 class TrudaInviteBindController extends GetxController {
   var errText = ''.obs;
@@ -17,7 +17,7 @@ class TrudaInviteBindController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    final creatTime = NewHitaMyInfoService.to.myDetail?.createdAt ?? 0;
+    final creatTime = TrudaMyInfoService.to.myDetail?.createdAt ?? 0;
     // 超过一个小时不能绑定邀请码
     if (DateTime.now().millisecondsSinceEpoch - creatTime > 60 * 60 * 1000) {
       notOutTime = false;

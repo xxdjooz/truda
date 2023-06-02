@@ -1,36 +1,36 @@
 import 'package:truda/generated/json/base/json_convert_content.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 
-NewHitaRTMText $NewHitaRTMTextFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMText newHitaRTMText = NewHitaRTMText();
+TrudaRTMText $TrudaRTMTextFromJson(Map<String, dynamic> json) {
+	final TrudaRTMText trudaRTMText = TrudaRTMText();
 	final int? destructTime = jsonConvert.convert<int>(json['destructTime']);
 	if (destructTime != null) {
-		newHitaRTMText.destructTime = destructTime;
+		trudaRTMText.destructTime = destructTime;
 	}
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMText.extra = extra;
+		trudaRTMText.extra = extra;
 	}
 	final String? messageContent = jsonConvert.convert<String>(json['messageContent']);
 	if (messageContent != null) {
-		newHitaRTMText.messageContent = messageContent;
+		trudaRTMText.messageContent = messageContent;
 	}
 	final String? msgId = jsonConvert.convert<String>(json['msgId']);
 	if (msgId != null) {
-		newHitaRTMText.msgId = msgId;
+		trudaRTMText.msgId = msgId;
 	}
 	final int? type = jsonConvert.convert<int>(json['type']);
 	if (type != null) {
-		newHitaRTMText.type = type;
+		trudaRTMText.type = type;
 	}
-	final NewHitaRTMUser? userInfo = jsonConvert.convert<NewHitaRTMUser>(json['userInfo']);
+	final TrudaRTMUser? userInfo = jsonConvert.convert<TrudaRTMUser>(json['userInfo']);
 	if (userInfo != null) {
-		newHitaRTMText.userInfo = userInfo;
+		trudaRTMText.userInfo = userInfo;
 	}
-	return newHitaRTMText;
+	return trudaRTMText;
 }
 
-Map<String, dynamic> $NewHitaRTMTextToJson(NewHitaRTMText entity) {
+Map<String, dynamic> $TrudaRTMTextToJson(TrudaRTMText entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['destructTime'] = entity.destructTime;
 	data['extra'] = entity.extra;
@@ -41,32 +41,32 @@ Map<String, dynamic> $NewHitaRTMTextToJson(NewHitaRTMText entity) {
 	return data;
 }
 
-NewHitaRTMUser $NewHitaRTMUserFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMUser newHitaRTMUser = NewHitaRTMUser();
+TrudaRTMUser $TrudaRTMUserFromJson(Map<String, dynamic> json) {
+	final TrudaRTMUser trudaRTMUser = TrudaRTMUser();
 	final String? name = jsonConvert.convert<String>(json['name']);
 	if (name != null) {
-		newHitaRTMUser.name = name;
+		trudaRTMUser.name = name;
 	}
 	final String? portrait = jsonConvert.convert<String>(json['portrait']);
 	if (portrait != null) {
-		newHitaRTMUser.portrait = portrait;
+		trudaRTMUser.portrait = portrait;
 	}
 	final String? uid = jsonConvert.convert<String>(json['uid']);
 	if (uid != null) {
-		newHitaRTMUser.uid = uid;
+		trudaRTMUser.uid = uid;
 	}
 	final String? virtualId = jsonConvert.convert<String>(json['virtualId']);
 	if (virtualId != null) {
-		newHitaRTMUser.virtualId = virtualId;
+		trudaRTMUser.virtualId = virtualId;
 	}
 	final int? auth = jsonConvert.convert<int>(json['auth']);
 	if (auth != null) {
-		newHitaRTMUser.auth = auth;
+		trudaRTMUser.auth = auth;
 	}
-	return newHitaRTMUser;
+	return trudaRTMUser;
 }
 
-Map<String, dynamic> $NewHitaRTMUserToJson(NewHitaRTMUser entity) {
+Map<String, dynamic> $TrudaRTMUserToJson(TrudaRTMUser entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['name'] = entity.name;
 	data['portrait'] = entity.portrait;
@@ -76,44 +76,44 @@ Map<String, dynamic> $NewHitaRTMUserToJson(NewHitaRTMUser entity) {
 	return data;
 }
 
-NewHitaRTMMsgText $NewHitaRTMMsgTextFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgText newHitaRTMMsgText = NewHitaRTMMsgText();
+TrudaRTMMsgText $TrudaRTMMsgTextFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgText trudaRTMMsgText = TrudaRTMMsgText();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgText.extra = extra;
+		trudaRTMMsgText.extra = extra;
 	}
 	final String? text = jsonConvert.convert<String>(json['text']);
 	if (text != null) {
-		newHitaRTMMsgText.text = text;
+		trudaRTMMsgText.text = text;
 	}
-	return newHitaRTMMsgText;
+	return trudaRTMMsgText;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgTextToJson(NewHitaRTMMsgText entity) {
+Map<String, dynamic> $TrudaRTMMsgTextToJson(TrudaRTMMsgText entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['text'] = entity.text;
 	return data;
 }
 
-NewHitaRTMMsgVoice $NewHitaRTMMsgVoiceFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgVoice newHitaRTMMsgVoice = NewHitaRTMMsgVoice();
+TrudaRTMMsgVoice $TrudaRTMMsgVoiceFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgVoice trudaRTMMsgVoice = TrudaRTMMsgVoice();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgVoice.extra = extra;
+		trudaRTMMsgVoice.extra = extra;
 	}
 	final String? voiceUrl = jsonConvert.convert<String>(json['voiceUrl']);
 	if (voiceUrl != null) {
-		newHitaRTMMsgVoice.voiceUrl = voiceUrl;
+		trudaRTMMsgVoice.voiceUrl = voiceUrl;
 	}
 	final int? duration = jsonConvert.convert<int>(json['duration']);
 	if (duration != null) {
-		newHitaRTMMsgVoice.duration = duration;
+		trudaRTMMsgVoice.duration = duration;
 	}
-	return newHitaRTMMsgVoice;
+	return trudaRTMMsgVoice;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgVoiceToJson(NewHitaRTMMsgVoice entity) {
+Map<String, dynamic> $TrudaRTMMsgVoiceToJson(TrudaRTMMsgVoice entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['voiceUrl'] = entity.voiceUrl;
@@ -121,24 +121,24 @@ Map<String, dynamic> $NewHitaRTMMsgVoiceToJson(NewHitaRTMMsgVoice entity) {
 	return data;
 }
 
-NewHitaRTMMsgPhoto $NewHitaRTMMsgPhotoFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgPhoto newHitaRTMMsgPhoto = NewHitaRTMMsgPhoto();
+TrudaRTMMsgPhoto $TrudaRTMMsgPhotoFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgPhoto trudaRTMMsgPhoto = TrudaRTMMsgPhoto();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgPhoto.extra = extra;
+		trudaRTMMsgPhoto.extra = extra;
 	}
 	final String? thumbnailUrl = jsonConvert.convert<String>(json['thumbnailUrl']);
 	if (thumbnailUrl != null) {
-		newHitaRTMMsgPhoto.thumbnailUrl = thumbnailUrl;
+		trudaRTMMsgPhoto.thumbnailUrl = thumbnailUrl;
 	}
 	final String? imageUrl = jsonConvert.convert<String>(json['imageUrl']);
 	if (imageUrl != null) {
-		newHitaRTMMsgPhoto.imageUrl = imageUrl;
+		trudaRTMMsgPhoto.imageUrl = imageUrl;
 	}
-	return newHitaRTMMsgPhoto;
+	return trudaRTMMsgPhoto;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgPhotoToJson(NewHitaRTMMsgPhoto entity) {
+Map<String, dynamic> $TrudaRTMMsgPhotoToJson(TrudaRTMMsgPhoto entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['thumbnailUrl'] = entity.thumbnailUrl;
@@ -146,24 +146,24 @@ Map<String, dynamic> $NewHitaRTMMsgPhotoToJson(NewHitaRTMMsgPhoto entity) {
 	return data;
 }
 
-NewHitaRTMMsgCallState $NewHitaRTMMsgCallStateFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgCallState newHitaRTMMsgCallState = NewHitaRTMMsgCallState();
+TrudaRTMMsgCallState $TrudaRTMMsgCallStateFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgCallState trudaRTMMsgCallState = TrudaRTMMsgCallState();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgCallState.extra = extra;
+		trudaRTMMsgCallState.extra = extra;
 	}
 	final String? duration = jsonConvert.convert<String>(json['duration']);
 	if (duration != null) {
-		newHitaRTMMsgCallState.duration = duration;
+		trudaRTMMsgCallState.duration = duration;
 	}
 	final int? statusType = jsonConvert.convert<int>(json['statusType']);
 	if (statusType != null) {
-		newHitaRTMMsgCallState.statusType = statusType;
+		trudaRTMMsgCallState.statusType = statusType;
 	}
-	return newHitaRTMMsgCallState;
+	return trudaRTMMsgCallState;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgCallStateToJson(NewHitaRTMMsgCallState entity) {
+Map<String, dynamic> $TrudaRTMMsgCallStateToJson(TrudaRTMMsgCallState entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['duration'] = entity.duration;
@@ -171,40 +171,40 @@ Map<String, dynamic> $NewHitaRTMMsgCallStateToJson(NewHitaRTMMsgCallState entity
 	return data;
 }
 
-NewHitaRTMMsgGift $NewHitaRTMMsgGiftFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgGift newHitaRTMMsgGift = NewHitaRTMMsgGift();
+TrudaRTMMsgGift $TrudaRTMMsgGiftFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgGift trudaRTMMsgGift = TrudaRTMMsgGift();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgGift.extra = extra;
+		trudaRTMMsgGift.extra = extra;
 	}
 	final String? giftId = jsonConvert.convert<String>(json['giftId']);
 	if (giftId != null) {
-		newHitaRTMMsgGift.giftId = giftId;
+		trudaRTMMsgGift.giftId = giftId;
 	}
 	final int? quantity = jsonConvert.convert<int>(json['quantity']);
 	if (quantity != null) {
-		newHitaRTMMsgGift.quantity = quantity;
+		trudaRTMMsgGift.quantity = quantity;
 	}
 	final int? cost = jsonConvert.convert<int>(json['cost']);
 	if (cost != null) {
-		newHitaRTMMsgGift.cost = cost;
+		trudaRTMMsgGift.cost = cost;
 	}
 	final String? sendGiftRecordId = jsonConvert.convert<String>(json['sendGiftRecordId']);
 	if (sendGiftRecordId != null) {
-		newHitaRTMMsgGift.sendGiftRecordId = sendGiftRecordId;
+		trudaRTMMsgGift.sendGiftRecordId = sendGiftRecordId;
 	}
 	final String? giftName = jsonConvert.convert<String>(json['giftName']);
 	if (giftName != null) {
-		newHitaRTMMsgGift.giftName = giftName;
+		trudaRTMMsgGift.giftName = giftName;
 	}
 	final String? giftImageUrl = jsonConvert.convert<String>(json['giftImageUrl']);
 	if (giftImageUrl != null) {
-		newHitaRTMMsgGift.giftImageUrl = giftImageUrl;
+		trudaRTMMsgGift.giftImageUrl = giftImageUrl;
 	}
-	return newHitaRTMMsgGift;
+	return trudaRTMMsgGift;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgGiftToJson(NewHitaRTMMsgGift entity) {
+Map<String, dynamic> $TrudaRTMMsgGiftToJson(TrudaRTMMsgGift entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['giftId'] = entity.giftId;
@@ -216,36 +216,36 @@ Map<String, dynamic> $NewHitaRTMMsgGiftToJson(NewHitaRTMMsgGift entity) {
 	return data;
 }
 
-NewHitaRTMMsgBeginCall $NewHitaRTMMsgBeginCallFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgBeginCall newHitaRTMMsgBeginCall = NewHitaRTMMsgBeginCall();
+TrudaRTMMsgBeginCall $TrudaRTMMsgBeginCallFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgBeginCall trudaRTMMsgBeginCall = TrudaRTMMsgBeginCall();
 	final String? channelId = jsonConvert.convert<String>(json['channelId']);
 	if (channelId != null) {
-		newHitaRTMMsgBeginCall.channelId = channelId;
+		trudaRTMMsgBeginCall.channelId = channelId;
 	}
 	final int? chargePrice = jsonConvert.convert<int>(json['chargePrice']);
 	if (chargePrice != null) {
-		newHitaRTMMsgBeginCall.chargePrice = chargePrice;
+		trudaRTMMsgBeginCall.chargePrice = chargePrice;
 	}
 	final int? propDuration = jsonConvert.convert<int>(json['propDuration']);
 	if (propDuration != null) {
-		newHitaRTMMsgBeginCall.propDuration = propDuration;
+		trudaRTMMsgBeginCall.propDuration = propDuration;
 	}
 	final int? remainDiamonds = jsonConvert.convert<int>(json['remainDiamonds']);
 	if (remainDiamonds != null) {
-		newHitaRTMMsgBeginCall.remainDiamonds = remainDiamonds;
+		trudaRTMMsgBeginCall.remainDiamonds = remainDiamonds;
 	}
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgBeginCall.extra = extra;
+		trudaRTMMsgBeginCall.extra = extra;
 	}
 	final bool? usedProp = jsonConvert.convert<bool>(json['usedProp']);
 	if (usedProp != null) {
-		newHitaRTMMsgBeginCall.usedProp = usedProp;
+		trudaRTMMsgBeginCall.usedProp = usedProp;
 	}
-	return newHitaRTMMsgBeginCall;
+	return trudaRTMMsgBeginCall;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgBeginCallToJson(NewHitaRTMMsgBeginCall entity) {
+Map<String, dynamic> $TrudaRTMMsgBeginCallToJson(TrudaRTMMsgBeginCall entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['channelId'] = entity.channelId;
 	data['chargePrice'] = entity.chargePrice;
@@ -256,36 +256,36 @@ Map<String, dynamic> $NewHitaRTMMsgBeginCallToJson(NewHitaRTMMsgBeginCall entity
 	return data;
 }
 
-NewHitaRTMMsgAIB $NewHitaRTMMsgAIBFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgAIB newHitaRTMMsgAIB = NewHitaRTMMsgAIB();
+TrudaRTMMsgAIB $TrudaRTMMsgAIBFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgAIB trudaRTMMsgAIB = TrudaRTMMsgAIB();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgAIB.extra = extra;
+		trudaRTMMsgAIB.extra = extra;
 	}
 	final int? id = jsonConvert.convert<int>(json['id']);
 	if (id != null) {
-		newHitaRTMMsgAIB.id = id;
+		trudaRTMMsgAIB.id = id;
 	}
 	final int? isOnline = jsonConvert.convert<int>(json['isOnline']);
 	if (isOnline != null) {
-		newHitaRTMMsgAIB.isOnline = isOnline;
+		trudaRTMMsgAIB.isOnline = isOnline;
 	}
 	final String? nickname = jsonConvert.convert<String>(json['nickname']);
 	if (nickname != null) {
-		newHitaRTMMsgAIB.nickname = nickname;
+		trudaRTMMsgAIB.nickname = nickname;
 	}
 	final String? portrait = jsonConvert.convert<String>(json['portrait']);
 	if (portrait != null) {
-		newHitaRTMMsgAIB.portrait = portrait;
+		trudaRTMMsgAIB.portrait = portrait;
 	}
 	final String? userId = jsonConvert.convert<String>(json['userId']);
 	if (userId != null) {
-		newHitaRTMMsgAIB.userId = userId;
+		trudaRTMMsgAIB.userId = userId;
 	}
-	return newHitaRTMMsgAIB;
+	return trudaRTMMsgAIB;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgAIBToJson(NewHitaRTMMsgAIB entity) {
+Map<String, dynamic> $TrudaRTMMsgAIBToJson(TrudaRTMMsgAIB entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['id'] = entity.id;
@@ -296,60 +296,60 @@ Map<String, dynamic> $NewHitaRTMMsgAIBToJson(NewHitaRTMMsgAIB entity) {
 	return data;
 }
 
-NewHitaRTMMsgAIC $NewHitaRTMMsgAICFromJson(Map<String, dynamic> json) {
-	final NewHitaRTMMsgAIC newHitaRTMMsgAIC = NewHitaRTMMsgAIC();
+TrudaRTMMsgAIC $TrudaRTMMsgAICFromJson(Map<String, dynamic> json) {
+	final TrudaRTMMsgAIC trudaRTMMsgAIC = TrudaRTMMsgAIC();
 	final String? extra = jsonConvert.convert<String>(json['extra']);
 	if (extra != null) {
-		newHitaRTMMsgAIC.extra = extra;
+		trudaRTMMsgAIC.extra = extra;
 	}
 	final int? callCardCount = jsonConvert.convert<int>(json['callCardCount']);
 	if (callCardCount != null) {
-		newHitaRTMMsgAIC.callCardCount = callCardCount;
+		trudaRTMMsgAIC.callCardCount = callCardCount;
 	}
 	final int? id = jsonConvert.convert<int>(json['id']);
 	if (id != null) {
-		newHitaRTMMsgAIC.id = id;
+		trudaRTMMsgAIC.id = id;
 	}
 	final int? isOnline = jsonConvert.convert<int>(json['isOnline']);
 	if (isOnline != null) {
-		newHitaRTMMsgAIC.isOnline = isOnline;
+		trudaRTMMsgAIC.isOnline = isOnline;
 	}
 	final int? muteStatus = jsonConvert.convert<int>(json['muteStatus']);
 	if (muteStatus != null) {
-		newHitaRTMMsgAIC.muteStatus = muteStatus;
+		trudaRTMMsgAIC.muteStatus = muteStatus;
 	}
 	final int? isCard = jsonConvert.convert<int>(json['isCard']);
 	if (isCard != null) {
-		newHitaRTMMsgAIC.isCard = isCard;
+		trudaRTMMsgAIC.isCard = isCard;
 	}
 	final int? propDuration = jsonConvert.convert<int>(json['propDuration']);
 	if (propDuration != null) {
-		newHitaRTMMsgAIC.propDuration = propDuration;
+		trudaRTMMsgAIC.propDuration = propDuration;
 	}
 	final bool? isFollowed = jsonConvert.convert<bool>(json['isFollowed']);
 	if (isFollowed != null) {
-		newHitaRTMMsgAIC.isFollowed = isFollowed;
+		trudaRTMMsgAIC.isFollowed = isFollowed;
 	}
 	final String? nickname = jsonConvert.convert<String>(json['nickname']);
 	if (nickname != null) {
-		newHitaRTMMsgAIC.nickname = nickname;
+		trudaRTMMsgAIC.nickname = nickname;
 	}
 	final String? filename = jsonConvert.convert<String>(json['filename']);
 	if (filename != null) {
-		newHitaRTMMsgAIC.filename = filename;
+		trudaRTMMsgAIC.filename = filename;
 	}
 	final String? portrait = jsonConvert.convert<String>(json['portrait']);
 	if (portrait != null) {
-		newHitaRTMMsgAIC.portrait = portrait;
+		trudaRTMMsgAIC.portrait = portrait;
 	}
 	final String? userId = jsonConvert.convert<String>(json['userId']);
 	if (userId != null) {
-		newHitaRTMMsgAIC.userId = userId;
+		trudaRTMMsgAIC.userId = userId;
 	}
-	return newHitaRTMMsgAIC;
+	return trudaRTMMsgAIC;
 }
 
-Map<String, dynamic> $NewHitaRTMMsgAICToJson(NewHitaRTMMsgAIC entity) {
+Map<String, dynamic> $TrudaRTMMsgAICToJson(TrudaRTMMsgAIC entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['extra'] = entity.extra;
 	data['callCardCount'] = entity.callCardCount;

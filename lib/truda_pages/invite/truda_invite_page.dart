@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_widget/newhita_app_bar.dart';
 
 import '../../truda_common/truda_colors.dart';
@@ -32,7 +32,7 @@ class TrudaInvitePage extends GetView<TrudaInviteController> {
           actions: [
             GestureDetector(
               onTap: () {
-                Get.toNamed(NewHitaAppPages.inviteBonus);
+                Get.toNamed(TrudaAppPages.inviteBonus);
               },
               child: Image.asset(
                 'assets/images/newhita_invite_benefit.png',

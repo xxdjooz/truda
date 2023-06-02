@@ -8,7 +8,7 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_services/newhita_event_bus_bean.dart';
+import 'package:truda/truda_services/truda_event_bus_bean.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -16,11 +16,11 @@ import '../../../truda_common/truda_charge_path.dart';
 import '../../../truda_common/truda_common_dialog.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_rtm/newhita_rtm_manager.dart';
-import '../../../truda_rtm/newhita_rtm_msg_sender.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_rtm/truda_rtm_manager.dart';
+import '../../../truda_rtm/truda_rtm_msg_sender.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_utils/newhita_permission_handler.dart';
 import '../../../truda_utils/newhita_voice_player.dart';
@@ -34,9 +34,9 @@ class TrudaLocalController extends GetxController {
       map['herId'] = herId;
       map['portrait'] = portrait;
       if (closeSelf) {
-        Get.offNamed(NewHitaAppPages.callOut, arguments: map);
+        Get.offNamed(TrudaAppPages.callOut, arguments: map);
       } else {
-        Get.toNamed(NewHitaAppPages.callOut, arguments: map);
+        Get.toNamed(TrudaAppPages.callOut, arguments: map);
       }
     });
   }
@@ -48,7 +48,7 @@ class TrudaLocalController extends GetxController {
   late String content;
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaEventRtmCall> sub;
+  late final StreamSubscription<TrudaEventRtmCall> sub;
 
   // 通话计时器
   Timer? _timer;
@@ -70,7 +70,7 @@ class TrudaLocalController extends GetxController {
     _getHostDetail();
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<NewHitaEventRtmCall>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<TrudaEventRtmCall>().listen((event) {
       // 1 我的呼叫被接受 2 我的呼叫被拒绝 3对方呼叫取消
       if (event.type == 1) {
         if (event.invite?.channelId != channelId) return;
@@ -124,7 +124,7 @@ class TrudaLocalController extends GetxController {
       update();
       content = json.encode(value);
       if (!value.isShowOnline) {
-        NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+        TrudaStorageService.to.objectBoxCall.savaCallHistory(
             herId: herId,
             herVirtualId: detail?.username ?? '',
             channelId: '',
@@ -134,9 +134,9 @@ class TrudaLocalController extends GetxController {
             duration: '00:00');
 
         int myDiamond =
-            NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-        int callDiamond = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
-        int myCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+            TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+        int callDiamond = TrudaMyInfoService.to.config?.chargePrice ?? 60;
+        int myCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
         // 没有钱也没有体验卡
         if (myDiamond < callDiamond && myCard < 1) {
           Future.delayed(Duration(milliseconds: 100), () {
@@ -180,13 +180,13 @@ class TrudaLocalController extends GetxController {
         _showChargeAndStopMusic();
         callStatistics(0, 5);
       } else {
-        NewHitaRtmMsgSender.sendCallState(
+        TrudaRtmMsgSender.sendCallState(
             herId, TrudaCallStatus.MY_HANG_UP, '00:00');
         _closeMe();
         callStatistics(0, 7);
         callStatus = TrudaCallStatus.NET_ERR;
       }
-      NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+      TrudaStorageService.to.objectBoxCall.savaCallHistory(
           herId: herId,
           herVirtualId: detail?.username ?? '',
           channelId: '',
@@ -199,7 +199,7 @@ class TrudaLocalController extends GetxController {
         return;
       }
       channelId = value.toString();
-      NewHitaRtmManager.sendInvitation(herId, channelId, (success) {});
+      TrudaRtmManager.sendInvitation(herId, channelId, (success) {});
     });
   }
 
@@ -251,9 +251,9 @@ class TrudaLocalController extends GetxController {
   void hangUp(int endType) {
     hadCancelCall = true;
     if (channelId.isNotEmpty) {
-      NewHitaRtmManager.cancelLocalInvitation(herId, channelId, (success) {});
-      NewHitaRtmMsgSender.sendCallState(herId, TrudaCallStatus.MY_HANG_UP, '00:00');
-      NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+      TrudaRtmManager.cancelLocalInvitation(herId, channelId, (success) {});
+      TrudaRtmMsgSender.sendCallState(herId, TrudaCallStatus.MY_HANG_UP, '00:00');
+      TrudaStorageService.to.objectBoxCall.savaCallHistory(
           herId: herId,
           herVirtualId: detail?.username ?? '',
           channelId: channelId,
@@ -281,7 +281,7 @@ class TrudaLocalController extends GetxController {
     map['herId'] = herId;
     map['content'] = content;
     map['channelId'] = channelId;
-    Get.offAndToNamed(NewHitaAppPages.call, arguments: map);
+    Get.offAndToNamed(TrudaAppPages.call, arguments: map);
   }
 
   void _closeMe() {

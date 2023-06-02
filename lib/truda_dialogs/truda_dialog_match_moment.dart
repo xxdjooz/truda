@@ -18,7 +18,7 @@ import '../truda_pages/chat/truda_chat_controller.dart';
 import '../truda_pages/host/truda_host_controller.dart';
 import '../truda_pages/main/home/truda_host_widget.dart';
 import '../truda_pages/some/truda_media_view_page.dart';
-import '../truda_routes/newhita_pages.dart';
+import '../truda_routes/truda_pages.dart';
 import '../truda_utils/newhita_format_util.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_widget/newhita_net_image.dart';
@@ -74,7 +74,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
 
   void reportMoment(String momentId) async {
     var result = await Get.toNamed(
-      NewHitaAppPages.reportPageNew,
+      TrudaAppPages.reportPageNew,
       arguments: {
         'reportType': 1,
         'rId': momentId,
@@ -221,7 +221,7 @@ class _TrudaDialogMatchMomentState extends State<TrudaDialogMatchMoment> {
                 GestureDetector(
                   onTap: () async {
                     var result = await Get.toNamed(
-                      NewHitaAppPages.reportPageNew,
+                      TrudaAppPages.reportPageNew,
                       arguments: {
                         'reportType': 1,
                         'rId': widget.detail.momentId ?? '',

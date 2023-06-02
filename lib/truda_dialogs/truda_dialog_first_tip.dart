@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_widget/newhita_gradient_button.dart';
@@ -13,11 +13,11 @@ class TrudaFirstTip extends StatefulWidget {
     // if (NewHitaConstants.isFakeMode) {
     //   return;
     // }
-    var hadShow = NewHitaStorageService.to.prefs.getBool('firstTip');
+    var hadShow = TrudaStorageService.to.prefs.getBool('firstTip');
     if (hadShow == true) {
       return;
     }
-    NewHitaStorageService.to.prefs.setBool('firstTip', true);
+    TrudaStorageService.to.prefs.setBool('firstTip', true);
     TrudaCommonDialog.dialog(TrudaFirstTip());
   }
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:objectbox/objectbox.dart';
 
-import '../../truda_rtm/newhita_rtm_msg_entity.dart';
+import '../../truda_rtm/truda_rtm_msg_entity.dart';
 
 @Entity()
 class NewHitaOrderEntity {

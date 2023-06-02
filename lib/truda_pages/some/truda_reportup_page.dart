@@ -5,8 +5,8 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_log.dart';
@@ -66,7 +66,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -101,7 +101,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
   void dispose() {
     _focusNode?.dispose();
     _textEditingController?.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     super.dispose();
   }
 
@@ -199,7 +199,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
                           // }
                         });
                         // 举报后要拉黑
-                        if (NewHitaStorageService.to.checkBlackList(widget.upid)) {
+                        if (TrudaStorageService.to.checkBlackList(widget.upid)) {
                           return;
                         }
                         TrudaHttpUtil()
@@ -208,7 +208,7 @@ class _TrudaReportWdgState extends State<TrudaReportWdg> with RouteAware {
                         )
                             .then((value) {
                           if (value == 1) {
-                            NewHitaStorageService.to
+                            TrudaStorageService.to
                                 .updateBlackList(widget.upid, true);
                           }
                           NewHitaLog.debug("拉黑");

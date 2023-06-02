@@ -30,7 +30,7 @@ class TrudaLoginUtil {
 // import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 //
 // import '../../truda_common/truda_language_key.dart';
-// import '../../truda_services/newhita_my_info_service.dart';
+// import '../../truda_services/truda_my_info_service.dart';
 // import '../../truda_utils/newhita_loading.dart';
 // import '../../truda_utils/newhita_log.dart';
 //

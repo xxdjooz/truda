@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_order_entity.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -135,7 +135,7 @@ class TrudaOrderItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // CblRouterManager.pushNamed(OrderDetailRouter, data);
-        Get.toNamed(NewHitaAppPages.orderDetail, arguments: data);
+        Get.toNamed(TrudaAppPages.orderDetail, arguments: data);
       },
       child: Container(
         margin: EdgeInsetsDirectional.only(top: 15, start: 15, end: 15),

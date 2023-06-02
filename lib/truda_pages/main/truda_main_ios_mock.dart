@@ -4,8 +4,8 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_dialogs/truda_dialog_first_tip.dart';
 import 'package:truda/truda_entities/truda_leval_entity.dart';
 import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
-import 'package:truda/truda_socket/newhita_socket_manager.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
+import 'package:truda/truda_socket/truda_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_adjust_manager.dart';
 import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
 import 'package:truda/truda_utils/newhita_firebase_manager.dart';
@@ -14,7 +14,7 @@ import 'package:truda/truda_utils/newhita_log.dart';
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_permission_handler.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +47,7 @@ class NewHitaIOSMainController extends GetxController {
     currentIndex.value = index;
     pageController.jumpToPage(index);
     if (index == 2) {
-      NewHitaStorageService.to.objectBoxMsg.refreshUnreadNum();
+      TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
     }
   }
 
@@ -56,7 +56,7 @@ class NewHitaIOSMainController extends GetxController {
     super.onInit();
     pageController = PageController(initialPage: 0);
     NewHitaAdjustManager.checkAdjustUploadAttr();
-    Get.putAsync<NewHitaSocketManager>(() => NewHitaSocketManager().init());
+    Get.putAsync<TrudaSocketManager>(() => TrudaSocketManager().init());
   }
 
   @override
@@ -67,7 +67,7 @@ class NewHitaIOSMainController extends GetxController {
     getSensitiveList();
     TrudaFirstTip.checkToShow();
     NewHitaAihelpManager.initAIHelp();
-    NewHitaStorageService.to.objectBoxMsg.refreshUnreadNum();
+    TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
 
     // firebase 初始化
     if (!TrudaConstants.isFakeMode && !TrudaConstants.isTestMode) {
@@ -89,20 +89,20 @@ class NewHitaIOSMainController extends GetxController {
     }).then((value) {
       if (value.isNotEmpty) {
         String jsonGifts = json.encode(value);
-        NewHitaStorageService.to.prefs
+        TrudaStorageService.to.prefs
             .setString(TrudaConstants.giftsJson, jsonGifts);
       }
     });
   }
 
   void getLevalList() {
-    var areaCode = NewHitaMyInfoService.to.myDetail?.areaCode ?? 1;
+    var areaCode = TrudaMyInfoService.to.myDetail?.areaCode ?? 1;
     TrudaHttpUtil()
         .post<List<TrudaLevalBean>>(TrudaHttpUrls.LevelRuleApi + '/$areaCode',
             errCallback: (err) {})
         .then((value) {
       if (value.isNotEmpty) {
-        NewHitaMyInfoService.to.levalList = value;
+        TrudaMyInfoService.to.levalList = value;
         // for (var le in value) {
         //   NewHitaLog.debug('${le.grade} ${le.howExp} ${le.awardName}');
         // }
@@ -117,7 +117,7 @@ class NewHitaIOSMainController extends GetxController {
         .then((value) {
       if (value.isNotEmpty) {
         List<String> list = value.map((e) => e.words ?? '').toList();
-        NewHitaMyInfoService.to.sensitiveList = list;
+        TrudaMyInfoService.to.sensitiveList = list;
       }
     });
   }

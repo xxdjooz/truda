@@ -9,9 +9,9 @@ import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 
 // 修改密码
@@ -36,7 +36,7 @@ class _TrudaAccountPasswordPageState
   void initState() {
     super.initState();
     // 存储的有账号密码直接去登录
-    var visitorAccount = NewHitaStorageService.to.prefs
+    var visitorAccount = TrudaStorageService.to.prefs
         .getString(TrudaConstants.keyVisitorAccount);
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
@@ -51,7 +51,7 @@ class _TrudaAccountPasswordPageState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -62,7 +62,7 @@ class _TrudaAccountPasswordPageState
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   void accountLogin() {
@@ -109,14 +109,14 @@ class _TrudaAccountPasswordPageState
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
       Get.back();
       // 修改本地存储的密码
-      var visitorAccount = NewHitaStorageService.to.prefs
+      var visitorAccount = TrudaStorageService.to.prefs
           .getString(TrudaConstants.keyVisitorAccount);
       if (visitorAccount?.isNotEmpty == true) {
         var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
         if (list.isNotEmpty && list.length == 2) {
-          final myUserName = NewHitaMyInfoService.to.myDetail?.username;
+          final myUserName = TrudaMyInfoService.to.myDetail?.username;
           if (list[0] == myUserName) {
-            NewHitaStorageService.to.prefs.setString(
+            TrudaStorageService.to.prefs.setString(
                 TrudaConstants.keyVisitorAccount,
                 '$myUserName${TrudaConstants.visitorAccountSplit}$newPassword');
           }

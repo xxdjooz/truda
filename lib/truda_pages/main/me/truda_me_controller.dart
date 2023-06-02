@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_info_entity.dart';
-import 'package:truda/truda_services/newhita_event_bus_bean.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_event_bus_bean.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
@@ -15,9 +15,9 @@ import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_dialogs/truda_dialog_vip_diamond_get.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_storage_service.dart';
-import '../../../truda_socket/newhita_socket_entity.dart';
-import '../../../truda_socket/newhita_socket_manager.dart';
+import '../../../truda_services/truda_storage_service.dart';
+import '../../../truda_socket/truda_socket_entity.dart';
+import '../../../truda_socket/truda_socket_manager.dart';
 import '../../login/truda_login_util.dart';
 import '../../vip/truda_vip_controller.dart';
 
@@ -26,7 +26,7 @@ class TrudaMeController extends GetxController {
   var time = DateTime.now().millisecondsSinceEpoch;
   TrudaInfoDetail? myDetail;
 
-  late final TrudaCallback<NewHitaSocketBalance> _balanceListener;
+  late final TrudaCallback<TrudaSocketBalance> _balanceListener;
 
   /// event bus 监听
   late final StreamSubscription<String> sub;
@@ -36,7 +36,7 @@ class TrudaMeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    myDetail = NewHitaMyInfoService.to.myDetail;
+    myDetail = TrudaMyInfoService.to.myDetail;
     _balanceListener = (balance) {
       NewHitaLog.debug(balance);
       myDetail?.userBalance?.remainDiamonds = balance.diamonds;
@@ -46,17 +46,17 @@ class TrudaMeController extends GetxController {
       }
       update();
     };
-    NewHitaSocketManager.to.addBalanceListener(_balanceListener);
+    TrudaSocketManager.to.addBalanceListener(_balanceListener);
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<String>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<String>().listen((event) {
       if (event == eventBusRefreshMe) {
         NewHitaLog.debug('eventBus eventBusRefreshMe');
         refreshMe();
       }
       if (event == eventBusUpdateMe) {
         NewHitaLog.debug('eventBus eventBusUpdateMe');
-        myDetail = NewHitaMyInfoService.to.myDetail;
+        myDetail = TrudaMyInfoService.to.myDetail;
         update();
       }
     });
@@ -81,7 +81,7 @@ class TrudaMeController extends GetxController {
     )
         .then((value) {
       myDetail = value;
-      NewHitaMyInfoService.to.setMyDetail = value;
+      TrudaMyInfoService.to.setMyDetail = value;
       update();
     });
   }
@@ -90,7 +90,7 @@ class TrudaMeController extends GetxController {
   void onClose() {
     sub.cancel();
     super.onClose();
-    NewHitaSocketManager.to.removeBalanceListener(_balanceListener);
+    TrudaSocketManager.to.removeBalanceListener(_balanceListener);
     // rewardedUtils.closeSub();
   }
 
@@ -128,7 +128,7 @@ class TrudaMeController extends GetxController {
     }).then((value) {
       // NewHitaStorageService.to.prefs
       //     .setBool('$keyEveryDay${_getTodayStr()}', true);
-      int vipD = NewHitaMyInfoService.to.config?.vipDailyDiamonds ?? 10;
+      int vipD = TrudaMyInfoService.to.config?.vipDailyDiamonds ?? 10;
       refreshMe();
       TrudaCommonDialog.dialog(
         TrudaDialogVipDiamondGet(
@@ -152,7 +152,7 @@ class TrudaMeController extends GetxController {
 
   // 获取今天使用了几次
   bool getTodayYet() {
-    return NewHitaStorageService.to.prefs
+    return TrudaStorageService.to.prefs
             .getBool('$keyEveryDay${_getTodayStr()}') ??
         false;
   }

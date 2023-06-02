@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_text_styles.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 import 'package:intl/intl.dart';
@@ -13,8 +13,8 @@ import 'package:intl/intl.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_database/entity/truda_conversation_entity.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_utils/ad/newhita_ads_utils.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_utils/ad/truda_ads_utils.dart';
 import '../../../truda_utils/newhita_ai_help_manager.dart';
 import 'truda_msg_controller.dart';
 
@@ -46,7 +46,7 @@ class TrudaMsgPage extends StatelessWidget {
                           child: InkWell(
                               onTap: () {
                                 NewHitaAihelpManager.enterMinAIHelp(
-                                    NewHitaMyInfoService.to
+                                    TrudaMyInfoService.to
                                             .getMyLeval()
                                             ?.grade ??
                                         1,
@@ -121,8 +121,8 @@ class TrudaMsgPage extends StatelessWidget {
                                 ),
                               )),
                         ),
-                      if (NewHitaAdsUtils.isShowAd(
-                              NewHitaAdsUtils.NATIVE_CONVERSATION_LIST) &&
+                      if (TrudaAdsUtils.isShowAd(
+                              TrudaAdsUtils.NATIVE_CONVERSATION_LIST) &&
                           msgController.nativeUtils.isReady)
                         SliverToBoxAdapter(
                           child: Container(
@@ -131,8 +131,8 @@ class TrudaMsgPage extends StatelessWidget {
                               child: msgController.nativeUtils
                                   .preparedMessageNativeAd(context)),
                         ),
-                      if (NewHitaAdsUtils.isShowAd(
-                              NewHitaAdsUtils.REWARD_ONE_MESSAGE_CHAT) &&
+                      if (TrudaAdsUtils.isShowAd(
+                              TrudaAdsUtils.REWARD_ONE_MESSAGE_CHAT) &&
                           msgController.rewardedUtils.isReady)
                         SliverToBoxAdapter(
                           child: GestureDetector(
@@ -247,7 +247,7 @@ class NewHitaMsgWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var her = NewHitaStorageService.to.objectBoxMsg.queryHer(msg.herId);
+    var her = TrudaStorageService.to.objectBoxMsg.queryHer(msg.herId);
     NewHitaLog.debug('NewHitaMsgWidget build her=$her');
     var time = DateTime.fromMillisecondsSinceEpoch(msg.dateInsert);
     var str = DateFormat('MM.dd HH:mm').format(time);
@@ -277,7 +277,7 @@ class NewHitaMsgWidget extends StatelessWidget {
               flex: 1,
               padding: EdgeInsets.zero,
               onPressed: (BuildContext context) {
-                NewHitaStorageService.to.objectBoxMsg.removeHer(msg.herId);
+                TrudaStorageService.to.objectBoxMsg.removeHer(msg.herId);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(

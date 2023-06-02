@@ -10,7 +10,7 @@ import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_hot_entity.dart';
-import '../truda_services/newhita_my_info_service.dart';
+import '../truda_services/truda_my_info_service.dart';
 import '../truda_widget/newhita_gradient_boder.dart';
 import '../truda_widget/newhita_net_image.dart';
 
@@ -28,7 +28,7 @@ class TrudaDialogCountryChoose extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var levalbean = NewHitaMyInfoService.to.getMyLeval();
+    var levalbean = TrudaMyInfoService.to.getMyLeval();
     var myLeval = levalbean?.grade ?? 0;
     return Align(
       alignment: AlignmentDirectional.topCenter,
@@ -61,7 +61,7 @@ class TrudaDialogCountryChoose extends StatelessWidget {
                       builder: (context) {
                         var area = e;
                         bool isCur = area.areaCode == curArea;
-                        bool isVip = NewHitaMyInfoService.to.isVipNow;
+                        bool isVip = TrudaMyInfoService.to.isVipNow;
                         bool can = area.canChoose == 1;
                         return Opacity(
                           opacity: (!isVip && !can) ? 0.7 : 1,

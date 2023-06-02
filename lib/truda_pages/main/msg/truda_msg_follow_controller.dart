@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../../truda_database/entity/truda_conversation_entity.dart';
@@ -10,7 +10,7 @@ import '../../../truda_database/entity/truda_msg_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_event_bus_bean.dart';
+import '../../../truda_services/truda_event_bus_bean.dart';
 import '../../../truda_utils/newhita_loading.dart';
 
 class TrudaMsgFollowController extends GetxController {
@@ -21,7 +21,7 @@ class TrudaMsgFollowController extends GetxController {
   /// event bus 监听
   late final StreamSubscription<TrudaMsgEntity> sub;
   late final StreamSubscription<TrudaHerEntity> subHer;
-  late final StreamSubscription<NewHitaEventMsgClear> subClear;
+  late final StreamSubscription<TrudaEventMsgClear> subClear;
   @override
   void onInit() {
     super.onInit();
@@ -29,14 +29,14 @@ class TrudaMsgFollowController extends GetxController {
     // _getList();
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<TrudaMsgEntity>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<TrudaMsgEntity>().listen((event) {
       _getList();
     });
-    subHer = NewHitaStorageService.to.eventBus.on<TrudaHerEntity>().listen((event) {
+    subHer = TrudaStorageService.to.eventBus.on<TrudaHerEntity>().listen((event) {
       _getList();
     });
     subClear =
-        NewHitaStorageService.to.eventBus.on<NewHitaEventMsgClear>().listen((event) {
+        TrudaStorageService.to.eventBus.on<TrudaEventMsgClear>().listen((event) {
       _getList();
     });
   }
@@ -75,7 +75,7 @@ class TrudaMsgFollowController extends GetxController {
   void _getList() {
     dataList.clear();
     time = DateTime.now().millisecondsSinceEpoch;
-    var list = NewHitaStorageService.to.objectBoxMsg.queryHostCon(time);
+    var list = TrudaStorageService.to.objectBoxMsg.queryHostCon(time);
     NewHitaLog.debug("NewHitaMsgController _getList() length=${list.length}");
     // dataList.addAll(list);
     // update(['list']);

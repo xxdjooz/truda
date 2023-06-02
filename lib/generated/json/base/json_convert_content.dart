@@ -33,9 +33,9 @@ import 'package:truda/truda_entities/truda_oss_entity.dart';
 import 'package:truda/truda_entities/truda_send_gift_result.dart';
 import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
 import 'package:truda/truda_entities/truda_translate_entity.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
-import 'package:truda/truda_socket/newhita_socket_entity.dart';
-import 'package:truda/truda_utils/ad/newhita_ads_spots_entity.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
+import 'package:truda/truda_socket/truda_socket_entity.dart';
+import 'package:truda/truda_utils/ad/truda_ads_spots_entity.dart';
 
 JsonConvert jsonConvert = JsonConvert();
 typedef JsonConvertFunction<T> = T Function(Map<String, dynamic> json);
@@ -93,20 +93,20 @@ class JsonConvert {
 		(TrudaSensitiveWordBean).toString(): TrudaSensitiveWordBean.fromJson,
 		(TrudaTranslateData).toString(): TrudaTranslateData.fromJson,
 		(TrudaTranslateDataConfigs).toString(): TrudaTranslateDataConfigs.fromJson,
-		(NewHitaRTMText).toString(): NewHitaRTMText.fromJson,
-		(NewHitaRTMUser).toString(): NewHitaRTMUser.fromJson,
-		(NewHitaRTMMsgText).toString(): NewHitaRTMMsgText.fromJson,
-		(NewHitaRTMMsgVoice).toString(): NewHitaRTMMsgVoice.fromJson,
-		(NewHitaRTMMsgPhoto).toString(): NewHitaRTMMsgPhoto.fromJson,
-		(NewHitaRTMMsgCallState).toString(): NewHitaRTMMsgCallState.fromJson,
-		(NewHitaRTMMsgGift).toString(): NewHitaRTMMsgGift.fromJson,
-		(NewHitaRTMMsgBeginCall).toString(): NewHitaRTMMsgBeginCall.fromJson,
-		(NewHitaRTMMsgAIB).toString(): NewHitaRTMMsgAIB.fromJson,
-		(NewHitaRTMMsgAIC).toString(): NewHitaRTMMsgAIC.fromJson,
-		(NewHitaSocketEntity).toString(): NewHitaSocketEntity.fromJson,
-		(NewHitaSocketHostState).toString(): NewHitaSocketHostState.fromJson,
-		(NewHitaSocketBalance).toString(): NewHitaSocketBalance.fromJson,
-		(NewHitaAdsSpotsEntity).toString(): NewHitaAdsSpotsEntity.fromJson,
+		(TrudaRTMText).toString(): TrudaRTMText.fromJson,
+		(TrudaRTMUser).toString(): TrudaRTMUser.fromJson,
+		(TrudaRTMMsgText).toString(): TrudaRTMMsgText.fromJson,
+		(TrudaRTMMsgVoice).toString(): TrudaRTMMsgVoice.fromJson,
+		(TrudaRTMMsgPhoto).toString(): TrudaRTMMsgPhoto.fromJson,
+		(TrudaRTMMsgCallState).toString(): TrudaRTMMsgCallState.fromJson,
+		(TrudaRTMMsgGift).toString(): TrudaRTMMsgGift.fromJson,
+		(TrudaRTMMsgBeginCall).toString(): TrudaRTMMsgBeginCall.fromJson,
+		(TrudaRTMMsgAIB).toString(): TrudaRTMMsgAIB.fromJson,
+		(TrudaRTMMsgAIC).toString(): TrudaRTMMsgAIC.fromJson,
+		(TrudaSocketEntity).toString(): TrudaSocketEntity.fromJson,
+		(TrudaSocketHostState).toString(): TrudaSocketHostState.fromJson,
+		(TrudaSocketBalance).toString(): TrudaSocketBalance.fromJson,
+		(TrudaAdsSpotsEntity).toString(): TrudaAdsSpotsEntity.fromJson,
 	};
 
   T? convert<T>(dynamic value, {EnumConvertFunction? enumConvert}) {
@@ -335,47 +335,47 @@ List<T>? convertListNotNull<T>(dynamic value, {EnumConvertFunction? enumConvert}
 		if(<TrudaTranslateDataConfigs>[] is M){
 			return data.map<TrudaTranslateDataConfigs>((Map<String, dynamic> e) => TrudaTranslateDataConfigs.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMText>[] is M){
-			return data.map<NewHitaRTMText>((Map<String, dynamic> e) => NewHitaRTMText.fromJson(e)).toList() as M;
+		if(<TrudaRTMText>[] is M){
+			return data.map<TrudaRTMText>((Map<String, dynamic> e) => TrudaRTMText.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMUser>[] is M){
-			return data.map<NewHitaRTMUser>((Map<String, dynamic> e) => NewHitaRTMUser.fromJson(e)).toList() as M;
+		if(<TrudaRTMUser>[] is M){
+			return data.map<TrudaRTMUser>((Map<String, dynamic> e) => TrudaRTMUser.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgText>[] is M){
-			return data.map<NewHitaRTMMsgText>((Map<String, dynamic> e) => NewHitaRTMMsgText.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgText>[] is M){
+			return data.map<TrudaRTMMsgText>((Map<String, dynamic> e) => TrudaRTMMsgText.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgVoice>[] is M){
-			return data.map<NewHitaRTMMsgVoice>((Map<String, dynamic> e) => NewHitaRTMMsgVoice.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgVoice>[] is M){
+			return data.map<TrudaRTMMsgVoice>((Map<String, dynamic> e) => TrudaRTMMsgVoice.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgPhoto>[] is M){
-			return data.map<NewHitaRTMMsgPhoto>((Map<String, dynamic> e) => NewHitaRTMMsgPhoto.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgPhoto>[] is M){
+			return data.map<TrudaRTMMsgPhoto>((Map<String, dynamic> e) => TrudaRTMMsgPhoto.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgCallState>[] is M){
-			return data.map<NewHitaRTMMsgCallState>((Map<String, dynamic> e) => NewHitaRTMMsgCallState.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgCallState>[] is M){
+			return data.map<TrudaRTMMsgCallState>((Map<String, dynamic> e) => TrudaRTMMsgCallState.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgGift>[] is M){
-			return data.map<NewHitaRTMMsgGift>((Map<String, dynamic> e) => NewHitaRTMMsgGift.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgGift>[] is M){
+			return data.map<TrudaRTMMsgGift>((Map<String, dynamic> e) => TrudaRTMMsgGift.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgBeginCall>[] is M){
-			return data.map<NewHitaRTMMsgBeginCall>((Map<String, dynamic> e) => NewHitaRTMMsgBeginCall.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgBeginCall>[] is M){
+			return data.map<TrudaRTMMsgBeginCall>((Map<String, dynamic> e) => TrudaRTMMsgBeginCall.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgAIB>[] is M){
-			return data.map<NewHitaRTMMsgAIB>((Map<String, dynamic> e) => NewHitaRTMMsgAIB.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgAIB>[] is M){
+			return data.map<TrudaRTMMsgAIB>((Map<String, dynamic> e) => TrudaRTMMsgAIB.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaRTMMsgAIC>[] is M){
-			return data.map<NewHitaRTMMsgAIC>((Map<String, dynamic> e) => NewHitaRTMMsgAIC.fromJson(e)).toList() as M;
+		if(<TrudaRTMMsgAIC>[] is M){
+			return data.map<TrudaRTMMsgAIC>((Map<String, dynamic> e) => TrudaRTMMsgAIC.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaSocketEntity>[] is M){
-			return data.map<NewHitaSocketEntity>((Map<String, dynamic> e) => NewHitaSocketEntity.fromJson(e)).toList() as M;
+		if(<TrudaSocketEntity>[] is M){
+			return data.map<TrudaSocketEntity>((Map<String, dynamic> e) => TrudaSocketEntity.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaSocketHostState>[] is M){
-			return data.map<NewHitaSocketHostState>((Map<String, dynamic> e) => NewHitaSocketHostState.fromJson(e)).toList() as M;
+		if(<TrudaSocketHostState>[] is M){
+			return data.map<TrudaSocketHostState>((Map<String, dynamic> e) => TrudaSocketHostState.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaSocketBalance>[] is M){
-			return data.map<NewHitaSocketBalance>((Map<String, dynamic> e) => NewHitaSocketBalance.fromJson(e)).toList() as M;
+		if(<TrudaSocketBalance>[] is M){
+			return data.map<TrudaSocketBalance>((Map<String, dynamic> e) => TrudaSocketBalance.fromJson(e)).toList() as M;
 		}
-		if(<NewHitaAdsSpotsEntity>[] is M){
-			return data.map<NewHitaAdsSpotsEntity>((Map<String, dynamic> e) => NewHitaAdsSpotsEntity.fromJson(e)).toList() as M;
+		if(<TrudaAdsSpotsEntity>[] is M){
+			return data.map<TrudaAdsSpotsEntity>((Map<String, dynamic> e) => TrudaAdsSpotsEntity.fromJson(e)).toList() as M;
 		}
 
 		debugPrint("${M.toString()} not found");

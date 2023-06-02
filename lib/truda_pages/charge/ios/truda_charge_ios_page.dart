@@ -7,8 +7,8 @@ import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
 import '../../../truda_entities/truda_charge_quick_entity.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
 import '../../../truda_widget/newhita_click_widget.dart';
 import '../../../truda_widget/lottery_winner/newhita_lottery_show_player.dart';
@@ -31,7 +31,7 @@ class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
                   GestureDetector(
                     child: Image.asset('assets/images/newhita_charge_history.png'),
                     onTap: () async {
-                      Get.toNamed(NewHitaAppPages.orderTab);
+                      Get.toNamed(TrudaAppPages.orderTab);
                     },
                   ),
               ],
@@ -389,7 +389,7 @@ class TrudaChargeIosPage extends GetView<TrudaChargeIosController> {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      (NewHitaMyInfoService
+                      (TrudaMyInfoService
                           .to.myDetail?.userBalance?.remainDiamonds ??
                           0)
                           .toString(),

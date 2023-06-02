@@ -8,7 +8,7 @@ import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_voice_player.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -20,11 +20,11 @@ import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_entities/truda_aiv_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_rtm/newhita_rtm_manager.dart';
-import '../../../truda_services/newhita_event_bus_bean.dart';
-import '../../../truda_services/newhita_storage_service.dart';
-import '../../../truda_utils/ai/newhita_ai_logic_utils.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_rtm/truda_rtm_manager.dart';
+import '../../../truda_services/truda_event_bus_bean.dart';
+import '../../../truda_services/truda_storage_service.dart';
+import '../../../truda_utils/ai/truda_ai_logic_utils.dart';
 import '../../../truda_utils/newhita_check_calling_util.dart';
 import '../../../truda_utils/newhita_facebook_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
@@ -37,7 +37,7 @@ import '../aiv/truda_aiv_video_controller.dart';
 class TrudaRemoteController extends GetxController {
   static startMeAic(TrudaAicEntity aic) async {
     var myDiamonds =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
     if (myDiamonds > 60) {
       if (TrudaConstants.isTestMode &&
           TrudaHttpUrls.getConfigBaseUrl().startsWith('https://test')) {
@@ -121,10 +121,10 @@ class TrudaRemoteController extends GetxController {
     }
     // 上一个被叫页面关掉
     // 当前是匹配页面也关掉
-    if (Get.currentRoute == NewHitaAppPages.callEnd) {
-      await Get.offNamed(NewHitaAppPages.callCome, arguments: map);
+    if (Get.currentRoute == TrudaAppPages.callEnd) {
+      await Get.offNamed(TrudaAppPages.callCome, arguments: map);
     } else {
-      await Get.toNamed(NewHitaAppPages.callCome, arguments: map);
+      await Get.toNamed(TrudaAppPages.callCome, arguments: map);
     }
   }
 
@@ -159,7 +159,7 @@ class TrudaRemoteController extends GetxController {
   var stoping = false;
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaEventRtmCall> sub;
+  late final StreamSubscription<TrudaEventRtmCall> sub;
   TrudaAivVideoController? _aivVideoController;
   @override
   void onInit() {
@@ -188,7 +188,7 @@ class TrudaRemoteController extends GetxController {
       portrait = detail?.portrait ?? '';
     }
     // 自己的体验卡
-    iHaveCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+    iHaveCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
     if (callType == 4) {
       iHaveCard = aiv?.callCardCount ?? 0;
     }
@@ -206,7 +206,7 @@ class TrudaRemoteController extends GetxController {
     }
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<NewHitaEventRtmCall>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<TrudaEventRtmCall>().listen((event) {
       if (event.type == 3) {
         if (event.herInvite?.channelId != channelId) return;
         _closeMe();
@@ -273,7 +273,7 @@ class TrudaRemoteController extends GetxController {
     if (callType == 2) {
       // aib拒接延时
       if (!timeOut) {
-        NewHitaAiLogicUtils().setNextTimer(isRejectDelay: true);
+        TrudaAiLogicUtils().setNextTimer(isRejectDelay: true);
       }
     }
     // 不是虚拟视频,refuse call
@@ -291,7 +291,7 @@ class TrudaRemoteController extends GetxController {
       saveCallHis();
     } else {
       // 拒接
-      NewHitaRtmManager.rejectInvitation(
+      TrudaRtmManager.rejectInvitation(
           AgoraRtmRemoteInvitation(herId,
               content: content, channelId: channelId, response: ''),
           (sucdess) {});
@@ -329,7 +329,7 @@ class TrudaRemoteController extends GetxController {
   // }
 
   void saveCallHis() {
-    NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+    TrudaStorageService.to.objectBoxCall.savaCallHistory(
         herId: herId,
         herVirtualId: detail?.username ?? '',
         channelId: channelId,
@@ -340,11 +340,11 @@ class TrudaRemoteController extends GetxController {
   }
 
   void pickUp() {
-    NewHitaAiLogicUtils().reduceRejectCount();
+    TrudaAiLogicUtils().reduceRejectCount();
     int myDiamond =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-    int callDiamond = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
-    int myCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+    int callDiamond = TrudaMyInfoService.to.config?.chargePrice ?? 60;
+    int myCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
 
     if (callType == 3) {
       // aic要消耗体验卡但是没有体验卡
@@ -388,7 +388,7 @@ class TrudaRemoteController extends GetxController {
       if (callType == 2){
         saveCallHis();
       } else {
-        NewHitaRtmManager.rejectInvitation(
+        TrudaRtmManager.rejectInvitation(
             AgoraRtmRemoteInvitation(herId,
                 content: content, channelId: channelId, response: '8'),
                 (sucdess) {});
@@ -402,7 +402,7 @@ class TrudaRemoteController extends GetxController {
       return;
     }
     if (callType == 1) {
-      NewHitaRtmManager.acceptInvitation(
+      TrudaRtmManager.acceptInvitation(
           AgoraRtmRemoteInvitation(herId,
               content: content, channelId: channelId),
           (sucdess) {});
@@ -416,7 +416,7 @@ class TrudaRemoteController extends GetxController {
     map['content'] = content;
     map['callType'] = callType;
     map['channelId'] = channelId;
-    Get.offAndToNamed(NewHitaAppPages.call, arguments: map);
+    Get.offAndToNamed(TrudaAppPages.call, arguments: map);
   }
 
   void _getHostDetail() {
@@ -431,7 +431,7 @@ class TrudaRemoteController extends GetxController {
       herCharge.value = (detail?.charge ?? 60).toString();
       update();
 
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           value.nickname ?? '', value.userId!,
           portrait: value.portrait));
     });
@@ -464,7 +464,7 @@ class TrudaRemoteController extends GetxController {
   bool _aibCheckOnline() {
     if (detail == null) return false;
     if (detail?.isShowOnline == true) return true;
-    NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+    TrudaStorageService.to.objectBoxCall.savaCallHistory(
         herId: herId,
         herVirtualId: detail?.username ?? '',
         channelId: '',
@@ -474,9 +474,9 @@ class TrudaRemoteController extends GetxController {
         duration: '00:00');
 
     int myDiamond =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-    int callDiamond = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
-    int myCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+    int callDiamond = TrudaMyInfoService.to.config?.chargePrice ?? 60;
+    int myCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
     // 没有钱也没有体验卡
     if (myDiamond < callDiamond && myCard < 1) {
       Future.delayed(Duration(milliseconds: 100), () {

@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:truda/truda_utils/newhita_aic_handler.dart';
 
 import '../truda_utils/newhita_log.dart';
-import 'newhita_pages.dart';
+import 'truda_pages.dart';
 
-class NewHitaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
+class TrudaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     var name = route.settings.name ?? '';
-    if (name.isNotEmpty) NewHitaAppPages.history.add(name);
+    if (name.isNotEmpty) TrudaAppPages.history.add(name);
 
-    NewHitaLog.debug('RouteObserver didPush; history:${NewHitaAppPages.history}');
+    NewHitaLog.debug('RouteObserver didPush; history:${TrudaAppPages.history}');
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
-    NewHitaAppPages.history.remove(route.settings.name);
-    NewHitaLog.debug('RouteObserver didPop; history:${NewHitaAppPages.history}');
+    TrudaAppPages.history.remove(route.settings.name);
+    NewHitaLog.debug('RouteObserver didPop; history:${TrudaAppPages.history}');
 
     var nowName = '';
-    if (NewHitaAppPages.history.isNotEmpty) {
-      nowName = NewHitaAppPages.history.first;
+    if (TrudaAppPages.history.isNotEmpty) {
+      nowName = TrudaAppPages.history.first;
     } else {
       return;
     }
@@ -32,27 +32,27 @@ class NewHitaRouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (newRoute != null) {
-      var index = NewHitaAppPages.history.indexWhere((element) {
+      var index = TrudaAppPages.history.indexWhere((element) {
         return element == oldRoute?.settings.name;
       });
       var name = newRoute.settings.name ?? '';
       if (name.isNotEmpty) {
         if (index > 0) {
-          NewHitaAppPages.history[index] = name;
+          TrudaAppPages.history[index] = name;
         } else {
-          NewHitaAppPages.history.add(name);
+          TrudaAppPages.history.add(name);
         }
       }
     }
-    NewHitaLog.debug('RouteObserver didReplace; history:${NewHitaAppPages.history}');
+    NewHitaLog.debug('RouteObserver didReplace; history:${TrudaAppPages.history}');
   }
 
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didRemove(route, previousRoute);
-    NewHitaAppPages.history.remove(route.settings.name);
+    TrudaAppPages.history.remove(route.settings.name);
 
-    NewHitaLog.debug('RouteObserver didRemove; history:${NewHitaAppPages.history}');
+    NewHitaLog.debug('RouteObserver didRemove; history:${TrudaAppPages.history}');
   }
 
   @override

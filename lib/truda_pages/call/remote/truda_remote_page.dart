@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_widget/newhita_avatar_with_bg.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
@@ -233,7 +233,7 @@ class TrudaRemotePage extends GetView<TrudaRemoteController> {
                                         TrudaLanguageKey
                                             .newhita_video_called_free_card_tip
                                             .trArgs([
-                                          ((NewHitaMyInfoService.to.myDetail
+                                          ((TrudaMyInfoService.to.myDetail
                                                           ?.callCardDuration ??
                                                       30000) ~/
                                                   1000)

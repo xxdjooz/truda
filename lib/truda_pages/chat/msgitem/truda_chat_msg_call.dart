@@ -7,7 +7,7 @@ import 'package:truda/truda_pages/call/local/truda_local_controller.dart';
 
 import '../../../truda_common/truda_call_status.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
+import '../../../truda_rtm/truda_rtm_msg_entity.dart';
 import '../truda_chat_msg_widget.dart';
 import '../truda_chat_msg_wrapper.dart';
 
@@ -21,7 +21,7 @@ class TrudaChatMsgCall extends StatelessWidget {
     var her = wrapper.her;
     var msg = wrapper.msgEntity;
     Map<String, dynamic> jsonMap = json.decode(msg.rawData);
-    var call = NewHitaRTMMsgCallState.fromJson(jsonMap);
+    var call = TrudaRTMMsgCallState.fromJson(jsonMap);
     String content = call.statusType == TrudaCallStatus.PICK_UP ||
             call.statusType == TrudaCallStatus.USE_VIDEO_CARD ||
             call.statusType == TrudaCallStatus.USE_CARD_AND_PAY

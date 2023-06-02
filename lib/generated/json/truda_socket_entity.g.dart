@@ -1,32 +1,32 @@
 import 'package:truda/generated/json/base/json_convert_content.dart';
-import 'package:truda/truda_socket/newhita_socket_entity.dart';
+import 'package:truda/truda_socket/truda_socket_entity.dart';
 
-NewHitaSocketEntity $NewHitaSocketEntityFromJson(Map<String, dynamic> json) {
-	final NewHitaSocketEntity newHitaSocketEntity = NewHitaSocketEntity();
+TrudaSocketEntity $TrudaSocketEntityFromJson(Map<String, dynamic> json) {
+	final TrudaSocketEntity trudaSocketEntity = TrudaSocketEntity();
 	final String? data = jsonConvert.convert<String>(json['data']);
 	if (data != null) {
-		newHitaSocketEntity.data = data;
+		trudaSocketEntity.data = data;
 	}
 	final int? timestamp = jsonConvert.convert<int>(json['timestamp']);
 	if (timestamp != null) {
-		newHitaSocketEntity.timestamp = timestamp;
+		trudaSocketEntity.timestamp = timestamp;
 	}
 	final int? userId = jsonConvert.convert<int>(json['userId']);
 	if (userId != null) {
-		newHitaSocketEntity.userId = userId;
+		trudaSocketEntity.userId = userId;
 	}
 	final String? optType = jsonConvert.convert<String>(json['optType']);
 	if (optType != null) {
-		newHitaSocketEntity.optType = optType;
+		trudaSocketEntity.optType = optType;
 	}
 	final String? remark = jsonConvert.convert<String>(json['remark']);
 	if (remark != null) {
-		newHitaSocketEntity.remark = remark;
+		trudaSocketEntity.remark = remark;
 	}
-	return newHitaSocketEntity;
+	return trudaSocketEntity;
 }
 
-Map<String, dynamic> $NewHitaSocketEntityToJson(NewHitaSocketEntity entity) {
+Map<String, dynamic> $TrudaSocketEntityToJson(TrudaSocketEntity entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['data'] = entity.data;
 	data['timestamp'] = entity.timestamp;
@@ -36,24 +36,24 @@ Map<String, dynamic> $NewHitaSocketEntityToJson(NewHitaSocketEntity entity) {
 	return data;
 }
 
-NewHitaSocketHostState $NewHitaSocketHostStateFromJson(Map<String, dynamic> json) {
-	final NewHitaSocketHostState newHitaSocketHostState = NewHitaSocketHostState();
+TrudaSocketHostState $TrudaSocketHostStateFromJson(Map<String, dynamic> json) {
+	final TrudaSocketHostState trudaSocketHostState = TrudaSocketHostState();
 	final String? userId = jsonConvert.convert<String>(json['userId']);
 	if (userId != null) {
-		newHitaSocketHostState.userId = userId;
+		trudaSocketHostState.userId = userId;
 	}
 	final int? isOnline = jsonConvert.convert<int>(json['isOnline']);
 	if (isOnline != null) {
-		newHitaSocketHostState.isOnline = isOnline;
+		trudaSocketHostState.isOnline = isOnline;
 	}
 	final int? isDoNotDisturb = jsonConvert.convert<int>(json['isDoNotDisturb']);
 	if (isDoNotDisturb != null) {
-		newHitaSocketHostState.isDoNotDisturb = isDoNotDisturb;
+		trudaSocketHostState.isDoNotDisturb = isDoNotDisturb;
 	}
-	return newHitaSocketHostState;
+	return trudaSocketHostState;
 }
 
-Map<String, dynamic> $NewHitaSocketHostStateToJson(NewHitaSocketHostState entity) {
+Map<String, dynamic> $TrudaSocketHostStateToJson(TrudaSocketHostState entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['userId'] = entity.userId;
 	data['isOnline'] = entity.isOnline;
@@ -61,36 +61,36 @@ Map<String, dynamic> $NewHitaSocketHostStateToJson(NewHitaSocketHostState entity
 	return data;
 }
 
-NewHitaSocketBalance $NewHitaSocketBalanceFromJson(Map<String, dynamic> json) {
-	final NewHitaSocketBalance newHitaSocketBalance = NewHitaSocketBalance();
+TrudaSocketBalance $TrudaSocketBalanceFromJson(Map<String, dynamic> json) {
+	final TrudaSocketBalance trudaSocketBalance = TrudaSocketBalance();
 	final String? userId = jsonConvert.convert<String>(json['userId']);
 	if (userId != null) {
-		newHitaSocketBalance.userId = userId;
+		trudaSocketBalance.userId = userId;
 	}
 	final int? depletionType = jsonConvert.convert<int>(json['depletionType']);
 	if (depletionType != null) {
-		newHitaSocketBalance.depletionType = depletionType;
+		trudaSocketBalance.depletionType = depletionType;
 	}
 	final int? diamonds = jsonConvert.convert<int>(json['diamonds']);
 	if (diamonds != null) {
-		newHitaSocketBalance.diamonds = diamonds;
+		trudaSocketBalance.diamonds = diamonds;
 	}
 	final int? expLevel = jsonConvert.convert<int>(json['expLevel']);
 	if (expLevel != null) {
-		newHitaSocketBalance.expLevel = expLevel;
+		trudaSocketBalance.expLevel = expLevel;
 	}
 	final int? callDuration = jsonConvert.convert<int>(json['callDuration']);
 	if (callDuration != null) {
-		newHitaSocketBalance.callDuration = callDuration;
+		trudaSocketBalance.callDuration = callDuration;
 	}
 	final String? inviterCode = jsonConvert.convert<String>(json['inviterCode']);
 	if (inviterCode != null) {
-		newHitaSocketBalance.inviterCode = inviterCode;
+		trudaSocketBalance.inviterCode = inviterCode;
 	}
-	return newHitaSocketBalance;
+	return trudaSocketBalance;
 }
 
-Map<String, dynamic> $NewHitaSocketBalanceToJson(NewHitaSocketBalance entity) {
+Map<String, dynamic> $TrudaSocketBalanceToJson(TrudaSocketBalance entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['userId'] = entity.userId;
 	data['depletionType'] = entity.depletionType;

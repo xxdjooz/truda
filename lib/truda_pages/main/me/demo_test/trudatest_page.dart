@@ -20,7 +20,7 @@ import '../../../../truda_dialogs/truda_dialog_match_one.dart';
 import '../../../../truda_entities/truda_aiv_entity.dart';
 import '../../../../truda_http/truda_http_urls.dart';
 import '../../../../truda_http/truda_http_util.dart';
-import '../../../../truda_services/newhita_storage_service.dart';
+import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_utils/newhita_third_util.dart';
 import '../../../../truda_utils/newhita_voice_player.dart';
 import '../../../../truda_widget/gift/newhita_gift_data_helper.dart';
@@ -154,7 +154,7 @@ class _TrudaTestPageState extends State<TrudaTestPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaStorageService.to.prefs
+                    TrudaStorageService.to.prefs
                         .setBool(TrudaConstants.hadShowDragTip, false);
                   },
                   child: Text('hadShowDragTip false'),

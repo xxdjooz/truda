@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import '../../generated/json/base/json_field.dart';
-import '../../generated/json/newhita_ads_spots_entity.g.dart';
+import '../../generated/json/truda_ads_spots_entity.g.dart';
 
 @JsonSerializable()
-class NewHitaAdsSpotsEntity {
+class TrudaAdsSpotsEntity {
 // 广告id
   late String adId;
   // 广告标题
@@ -22,12 +22,12 @@ class NewHitaAdsSpotsEntity {
   // 奖励钻石数
   late int diamonds;
 
-  NewHitaAdsSpotsEntity();
+  TrudaAdsSpotsEntity();
 
-  factory NewHitaAdsSpotsEntity.fromJson(Map<String, dynamic> json) =>
-      $NewHitaAdsSpotsEntityFromJson(json);
+  factory TrudaAdsSpotsEntity.fromJson(Map<String, dynamic> json) =>
+      $TrudaAdsSpotsEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaAdsSpotsEntityToJson(this);
+  Map<String, dynamic> toJson() => $TrudaAdsSpotsEntityToJson(this);
 
   @override
   String toString() {

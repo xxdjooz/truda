@@ -6,7 +6,7 @@ import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_type.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_entities/truda_gift_entity.dart';
-import '../truda_routes/newhita_pages.dart';
+import '../truda_routes/truda_pages.dart';
 import '../truda_widget/newhita_net_image.dart';
 import '../truda_widget/gift/newhita_gift_data_helper.dart';
 
@@ -100,8 +100,8 @@ class _NewHitaGiftFollowTipState extends State<NewHitaGiftFollowTip> {
       _time++;
       // NewHitaLog.debug('NewHitaGiftFollowTip _time = $_time');
       if (_time == 10 && !widget.controller.hadFollow) {
-        if (Get.currentRoute == NewHitaAppPages.call ||
-            Get.currentRoute == NewHitaAppPages.chatPage) {
+        if (Get.currentRoute == TrudaAppPages.call ||
+            Get.currentRoute == TrudaAppPages.chatPage) {
           showFollowGift();
         }
       }
@@ -110,8 +110,8 @@ class _NewHitaGiftFollowTipState extends State<NewHitaGiftFollowTip> {
         overlayEntry = null;
       }
       if (_time == 20 && !widget.controller._hadSendGift) {
-        if (Get.currentRoute == NewHitaAppPages.call ||
-            Get.currentRoute == NewHitaAppPages.chatPage) {
+        if (Get.currentRoute == TrudaAppPages.call ||
+            Get.currentRoute == TrudaAppPages.chatPage) {
           showFollowGift(type: true);
         }
       }

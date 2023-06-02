@@ -5,10 +5,10 @@ import 'package:anythink_sdk/at_native_response.dart';
 import 'package:anythink_sdk/at_platformview/at_native_platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../newhita_log.dart';
 
-class NewHitaAdsNativeUtils {
+class TrudaAdsNativeUtils {
   String adCode;
   Function refresh;
   bool isReady = false;
@@ -16,9 +16,9 @@ class NewHitaAdsNativeUtils {
 
   Widget? _native_ad = null;
 
-  NewHitaAdsNativeUtils(this.adCode, this.refresh) {
+  TrudaAdsNativeUtils(this.adCode, this.refresh) {
     hasNativeAdReady();
-    sub = NewHitaStorageService.to.eventBus.on<ATNativeResponse>().listen((value) {
+    sub = TrudaStorageService.to.eventBus.on<ATNativeResponse>().listen((value) {
       switch (value.nativeStatus) {
         //广告加载失败
         case NativeStatus.nativeAdFailToLoadAD:

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../truda_database/entity/truda_her_entity.dart';
@@ -9,7 +9,7 @@ import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_socket/newhita_socket_entity.dart';
+import '../../../truda_socket/truda_socket_entity.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import 'truad_home_controller.dart';
 
@@ -22,7 +22,7 @@ class TrudaOnlineController extends GetxController {
   final _pageSize = 10;
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaSocketHostState> sub;
+  late final StreamSubscription<TrudaSocketHostState> sub;
 
   bool enablePullUp = true;
   late final RefreshController refreshController;
@@ -32,8 +32,8 @@ class TrudaOnlineController extends GetxController {
     areaCode = Get.find<TrudaHomeController>().areaCode;
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus
-        .on<NewHitaSocketHostState>()
+    sub = TrudaStorageService.to.eventBus
+        .on<TrudaSocketHostState>()
         .listen((event) {
       bool needRefresh = false;
       for (TrudaHostDetail her in dataList) {
@@ -120,7 +120,7 @@ class TrudaOnlineController extends GetxController {
   void saveHostSimpleInfo(List<TrudaHostDetail>? anchorLists) {
     if (anchorLists == null || anchorLists.isEmpty) return;
     for (TrudaHostDetail her in anchorLists) {
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           her.nickname ?? '', her.userId!,
           portrait: her.portrait));
     }

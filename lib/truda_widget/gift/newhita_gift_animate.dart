@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_entities/truda_gift_entity.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 
 import '../../truda_common/truda_colors.dart';
 
@@ -132,7 +132,7 @@ class _NewHitaGiftBannerState extends State<NewHitaGiftBanner>
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                    NewHitaMyInfoService.to.myDetail?.portrait ??
+                                    TrudaMyInfoService.to.myDetail?.portrait ??
                                         ''),
                                 fit: BoxFit.fill,
                               ),

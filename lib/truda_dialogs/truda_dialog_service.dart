@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../truda_services/newhita_app_info_service.dart';
+import '../truda_services/truda_app_info_service.dart';
 
 // 服务
 class TrudaShowService extends StatefulWidget {
@@ -32,7 +32,7 @@ class _TrudaShowServiceState extends State<TrudaShowService> {
 
   @override
   Widget build(BuildContext context) {
-    var whatsappNum = NewHitaMyInfoService.to.config?.whatsapp;
+    var whatsappNum = TrudaMyInfoService.to.config?.whatsapp;
     return Container(
         // decoration: BoxDecoration(
         // gradient: LinearGradient(
@@ -55,11 +55,11 @@ class _TrudaShowServiceState extends State<TrudaShowService> {
                 ? GestureDetector(
                     onTap: () async {
                       final info = await PackageInfo.fromPlatform();
-                      var appVersion = NewHitaAppInfoService.to.version;
+                      var appVersion = TrudaAppInfoService.to.version;
                       var AppSystemVersionKey =
-                          NewHitaAppInfoService.to.AppSystemVersionKey;
+                          TrudaAppInfoService.to.AppSystemVersionKey;
                       var myId =
-                          NewHitaMyInfoService.to.userLogin?.username ?? "unkown";
+                          TrudaMyInfoService.to.userLogin?.username ?? "unkown";
                       String url =
                           "https://wa.me/${whatsappNum}/?text=AppName:${info.appName},appVersion:${appVersion},"
                           "System:${GetPlatform.isIOS ? 'iOS' : 'Android'}${AppSystemVersionKey},uid:$myId}";
@@ -92,7 +92,7 @@ class _TrudaShowServiceState extends State<TrudaShowService> {
               onTap: () {
                 //  aihelp
                 NewHitaAihelpManager.enterMinAIHelp(
-                    NewHitaMyInfoService.to.getMyLeval()?.grade ?? 1, 0);
+                    TrudaMyInfoService.to.getMyLeval()?.grade ?? 1, 0);
                 Get.back();
               },
               child: Container(

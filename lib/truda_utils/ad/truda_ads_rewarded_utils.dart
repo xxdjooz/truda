@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:anythink_sdk/at_rewarded.dart';
 import 'package:anythink_sdk/at_rewarded_response.dart';
 
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 
-class NewHitaAdsRewardedUtils {
+class TrudaAdsRewardedUtils {
   String adCode;
   Function refresh;
   bool isReady = false;
   late final StreamSubscription<ATRewardResponse> sub;
-  NewHitaAdsRewardedUtils(this.adCode, this.refresh) {
+  TrudaAdsRewardedUtils(this.adCode, this.refresh) {
     hasAdReady();
-    sub = NewHitaStorageService.to.eventBus.on<ATRewardResponse>().listen((value) {
+    sub = TrudaStorageService.to.eventBus.on<ATRewardResponse>().listen((value) {
       switch (value.rewardStatus) {
         //广告加载失败
         case RewardedStatus.rewardedVideoDidFailToLoad:

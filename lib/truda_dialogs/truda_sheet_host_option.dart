@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import 'truda_dialog_confirm.dart';
 
@@ -37,7 +37,7 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
       NewHitaLoading.dismiss();
     }).then((value) {
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(widget.herId, value == 1);
+      TrudaStorageService.to.updateBlackList(widget.herId, value == 1);
       Get.back(result: value);
     });
   }
@@ -55,7 +55,7 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
           children: [
             GestureDetector(
               onTap: () async {
-                bool black = NewHitaStorageService.to.checkBlackList(widget.herId);
+                bool black = TrudaStorageService.to.checkBlackList(widget.herId);
                 String str = black
                     ? TrudaLanguageKey.newhita_confirm_black_remove.tr
                     : TrudaLanguageKey.newhita_confirm_black_add.tr;
@@ -75,7 +75,7 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
                         topStart: Radius.circular(20),
                         topEnd: Radius.circular(20))),
                 child: Text(
-                  NewHitaStorageService.to.checkBlackList(widget.herId)
+                  TrudaStorageService.to.checkBlackList(widget.herId)
                       ? TrudaLanguageKey.newhita_dialog_remove_black.tr
                       : TrudaLanguageKey.newhita_dialog_add_black.tr,
                   style: const TextStyle(
@@ -87,7 +87,7 @@ class _TrudaSheetHostOptionState extends State<TrudaSheetHostOption> {
               onTap: () async {
                 // Get.back();
                 var result = await Get.toNamed(
-                  NewHitaAppPages.reportPageNew,
+                  TrudaAppPages.reportPageNew,
                   arguments: {
                     'reportType': 0,
                     'herId': widget.herId,

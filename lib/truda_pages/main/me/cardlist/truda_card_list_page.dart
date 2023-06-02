@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/main/truda_main_controller.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -71,12 +71,12 @@ class TrudaCardListPage extends GetView<TrudaCardListController> {
                       return GestureDetector(
                         onTap: () {
                           if (isDiamondCard) {
-                            Get.offNamed(NewHitaAppPages.googleCharge);
+                            Get.offNamed(TrudaAppPages.googleCharge);
                           } else {
                             navigator?.popUntil((route) {
                               return (!Get.isDialogOpen! &&
                                   !Get.isBottomSheetOpen! &&
-                                  Get.currentRoute == NewHitaAppPages.main);
+                                  Get.currentRoute == TrudaAppPages.main);
                             });
                             Get.find<TrudaMainController>()
                                 .handleNavBarTap(0);

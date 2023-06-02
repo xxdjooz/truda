@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_dialogs/truda_dialog_match_one.dart';
 import 'package:truda/truda_pages/vip/truda_vip_dialog.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 
 import '../truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import '../truda_routes/newhita_pages.dart';
+import '../truda_routes/truda_pages.dart';
 
 class NewHitaCheckCallingUtil {
   // 刚给这个主播打完电话，就不弹出她的aib了
@@ -33,10 +33,10 @@ class NewHitaCheckCallingUtil {
   static bool checkCanBeCalled() {
     // 拨打接听，电话，虚拟视频
     if (checkCalling()) return false;
-    if (NewHitaAppPages.isAppBackground) return false;
+    if (TrudaAppPages.isAppBackground) return false;
     // 登录页
-    if (Get.currentRoute == NewHitaAppPages.login) return false;
-    if (NewHitaMyInfoService.to.myDetail?.isDoNotDisturb == 1) {
+    if (Get.currentRoute == TrudaAppPages.login) return false;
+    if (TrudaMyInfoService.to.myDetail?.isDoNotDisturb == 1) {
       return false;
     }
     if (TrudaDialogMatchOne.matching) {
@@ -54,8 +54,8 @@ class NewHitaCheckCallingUtil {
     // if (_checkCallRecently()) return false;
     if (!checkCanBeCalled()) return false;
     // 登录页
-    if (Get.currentRoute == NewHitaAppPages.login) return false;
-    final pages = NewHitaAppPages.history;
+    if (Get.currentRoute == TrudaAppPages.login) return false;
+    final pages = TrudaAppPages.history;
     if (TrudaDialogMatchOne.matching) {
       return false;
     }
@@ -63,10 +63,10 @@ class NewHitaCheckCallingUtil {
     //   return false;
     // }
     // 充值中
-    if (pages.contains(NewHitaAppPages.googleCharge)) {
+    if (pages.contains(TrudaAppPages.googleCharge)) {
       return false;
     }
-    if (pages.contains(NewHitaAppPages.webPage)) {
+    if (pages.contains(TrudaAppPages.webPage)) {
       return false;
     }
     // 主播封面视频中
@@ -74,7 +74,7 @@ class NewHitaCheckCallingUtil {
     //   return false;
     // }
     // 聊天中
-    if (Get.currentRoute == NewHitaAppPages.chatPage) {
+    if (Get.currentRoute == TrudaAppPages.chatPage) {
       return false;
     }
     //用户打开了充值弹窗
@@ -85,7 +85,7 @@ class NewHitaCheckCallingUtil {
     if (TrudaVipDialog.showing) {
       return false;
     }
-    if (pages.contains(NewHitaAppPages.vip)) {
+    if (pages.contains(TrudaAppPages.vip)) {
       return false;
     }
     return true;
@@ -95,18 +95,18 @@ class NewHitaCheckCallingUtil {
   static bool checkCanAib() {
     if (!checkCanBeCalled()) return false;
     // 登录页
-    if (Get.currentRoute == NewHitaAppPages.login) return false;
-    final pages = NewHitaAppPages.history;
+    if (Get.currentRoute == TrudaAppPages.login) return false;
+    final pages = TrudaAppPages.history;
     // 聊天中
-    if (Get.currentRoute == NewHitaAppPages.chatPage) {
+    if (Get.currentRoute == TrudaAppPages.chatPage) {
       return false;
     }
     // 匹配中
     // 充值中
-    if (pages.contains(NewHitaAppPages.googleCharge)) {
+    if (pages.contains(TrudaAppPages.googleCharge)) {
       return false;
     }
-    if (pages.contains(NewHitaAppPages.webPage)) {
+    if (pages.contains(TrudaAppPages.webPage)) {
       return false;
     }
     if (TrudaDialogMatchOne.matching) {
@@ -119,7 +119,7 @@ class NewHitaCheckCallingUtil {
     if (TrudaChargeDialogManager.isShowingChargeDialog) {
       return false;
     }
-    if (pages.contains(NewHitaAppPages.vip)) {
+    if (pages.contains(TrudaAppPages.vip)) {
       return false;
     }
     return true;
@@ -127,11 +127,11 @@ class NewHitaCheckCallingUtil {
 
   /// 检查当前是否正在通话，来屏蔽某些操作
   static bool checkCalling() {
-    if (NewHitaAppPages.history.contains(NewHitaAppPages.call) ||
-        NewHitaAppPages.history.contains(NewHitaAppPages.callOut) ||
-        NewHitaAppPages.history.contains(NewHitaAppPages.aicPage) ||
-        NewHitaAppPages.history.contains(NewHitaAppPages.aivPage) ||
-        NewHitaAppPages.history.contains(NewHitaAppPages.callCome)) {
+    if (TrudaAppPages.history.contains(TrudaAppPages.call) ||
+        TrudaAppPages.history.contains(TrudaAppPages.callOut) ||
+        TrudaAppPages.history.contains(TrudaAppPages.aicPage) ||
+        TrudaAppPages.history.contains(TrudaAppPages.aivPage) ||
+        TrudaAppPages.history.contains(TrudaAppPages.callCome)) {
       return true;
     }
     return false;

@@ -10,8 +10,8 @@ import 'package:truda/truda_common/truda_end_type_2.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_socket/newhita_socket_manager.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_socket/truda_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -31,13 +31,13 @@ import '../../truda_entities/truda_info_entity.dart';
 import '../../truda_entities/truda_join_call_entity.dart';
 import '../../truda_entities/truda_send_gift_result.dart';
 import '../../truda_http/truda_common_api.dart';
-import '../../truda_routes/newhita_pages.dart';
-import '../../truda_rtm/newhita_rtm_manager.dart';
-import '../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../../truda_rtm/newhita_rtm_msg_sender.dart';
-import '../../truda_services/newhita_event_bus_bean.dart';
-import '../../truda_services/newhita_storage_service.dart';
-import '../../truda_socket/newhita_socket_entity.dart';
+import '../../truda_routes/truda_pages.dart';
+import '../../truda_rtm/truda_rtm_manager.dart';
+import '../../truda_rtm/truda_rtm_msg_entity.dart';
+import '../../truda_rtm/truda_rtm_msg_sender.dart';
+import '../../truda_services/truda_event_bus_bean.dart';
+import '../../truda_services/truda_storage_service.dart';
+import '../../truda_socket/truda_socket_entity.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_log.dart';
@@ -135,13 +135,13 @@ class TrudaCallController extends GetxController {
   var welcomeText = '';
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaEventRtmCall> sub;
-  late final StreamSubscription<NewHitaEventCommon> subCommon;
-  late final StreamSubscription<NewHitaRTMMsgBeginCall> subBeginCall;
-  late final StreamSubscription<NewHitaRTMMsgGift> giftSub;
+  late final StreamSubscription<TrudaEventRtmCall> sub;
+  late final StreamSubscription<TrudaEventCommon> subCommon;
+  late final StreamSubscription<TrudaRTMMsgBeginCall> subBeginCall;
+  late final StreamSubscription<TrudaRTMMsgGift> giftSub;
 
   var myVapController = NewHitaVapController();
-  late final TrudaCallback<NewHitaSocketBalance> _balanceListener;
+  late final TrudaCallback<TrudaSocketBalance> _balanceListener;
 
   Rx<TrudaGiftEntity> giftToQuickSend = TrudaGiftEntity().obs;
   Rx<TrudaGiftEntity?> askGift = Rx(null);
@@ -162,7 +162,7 @@ class TrudaCallController extends GetxController {
     channelId = arguments['channelId'] ?? '';
     content = arguments['content']!;
     callType = arguments['callType'] ?? 0;
-    myInfo = NewHitaMyInfoService.to.myDetail!;
+    myInfo = TrudaMyInfoService.to.myDetail!;
     myId = myInfo.userId ?? "";
     myMoney.value = myInfo.userBalance?.remainDiamonds;
     if (content.isNotEmpty) {
@@ -172,13 +172,13 @@ class TrudaCallController extends GetxController {
 
     if (callType == 2) {
       // _getHostDetail();
-      NewHitaRtmManager.sendInvitation(herId, channelId!, (success) {},
+      TrudaRtmManager.sendInvitation(herId, channelId!, (success) {},
           aiType: 25);
     }
     _getTokenV2();
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<NewHitaEventRtmCall>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<TrudaEventRtmCall>().listen((event) {
       if (event.invite?.channelId != channelId) return;
       // 1 我的呼叫被接受 2 我的呼叫被拒绝 3对方呼叫取消
       if (event.type == 2) {
@@ -186,7 +186,7 @@ class TrudaCallController extends GetxController {
       }
     });
     subCommon =
-        NewHitaStorageService.to.eventBus.on<NewHitaEventCommon>().listen((event) {
+        TrudaStorageService.to.eventBus.on<TrudaEventCommon>().listen((event) {
       // 0电话涉黄
       if (event.eventType == 0) {
         if (hadShowSexy) return;
@@ -197,8 +197,8 @@ class TrudaCallController extends GetxController {
       }
     });
     // 收到begincall，开始计时
-    subBeginCall = NewHitaStorageService.to.eventBus
-        .on<NewHitaRTMMsgBeginCall>()
+    subBeginCall = TrudaStorageService.to.eventBus
+        .on<TrudaRTMMsgBeginCall>()
         .listen((event) {
       NewHitaLog.debug('subBeginCall hadBeginCall=$hadBeginCall');
       if (event.channelId != channelId) return;
@@ -224,11 +224,11 @@ class TrudaCallController extends GetxController {
         showCount2Min.value = 0;
       }
     };
-    NewHitaSocketManager.to.addBalanceListener(_balanceListener);
+    TrudaSocketManager.to.addBalanceListener(_balanceListener);
 
     /// 主播索要礼物
     giftSub =
-        NewHitaStorageService.to.eventBus.on<NewHitaRTMMsgGift>().listen((event) {
+        TrudaStorageService.to.eventBus.on<TrudaRTMMsgGift>().listen((event) {
       _askGift(event);
     });
     Wakelock.enable();
@@ -255,7 +255,7 @@ class TrudaCallController extends GetxController {
     if (GetPlatform.isIOS) {
       _screenshotsSubscription = _plugin.onScreenShots.listen((event) {
         NewHitaLog.debug("用户进行了截屏");
-        NewHitaSocketManager.to.sendScreenshots(channelId ?? "");
+        TrudaSocketManager.to.sendScreenshots(channelId ?? "");
       });
     } else {
       _plugin.disableScreenshots(true);
@@ -320,7 +320,7 @@ class TrudaCallController extends GetxController {
   // 创建 RTC 客户端实例
   void _createEngine() async {
     RtcEngineContext context =
-        RtcEngineContext(NewHitaMyInfoService.to.config?.agoraAppId ?? '');
+        RtcEngineContext(TrudaMyInfoService.to.config?.agoraAppId ?? '');
     _engine = await RtcEngine.createWithContext(context);
     _engine?.setEventHandler(RtcEngineEventHandler(
         userJoined: _userJoined,
@@ -348,7 +348,7 @@ class TrudaCallController extends GetxController {
     await _engine?.startPreview();
 
     _engine?.joinChannel(token, channelId!, null,
-        int.parse(NewHitaMyInfoService.to.userLogin?.userId ?? '-999'));
+        int.parse(TrudaMyInfoService.to.userLogin?.userId ?? '-999'));
   }
 
   void switchCamera() {
@@ -434,7 +434,7 @@ class TrudaCallController extends GetxController {
     // 这个判断是为了监控端可能进入
     if (uid.toString() != herId) return;
     _readyCall();
-    NewHitaAppPages.closeDialog();
+    TrudaAppPages.closeDialog();
   }
 
   /// 对方挂断
@@ -473,7 +473,7 @@ class TrudaCallController extends GetxController {
   void clickHangUp() {
     _endCall(connecting ? TrudaEndType2.linkCancel : TrudaEndType2.userHang);
     if (callType == 2 && !hadBeginCall) {
-      NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+      TrudaStorageService.to.objectBoxCall.savaCallHistory(
           herId: herId,
           herVirtualId: detail?.username ?? '',
           channelId: '',
@@ -544,11 +544,11 @@ class TrudaCallController extends GetxController {
     }).then((value) {
       myVapController.playGift(gift);
       var json =
-          NewHitaRtmMsgSender.makeRTMMsgGift(herId, gift, value.gid.toString());
+          TrudaRtmMsgSender.makeRTMMsgGift(herId, gift, value.gid.toString());
       var msg = TrudaMsgEntity(myId, herId, 0, 'gift',
-          DateTime.now().millisecondsSinceEpoch, json, NewHitaRTMMsgGift.typeCode,
+          DateTime.now().millisecondsSinceEpoch, json, TrudaRTMMsgGift.typeCode,
           msgEventType: NewHitaMsgEventType.sending, sendState: 1);
-      NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+      TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
         ..msgEventType = NewHitaMsgEventType.sendDone
         ..sendState = 0);
       tipController.hadSendGift();
@@ -670,7 +670,7 @@ class TrudaCallController extends GetxController {
     if (callType == 2) {
       _cancelCall(endType);
     }
-    NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+    TrudaStorageService.to.objectBoxCall.savaCallHistory(
         herId: herId,
         herVirtualId: detail?.username ?? '',
         channelId: channelId ?? '',
@@ -725,7 +725,7 @@ class TrudaCallController extends GetxController {
     Get.back();
   }
 
-  void _askGift(NewHitaRTMMsgGift msgGift) {
+  void _askGift(TrudaRTMMsgGift msgGift) {
     TrudaHttpUtil()
         .post<TrudaGiftEntity>(TrudaHttpUrls.giftGetOne + (msgGift.giftId ?? ''),
             errCallback: (err) {})
@@ -750,7 +750,7 @@ class TrudaCallController extends GetxController {
     giftSub.cancel();
     _timer?.cancel();
     _timerLink?.cancel();
-    NewHitaSocketManager.to.removeBalanceListener(_balanceListener);
+    TrudaSocketManager.to.removeBalanceListener(_balanceListener);
     _plugin.disableScreenshots(false);
     Wakelock.disable();
     _screenshotsSubscription?.cancel();
@@ -763,7 +763,7 @@ class TrudaCallController extends GetxController {
       NewHitaLoading.toast(err.message);
     }).then((value) {
       for (var index = 0; index < value.length; index++) {
-        if (value[index].userId == NewHitaMyInfoService.to.myDetail?.userId &&
+        if (value[index].userId == TrudaMyInfoService.to.myDetail?.userId &&
             index < 3) {
           welcomeText =
               TrudaLanguageKey.newhita_contribute_welcome.trArgs(['${index + 1}']);

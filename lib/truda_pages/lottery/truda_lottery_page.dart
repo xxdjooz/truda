@@ -5,7 +5,7 @@ import 'package:truda/truda_widget/newhita_app_bar.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_language_key.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
 import 'truda_lottery_controller.dart';
 
@@ -213,7 +213,7 @@ class TrudaLotteryPage extends GetView<TrudaLotteryController> {
                   GestureDetector(
                     onTap: () {
                       // Get.dialog(TrudaDialogLotteryTip());
-                      Get.offNamed(NewHitaAppPages.googleCharge);
+                      Get.offNamed(TrudaAppPages.googleCharge);
                     },
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(

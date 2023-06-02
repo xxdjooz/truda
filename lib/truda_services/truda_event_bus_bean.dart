@@ -5,39 +5,39 @@ const eventBusRefreshMe = 'eventBusRefreshMe';
 // 更新个人中心页面，不用加载数据
 const eventBusUpdateMe = 'eventBusUpdateMe';
 
-class NewHitaEventRtmCall {
+class TrudaEventRtmCall {
   AgoraRtmLocalInvitation? invite;
   AgoraRtmRemoteInvitation? herInvite;
   // 1 我的呼叫被接受 2 我的呼叫被拒绝 3对方呼叫取消
   int type;
-  NewHitaEventRtmCall(this.type, {this.invite, this.herInvite});
+  TrudaEventRtmCall(this.type, {this.invite, this.herInvite});
 }
 
-class NewHitaEventMsgClear {
+class TrudaEventMsgClear {
   // 0 都设为已读，1清空所有,3清空某主播
   int type;
-  NewHitaEventMsgClear(this.type);
+  TrudaEventMsgClear(this.type);
 }
 
-class NewHitaEventCommon {
+class TrudaEventCommon {
   // 0电话涉黄
   // 1拉黑
   // 2举报
   int eventType;
   String herId;
-  NewHitaEventCommon(this.eventType, this.herId);
+  TrudaEventCommon(this.eventType, this.herId);
 }
 
-class NewHitaEventOrderResult {
+class TrudaEventOrderResult {
   int eventType;
-  NewHitaEventOrderResult(this.eventType);
+  TrudaEventOrderResult(this.eventType);
 }
 
-class NewHitaEventCanCallStateChange {
+class TruaEventCanCallStateChange {
   // 0余额变成可以打电话
   // 1余额变成不能打电话
   // 2视频体验卡 有了
   // 3视频体验卡 没有了
   int eventType;
-  NewHitaEventCanCallStateChange(this.eventType);
+  TruaEventCanCallStateChange(this.eventType);
 }

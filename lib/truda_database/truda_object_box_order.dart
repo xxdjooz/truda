@@ -1,5 +1,5 @@
 import 'package:truda/truda_database/entity/truda_order_entity.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 
 import '../objectbox.g.dart';
 
@@ -16,7 +16,7 @@ class TrudaObjectBoxOrder {
   /// A Box of notes.
   late final Box<NewHitaOrderEntity> orderBox;
 
-  String get _getMyId => (NewHitaMyInfoService.to.userLogin?.userId) ?? "emptyId";
+  String get _getMyId => (TrudaMyInfoService.to.userLogin?.userId) ?? "emptyId";
 
   TrudaObjectBoxOrder._create(this.store) {
     orderBox = Box<NewHitaOrderEntity>(store);

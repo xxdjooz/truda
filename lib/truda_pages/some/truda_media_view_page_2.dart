@@ -5,7 +5,7 @@ import 'package:wakelock/wakelock.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
@@ -244,7 +244,7 @@ class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
   void didChangeDependencies() {
     super.didChangeDependencies();
     // 注册页面路由监听
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -397,7 +397,7 @@ class _TrudaMediaViewPage2State extends State<TrudaMediaViewPage2>
     WidgetsBinding.instance?.removeObserver(this);
 
     // 移除页面路由监听
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     Wakelock.disable();
   }
 }

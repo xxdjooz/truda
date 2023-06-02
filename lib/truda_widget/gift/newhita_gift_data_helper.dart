@@ -5,7 +5,7 @@ import '../../truda_common/truda_constants.dart';
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../newhita_cache_manager.dart';
 
@@ -14,7 +14,7 @@ class NewHitaGiftDataHelper {
     List<TrudaGiftEntity>? listStore;
     List<TrudaGiftEntity> vipList = [];
     String? giftsJson =
-        NewHitaStorageService.to.prefs.getString(TrudaConstants.giftsJson);
+        TrudaStorageService.to.prefs.getString(TrudaConstants.giftsJson);
     if (giftsJson != null && giftsJson.isNotEmpty) {
       listStore = jsonConvert
           .convertListNotNull<TrudaGiftEntity>(json.decode(giftsJson));
@@ -28,7 +28,7 @@ class NewHitaGiftDataHelper {
       });
       if (list.isNotEmpty) {
         String jsonGifts = json.encode(list);
-        NewHitaStorageService.to.prefs
+        TrudaStorageService.to.prefs
             .setString(TrudaConstants.giftsJson, jsonGifts);
       }
       listStore = list;

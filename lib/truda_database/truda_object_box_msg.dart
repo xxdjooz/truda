@@ -1,10 +1,10 @@
 import 'package:truda/truda_database/entity/truda_msg_entity.dart';
-import 'package:truda/truda_services/newhita_event_bus_bean.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_event_bus_bean.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../truda_common/truda_constants.dart';
-import '../truda_rtm/newhita_rtm_msg_entity.dart';
+import '../truda_rtm/truda_rtm_msg_entity.dart';
 import '../objectbox.g.dart';
 import 'entity/truda_conversation_entity.dart';
 import 'entity/truda_her_entity.dart';
@@ -27,7 +27,7 @@ class TrudaObjectBoxMsg {
   /// A stream of all notes ordered by date.
   late final Stream<Query<TrudaHerEntity>> queryStream;
 
-  String get _getMyId => (NewHitaMyInfoService.to.userLogin?.userId) ?? "emptyId";
+  String get _getMyId => (TrudaMyInfoService.to.userLogin?.userId) ?? "emptyId";
 
   TrudaObjectBoxMsg._create(this.store) {
     herBox = Box<TrudaHerEntity>(store);
@@ -122,11 +122,11 @@ class TrudaObjectBoxMsg {
     TrudaConversationEntity? con = query2.findUnique();
     query2.close();
     if (con != null) {
-      NewHitaMyInfoService.to.msgUnreadNum.value -= con.unReadQuality;
+      TrudaMyInfoService.to.msgUnreadNum.value -= con.unReadQuality;
       con.unReadQuality = 0;
       conversationBox.put(con);
     }
-    NewHitaStorageService.to.eventBus.fire(NewHitaEventMsgClear(0));
+    TrudaStorageService.to.eventBus.fire(TrudaEventMsgClear(0));
   }
 
   /// 把所有主播聊天设为已读
@@ -155,8 +155,8 @@ class TrudaObjectBoxMsg {
       }
       conversationBox.putMany(cons);
     }
-    NewHitaStorageService.to.eventBus.fire(NewHitaEventMsgClear(0));
-    NewHitaMyInfoService.to.msgUnreadNum.value = 0;
+    TrudaStorageService.to.eventBus.fire(TrudaEventMsgClear(0));
+    TrudaMyInfoService.to.msgUnreadNum.value = 0;
   }
 
   ///
@@ -173,26 +173,26 @@ class TrudaObjectBoxMsg {
         num += con.unReadQuality;
       }
     }
-    NewHitaMyInfoService.to.msgUnreadNum.value = num;
+    TrudaMyInfoService.to.msgUnreadNum.value = num;
   }
 
   /// 清空所有聊天记录
   void clearAllMsg() {
     msgBox.removeAll();
     conversationBox.removeAll();
-    NewHitaStorageService.to.eventBus.fire(NewHitaEventMsgClear(1));
-    NewHitaMyInfoService.to.msgUnreadNum.value = 0;
+    TrudaStorageService.to.eventBus.fire(TrudaEventMsgClear(1));
+    TrudaMyInfoService.to.msgUnreadNum.value = 0;
   }
 
   /// 插入或更新聊天消息
   int insertOrUpdateMsg(TrudaMsgEntity msg, {bool setRead = false}) {
     // 当前是否在和她聊天，和她聊天当前消息已读，
     final bool chattingWithHer =
-        NewHitaMyInfoService.to.chattingWithHer == msg.herId;
+        TrudaMyInfoService.to.chattingWithHer == msg.herId;
     // 收到的消息并且不在和她聊天，未读
     if (!setRead && msg.sendType == 1 && !chattingWithHer) {
       msg.readState = 1;
-      NewHitaMyInfoService.to.msgUnreadNum.value += 1;
+      TrudaMyInfoService.to.msgUnreadNum.value += 1;
     } else {
       msg.readState = 0;
     }
@@ -209,7 +209,7 @@ class TrudaObjectBoxMsg {
     // 根据id有则更新，无则插入
     conversationBox.putAsync(con, mode: PutMode.put).then((value) {
       // 事件总线发送有消息插入的事件
-      NewHitaStorageService.to.eventBus.fire(msg);
+      TrudaStorageService.to.eventBus.fire(msg);
     });
     return id;
   }
@@ -252,20 +252,20 @@ class TrudaObjectBoxMsg {
     List<int> ids = query2.findIds();
     query2.close();
     conversationBox.removeMany(ids);
-    NewHitaStorageService.to.eventBus.fire(NewHitaEventMsgClear(3));
+    TrudaStorageService.to.eventBus.fire(TrudaEventMsgClear(3));
     refreshUnreadNum();
   }
 
 
   /// 插入一个10000号的会话，给审核模式看
   Future<int> make10000() async {
-    String myId = NewHitaMyInfoService.to.myDetail!.userId!;
+    String myId = TrudaMyInfoService.to.myDetail!.userId!;
     var queryBuilder = conversationBox
         .query(TrudaConversationEntity_.groupId.equals("${myId}_${TrudaConstants.serviceId}"));
     var query = queryBuilder.build();
     List<int> ids = query.findIds();
     query.close();
-    bool black = NewHitaStorageService.to.checkBlackList(TrudaConstants.serviceId);
+    bool black = TrudaStorageService.to.checkBlackList(TrudaConstants.serviceId);
     // 被拉黑了就删除
     if (black) {
       if (ids.isNotEmpty) {
@@ -279,7 +279,7 @@ class TrudaObjectBoxMsg {
         1, '', DateTime.now().millisecondsSinceEpoch, '',
         id: 0,
         top: 2,
-        lastMsgType: NewHitaRTMMsgText.typeCode);
+        lastMsgType: TrudaRTMMsgText.typeCode);
     return await conversationBox.putAsync(con, mode: PutMode.put);
   }
 

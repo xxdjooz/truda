@@ -7,8 +7,8 @@ import 'package:truda/truda_entities/truda_charge_entity.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/some/truda_web_page.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../truda_common/truda_constants.dart';
@@ -156,9 +156,9 @@ class TrudaChargeNewController extends GetxController {
     )
         .then((value) {
       // 放进数据库
-      NewHitaStorageService.to.objectBoxOrder
+      TrudaStorageService.to.objectBoxOrder
           .putOrUpdateOrder(NewHitaOrderEntity(
-        userId: NewHitaMyInfoService.to.myDetail?.userId ?? '',
+        userId: TrudaMyInfoService.to.myDetail?.userId ?? '',
         orderNo: value.orderNo,
         productId: channel.productCode ?? "",
         price: channel.uploadUsd == 1

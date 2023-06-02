@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_host_video_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_host_video_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -13,7 +13,7 @@ import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_socket/newhita_socket_entity.dart';
+import '../../../truda_socket/truda_socket_entity.dart';
 import 'truad_home_controller.dart';
 
 class TrudaHotController extends GetxController {
@@ -27,7 +27,7 @@ class TrudaHotController extends GetxController {
   int areaCode = -1;
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaSocketHostState> sub;
+  late final StreamSubscription<TrudaSocketHostState> sub;
   bool firstIn = true;
 
   bool enablePullUp = true;
@@ -37,8 +37,8 @@ class TrudaHotController extends GetxController {
     super.onInit();
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus
-        .on<NewHitaSocketHostState>()
+    sub = TrudaStorageService.to.eventBus
+        .on<TrudaSocketHostState>()
         .listen((event) {
       bool needRefresh = false;
       for (TrudaHostDetail her in dataList) {
@@ -127,7 +127,7 @@ class TrudaHotController extends GetxController {
         update([idList]);
       }
       saveHostSimpleInfo(value.anchorLists);
-      NewHitaHostVideoService.to.handleData(dataList, _page, areaCode);
+      TrudaHostVideoService.to.handleData(dataList, _page, areaCode);
     });
   }
 
@@ -144,7 +144,7 @@ class TrudaHotController extends GetxController {
   void saveHostSimpleInfo(List<TrudaHostDetail>? anchorLists) {
     if (anchorLists == null || anchorLists.isEmpty) return;
     for (TrudaHostDetail her in anchorLists) {
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           her.nickname ?? '', her.userId!,
           portrait: her.portrait));
     }

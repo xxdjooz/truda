@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_some_extension.dart';
@@ -20,7 +20,7 @@ import '../../../truda_dialogs/truda_dialog_invite_for_diamond.dart';
 import '../../../truda_dialogs/truda_dialog_service.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_utils/ai/newhita_ai_logic_utils.dart';
+import '../../../truda_utils/ai/truda_ai_logic_utils.dart';
 import '../../../truda_widget/newhita_avatar_with_bg.dart';
 import '../../chat/truda_chat_controller.dart';
 import '../../vip/truda_vip_controller.dart';
@@ -134,7 +134,7 @@ class TrudaMePage extends StatelessWidget {
                                   child: Image.asset(
                                       'assets/images/newhita_me_edit.png'),
                                   onTap: () {
-                                    Get.toNamed(NewHitaAppPages.myInfo);
+                                    Get.toNamed(TrudaAppPages.myInfo);
                                   },
                                 ),
                               ],
@@ -150,7 +150,7 @@ class TrudaMePage extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         // NewHitaVipController.openMe();
-                                        Get.toNamed(NewHitaAppPages.vip);
+                                        Get.toNamed(TrudaAppPages.vip);
                                       },
                                       child: Builder(builder: (context) {
                                         bool isVipNow =
@@ -263,8 +263,8 @@ class TrudaMePage extends StatelessWidget {
                                   onTap: () {
                                     Get.toNamed((GetPlatform.isAndroid &&
                                                 TrudaConstants.appMode != 2)
-                                            ? NewHitaAppPages.googleCharge
-                                            : NewHitaAppPages.iosCharge)
+                                            ? TrudaAppPages.googleCharge
+                                            : TrudaAppPages.iosCharge)
                                         ?.then((value) {});
                                     // Get.toNamed(NewHitaAppPages.iosCharge);
                                   },
@@ -429,7 +429,7 @@ class TrudaMePage extends StatelessWidget {
                             //   ),
                             if (!TrudaConstants.isFakeMode)
                               Obx(() {
-                                var times = NewHitaMyInfoService
+                                var times = TrudaMyInfoService
                                     .to.haveLotteryTimes.value;
                                 if (times <= -1) {
                                   return const SizedBox();
@@ -438,7 +438,7 @@ class TrudaMePage extends StatelessWidget {
                                     color: Colors.white,
                                     child: GestureDetector(
                                       onTap: () => Get.toNamed(
-                                          NewHitaAppPages.lotteryPage,
+                                          TrudaAppPages.lotteryPage,
                                           arguments: times),
                                       child: AspectRatio(
                                         aspectRatio: 345 / 56,
@@ -527,7 +527,7 @@ class TrudaMePage extends StatelessWidget {
                                       ? "×${controller.myDetail?.propCount}"
                                       : null,
                                   onTap: () {
-                                    Get.toNamed(NewHitaAppPages.cardList);
+                                    Get.toNamed(TrudaAppPages.cardList);
                                   },
                                 ),
                               if (!TrudaConstants.isFakeMode &&
@@ -559,7 +559,7 @@ class TrudaMePage extends StatelessWidget {
                                 title: TrudaLanguageKey
                                     .newhita_conver_history.tr,
                                 onTap: () {
-                                  Get.toNamed(NewHitaAppPages.callList);
+                                  Get.toNamed(TrudaAppPages.callList);
                                 },
                               ),
                               _wItem(
@@ -567,7 +567,7 @@ class TrudaMePage extends StatelessWidget {
                                 title: TrudaLanguageKey.newhita_story_mine.tr,
                                 text: null,
                                 onTap: () {
-                                  Get.toNamed(NewHitaAppPages.myMoment);
+                                  Get.toNamed(TrudaAppPages.myMoment);
                                 },
                               ),
                               // if (!NewHitaConstants.isFakeMode)
@@ -612,7 +612,7 @@ class TrudaMePage extends StatelessWidget {
                                     onTap: () {
                                       if (code.isEmpty) {
                                         Get.toNamed(
-                                                NewHitaAppPages.inviteBindPage)
+                                                TrudaAppPages.inviteBindPage)
                                             ?.then((value) {
                                           if (value == 1) {
                                             controller.refreshMe();
@@ -633,7 +633,7 @@ class TrudaMePage extends StatelessWidget {
                                       TrudaLanguageKey.newhita_invite_code.tr,
                                   text: null,
                                   onTap: () =>
-                                      Get.toNamed(NewHitaAppPages.invitePage),
+                                      Get.toNamed(TrudaAppPages.invitePage),
                                 ),
                               if (TrudaConstants.appMode != 2)
                                 _wItem(
@@ -642,7 +642,7 @@ class TrudaMePage extends StatelessWidget {
                                       .newhita_mine_setting.tr,
                                   text: null,
                                   onTap: () =>
-                                      Get.toNamed(NewHitaAppPages.setting),
+                                      Get.toNamed(TrudaAppPages.setting),
                                 )
                               else
                                 ...getIosFakeList(),
@@ -721,13 +721,13 @@ class TrudaMePage extends StatelessWidget {
         icon: 'assets/images/newhita_me_about.png',
         title: TrudaLanguageKey.newhita_setting_about_us.tr,
         text: null,
-        onTap: () => Get.toNamed(NewHitaAppPages.aboutUs),
+        onTap: () => Get.toNamed(TrudaAppPages.aboutUs),
       ),
       _wItem(
         icon: 'assets/images/newhita_me_black.png',
         title: TrudaLanguageKey.newhita_setting_black_list.tr,
         text: null,
-        onTap: () => Get.toNamed(NewHitaAppPages.blackList),
+        onTap: () => Get.toNamed(TrudaAppPages.blackList),
       ),
       _wItem(
         icon: 'assets/images/newhita_me_cancel.png',
@@ -740,7 +740,7 @@ class TrudaMePage extends StatelessWidget {
             showLoading: true,
           )
               .then((value) {
-            NewHitaAppPages.logout();
+            TrudaAppPages.logout();
           });
         },
       ),
@@ -752,7 +752,7 @@ class TrudaMePage extends StatelessWidget {
           TrudaCommonDialog.dialog(TrudaDialogConfirm(
             title: TrudaLanguageKey.newhita_login_logout.tr,
             callback: (i) {
-              NewHitaAppPages.logout();
+              TrudaAppPages.logout();
             },
           ));
         },
@@ -856,7 +856,7 @@ class TrudaMePage extends StatelessWidget {
                             ),
                             constraints: BoxConstraints(maxWidth: 200),
                             child: Text(
-                              NewHitaAiLogicUtils().information.value,
+                              TrudaAiLogicUtils().information.value,
                               style: TextStyle(color: Colors.white),
                             ),
                           ),

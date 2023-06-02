@@ -8,7 +8,7 @@ import 'package:adjust_sdk/adjust_event_success.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_third_util.dart';
 
@@ -185,7 +185,7 @@ class NewHitaAdjustManager {
   // 在登录和有归因数据后，上传归因数据到后端
   // 尽量做到每次打开都上传一次
   static void checkAdjustToUpload() {
-    if (NewHitaMyInfoService.to.myDetail == null) return;
+    if (TrudaMyInfoService.to.myDetail == null) return;
     if (attributionChangedData == null) return;
     if (hadUploadAdjust) return;
     NewHitaLog.debug("upload adjust attribution");

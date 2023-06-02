@@ -5,7 +5,7 @@ import 'package:truda/truda_pages/chargedialog/vip_widget/truda_vip_widget_contr
 
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 
 class TrudaVipWidget extends GetView<TrudaVipWidgetController> {
   TrudaVipWidget({Key? key, this.createPath = ''}) : super(key: key);
@@ -37,7 +37,7 @@ class TrudaVipWidget extends GetView<TrudaVipWidgetController> {
                   child: Builder(builder: (context) {
                     final text =
                         TrudaLanguageKey.newhita_charge_quick_diamond_per.trArgs([
-                      (NewHitaMyInfoService.to.config?.vipDailyDiamonds ?? 10)
+                      (TrudaMyInfoService.to.config?.vipDailyDiamonds ?? 10)
                           .toString(),
                     ]);
                     final texts = text.split('钻');

@@ -17,10 +17,10 @@ import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_login_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_rtm/newhita_rtm_manager.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_rtm/truda_rtm_manager.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../../truda_widget/newhita_app_bar.dart';
@@ -50,7 +50,7 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
   void initState() {
     super.initState();
     // 存储的有账号密码直接去登录
-    var visitorAccount = NewHitaStorageService.to.prefs
+    var visitorAccount = TrudaStorageService.to.prefs
         .getString(TrudaConstants.keyVisitorAccount);
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
@@ -68,7 +68,7 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -82,7 +82,7 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   void accountLogin() {
@@ -119,24 +119,24 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
           value.stateGender == 0) {
         TrudaConstants.isFakeMode = false;
         // 审核模式不要开启rtm
-        NewHitaRtmManager.init().then((value) {
-          NewHitaRtmManager.connectRTM();
+        TrudaRtmManager.init().then((value) {
+          TrudaRtmManager.connectRTM();
         });
       } else {
         TrudaConstants.isFakeMode = true;
       }
-      NewHitaMyInfoService.to.setMyDetail = value;
+      TrudaMyInfoService.to.setMyDetail = value;
 
       // NewHitaRtmManager.connectRTM();
       // 先检查保存用户登录的账号密码
       TrudaVisitorTip.checkToShow().then((value) {
-        Get.offAllNamed(NewHitaAppPages.main);
+        Get.offAllNamed(TrudaAppPages.main);
       });
     });
   }
   void visitorSignIn() {
     // 存储的有账号密码直接去登录
-    var visitorAccount = NewHitaStorageService.to.prefs
+    var visitorAccount = TrudaStorageService.to.prefs
         .getString(TrudaConstants.keyVisitorAccount);
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
@@ -152,7 +152,7 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
             _newVisitor();
           },
         ).then((value) {
-          NewHitaMyInfoService.to.setLoginData(value);
+          TrudaMyInfoService.to.setLoginData(value);
           _getDetail();
         });
         return;
@@ -176,10 +176,10 @@ class _TrudaAccountLoginPageState extends State<TrudaAccountLoginPage>
         },
         showLoading: true)
         .then((value) {
-      NewHitaMyInfoService.to.setLoginData(value);
+      TrudaMyInfoService.to.setLoginData(value);
       _getDetail();
 
-      NewHitaStorageService.to.prefs.setString(
+      TrudaStorageService.to.prefs.setString(
           TrudaConstants.keyVisitorAccount,
           '${value.user!.username}${TrudaConstants.visitorAccountSplit}$pw');
     });

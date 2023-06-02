@@ -3,8 +3,8 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_choose_image_util.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +23,7 @@ class TrudaInfoController extends GetxController {
     super.onInit();
     // var arguments = Get.arguments as Map<String, dynamic>;
     // herId = arguments['herId']!;
-    myDetail = NewHitaMyInfoService.to.myDetail;
+    myDetail = TrudaMyInfoService.to.myDetail;
   }
 
   void changeAvatar() {
@@ -82,7 +82,7 @@ class TrudaInfoController extends GetxController {
   }
 
   void changeGender(int gender) {
-    if (NewHitaStorageService.to.getHadSetGender()) {
+    if (TrudaStorageService.to.getHadSetGender()) {
       NewHitaLoading.toast(TrudaLanguageKey.newhita_mine_edit_sex.tr);
       return;
     }
@@ -93,7 +93,7 @@ class TrudaInfoController extends GetxController {
       myDetail?.gender = gender;
       update();
       NewHitaLoading.dismiss();
-      NewHitaStorageService.to.saveHadSetGender();
+      TrudaStorageService.to.saveHadSetGender();
     });
   }
 
@@ -103,7 +103,7 @@ class TrudaInfoController extends GetxController {
 
       bool hasSenstiveWord = false;
       List<String> containSensitiveWord = [];
-      NewHitaMyInfoService.to.sensitiveList?.forEach((element) {
+      TrudaMyInfoService.to.sensitiveList?.forEach((element) {
         String eleString = element is String ? element : "";
         if (nameTextController?.text
                 .toLowerCase()
@@ -163,7 +163,7 @@ class TrudaInfoController extends GetxController {
 
       bool hasSenstiveWord = false;
       List<String> containSensitiveWord = [];
-      NewHitaMyInfoService.to.sensitiveList?.forEach((element) {
+      TrudaMyInfoService.to.sensitiveList?.forEach((element) {
         String eleString = element is String ? element : "";
         if (introTextController.text
                 .toLowerCase()

@@ -8,15 +8,15 @@ import 'package:dio/src/response.dart' as dio_response;
 import 'package:encrypt/encrypt.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_services/newhita_app_info_service.dart';
+import 'package:truda/truda_services/truda_app_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 
 import '../generated/json/base/json_convert_content.dart';
-import '../truda_routes/newhita_pages.dart';
-import '../truda_rtm/newhita_rtm_manager.dart';
-import '../truda_services/newhita_my_info_service.dart';
-import '../truda_socket/newhita_socket_manager.dart';
+import '../truda_routes/truda_pages.dart';
+import '../truda_rtm/truda_rtm_manager.dart';
+import '../truda_services/truda_my_info_service.dart';
+import '../truda_socket/truda_socket_manager.dart';
 import '../truda_utils/newhita_loading.dart';
 import 'truda_http_urls.dart';
 
@@ -85,14 +85,14 @@ class TrudaHttpUtil {
     // 添加拦截器
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        NewHitaAppInfoService appInfo = NewHitaAppInfoService.to;
+        TrudaAppInfoService appInfo = TrudaAppInfoService.to;
         String userAgent =
             "${TrudaConstants.appNameLower},${appInfo.version},${appInfo.deviceModel},${appInfo.AppSystemVersionKey},${appInfo.channelName},${appInfo.buildNumber}";
 
         options.headers["User-Agent"] = _zipStr(userAgent);
 
         options.headers["Authorization"] =
-            NewHitaMyInfoService.to.authorization ?? "";
+            TrudaMyInfoService.to.authorization ?? "";
         options.headers["user-language"] =
             Get.deviceLocale?.languageCode ?? "en";
         options.headers["device-id"] = appInfo.deviceIdentifier;
@@ -224,7 +224,7 @@ class TrudaHttpUtil {
 
   /// 加密
   static dynamic _encryptAes(String content, {AESMode aesMode = AESMode.ecb}) {
-    var key = NewHitaMyInfoService.to.config?.publicKey ?? "";
+    var key = TrudaMyInfoService.to.config?.publicKey ?? "";
     if (key.isEmpty) {
       return content;
     }
@@ -425,10 +425,10 @@ class TrudaHttpUtil {
         if (code == 8) {
           NewHitaLoading.toast("${baseEntity["message"]}");
         } else if (code == 2) {
-          NewHitaMyInfoService.to.clear();
-          Get.offAllNamed(NewHitaAppPages.login);
-          NewHitaRtmManager.closeRtm();
-          NewHitaSocketManager.to.breakenSocket();
+          TrudaMyInfoService.to.clear();
+          Get.offAllNamed(TrudaAppPages.login);
+          TrudaRtmManager.closeRtm();
+          TrudaSocketManager.to.breakenSocket();
         } else {
           NewHitaLoading.toast("[${code}] ${baseEntity["message"]}");
         }

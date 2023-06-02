@@ -10,7 +10,7 @@ import 'package:wakelock/wakelock.dart';
 
 import '../../truda_common/truda_colors.dart';
 import '../../truda_entities/truda_host_entity.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import '../../truda_widget/newhita_player_android.dart';
@@ -76,7 +76,7 @@ class _TrudaMediaPageState
   void didChangeDependencies() {
     super.didChangeDependencies();
     // 注册页面路由监听
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -86,7 +86,7 @@ class _TrudaMediaPageState
     WidgetsBinding.instance?.removeObserver(this);
 
     // 移除页面路由监听
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     Wakelock.disable();
     _streamController.close();
   }
@@ -256,7 +256,7 @@ class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
                     child: Image.asset('assets/images/newhita_host_report.png'),
                     onTap: () async {
                       var result = await Get.toNamed(
-                        NewHitaAppPages.reportPageNew,
+                        TrudaAppPages.reportPageNew,
                         arguments: {
                           'reportType': 2,
                           'rId': widget.bean.mId,
@@ -276,7 +276,7 @@ class _TrudaMediaViewPageState extends State<TrudaMediaViewPage> {
                     child: Image.asset('assets/images/newhita_host_report.png'),
                     onTap: () async {
                       var result = await Get.toNamed(
-                        NewHitaAppPages.reportPageNew,
+                        TrudaAppPages.reportPageNew,
                         arguments: {
                           'reportType': 2,
                           'rId': widget.bean.mId,

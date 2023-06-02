@@ -3,7 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../truda_entities/truda_info_entity.dart';
 import '../truda_pages/main/home/truda_follow_controller.dart';
-import '../truda_services/newhita_my_info_service.dart';
+import '../truda_services/truda_my_info_service.dart';
 import '../truda_utils/newhita_loading.dart';
 import '../truda_utils/newhita_log.dart';
 import 'truda_http_urls.dart';
@@ -17,7 +17,7 @@ class TrudaCommonApi {
       TrudaHttpUrls.userInfoApi,
     )
         .then((value) {
-      NewHitaMyInfoService.to.setMyDetail = value;
+      TrudaMyInfoService.to.setMyDetail = value;
       return value;
     }).catchError((e) {});
   }

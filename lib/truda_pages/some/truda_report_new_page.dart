@@ -5,8 +5,8 @@ import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_constants.dart';
@@ -98,7 +98,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
       return;
     }
     if (reportType == 1) {
-      NewHitaStorageService.to.updateMomentReportList(rId);
+      TrudaStorageService.to.updateMomentReportList(rId);
       Get.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_new_report_thanks.tr,
         onlyConfirm: true,
@@ -110,7 +110,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
       return;
     }
     if (reportType == 2) {
-      NewHitaStorageService.to.updateMediaReportList(rId);
+      TrudaStorageService.to.updateMediaReportList(rId);
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_new_report_thanks.tr,
         onlyConfirm: true,
@@ -144,7 +144,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
       });
     });
     // 举报后要拉黑
-    if (NewHitaStorageService.to.checkBlackList(herId)) {
+    if (TrudaStorageService.to.checkBlackList(herId)) {
       return;
     }
     TrudaHttpUtil()
@@ -153,7 +153,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
     )
         .then((value) {
       if (value == 1) {
-        NewHitaStorageService.to.updateBlackList(herId, true);
+        TrudaStorageService.to.updateBlackList(herId, true);
       }
       NewHitaLog.debug("拉黑");
     });
@@ -162,7 +162,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -177,7 +177,7 @@ class _TrudaReportNewWidgetState extends State<TrudaReportNewWidget>
 
   @override
   void dispose() {
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     super.dispose();
   }
 

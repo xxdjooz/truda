@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_constants.dart';
 import '../truda_common/truda_language_key.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import '../truda_utils/newhita_loading.dart';
 
 class TrudaSheetHostChatOption extends StatefulWidget {
@@ -30,7 +30,7 @@ class _TrudaSheetHostChatOptionState extends State<TrudaSheetHostChatOption> {
     NewHitaLoading.show();
     if (widget.herId == TrudaConstants.serviceId){
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(TrudaConstants.serviceId, true);
+      TrudaStorageService.to.updateBlackList(TrudaConstants.serviceId, true);
       NewHitaLoading.dismiss();
       Get.back(result: 1);
       return;
@@ -43,7 +43,7 @@ class _TrudaSheetHostChatOptionState extends State<TrudaSheetHostChatOption> {
       Get.back();
     }).then((value) {
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(widget.herId, value == 1);
+      TrudaStorageService.to.updateBlackList(widget.herId, value == 1);
     });
   }
 
@@ -71,7 +71,7 @@ class _TrudaSheetHostChatOptionState extends State<TrudaSheetHostChatOption> {
                         topStart: Radius.circular(20),
                         topEnd: Radius.circular(20))),
                 child: Text(
-                  NewHitaStorageService.to.checkBlackList(widget.herId)
+                  TrudaStorageService.to.checkBlackList(widget.herId)
                       ? TrudaLanguageKey.newhita_dialog_remove_black.tr
                       : TrudaLanguageKey.newhita_dialog_add_black.tr,
                   style: const TextStyle(
@@ -83,7 +83,7 @@ class _TrudaSheetHostChatOptionState extends State<TrudaSheetHostChatOption> {
               onTap: () async {
                 Get.back();
                 var result = await Get.toNamed(
-                  NewHitaAppPages.reportPageNew,
+                  TrudaAppPages.reportPageNew,
                   arguments: {
                     'reportType': 0,
                     'herId': widget.herId,
@@ -107,7 +107,7 @@ class _TrudaSheetHostChatOptionState extends State<TrudaSheetHostChatOption> {
             ),
             GestureDetector(
               onTap: () async {
-                NewHitaStorageService.to.objectBoxMsg.removeHer(widget.herId);
+                TrudaStorageService.to.objectBoxMsg.removeHer(widget.herId);
                 Get.back();
               },
               child: Container(

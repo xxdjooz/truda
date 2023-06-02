@@ -7,8 +7,8 @@ import '../../../truda_common/truda_charge_path.dart';
 import '../../../truda_common/truda_colors.dart';
 import '../../../truda_common/truda_constants.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../vip/truda_vip_controller.dart';
 import 'truda_jellyfish_game.dart';
@@ -37,9 +37,9 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
     WidgetsBinding.instance?.addObserver(this);
     Wakelock.enable();
 
-    if (NewHitaMyInfoService.to.config?.matchTimes is int) {
+    if (TrudaMyInfoService.to.config?.matchTimes is int) {
       TrudaMatchPage.totalMatchTimes =
-          NewHitaMyInfoService.to.config?.matchTimes ?? 10;
+          TrudaMyInfoService.to.config?.matchTimes ?? 10;
     }
   }
 
@@ -57,7 +57,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
       // 从后台切前台，界面可见
       case AppLifecycleState.resumed:
         NewHitaLog.debug("TrudaMatchPage route=${Get.currentRoute}");
-        if (Get.currentRoute != NewHitaAppPages.main) return;
+        if (Get.currentRoute != TrudaAppPages.main) return;
         handleMusic(true);
         break;
       // 界面不可见，后台
@@ -73,13 +73,13 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     WidgetsBinding.instance?.removeObserver(this);
     Wakelock.disable();
   }
@@ -142,7 +142,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
                     bottom: 95,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: NewHitaMyInfoService.to.isVipNow
+                        color: TrudaMyInfoService.to.isVipNow
                             ? Colors.transparent
                             : Colors.white12,
                         borderRadius: BorderRadius.circular(10),
@@ -152,7 +152,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          if (!NewHitaMyInfoService.to.isVipNow)
+                          if (!TrudaMyInfoService.to.isVipNow)
                             Obx(() {
                               final total =
                                   TrudaMatchPage.totalMatchTimes.toString();
@@ -171,7 +171,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
                                 textAlign: TextAlign.center,
                               );
                             }),
-                          if (!NewHitaMyInfoService.to.isVipNow &&
+                          if (!TrudaMyInfoService.to.isVipNow &&
                               TrudaConstants.appMode != 2)
                             Text(
                               TrudaLanguageKey.newhita_vip_match_rule_2.tr,
@@ -184,7 +184,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
                           SizedBox(
                             height: 4,
                           ),
-                          if (!NewHitaMyInfoService.to.isVipNow &&
+                          if (!TrudaMyInfoService.to.isVipNow &&
                               TrudaConstants.appMode != 2)
                             Center(
                               child: GestureDetector(
@@ -256,7 +256,7 @@ class _TrudaMatchPageState extends State<TrudaMatchPage>
             // toolbarHeight: 0,
             actions: [
               GestureDetector(
-                onTap: () => Get.toNamed(NewHitaAppPages.createMoment),
+                onTap: () => Get.toNamed(TrudaAppPages.createMoment),
                 child: Center(
                     child: Image.asset(
                   'assets/images/newhita_moment_create.png',

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
-import 'package:truda/truda_services/newhita_host_video_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_host_video_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../truda_entities/truda_host_entity.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import 'truda_her_video_page_item.dart';
 
 /// https://static.ybhospital.net/test-video-4.mp4
@@ -56,7 +56,7 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
   void didChangeDependencies() {
     super.didChangeDependencies();
     // 注册页面路由监听
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -67,12 +67,12 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
     super.dispose();
     _streamController.close();
     // 移除页面路由监听
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   @override
   void initState() {
-    videoDataList = NewHitaHostVideoService.to.dataList;
+    videoDataList = TrudaHostVideoService.to.dataList;
     var initIndex = 0;
     var host = Get.arguments;
     if (host != null) {
@@ -103,7 +103,7 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
         final lastPage = currentPage;
         currentPage = p ~/ 1;
         if (_checkNeeLoadMore(currentPage, lastPage)) {
-          NewHitaHostVideoService.to.getMore().then((value) {
+          TrudaHostVideoService.to.getMore().then((value) {
             setState(() {});
           });
         }
@@ -111,19 +111,19 @@ class _TrudaHerVideoPageViewState extends State<TrudaHerVideoPageView>
       if (hadShowDrag != true && (p % 1 > 0.5)) {
         setState(() {
           hadShowDrag = true;
-          NewHitaStorageService.to.prefs
+          TrudaStorageService.to.prefs
               .setBool(TrudaConstants.hadShowDragTip, true);
         });
       }
     });
 
     hadShowDrag =
-        NewHitaStorageService.to.prefs.getBool(TrudaConstants.hadShowDragTip);
+        TrudaStorageService.to.prefs.getBool(TrudaConstants.hadShowDragTip);
 
     Future.delayed(Duration(milliseconds: 300), () {
       if (!mounted) return;
       if (videoDataList.length < 3) {
-        NewHitaHostVideoService.to.getMore().then((value) {
+        TrudaHostVideoService.to.getMore().then((value) {
           setState(() {});
         });
       }

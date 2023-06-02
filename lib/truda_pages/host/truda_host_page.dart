@@ -21,9 +21,9 @@ import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../truda_entities/truda_host_entity.dart';
-import '../../truda_routes/newhita_pages.dart';
-import '../../truda_services/newhita_my_info_service.dart';
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_routes/truda_pages.dart';
+import '../../truda_services/truda_my_info_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_utils/newhita_ui_image_util.dart';
 import '../../truda_widget/newhita_avatar_with_bg.dart';
@@ -110,7 +110,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                           GestureDetector(
                             onTap: () async {
                               var result = await Get.toNamed(
-                                NewHitaAppPages.reportPageNew,
+                                TrudaAppPages.reportPageNew,
                                 arguments: {
                                   'reportType': 0,
                                   'herId': _controller.herId,
@@ -634,7 +634,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
       var itemList = <TrudaHostMedia>[];
       for (var media in allList) {
         // 黑名单
-        if (NewHitaStorageService.to
+        if (TrudaStorageService.to
             .checkMediaReportList((media.mid ?? 0).toString())) {
           continue;
         }
@@ -680,7 +680,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                 bool needVip = bean.vipVisible == 1;
                 return GestureDetector(
                   onTap: () {
-                    var canNot = needVip && !NewHitaMyInfoService.to.isVipNow;
+                    var canNot = needVip && !TrudaMyInfoService.to.isVipNow;
                     // LindaMediaViewPage.startMe(context,
                     //     path: bean.path ?? '',
                     //     cover: bean.cover,
@@ -701,7 +701,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                     var viewList = <TrudaHostMedia>[];
                     for (var media in itemList) {
                       if (media.vipVisible == 1 &&
-                          !NewHitaMyInfoService.to.isVipNow) {
+                          !TrudaMyInfoService.to.isVipNow) {
                         continue;
                       }
                       viewList.add(media);
@@ -724,7 +724,7 @@ class _TrudaHostPageState extends State<TrudaHostPage>
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        if (needVip && !NewHitaMyInfoService.to.isVipNow)
+                        if (needVip && !TrudaMyInfoService.to.isVipNow)
                           ClipRRect(
                             borderRadius: BorderRadiusDirectional.circular(14),
                             child: ImageFiltered(

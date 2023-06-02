@@ -11,7 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_dialogs/truda_dialog_confirm.dart';
-import '../../../../truda_routes/newhita_pages.dart';
+import '../../../../truda_routes/truda_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../some/truda_media_view_page.dart';
 
@@ -30,7 +30,7 @@ class TrudaMyMomentPage extends GetView<TrudaMyMomentController> {
             GestureDetector(
               child: Image.asset('assets/images/newhita_moment_create.png'),
               onTap: () {
-                Get.toNamed(NewHitaAppPages.createMoment);
+                Get.toNamed(TrudaAppPages.createMoment);
               },
             ),
             // const SizedBox(

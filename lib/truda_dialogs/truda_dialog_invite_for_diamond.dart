@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import '../truda_utils/newhita_check_calling_util.dart';
 
 class TrudaDialogInvite extends StatefulWidget {
@@ -18,14 +18,14 @@ class TrudaDialogInvite extends StatefulWidget {
     // if (NewHitaConstants.isFakeMode) {
     //   return;
     // }
-    var hadShow = NewHitaStorageService.to.prefs.getInt(strInviteOthers) ?? 0;
+    var hadShow = TrudaStorageService.to.prefs.getInt(strInviteOthers) ?? 0;
     NewHitaLog.debug('TrudaDialogInvite $hadShow');
     if (hadShow < 1) {
       hadShow++;
-      NewHitaStorageService.to.prefs.setInt(strInviteOthers, hadShow);
+      TrudaStorageService.to.prefs.setInt(strInviteOthers, hadShow);
       return;
     }
-    NewHitaStorageService.to.prefs.setInt(strInviteOthers, 0);
+    TrudaStorageService.to.prefs.setInt(strInviteOthers, 0);
     // 这一步检查很重要，会出现打开被叫页面同时打开这个弹窗，
     // 导致在TrudaRemoteController取参数时为null
     // 这个得研究下
@@ -64,7 +64,7 @@ class _TrudaDialogInviteState extends State<TrudaDialogInvite>
           ),
           GestureDetector(
             onTap: () {
-              Get.offNamed(NewHitaAppPages.invitePage);
+              Get.offNamed(TrudaAppPages.invitePage);
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),

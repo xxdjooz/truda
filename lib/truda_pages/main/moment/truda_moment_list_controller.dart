@@ -7,8 +7,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_utils/newhita_loading.dart';
 import '../../../truda_common/truda_language_key.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_storage_service.dart';
 
 class TrudaMomentListController extends GetxController {
   List<TrudaMomentDetail> dataList = [];
@@ -115,7 +115,7 @@ class TrudaMomentListController extends GetxController {
 // }
   void reportMoment(String momentId, int index) async {
     var result = await Get.toNamed(
-      NewHitaAppPages.reportPageNew,
+      TrudaAppPages.reportPageNew,
       arguments: {
         'reportType': 1,
         'rId': momentId,
@@ -128,7 +128,7 @@ class TrudaMomentListController extends GetxController {
   }
 
   void blackMoment(String momentId, int index) {
-    NewHitaStorageService.to.updateMomentReportList(momentId);
+    TrudaStorageService.to.updateMomentReportList(momentId);
     dataList.removeAt(index);
     update();
   }
@@ -140,7 +140,7 @@ class TrudaMomentListController extends GetxController {
     }).then((value) {
       onRefresh();
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(herId, value == 1);
+      TrudaStorageService.to.updateBlackList(herId, value == 1);
     });
   }
 }

@@ -8,8 +8,8 @@ import 'package:truda/truda_dialogs/truda_dialog_first_tip.dart';
 import 'package:truda/truda_entities/truda_leval_entity.dart';
 import 'package:truda/truda_entities/truda_sensitive_word_entity.dart';
 import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
-import 'package:truda/truda_socket/newhita_socket_manager.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
+import 'package:truda/truda_socket/truda_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_adjust_manager.dart';
 import 'package:truda/truda_utils/newhita_ai_help_manager.dart';
 import 'package:truda/truda_utils/newhita_check_app_update.dart';
@@ -20,10 +20,10 @@ import '../../truda_dialogs/truda_dialog_new_user.dart';
 import '../../truda_entities/truda_gift_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_routes/newhita_pages.dart';
-import '../../truda_rtm/newhita_rtm_manager.dart';
-import '../../truda_services/newhita_my_info_service.dart';
-import '../../truda_utils/ai/newhita_ai_logic_utils.dart';
+import '../../truda_routes/truda_pages.dart';
+import '../../truda_rtm/truda_rtm_manager.dart';
+import '../../truda_services/truda_my_info_service.dart';
+import '../../truda_utils/ai/truda_ai_logic_utils.dart';
 import '../../truda_utils/newhita_loading.dart';
 import '../../truda_utils/newhita_pay_cache_manager.dart';
 import '../../truda_utils/newhita_permission_handler.dart';
@@ -41,14 +41,14 @@ class TrudaMainController extends GetxController {
   // tab栏动画
   void handleNavBarTap(int index) {
     // 有这个事件说明app不是后台
-    NewHitaAppPages.isAppBackground = false;
+    TrudaAppPages.isAppBackground = false;
     if (currentIndex.value == index) return;
     currentIndex.value = index;
     // pageController.animateToPage(index,
     //     duration: const Duration(milliseconds: 200), curve: Curves.ease);
     pageController.jumpToPage(index);
     if (index == 2) {
-      NewHitaStorageService.to.objectBoxMsg.refreshUnreadNum();
+      TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
     }
     TrudaPageIndexManager.setMainIndex(index);
   }
@@ -58,11 +58,11 @@ class TrudaMainController extends GetxController {
     super.onInit();
     pageController = PageController(initialPage: 0);
 
-    Get.putAsync<NewHitaSocketManager>(() => NewHitaSocketManager().init());
+    Get.putAsync<TrudaSocketManager>(() => TrudaSocketManager().init());
 
     NewHitaAdjustManager.checkAdjustUploadAttr();
     NewHitaAdjustManager.getGoolgeReferrer();
-    NewHitaAiLogicUtils().init();
+    TrudaAiLogicUtils().init();
   }
 
   @override
@@ -74,7 +74,7 @@ class TrudaMainController extends GetxController {
     NewTrudaUserCardsTip.checkToShow();
     TrudaFirstTip.checkToShow();
     NewHitaAihelpManager.initAIHelp();
-    NewHitaStorageService.to.objectBoxMsg.refreshUnreadNum();
+    TrudaStorageService.to.objectBoxMsg.refreshUnreadNum();
 
     // firebase 初始化
     if (!TrudaConstants.isFakeMode && !TrudaConstants.isTestMode) {
@@ -101,7 +101,7 @@ class TrudaMainController extends GetxController {
       // 每15s 检查 rtm
       final remainder15 = tick % 15;
       if (remainder15 == 0) {
-        NewHitaRtmManager.connectRTM();
+        TrudaRtmManager.connectRTM();
       }
       // 每30s 检查 支付
       final remainder30 = tick % 30;
@@ -138,20 +138,20 @@ class TrudaMainController extends GetxController {
     }).then((value) {
       if (value.isNotEmpty) {
         String jsonGifts = json.encode(value);
-        NewHitaStorageService.to.prefs
+        TrudaStorageService.to.prefs
             .setString(TrudaConstants.giftsJson, jsonGifts);
       }
     });
   }
 
   void getLevalList() {
-    var areaCode = NewHitaMyInfoService.to.myDetail?.areaCode ?? 1;
+    var areaCode = TrudaMyInfoService.to.myDetail?.areaCode ?? 1;
     TrudaHttpUtil()
         .post<List<TrudaLevalBean>>(TrudaHttpUrls.LevelRuleApi + '/$areaCode',
             errCallback: (err) {})
         .then((value) {
       if (value.isNotEmpty) {
-        NewHitaMyInfoService.to.levalList = value;
+        TrudaMyInfoService.to.levalList = value;
         // for (var le in value) {
         //   NewHitaLog.debug('${le.grade} ${le.howExp} ${le.awardName}');
         // }
@@ -166,7 +166,7 @@ class TrudaMainController extends GetxController {
         .then((value) {
       if (value.isNotEmpty) {
         List<String> list = value.map((e) => e.words ?? '').toList();
-        NewHitaMyInfoService.to.sensitiveList = list;
+        TrudaMyInfoService.to.sensitiveList = list;
       }
     });
   }
@@ -176,6 +176,6 @@ class TrudaMainController extends GetxController {
     super.onClose();
     NewHitaLog.debug('MainController onClose');
     _timer?.cancel();
-    NewHitaAiLogicUtils().cancel();
+    TrudaAiLogicUtils().cancel();
   }
 }

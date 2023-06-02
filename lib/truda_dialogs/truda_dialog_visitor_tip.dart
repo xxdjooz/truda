@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:ui' as ui;
@@ -32,15 +32,15 @@ class TrudaVisitorTip extends StatefulWidget {
     if (TrudaConstants.isFakeMode) {
       return;
     }
-    if (NewHitaMyInfoService.to.myDetail?.boundGoogle != 0) {
+    if (TrudaMyInfoService.to.myDetail?.boundGoogle != 0) {
       return;
     }
-    var hadSave = NewHitaStorageService.to.prefs.getBool('VisitorImageSave');
+    var hadSave = TrudaStorageService.to.prefs.getBool('VisitorImageSave');
     if (hadSave == true) {
       return;
     }
     // 存储的有账号密码直接去登录
-    var visitorAccount = NewHitaStorageService.to.prefs
+    var visitorAccount = TrudaStorageService.to.prefs
         .getString(TrudaConstants.keyVisitorAccount);
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
@@ -137,7 +137,7 @@ class _TrudaVisitorTipState extends State<TrudaVisitorTip> {
       final result =
           await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
       if (result['isSuccess']) {
-        NewHitaStorageService.to.prefs.setBool('VisitorImageSave', true);
+        TrudaStorageService.to.prefs.setBool('VisitorImageSave', true);
         NewHitaLoading.toast(TrudaLanguageKey.newhita_save_success.tr);
       } else {}
       NewHitaLog.debug(result['isSuccess']);

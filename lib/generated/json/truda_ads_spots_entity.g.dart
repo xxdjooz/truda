@@ -1,44 +1,44 @@
 import 'package:truda/generated/json/base/json_convert_content.dart';
-import 'package:truda/truda_utils/ad/newhita_ads_spots_entity.dart';
+import 'package:truda/truda_utils/ad/truda_ads_spots_entity.dart';
 
-NewHitaAdsSpotsEntity $NewHitaAdsSpotsEntityFromJson(Map<String, dynamic> json) {
-	final NewHitaAdsSpotsEntity newHitaAdsSpotsEntity = NewHitaAdsSpotsEntity();
+TrudaAdsSpotsEntity $TrudaAdsSpotsEntityFromJson(Map<String, dynamic> json) {
+	final TrudaAdsSpotsEntity trudaAdsSpotsEntity = TrudaAdsSpotsEntity();
 	final String? adId = jsonConvert.convert<String>(json['adId']);
 	if (adId != null) {
-		newHitaAdsSpotsEntity.adId = adId;
+		trudaAdsSpotsEntity.adId = adId;
 	}
 	final String? adTitle = jsonConvert.convert<String>(json['adTitle']);
 	if (adTitle != null) {
-		newHitaAdsSpotsEntity.adTitle = adTitle;
+		trudaAdsSpotsEntity.adTitle = adTitle;
 	}
 	final String? keyCode = jsonConvert.convert<String>(json['keyCode']);
 	if (keyCode != null) {
-		newHitaAdsSpotsEntity.keyCode = keyCode;
+		trudaAdsSpotsEntity.keyCode = keyCode;
 	}
 	final String? adCode = jsonConvert.convert<String>(json['adCode']);
 	if (adCode != null) {
-		newHitaAdsSpotsEntity.adCode = adCode;
+		trudaAdsSpotsEntity.adCode = adCode;
 	}
 	final int? adType = jsonConvert.convert<int>(json['adType']);
 	if (adType != null) {
-		newHitaAdsSpotsEntity.adType = adType;
+		trudaAdsSpotsEntity.adType = adType;
 	}
 	final int? adStatus = jsonConvert.convert<int>(json['adStatus']);
 	if (adStatus != null) {
-		newHitaAdsSpotsEntity.adStatus = adStatus;
+		trudaAdsSpotsEntity.adStatus = adStatus;
 	}
 	final int? adPosition = jsonConvert.convert<int>(json['adPosition']);
 	if (adPosition != null) {
-		newHitaAdsSpotsEntity.adPosition = adPosition;
+		trudaAdsSpotsEntity.adPosition = adPosition;
 	}
 	final int? diamonds = jsonConvert.convert<int>(json['diamonds']);
 	if (diamonds != null) {
-		newHitaAdsSpotsEntity.diamonds = diamonds;
+		trudaAdsSpotsEntity.diamonds = diamonds;
 	}
-	return newHitaAdsSpotsEntity;
+	return trudaAdsSpotsEntity;
 }
 
-Map<String, dynamic> $NewHitaAdsSpotsEntityToJson(NewHitaAdsSpotsEntity entity) {
+Map<String, dynamic> $TrudaAdsSpotsEntityToJson(TrudaAdsSpotsEntity entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['adId'] = entity.adId;
 	data['adTitle'] = entity.adTitle;

@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_utils/newhita_voice_player.dart';
 
 import '../../../truda_database/entity/truda_her_entity.dart';
@@ -24,7 +24,7 @@ class TrudaChatMsgVoice extends StatefulWidget {
 class _TrudaChatMsgVoiceState extends State<TrudaChatMsgVoice> {
   TrudaHerEntity? her;
   late TrudaMsgEntity msg = widget.wrapper.msgEntity;
-  NewHitaRTMMsgVoice? rtmMsg;
+  TrudaRTMMsgVoice? rtmMsg;
   String? url;
   bool _playing = false;
   late StreamSubscription sub;
@@ -36,7 +36,7 @@ class _TrudaChatMsgVoiceState extends State<TrudaChatMsgVoice> {
     msg = widget.wrapper.msgEntity;
     if (msg.rawData.isNotEmpty) {
       Map<String, dynamic> jsonMap = json.decode(msg.rawData);
-      rtmMsg = NewHitaRTMMsgVoice.fromJson(jsonMap);
+      rtmMsg = TrudaRTMMsgVoice.fromJson(jsonMap);
     }
     // 收到的消息有rtmMsg，发送中的图片消息还没有
     url = rtmMsg?.voiceUrl;

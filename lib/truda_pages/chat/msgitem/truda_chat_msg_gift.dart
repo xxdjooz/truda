@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../truda_chat_msg_widget.dart';
@@ -17,10 +17,10 @@ class TrudaChatMsgGift extends StatelessWidget {
   Widget build(BuildContext context) {
     var her = wrapper.her;
     var msg = wrapper.msgEntity;
-    NewHitaRTMMsgGift? rtmMsg;
+    TrudaRTMMsgGift? rtmMsg;
     if (msg.rawData.isNotEmpty) {
       Map<String, dynamic> jsonMap = json.decode(msg.rawData);
-      rtmMsg = NewHitaRTMMsgGift.fromJson(jsonMap);
+      rtmMsg = TrudaRTMMsgGift.fromJson(jsonMap);
     }
     // 收到的消息有rtmMsg，发送中的图片消息还没有
     var url = rtmMsg?.giftImageUrl;

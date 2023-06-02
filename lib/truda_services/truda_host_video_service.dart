@@ -5,15 +5,15 @@ import '../truda_entities/truda_host_entity.dart';
 import '../truda_entities/truda_hot_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import 'newhita_storage_service.dart';
+import 'truda_storage_service.dart';
 
-class NewHitaHostVideoService extends GetxService {
-  static NewHitaHostVideoService get to => Get.find();
+class TrudaHostVideoService extends GetxService {
+  static TrudaHostVideoService get to => Get.find();
 
   List<TrudaHostDetail> dataList = [];
   int currentPage = 0; // 从1开始第一页
   int areaCode = -1;
-  Future<NewHitaHostVideoService> init() async {
+  Future<TrudaHostVideoService> init() async {
     return this;
   }
 
@@ -59,7 +59,7 @@ class NewHitaHostVideoService extends GetxService {
   void saveHostSimpleInfo(List<TrudaHostDetail>? anchorLists) {
     if (anchorLists == null || anchorLists.isEmpty) return;
     for (TrudaHostDetail her in anchorLists) {
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           her.nickname ?? '', her.userId!,
           portrait: her.portrait));
     }

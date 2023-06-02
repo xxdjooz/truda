@@ -3,12 +3,12 @@ import 'package:anythink_sdk/at_index.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_services/newhita_app_info_service.dart';
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_app_info_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../newhita_log.dart';
-import 'newhita_ads_spots_entity.dart';
+import 'truda_ads_spots_entity.dart';
 
-class NewHitaAdsUtils {
+class TrudaAdsUtils {
   ///看视频奖励钻石的
   static const UID_REWARD_MESSAGE_CHAT = "00000";
 
@@ -27,7 +27,7 @@ class NewHitaAdsUtils {
   /// 消息会话 video ad
   static const REWARD_ONE_MESSAGE_CHAT = "reward-conversation-list";
 
-  static Map<String, NewHitaAdsSpotsEntity> adMap = {};
+  static Map<String, TrudaAdsSpotsEntity> adMap = {};
 
   /// 是否显示 对应广告
   static bool isShowAd(String key) {
@@ -86,7 +86,7 @@ class NewHitaAdsUtils {
   ///设置渠道
   static _setChannelStr() async {
     await ATInitManger.setChannelStr(
-      channelStr: NewHitaAppInfoService.to.channelName,
+      channelStr: TrudaAppInfoService.to.channelName,
     ).then((value) {
       logi('设置渠道$value');
     });
@@ -129,7 +129,7 @@ class NewHitaAdsUtils {
   ///设置本地广告的监听
   static _rewarderListen() {
     ATListenerManager.rewardedVideoEventHandler.listen((value) {
-      NewHitaStorageService.to.eventBus.fire(value);
+      TrudaStorageService.to.eventBus.fire(value);
       switch (value.rewardStatus) {
         //广告加载失败
         case RewardedStatus.rewardedVideoDidFailToLoad:
@@ -213,7 +213,7 @@ class NewHitaAdsUtils {
   ///设置本地广告的监听
   static _nativeListen() {
     ATListenerManager.nativeEventHandler.listen((value) {
-      NewHitaStorageService.to.eventBus.fire(value);
+      TrudaStorageService.to.eventBus.fire(value);
       switch (value.nativeStatus) {
         //广告加载失败
         case NativeStatus.nativeAdFailToLoadAD:
@@ -294,7 +294,7 @@ class NewHitaAdsUtils {
 
   ///获取广告列表
   static void getAdSpots({bool isRefresh = false}) {
-    TrudaHttpUtil().post<List<NewHitaAdsSpotsEntity>>(TrudaHttpUrls.getAdSpots,
+    TrudaHttpUtil().post<List<TrudaAdsSpotsEntity>>(TrudaHttpUrls.getAdSpots,
         errCallback: (e) {
       NewHitaLog.debug('ad spots call back success 3 ${e.toString()}');
     }).then((data) {

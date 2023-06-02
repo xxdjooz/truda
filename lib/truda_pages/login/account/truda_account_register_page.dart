@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 
 import '../../../truda_entities/truda_login_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
@@ -38,7 +38,7 @@ class _TrudaAccountRegisterPageState extends State<TrudaAccountRegisterPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -52,7 +52,7 @@ class _TrudaAccountRegisterPageState extends State<TrudaAccountRegisterPage>
   @override
   void dispose() {
     super.dispose();
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
   }
 
   void accountRegister() {

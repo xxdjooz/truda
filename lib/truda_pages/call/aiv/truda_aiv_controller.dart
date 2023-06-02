@@ -9,7 +9,7 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_end_type.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -24,10 +24,10 @@ import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_entities/truda_info_entity.dart';
 import '../../../truda_entities/truda_send_gift_result.dart';
 import '../../../truda_http/truda_common_api.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../../../truda_rtm/newhita_rtm_msg_sender.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_rtm/truda_rtm_msg_entity.dart';
+import '../../../truda_rtm/truda_rtm_msg_sender.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_format_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
@@ -57,7 +57,7 @@ class TrudaAivController extends GetxController {
         return (!Get.isDialogOpen! && !Get.isBottomSheetOpen!);
       });
     }
-    Get.offAndToNamed(NewHitaAppPages.aivPage, arguments: map);
+    Get.offAndToNamed(TrudaAppPages.aivPage, arguments: map);
   }
 
   static const String idAgora = 'idAgora';
@@ -141,7 +141,7 @@ class TrudaAivController extends GetxController {
     aiv = arguments['aiv'];
     aivVideoController = arguments['aivVideoController'];
     haveVoice = aiv.muteStatus == 1;
-    myInfo = NewHitaMyInfoService.to.myDetail!;
+    myInfo = TrudaMyInfoService.to.myDetail!;
     myMoney.value = myInfo.userBalance?.remainDiamonds;
 
     if (content.isNotEmpty) {
@@ -481,11 +481,11 @@ class TrudaAivController extends GetxController {
     ).then((value) {
       myVapController.playGift(gift);
       var json =
-          NewHitaRtmMsgSender.makeRTMMsgGift(herId, gift, value.gid.toString());
+          TrudaRtmMsgSender.makeRTMMsgGift(herId, gift, value.gid.toString());
       var msg = TrudaMsgEntity(myInfo.userId ?? '', herId, 0, 'gift',
-          DateTime.now().millisecondsSinceEpoch, json, NewHitaRTMMsgGift.typeCode,
+          DateTime.now().millisecondsSinceEpoch, json, TrudaRTMMsgGift.typeCode,
           msgEventType: NewHitaMsgEventType.sending, sendState: 1);
-      NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+      TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
         ..msgEventType = NewHitaMsgEventType.sendDone
         ..sendState = 0);
     });

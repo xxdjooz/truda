@@ -1,14 +1,14 @@
 import '../generated/json/base/json_field.dart';
-import '../generated/json/newhita_rtm_msg_entity.g.dart';
+import '../generated/json/truda_rtm_msg_entity.g.dart';
 
 @JsonSerializable()
-class NewHitaRTMText {
-  NewHitaRTMText();
+class TrudaRTMText {
+  TrudaRTMText();
 
-  factory NewHitaRTMText.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMTextFromJson(json);
+  factory TrudaRTMText.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMTextFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMTextToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMTextToJson(this);
 
   int? destructTime;
   String? extra;
@@ -26,17 +26,17 @@ class NewHitaRTMText {
   // type  = 25 //AIB
   // type = 23    服务器会发送begincall
   int? type;
-  NewHitaRTMUser? userInfo;
+  TrudaRTMUser? userInfo;
 }
 
 @JsonSerializable()
-class NewHitaRTMUser {
-  NewHitaRTMUser();
+class TrudaRTMUser {
+  TrudaRTMUser();
 
-  factory NewHitaRTMUser.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMUserFromJson(json);
+  factory TrudaRTMUser.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMUserFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMUserToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMUserToJson(this);
 
   String? name;
   String? portrait;
@@ -63,74 +63,74 @@ class NewHitaRTMUser {
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgText {
+class TrudaRTMMsgText {
   static const int typeCode = 10;
-  NewHitaRTMMsgText();
+  TrudaRTMMsgText();
 
-  factory NewHitaRTMMsgText.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgTextFromJson(json);
+  factory TrudaRTMMsgText.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgTextFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgTextToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgTextToJson(this);
 
   String? extra;
   String? text;
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgVoice {
+class TrudaRTMMsgVoice {
   // type voice = 14
   // type severVoice = 21 //服务器语音消息
   static const List<int> typeCodes = [14, 21];
-  NewHitaRTMMsgVoice();
+  TrudaRTMMsgVoice();
 
-  factory NewHitaRTMMsgVoice.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgVoiceFromJson(json);
+  factory TrudaRTMMsgVoice.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgVoiceFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgVoiceToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgVoiceToJson(this);
   String? extra;
   String? voiceUrl;
   int? duration;
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgPhoto {
+class TrudaRTMMsgPhoto {
   // type imge = 13
   // type severImge = 20//服务器图片消息
   static const List<int> typeCodes = [13, 20];
-  NewHitaRTMMsgPhoto();
+  TrudaRTMMsgPhoto();
 
-  factory NewHitaRTMMsgPhoto.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgPhotoFromJson(json);
+  factory TrudaRTMMsgPhoto.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgPhotoFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgPhotoToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgPhotoToJson(this);
   String? extra;
   String? thumbnailUrl;
   String? imageUrl;
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgCallState {
+class TrudaRTMMsgCallState {
   static const int typeCode = 12;
-  NewHitaRTMMsgCallState();
+  TrudaRTMMsgCallState();
 
-  factory NewHitaRTMMsgCallState.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgCallStateFromJson(json);
+  factory TrudaRTMMsgCallState.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgCallStateFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgCallStateToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgCallStateToJson(this);
   String? extra;
   String? duration;
   int? statusType;
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgGift {
+class TrudaRTMMsgGift {
   static const int typeCode = 11;
-  NewHitaRTMMsgGift();
+  TrudaRTMMsgGift();
 
-  factory NewHitaRTMMsgGift.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgGiftFromJson(json);
+  factory TrudaRTMMsgGift.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgGiftFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgGiftToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgGiftToJson(this);
   String? extra;
   String? giftId;
   int? quantity;
@@ -141,14 +141,14 @@ class NewHitaRTMMsgGift {
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgBeginCall {
+class TrudaRTMMsgBeginCall {
   static const int typeCode = 23;
-  NewHitaRTMMsgBeginCall();
+  TrudaRTMMsgBeginCall();
 
-  factory NewHitaRTMMsgBeginCall.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgBeginCallFromJson(json);
+  factory TrudaRTMMsgBeginCall.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgBeginCallFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgBeginCallToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgBeginCallToJson(this);
   String? channelId;
   int? chargePrice;
   int? propDuration;
@@ -158,14 +158,14 @@ class NewHitaRTMMsgBeginCall {
 }
 
 @JsonSerializable()
-class NewHitaRTMMsgAIB {
+class TrudaRTMMsgAIB {
   static const int typeCode = 25;
-  NewHitaRTMMsgAIB();
+  TrudaRTMMsgAIB();
 
-  factory NewHitaRTMMsgAIB.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgAIBFromJson(json);
+  factory TrudaRTMMsgAIB.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgAIBFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgAIBToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgAIBToJson(this);
   String? extra;
   int? id;
   int? isOnline;
@@ -180,14 +180,14 @@ class NewHitaRTMMsgAIB {
 // \"portrait\":\"https://oss.hanilink.com/users_test/107780487/upload/media/2022-03-29/_1648521386627_sendimg.JPEG\",
 // \"propDuration\":70000,\"userId\":107780487}
 @JsonSerializable()
-class NewHitaRTMMsgAIC {
+class TrudaRTMMsgAIC {
   static const int typeCode = 24;
-  NewHitaRTMMsgAIC();
+  TrudaRTMMsgAIC();
 
-  factory NewHitaRTMMsgAIC.fromJson(Map<String, dynamic> json) =>
-      $NewHitaRTMMsgAICFromJson(json);
+  factory TrudaRTMMsgAIC.fromJson(Map<String, dynamic> json) =>
+      $TrudaRTMMsgAICFromJson(json);
 
-  Map<String, dynamic> toJson() => $NewHitaRTMMsgAICToJson(this);
+  Map<String, dynamic> toJson() => $TrudaRTMMsgAICToJson(this);
   String? extra;
   int? callCardCount;
   int? id;

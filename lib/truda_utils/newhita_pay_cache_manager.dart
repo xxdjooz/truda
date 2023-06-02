@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_pay_event_track.dart';
 
@@ -13,7 +13,7 @@ class NewHitaPayCacheManager {
   // 检查缓存的订单，支付成功的上报后台和三方平台
   static checkOrderList() async {
     List<NewHitaOrderEntity>? list =
-        NewHitaStorageService.to.objectBoxOrder.queryOrderList();
+        TrudaStorageService.to.objectBoxOrder.queryOrderList();
     if (list == null || list.isEmpty) {
       return;
     }
@@ -41,7 +41,7 @@ class NewHitaPayCacheManager {
         var ord = orderMap[orderCheck.orderNo];
         if (ord != null) {
           ord.orderStatus = orderCheck.orderStatus;
-          NewHitaStorageService.to.objectBoxOrder.orderBox.put(ord);
+          TrudaStorageService.to.objectBoxOrder.orderBox.put(ord);
           if (ord.orderStatus == 1 && ord.isUploadServer != true) {
             submitToServer(ord);
           }
@@ -55,13 +55,13 @@ class NewHitaPayCacheManager {
         .post<void>(TrudaHttpUrls.uploadLogApi, data: orderEntity.toJson())
         .then((value) {
       orderEntity.isUploadServer = true;
-      NewHitaStorageService.to.objectBoxOrder.orderBox.put(orderEntity);
+      TrudaStorageService.to.objectBoxOrder.orderBox.put(orderEntity);
       NewHitaPayEventTrack.instance.trackPay(orderEntity);
     });
   }
 
   static clearValidOrder() async {
-    NewHitaStorageService.to.objectBoxOrder.deleteOrderHadDone();
+    TrudaStorageService.to.objectBoxOrder.deleteOrderHadDone();
     // CblOrderUploadLogEntity? orderUploadLogEntity =
     // await CblLocalStore.createOrderList;
     // List<CblOrderUploadLogOrderlist>? orderList =

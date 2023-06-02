@@ -1,15 +1,15 @@
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:truda/truda_database/entity/truda_aic_entity.dart';
 import 'package:truda/truda_pages/call/remote/truda_remote_controller.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 
 import '../truda_common/truda_constants.dart';
 import '../truda_database/entity/truda_her_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../truda_services/newhita_my_info_service.dart';
+import '../truda_rtm/truda_rtm_msg_entity.dart';
+import '../truda_services/truda_my_info_service.dart';
 import '../truda_widget/newhita_cache_manager.dart';
 import 'newhita_loading.dart';
 import 'newhita_log.dart';
@@ -26,13 +26,13 @@ class NewHitaAicHandler {
 
   // 这是个模拟收到aic的方法
   void testGetAicMsg() {
-    NewHitaStorageService.to.objectBoxCall.deleteAicHadShow();
+    TrudaStorageService.to.objectBoxCall.deleteAicHadShow();
     //{\"callCardCount\":0,\"extra\":\"624ff55eebcc317144526180\",
 // \"filename\":\"https://oss.hanilink.com/users/107012498/upload/anchor/upload/video/1505217394515206145.mp4\",
 // \"id\":107781256,\"isFollowed\":false,\"isOnline\":1,\"muteStatus\":1,\"nickname\":\"Mary\",
 // \"portrait\":\"https://oss.hanilink.com/users_test/107780487/upload/media/2022-03-29/_1648521386627_sendimg.JPEG\",
 // \"propDuration\":70000,\"userId\":107780487}
-    NewHitaRTMMsgAIC aic = NewHitaRTMMsgAIC();
+    TrudaRTMMsgAIC aic = TrudaRTMMsgAIC();
     aic.filename =
         'https://yesme-public.oss-cn-hongkong.aliyuncs.com/app/testMp4.mp4';
     aic.id = 445444747474747;
@@ -46,14 +46,14 @@ class NewHitaAicHandler {
   }
 
   // 收到aic的处理
-  void getAicMsg(NewHitaRTMMsgAIC aic) {
+  void getAicMsg(TrudaRTMMsgAIC aic) {
     var entity =
         TrudaHerEntity(aic.nickname ?? '', aic.userId!, portrait: aic.portrait);
-    NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
-    NewHitaStorageService.to.eventBus.fire(entity);
+    TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
+    TrudaStorageService.to.eventBus.fire(entity);
     // aic.filename =
     //     'https://yesme-public.oss-cn-hongkong.aliyuncs.com/app/testMp4.mp4';
-    NewHitaStorageService.to.objectBoxCall.putOrUpdateAic(
+    TrudaStorageService.to.objectBoxCall.putOrUpdateAic(
         TrudaAicEntity.fromRtm(aic, DateTime.now().millisecondsSinceEpoch));
     final String url = aic.filename!;
     // final String url =
@@ -66,7 +66,7 @@ class NewHitaAicHandler {
       }
       if (fileResponse is FileInfo) {
         NewHitaLog.debug('aic download --> ${fileResponse.file.path}');
-        var ob = NewHitaStorageService.to.objectBoxCall;
+        var ob = TrudaStorageService.to.objectBoxCall;
         var aic = ob.queryAic(fileResponse.originalUrl);
         if (aic == null) return;
         aic.localPath = fileResponse.file.path;
@@ -75,7 +75,7 @@ class NewHitaAicHandler {
         checkAicToShow();
       }
     }, onError: (object) {
-      var ob = NewHitaStorageService.to.objectBoxCall;
+      var ob = TrudaStorageService.to.objectBoxCall;
       var aic = ob.queryAic(url);
       if (aic == null) return;
       aic.playState = 3;
@@ -102,7 +102,7 @@ class NewHitaAicHandler {
       checkingAic = false;
       return;
     }
-    var ob = NewHitaStorageService.to.objectBoxCall;
+    var ob = TrudaStorageService.to.objectBoxCall;
     var aic = ob.queryAicCanShow();
     if (aic == null || aic.localPath == null) return;
     if (aic == null || aic.localPath == null) {
@@ -127,7 +127,7 @@ class NewHitaAicHandler {
 
   // 每次启动app的时候调一下
   void clearAicHadShow() {
-    NewHitaStorageService.to.objectBoxCall.deleteAicHadShow();
+    TrudaStorageService.to.objectBoxCall.deleteAicHadShow();
     NewHitaAicCacheManager.instance.emptyCache();
   }
 
@@ -164,7 +164,7 @@ class NewHitaAicHandler {
       return false;
     }
     eventss(4);
-    var ob = NewHitaStorageService.to.objectBoxCall;
+    var ob = TrudaStorageService.to.objectBoxCall;
 
     ///查询不等于 上一次触发的ai 的user id
     var aic = ob.queryAicCanShowExcept(userId);
@@ -176,8 +176,8 @@ class NewHitaAicHandler {
     eventss(5);
 
     var myDiamonds =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-    if (myDiamonds > 60 || NewHitaMyInfoService.to.isHaveCallCard()) {
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+    if (myDiamonds > 60 || TrudaMyInfoService.to.isHaveCallCard()) {
       //能接起电话  不能调起虚拟视频    如有 60 钻石  or 有体验卡
       if (TrudaConstants.isTestMode &&
           //判断是不是测试

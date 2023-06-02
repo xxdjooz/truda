@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
 import '../../../truda_database/entity/truda_msg_entity.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../truda_chat_msg_widget.dart';
 import '../truda_chat_msg_wrapper.dart';
 

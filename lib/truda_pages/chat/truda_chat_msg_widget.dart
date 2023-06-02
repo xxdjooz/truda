@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_pages/host/truda_host_controller.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:intl/intl.dart';
 
 import '../../truda_common/truda_constants.dart';
@@ -142,12 +142,12 @@ class TrudaLianChatMsgMe extends StatelessWidget {
               //   isCircle: true,
               // ),
               NewHitaAvatarWithBg(
-                url: NewHitaMyInfoService.to.myDetail?.portrait ?? '',
+                url: TrudaMyInfoService.to.myDetail?.portrait ?? '',
                 width: 40,
                 height: 40,
                 padding: 2,
                 placeholderAsset: 'assets/images_sized/newhita_base_avatar.webp',
-                isVip: NewHitaMyInfoService.to.myDetail?.isVip == 1,
+                isVip: TrudaMyInfoService.to.myDetail?.isVip == 1,
               ),
             ],
           ),

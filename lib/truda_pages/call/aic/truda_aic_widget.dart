@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import '../../../truda_widget/newhita_video_player.dart';
 import 'truda_aic_controller.dart';
@@ -70,7 +70,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
                                 fit: StackFit.expand,
                                 children: [
                                   Container(
-                                    decoration: (NewHitaMyInfoService
+                                    decoration: (TrudaMyInfoService
                                                 .to.isVipNow &&
                                             !controller.switchView)
                                         ? BoxDecoration(
@@ -95,7 +95,7 @@ class TrudaAicWidget extends GetView<TrudaAicController> {
                                     ),
                                   ),
 
-                                  if (NewHitaMyInfoService.to.isVipNow &&
+                                  if (TrudaMyInfoService.to.isVipNow &&
                                       !controller.switchView)
                                     PositionedDirectional(
                                       top: -22,
@@ -295,7 +295,7 @@ class NewHitaAicCamera extends StatelessWidget {
                 ]),
               )
             : NewHitaNetImage(
-                NewHitaMyInfoService.to.userLogin?.portrait ?? "",
+                TrudaMyInfoService.to.userLogin?.portrait ?? "",
               ));
   }
 }

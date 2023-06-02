@@ -11,17 +11,17 @@ import 'package:truda/truda_widget/gift/newhita_gift_data_helper.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-import '../truda_routes/newhita_pages.dart';
-import '../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../truda_services/newhita_app_info_service.dart';
-import '../truda_services/newhita_event_bus_bean.dart';
-import '../truda_services/newhita_my_info_service.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_routes/truda_pages.dart';
+import '../truda_rtm/truda_rtm_msg_entity.dart';
+import '../truda_services/truda_app_info_service.dart';
+import '../truda_services/truda_event_bus_bean.dart';
+import '../truda_services/truda_my_info_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import '../truda_utils/newhita_log.dart';
-import 'newhita_socket_entity.dart';
+import 'truda_socket_entity.dart';
 
-class NewHitaSocketManager extends GetxService {
-  static NewHitaSocketManager get to => Get.find();
+class TrudaSocketManager extends GetxService {
+  static TrudaSocketManager get to => Get.find();
   late IOWebSocketChannel channel;
   late Timer _timer;
   bool _connected = false;
@@ -31,20 +31,20 @@ class NewHitaSocketManager extends GetxService {
   bool dying = false;
 
   // 审核模式没有做链接
-  Future<NewHitaSocketManager> init() async {
+  Future<TrudaSocketManager> init() async {
     if (TrudaConstants.appMode > 0) {
       NewHitaLog.debug('isFakeMode 不初始化');
       return this;
     }
     NewHitaLog.debug('NewHitaSocketManager --------------------> 初始化');
     Map<String, dynamic> headers = {};
-    NewHitaAppInfoService appInfo = NewHitaAppInfoService.to;
+    TrudaAppInfoService appInfo = TrudaAppInfoService.to;
     String userAgent =
         "${TrudaConstants.appNameLower},${appInfo.version},${appInfo.deviceModel},${appInfo.AppSystemVersionKey},${appInfo.channelName},${appInfo.buildNumber}";
     headers["User-Agent"] = userAgent;
     // 这个socket框架自己往user-agent里面放东西，所以用了其他的字段放我们的
     headers["flutter-user-agent"] = userAgent;
-    headers["user-id"] = NewHitaMyInfoService.to.userLogin?.userId ?? "";
+    headers["user-id"] = TrudaMyInfoService.to.userLogin?.userId ?? "";
     headers["user-language"] = Get.deviceLocale?.languageCode ?? "en";
     headers["device-id"] = appInfo.deviceIdentifier;
     NewHitaLog.debug("socket connecting");
@@ -66,7 +66,7 @@ class NewHitaSocketManager extends GetxService {
     }, cancelOnError: false);
 
     _timer = Timer.periodic(const Duration(milliseconds: 30000), (timer) async {
-      if (NewHitaAppPages.isAppBackground) return;
+      if (TrudaAppPages.isAppBackground) return;
       if (_connected) {
         sendHeartbeat();
       } else {
@@ -80,11 +80,11 @@ class NewHitaSocketManager extends GetxService {
     if (dying) {
       return;
     }
-    if (NewHitaAppPages.isAppBackground) return;
+    if (TrudaAppPages.isAppBackground) return;
     breakenSocket(dying: false);
     _timer.cancel();
     Future.delayed(const Duration(seconds: 2), () {
-      if (NewHitaMyInfoService.to.myDetail == null) return;
+      if (TrudaMyInfoService.to.myDetail == null) return;
       init();
     });
   }
@@ -125,12 +125,12 @@ class NewHitaSocketManager extends GetxService {
   void _handleMessage(String msg) {
     /// data字符窜有我们定义的消息
     // NewHitaLog.debug('socket 消息 ---> $msg');
-    NewHitaSocketEntity entity = NewHitaSocketEntity.fromJson(json.decode(msg));
+    TrudaSocketEntity entity = TrudaSocketEntity.fromJson(json.decode(msg));
     if (entity.optType == heartbeat) {
       return;
     }
     if (entity.optType == logout) {
-      NewHitaAppPages.logout();
+      TrudaAppPages.logout();
       return;
     }
     // 主播上线了
@@ -143,22 +143,22 @@ class NewHitaSocketManager extends GetxService {
     var data = json.decode(entity.data!);
     switch (entity.optType) {
       // 主播状态
-      case NewHitaSocketHostState.typeCode:
+      case TrudaSocketHostState.typeCode:
         {
-          NewHitaSocketHostState entity = NewHitaSocketHostState.fromJson(data);
-          NewHitaStorageService.to.eventBus.fire(entity);
+          TrudaSocketHostState entity = TrudaSocketHostState.fromJson(data);
+          TrudaStorageService.to.eventBus.fire(entity);
         }
         break;
       // 余额变动
       /// 只要有余额变动就会发这个，rtm的27消息也一样
-      case NewHitaSocketBalance.typeCode:
+      case TrudaSocketBalance.typeCode:
         {
-          NewHitaSocketBalance entity = NewHitaSocketBalance.fromJson(data);
+          TrudaSocketBalance entity = TrudaSocketBalance.fromJson(data);
           var changeState = -1;
           var myDiamonds =
-              NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+              TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
           var newDiamonds = entity.diamonds;
-          var price = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
+          var price = TrudaMyInfoService.to.config?.chargePrice ?? 60;
           if (myDiamonds >= price && newDiamonds < price) {
             // 我的钻石从60以上掉到60以下的情况
             // NewHitaHttpUtil().post(NewHitaHttpUrls.initRobotApi);
@@ -168,11 +168,11 @@ class NewHitaSocketManager extends GetxService {
             changeState = 0;
           }
           // 更新缓存信息
-          NewHitaMyInfoService.to.handleBalanceChange(entity);
+          TrudaMyInfoService.to.handleBalanceChange(entity);
 
           if (changeState > -1) {
-            NewHitaStorageService.to.eventBus
-                .fire(NewHitaEventCanCallStateChange(changeState));
+            TrudaStorageService.to.eventBus
+                .fire(TruaEventCanCallStateChange(changeState));
           }
 
           // 通知监听者
@@ -188,8 +188,8 @@ class NewHitaSocketManager extends GetxService {
       //
       case beginCall:
         {
-          NewHitaRTMMsgBeginCall entity = NewHitaRTMMsgBeginCall.fromJson(data);
-          NewHitaStorageService.to.eventBus.fire(entity);
+          TrudaRTMMsgBeginCall entity = TrudaRTMMsgBeginCall.fromJson(data);
+          TrudaStorageService.to.eventBus.fire(entity);
         }
         break;
       //
@@ -205,8 +205,8 @@ class NewHitaSocketManager extends GetxService {
             }
             TrudaSuccessController.startMeCheck(lottery: lottery);
             // 更新缓存信息
-            NewHitaMyInfoService.to.saveHadCharge();
-            NewHitaStorageService.to.eventBus.fire(eventBusRefreshMe);
+            TrudaMyInfoService.to.saveHadCharge();
+            TrudaStorageService.to.eventBus.fire(eventBusRefreshMe);
           }
         }
         break;
@@ -217,34 +217,34 @@ class NewHitaSocketManager extends GetxService {
         if (jsonMap['callCardCount'] is int) {
           var changeState = 0;
           int newCardCount = jsonMap['callCardCount'];
-          final myCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+          final myCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
           if (newCardCount >= 1 && myCard < 1) {
             changeState = 2;
           } else if (newCardCount < 1 && myCard >= 1) {
             changeState = 3;
           }
-          NewHitaMyInfoService.to.myDetail?.callCardCount = newCardCount;
+          TrudaMyInfoService.to.myDetail?.callCardCount = newCardCount;
           // 这里判断是否发生有无体验卡的逻辑和发送事件的时机还真蛋疼！
           if (changeState > 0) {
-            NewHitaStorageService.to.eventBus
-                .fire(NewHitaEventCanCallStateChange(changeState));
+            TrudaStorageService.to.eventBus
+                .fire(TruaEventCanCallStateChange(changeState));
           }
 
-          NewHitaStorageService.to.eventBus.fire(eventBusRefreshMe);
+          TrudaStorageService.to.eventBus.fire(eventBusRefreshMe);
         }
         break;
     }
   }
 
-  final List<TrudaCallback<NewHitaSocketBalance>> _balanceListener = [];
+  final List<TrudaCallback<TrudaSocketBalance>> _balanceListener = [];
 
-  void addBalanceListener(TrudaCallback<NewHitaSocketBalance> callback) {
+  void addBalanceListener(TrudaCallback<TrudaSocketBalance> callback) {
     if (!_balanceListener.contains(callback)) {
       _balanceListener.add(callback);
     }
   }
 
-  void removeBalanceListener(TrudaCallback<NewHitaSocketBalance> callback) {
+  void removeBalanceListener(TrudaCallback<TrudaSocketBalance> callback) {
     _balanceListener.remove(callback);
   }
 }

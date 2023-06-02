@@ -9,8 +9,8 @@ import 'package:truda/truda_utils/newhita_loading.dart';
 
 import '../../truda_common/truda_constants.dart';
 import '../../truda_entities/truda_login_entity.dart';
-import '../../truda_services/newhita_my_info_service.dart';
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/newhita_check_app_update.dart';
 import '../../truda_utils/newhita_string_util.dart';
 
@@ -42,7 +42,7 @@ class TrudaLoginController extends GetxController {
       NewHitaLoading.toast(err.toString());
     }, showLoading: true);
     config.then((value) {
-      NewHitaStorageService.to.prefs.setString("test_google_id", str);
+      TrudaStorageService.to.prefs.setString("test_google_id", str);
       whenGotLoginToMain(value);
     });
   }
@@ -139,7 +139,7 @@ class TrudaLoginController extends GetxController {
 
   void visitorSignIn() {
     // 存储的有账号密码直接去登录
-    var visitorAccount = NewHitaStorageService.to.prefs
+    var visitorAccount = TrudaStorageService.to.prefs
         .getString(TrudaConstants.keyVisitorAccount);
     if (visitorAccount?.isNotEmpty == true) {
       var list = visitorAccount!.split(TrudaConstants.visitorAccountSplit);
@@ -178,7 +178,7 @@ class TrudaLoginController extends GetxController {
         .then((value) {
       whenGotLoginToMain(value);
 
-      NewHitaStorageService.to.prefs.setString(
+      TrudaStorageService.to.prefs.setString(
           TrudaConstants.keyVisitorAccount,
           '${value.user!.username}${TrudaConstants.visitorAccountSplit}$pw');
     });

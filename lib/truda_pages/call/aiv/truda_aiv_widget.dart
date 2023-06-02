@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../truda_services/newhita_my_info_service.dart';
+import '../../../truda_services/truda_my_info_service.dart';
 import '../../../truda_widget/newhita_net_image.dart';
 import 'truda_aiv_controller.dart';
 
@@ -75,7 +75,7 @@ class TrudaAivWidget extends GetView<TrudaAivController> {
                                   children: [
                                     Container(
                                       decoration:
-                                          (NewHitaMyInfoService.to.isVipNow &&
+                                          (TrudaMyInfoService.to.isVipNow &&
                                                   !controller.switchView)
                                               ? BoxDecoration(
                                                   borderRadius:
@@ -100,7 +100,7 @@ class TrudaAivWidget extends GetView<TrudaAivController> {
                                       ),
                                     ),
 
-                                    if (NewHitaMyInfoService.to.isVipNow &&
+                                    if (TrudaMyInfoService.to.isVipNow &&
                                         !controller.switchView)
                                       PositionedDirectional(
                                         top: -22,
@@ -113,7 +113,7 @@ class TrudaAivWidget extends GetView<TrudaAivController> {
                                           ),
                                         ),
                                       ),
-                                    if (NewHitaMyInfoService.to.isVipNow &&
+                                    if (TrudaMyInfoService.to.isVipNow &&
                                         !controller.switchView)
                                       Positioned(
                                         left: 0,
@@ -299,7 +299,7 @@ class TrudaAivCamera extends StatelessWidget {
                 ]),
               )
             : NewHitaNetImage(
-                NewHitaMyInfoService.to.userLogin?.portrait ?? "",
+                TrudaMyInfoService.to.userLogin?.portrait ?? "",
               ));
   }
 }

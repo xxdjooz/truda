@@ -5,7 +5,7 @@ import 'package:adjust_sdk/adjust_event.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_database/entity/truda_order_entity.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_utils/newhita_third_util.dart';
 
@@ -27,11 +27,11 @@ class NewHitaPayEventTrack {
   void trackPay(NewHitaOrderEntity order) {
     double fbScale = 1.0;
     double adScale = 1.0;
-    if (NewHitaMyInfoService.to.config?.payScale?.isNotEmpty == true) {
+    if (TrudaMyInfoService.to.config?.payScale?.isNotEmpty == true) {
       TrudaPayScale? payScale;
       try {
         payScale = TrudaPayScale.fromJson(
-            json.decode(NewHitaMyInfoService.to.config!.payScale!));
+            json.decode(TrudaMyInfoService.to.config!.payScale!));
       } catch (e) {
         print(e);
       }
@@ -51,7 +51,7 @@ class NewHitaPayEventTrack {
       return;
     }
 
-    var stopFbPurchase = NewHitaMyInfoService.to.config?.stopFbPurchase ?? false;
+    var stopFbPurchase = TrudaMyInfoService.to.config?.stopFbPurchase ?? false;
     if (!stopFbPurchase) {
       Map<String, dynamic> map = {};
       map["fb_currency"] = currency;

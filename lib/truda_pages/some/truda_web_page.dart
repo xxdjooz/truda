@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,7 +14,7 @@ class TrudaWebPage extends StatefulWidget {
     Map<String, dynamic> map = {};
     map['url'] = url;
     map['fullScreen'] = fullScreen;
-    Get.toNamed(NewHitaAppPages.webPage, arguments: map);
+    Get.toNamed(TrudaAppPages.webPage, arguments: map);
   }
 
   @override
@@ -79,7 +79,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
                     //打开充值页面
                     // GetPlatform.isIOS
                     // todo
-                    Get.toNamed(NewHitaAppPages.googleCharge);
+                    Get.toNamed(TrudaAppPages.googleCharge);
                   } else if (message.message == "gift") {
                     //打开首页hot
                     // Navigator.popUntil(
@@ -101,8 +101,8 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
                                 Get.isBottomSheetOpen != true &&
                                 Get.isOverlaysOpen != true &&
                                 Get.isSnackbarOpen != true &&
-                                Get.currentRoute == NewHitaAppPages.main) ||
-                            Get.currentRoute == NewHitaAppPages.main));
+                                Get.currentRoute == TrudaAppPages.main) ||
+                            Get.currentRoute == TrudaAppPages.main));
                   } else if (message.message == "call") {
                     Navigator.popUntil(
                         Get.context!,
@@ -110,8 +110,8 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
                                 Get.isBottomSheetOpen != true &&
                                 Get.isOverlaysOpen != true &&
                                 Get.isSnackbarOpen != true &&
-                                Get.currentRoute == NewHitaAppPages.main) ||
-                            Get.currentRoute == NewHitaAppPages.main));
+                                Get.currentRoute == TrudaAppPages.main) ||
+                            Get.currentRoute == TrudaAppPages.main));
                     //打开首页hot
                     // Navigator.popUntil(
                     //     Get.context!,
@@ -127,7 +127,7 @@ class _TrudaWebPageState extends State<TrudaWebPage> {
                     //     .indexChangeCallBack
                     //     ?.call(0);
                   } else if (message.message == "completeMaterial") {
-                    Get.toNamed(NewHitaAppPages.myInfo);
+                    Get.toNamed(TrudaAppPages.myInfo);
                   }
                 }),
           },

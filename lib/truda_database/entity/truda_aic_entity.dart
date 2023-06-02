@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:objectbox/objectbox.dart';
 
-import '../../truda_rtm/newhita_rtm_msg_entity.dart';
+import '../../truda_rtm/truda_rtm_msg_entity.dart';
 
 @Entity()
 class TrudaAicEntity {
@@ -33,7 +33,7 @@ class TrudaAicEntity {
 
   TrudaAicEntity(this.dateInsert, {this.id = 0}) : rawData = '';
 
-  TrudaAicEntity.fromRtm(NewHitaRTMMsgAIC aic, this.dateInsert, {this.id = 0})
+  TrudaAicEntity.fromRtm(TrudaRTMMsgAIC aic, this.dateInsert, {this.id = 0})
       : extra = aic.extra,
         callCardCount = aic.callCardCount,
         aicId = aic.id,

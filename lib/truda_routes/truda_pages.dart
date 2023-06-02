@@ -21,10 +21,10 @@ import 'package:truda/truda_pages/some/truda_web_page.dart';
 import 'package:truda/truda_pages/splash/truda_splash_binding.dart';
 import 'package:truda/truda_pages/splash/truda_splash_page.dart';
 import 'package:truda/truda_pages/vip/truda_vip_page.dart';
-import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
-import 'package:truda/truda_socket/newhita_socket_manager.dart';
+import 'package:truda/truda_rtm/truda_rtm_manager.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
+import 'package:truda/truda_socket/truda_socket_manager.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../truda_http/truda_http_urls.dart';
@@ -71,13 +71,13 @@ import '../truda_pages/main/moment/create/truda_create_page.dart';
 import '../truda_pages/main/search/truda_search_binding.dart';
 import '../truda_pages/main/search/truda_search_page.dart';
 import '../truda_pages/some/truda_report_new_page.dart';
-import 'newhita_observers.dart';
+import 'truda_observers.dart';
 
-class NewHitaAppPages {
+class TrudaAppPages {
   // 这个字段决定app现在是否在后台
   static bool isAppBackground = false;
 
-  static final RouteObserver<Route> observer = NewHitaRouteObservers();
+  static final RouteObserver<Route> observer = TrudaRouteObservers();
   static List<String> history = [];
 
   static const initial = '/';
@@ -296,13 +296,13 @@ class NewHitaAppPages {
 
   static void logout() {
     NewHitaLog.debug('logout()');
-    NewHitaMyInfoService.to.clear();
+    TrudaMyInfoService.to.clear();
     Get.offAllNamed(login);
-    NewHitaRtmManager.closeRtm();
-    NewHitaSocketManager.to.breakenSocket();
+    TrudaRtmManager.closeRtm();
+    TrudaSocketManager.to.breakenSocket();
 
     TrudaHttpUtil().post(TrudaHttpUrls.loginOutApi);
-    NewHitaStorageService.to.prefs.setString(NewHitaMyInfoService.userLoginData, '');
+    TrudaStorageService.to.prefs.setString(TrudaMyInfoService.userLoginData, '');
   }
 
   static void closeDialog() {

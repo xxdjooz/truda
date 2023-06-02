@@ -12,8 +12,8 @@ import 'package:truda/truda_widget/gift/newhita_vap_player.dart';
 
 import '../../truda_common/truda_charge_path.dart';
 import '../../truda_dialogs/truda_sheet_host_chat_option.dart';
-import '../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../../truda_utils/ad/newhita_ads_utils.dart';
+import '../../truda_rtm/truda_rtm_msg_entity.dart';
+import '../../truda_utils/ad/truda_ads_utils.dart';
 import '../../truda_utils/newhita_gift_follow_tip.dart';
 import '../../truda_widget/newhita_app_bar.dart';
 import '../vip/truda_vip_controller.dart';
@@ -122,7 +122,7 @@ class TrudaChatPage extends GetView<TrudaChatController> {
           children: [
             Column(
               children: [
-                if (NewHitaAdsUtils.isShowAd(NewHitaAdsUtils.NATIVE_CHAT) &&
+                if (TrudaAdsUtils.isShowAd(TrudaAdsUtils.NATIVE_CHAT) &&
                     controller.nativeUtils.isReady)
                   Container(
                       height: 60,
@@ -336,18 +336,18 @@ class TrudaChatPage extends GetView<TrudaChatController> {
   }
 
   Widget getMsgWidget(TrudaChatMsgWrapper wrapper, int index) {
-    if (NewHitaRTMMsgPhoto.typeCodes.contains(wrapper.msgEntity.msgType)) {
+    if (TrudaRTMMsgPhoto.typeCodes.contains(wrapper.msgEntity.msgType)) {
       return TrudaChatMsgImage(wrapper: wrapper);
     }
-    if (NewHitaRTMMsgVoice.typeCodes.contains(wrapper.msgEntity.msgType)) {
+    if (TrudaRTMMsgVoice.typeCodes.contains(wrapper.msgEntity.msgType)) {
       return TrudaChatMsgVoice(wrapper: wrapper);
     }
     switch (wrapper.msgEntity.msgType) {
-      case NewHitaRTMMsgText.typeCode:
+      case TrudaRTMMsgText.typeCode:
         return TrudaChatMsgText(wrapper: wrapper);
-      case NewHitaRTMMsgGift.typeCode:
+      case TrudaRTMMsgGift.typeCode:
         return TrudaChatMsgGift(wrapper: wrapper);
-      case NewHitaRTMMsgCallState.typeCode:
+      case TrudaRTMMsgCallState.typeCode:
         return TrudaChatMsgCall(wrapper: wrapper);
       default:
         return const SizedBox();

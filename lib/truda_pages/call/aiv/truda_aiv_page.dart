@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 
 import '../../../truda_common/truda_common_dialog.dart';
@@ -582,7 +582,7 @@ class TrudaAivPage extends GetView<TrudaAivController> {
                                           ),
                                         ),
                                         child: NewHitaAvatarWithBg(
-                                          url: NewHitaMyInfoService
+                                          url: TrudaMyInfoService
                                                   .to.myDetail?.portrait ??
                                               "",
                                         ),

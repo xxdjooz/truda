@@ -3,12 +3,12 @@ import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_http/truda_common_api.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 
 import '../../truda_database/entity/truda_her_entity.dart';
 import '../../truda_entities/truda_host_entity.dart';
 import '../../truda_entities/truda_moment_entity.dart';
-import '../../truda_services/newhita_storage_service.dart';
+import '../../truda_services/truda_storage_service.dart';
 import '../../truda_utils/newhita_loading.dart';
 import 'dart:ui' as ui;
 
@@ -26,7 +26,7 @@ class TrudaHostController extends GetxController {
     Map<String, dynamic> map = {};
     map['herId'] = herId;
     map['portrait'] = portrait;
-    return await Get.toNamed(NewHitaAppPages.hostDetail, arguments: map);
+    return await Get.toNamed(TrudaAppPages.hostDetail, arguments: map);
   }
 
   @override
@@ -57,7 +57,7 @@ class TrudaHostController extends GetxController {
       portrait = value.portrait ?? '';
       update();
 
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           value.nickname ?? '', value.userId!,
           portrait: value.portrait));
       NewHitaLoading.dismiss();
@@ -101,7 +101,7 @@ class TrudaHostController extends GetxController {
       // 筛掉黑名单的动态
       final List<TrudaMomentDetail> result = [];
       for (var item in value) {
-        if (!NewHitaStorageService.to.checkMomentReportList(item.momentId)) {
+        if (!TrudaStorageService.to.checkMomentReportList(item.momentId)) {
           result.add(item);
         }
       }
@@ -122,7 +122,7 @@ class TrudaHostController extends GetxController {
 
   void reportMoment(String momentId, int index) async {
     var result = await Get.toNamed(
-      NewHitaAppPages.reportPageNew,
+      TrudaAppPages.reportPageNew,
       arguments: {
         'reportType': 1,
         'rId': momentId,

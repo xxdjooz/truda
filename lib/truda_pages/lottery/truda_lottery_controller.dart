@@ -3,13 +3,13 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_lottery_entity.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 
 import '../../truda_common/truda_common_dialog.dart';
 import '../../truda_dialogs/truda_dialog_lottery_get.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_ui_image_util.dart';
 import '../../truda_widget/pie_chart/newhita_pie_chart_widget.dart';
 
@@ -17,7 +17,7 @@ class TrudaLotteryController extends GetxController {
   Map<int, ui.Image> images = {};
   List<TrudaLotteryBean> data = [];
   var haveLotteryTimes = 0;
-  final lastTimes = NewHitaMyInfoService.to.haveLotteryTimes;
+  final lastTimes = TrudaMyInfoService.to.haveLotteryTimes;
   NewHitaPieChartController controller = NewHitaPieChartController();
   bool rolling = false;
   var emptyPosition = 0;
@@ -66,7 +66,7 @@ class TrudaLotteryController extends GetxController {
   void drawOne() {
     if (rolling) return;
     if (lastTimes.value <= 0) {
-      Get.offNamed(NewHitaAppPages.googleCharge);
+      Get.offNamed(TrudaAppPages.googleCharge);
       return;
     }
     lastTimes.value--;

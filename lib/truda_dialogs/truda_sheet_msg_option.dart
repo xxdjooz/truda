@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../truda_common/truda_colors.dart';
 import '../truda_common/truda_common_dialog.dart';
 import '../truda_common/truda_language_key.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import 'truda_dialog_confirm.dart';
 
 class TrudaSheetMsgOption extends StatefulWidget {
@@ -40,7 +40,7 @@ class _TrudaSheetMsgOptionState extends State<TrudaSheetMsgOption> {
           children: [
             GestureDetector(
               onTap: () async {
-                NewHitaStorageService.to.objectBoxMsg.setAllRead();
+                TrudaStorageService.to.objectBoxMsg.setAllRead();
                 Get.back();
               },
               child: Container(
@@ -64,7 +64,7 @@ class _TrudaSheetMsgOptionState extends State<TrudaSheetMsgOption> {
                 TrudaCommonDialog.dialog(TrudaDialogConfirm(
                   title: TrudaLanguageKey.newhita_delete_tip.tr,
                   callback: (i) {
-                    NewHitaStorageService.to.objectBoxMsg.clearAllMsg();
+                    TrudaStorageService.to.objectBoxMsg.clearAllMsg();
                   },
                 ));
               },

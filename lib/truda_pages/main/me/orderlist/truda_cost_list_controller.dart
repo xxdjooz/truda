@@ -7,7 +7,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../truda_common/truda_language_key.dart';
 import '../../../../truda_entities/truda_host_entity.dart';
 import '../../../../truda_entities/truda_order_entity.dart';
-import '../../../../truda_services/newhita_storage_service.dart';
+import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_utils/newhita_loading.dart';
 
 class TrudaCostListController extends GetxController {

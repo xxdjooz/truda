@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/main/moment/truda_moment_list_controller.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
 import 'package:truda/truda_widget/newhita_decoration_bg.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 import 'package:intl/intl.dart';
@@ -64,7 +64,7 @@ class TrudaMomentListPage extends GetView<TrudaMomentListController> {
                       child: Image.asset(
                           'assets/images/newhita_moment_camera.png'),
                       onTap: () {
-                        Get.toNamed(NewHitaAppPages.createMoment);
+                        Get.toNamed(TrudaAppPages.createMoment);
                       },
                     ),
                     // const SizedBox(

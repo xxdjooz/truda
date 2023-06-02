@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_common_type.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -67,7 +67,7 @@ class _TrudaCount20State extends State<TrudaCount20> {
                                   color: TrudaColors.white, fontSize: 14),
                               children: [
                                 TextSpan(
-                                    text: NewHitaMyInfoService
+                                    text: TrudaMyInfoService
                                             .to.config?.chargePrice
                                             .toString() ??
                                         "--",

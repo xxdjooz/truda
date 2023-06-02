@@ -22,7 +22,7 @@ class TrudaAppleInAppPurchase {
 // import '../../truda_common/truda_language_key.dart';
 // import '../../truda_http/truda_http_urls.dart';
 // import '../../truda_http/truda_http_util.dart';
-// import '../../truda_services/newhita_storage_service.dart';
+// import '../../truda_services/truda_storage_service.dart';
 // import '../../truda_utils/newhita_loading.dart';
 // import '../../truda_utils/newhita_log.dart';
 // import '../../truda_utils/newhita_pay_cache_manager.dart';

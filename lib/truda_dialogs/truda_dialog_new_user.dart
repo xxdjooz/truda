@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_check_calling_util.dart';
 
 import '../truda_common/truda_common_dialog.dart';
@@ -19,7 +19,7 @@ class NewTrudaUserCardsTip extends StatefulWidget {
     if (TrudaConstants.isFakeMode) {
       return;
     }
-    if (NewHitaMyInfoService.to.myDetail?.created == 1) {
+    if (TrudaMyInfoService.to.myDetail?.created == 1) {
       Future.delayed(Duration(seconds: 10), () async {
         TrudaInfoDetail myDetail;
         try {

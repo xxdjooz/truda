@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_common_type.dart';
 import '../../truda_entities/truda_hot_entity.dart';
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_widget/newhita_net_image.dart';
 
 class TrudaDialogPayCountryChoose extends StatelessWidget {
@@ -23,7 +23,7 @@ class TrudaDialogPayCountryChoose extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var levalbean = NewHitaMyInfoService.to.getMyLeval();
+    var levalbean = TrudaMyInfoService.to.getMyLeval();
     var myLeval = levalbean?.grade ?? 0;
     return Align(
       alignment: AlignmentDirectional.center,

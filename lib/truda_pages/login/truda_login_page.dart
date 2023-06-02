@@ -7,8 +7,8 @@ import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 import 'package:truda/truda_pages/login/account/truda_account_login_page.dart';
 import 'package:truda/truda_pages/splash/truda_splash_page.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_facebook_util.dart';
 
 import '../../truda_common/truda_colors.dart';
@@ -31,7 +31,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
 
   // 1057628
   final TextEditingController _textEditingController = TextEditingController(
-      text: NewHitaStorageService.to.prefs.getString("test_google_id") ?? "");
+      text: TrudaStorageService.to.prefs.getString("test_google_id") ?? "");
 
   @override
   void initState() {
@@ -212,7 +212,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
                           ),
                         ),
                       ),
-                      if (NewHitaMyInfoService.to.config?.showFbLogin == true)
+                      if (TrudaMyInfoService.to.config?.showFbLogin == true)
                         GestureDetector(
                           onTap: () {
                             if (TrudaConstants.isTestMode) {
@@ -479,7 +479,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
 
   Widget _TestLogin(TrudaLoginController controller) {
     String mode = "线上环境";
-    switch (NewHitaStorageService.to.getTestStyle) {
+    switch (TrudaStorageService.to.getTestStyle) {
       case 0:
         mode = "线上环境";
         break;
@@ -580,7 +580,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
             children: [
               GestureDetector(
                 onTap: () async {
-                  NewHitaStorageService.to.saveTestStyle(0);
+                  TrudaStorageService.to.saveTestStyle(0);
                   Get.offAll(TrudaSplashPage());
                 },
                 child: Container(
@@ -601,7 +601,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
               ),
               GestureDetector(
                 onTap: () async {
-                  NewHitaStorageService.to.saveTestStyle(1);
+                  TrudaStorageService.to.saveTestStyle(1);
                   Get.offAll(TrudaSplashPage());
                 },
                 child: Container(
@@ -620,7 +620,7 @@ class _TrudaLoginPageState extends State<TrudaLoginPage> {
               ),
               GestureDetector(
                 onTap: () async {
-                  NewHitaStorageService.to.saveTestStyle(2);
+                  TrudaStorageService.to.saveTestStyle(2);
                   Get.offAll(TrudaSplashPage());
                 },
                 child: Container(

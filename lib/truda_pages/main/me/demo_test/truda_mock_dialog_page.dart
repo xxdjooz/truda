@@ -21,7 +21,7 @@ import '../../../../truda_dialogs/truda_dialog_vip_diamond_get.dart';
 import '../../../../truda_dialogs/truda_dialog_visitor_tip.dart';
 import '../../../../truda_entities/truda_leval_entity.dart';
 import '../../../../truda_entities/truda_lottery_entity.dart';
-import '../../../../truda_services/newhita_storage_service.dart';
+import '../../../../truda_services/truda_storage_service.dart';
 import '../../../../truda_utils/newhita_app_rate.dart';
 import '../../../../truda_utils/newhita_permission_handler.dart';
 import '../../../../truda_widget/newhita_gradient_boder.dart';
@@ -116,7 +116,7 @@ class _TrudaMockDailogPageState extends State<TrudaMockDailogPage> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    NewHitaStorageService.to.prefs
+                    TrudaStorageService.to.prefs
                         .setInt(TrudaDialogInvite.strInviteOthers, 2);
                     TrudaDialogInvite.checkToShow();
                   },

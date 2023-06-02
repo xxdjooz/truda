@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_app_info_service.dart';
+import 'package:truda/truda_services/truda_app_info_service.dart';
 
 import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_constants.dart';
@@ -55,7 +55,7 @@ class TrudaAboutPage extends GetView<TrudaAboutController> {
                       height: 10,
                     ),
                     Text(
-                      NewHitaAppInfoService.to.version,
+                      TrudaAppInfoService.to.version,
                       style: TextStyle(
                           color: TrudaColors.textColor666, fontSize: 12),
                     ),

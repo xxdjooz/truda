@@ -11,7 +11,7 @@ import 'package:truda/truda_widget/newhita_app_bar.dart';
 import '../../truda_common/truda_colors.dart';
 import '../../truda_common/truda_constants.dart';
 import '../../truda_common/truda_language_key.dart';
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_widget/newhita_gradient_button.dart';
 
 class TrudaVipPage extends GetView<TrudaVipController> {
@@ -31,7 +31,7 @@ class TrudaVipPage extends GetView<TrudaVipController> {
   ];
   final textGroup = [
     TrudaLanguageKey.newhita_vip_welfare_diamond.trArgs(
-        [(NewHitaMyInfoService.to.config?.vipDailyDiamonds ?? 10).toString()]),
+        [(TrudaMyInfoService.to.config?.vipDailyDiamonds ?? 10).toString()]),
     TrudaLanguageKey.newhita_vip_welfare_message.tr,
     TrudaLanguageKey.newhita_vip_welfare_match.tr,
     TrudaLanguageKey.newhita_vip_welfare_country.tr,

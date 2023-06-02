@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_pages/chat/truda_chat_controller.dart';
 import 'package:truda/truda_pages/main/msg/truda_msg_follow_controller.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:truda/truda_widget/newhita_net_image.dart';
 import 'package:intl/intl.dart';
@@ -71,7 +71,7 @@ class TrudaMsgWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var her = NewHitaStorageService.to.objectBoxMsg.queryHer(msg.herId);
+    var her = TrudaStorageService.to.objectBoxMsg.queryHer(msg.herId);
     // NewHitaLog.debug('NewHitaMsgWidget build her=$her');
     var time = DateTime.fromMillisecondsSinceEpoch(msg.dateInsert);
     var str = DateFormat('MM.dd HH:mm').format(time);

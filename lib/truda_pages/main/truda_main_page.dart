@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truda/truda_pages/main/home/truda_page_index_manager.dart';
 import 'package:truda/truda_pages/main/truda_main_controller.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_socket/newhita_socket_manager.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_socket/truda_socket_manager.dart';
 
 import '../../truda_common/truda_colors.dart';
-import '../../truda_routes/newhita_pages.dart';
+import '../../truda_routes/truda_pages.dart';
 import '../../truda_utils/newhita_log.dart';
 import '../../truda_utils/newhita_pay_cache_manager.dart';
 import '../../truda_widget/newhita_decoration_bg.dart';
@@ -28,7 +28,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    NewHitaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
+    TrudaAppPages.observer.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
@@ -43,7 +43,7 @@ class _TrudaMainPageState extends State<TrudaMainPage>
   void dispose() {
     super.dispose();
     NewHitaLog.debug('NewHitaMainPage dispose');
-    NewHitaAppPages.observer.unsubscribe(this);
+    TrudaAppPages.observer.unsubscribe(this);
     //App 的⽣命周期
     WidgetsBinding.instance?.removeObserver(this);
   }
@@ -70,13 +70,13 @@ class _TrudaMainPageState extends State<TrudaMainPage>
     NewHitaLog.debug('NewHitaMainPage didChangeAppLifecycleState $state');
     if (state == AppLifecycleState.paused) {
       // went to Background
-      NewHitaAppPages.isAppBackground = true;
-      NewHitaSocketManager.to.breakenSocket(dying: false);
+      TrudaAppPages.isAppBackground = true;
+      TrudaSocketManager.to.breakenSocket(dying: false);
     }
     if (state == AppLifecycleState.resumed) {
       // came back to Foreground
-      NewHitaAppPages.isAppBackground = false;
-      NewHitaSocketManager.to.init();
+      TrudaAppPages.isAppBackground = false;
+      TrudaSocketManager.to.init();
     }
     if (state == AppLifecycleState.inactive) {}
   }
@@ -224,7 +224,7 @@ class _TrudaMsgNumState extends State<TrudaMsgNum> {
       ),
       alignment: AlignmentDirectional.topEnd,
       child: Obx(() {
-        var num = NewHitaMyInfoService.to.msgUnreadNum.value;
+        var num = TrudaMyInfoService.to.msgUnreadNum.value;
         // NewHitaLog.debug('_NewHitaMsgNumState num=$num');
         if (num > 0) {
           return Container(

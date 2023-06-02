@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:truda/truda_common/truda_colors.dart';
 import 'package:truda/truda_common/truda_language_key.dart';
 
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_services/truda_my_info_service.dart';
 import '../../truda_widget/newhita_gradient_circular_progress_indicator.dart';
 import '../../truda_widget/newhita_net_image.dart';
 import 'truda_call_controller.dart';
@@ -139,7 +139,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                                   children: [
                                     Container(
                                       decoration:
-                                          (NewHitaMyInfoService.to.isVipNow &&
+                                          (TrudaMyInfoService.to.isVipNow &&
                                                   !controller.switchView)
                                               ? BoxDecoration(
                                                   borderRadius:
@@ -166,7 +166,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                                               ),
                                       ),
                                     ),
-                                    if (NewHitaMyInfoService.to.isVipNow &&
+                                    if (TrudaMyInfoService.to.isVipNow &&
                                         !controller.switchView)
                                       PositionedDirectional(
                                         top: -22,
@@ -179,7 +179,7 @@ class TrudaCallWidget extends GetView<TrudaCallController> {
                                           ),
                                         ),
                                       ),
-                                    if (NewHitaMyInfoService.to.isVipNow &&
+                                    if (TrudaMyInfoService.to.isVipNow &&
                                         !controller.switchView)
                                       Positioned(
                                         left: 0,

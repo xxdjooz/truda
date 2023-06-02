@@ -15,8 +15,8 @@ import '../../../truda_dialogs/truda_dialog_match_one.dart';
 import '../../../truda_entities/truda_match_host_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
 import '../../vip/truda_vip_controller.dart';
@@ -66,7 +66,7 @@ class TrudaMatchController extends GetxController with RouteAware {
   }
 
   void _getOneHost({bool showLoading = false}) {
-    bool isVip = NewHitaMyInfoService.to.isVipNow;
+    bool isVip = TrudaMyInfoService.to.isVipNow;
     if (getTodayTimes() >= TrudaMatchPage.totalMatchTimes && !isVip) {
       TrudaCommonDialog.dialog(TrudaDialogConfirm(
         title: TrudaLanguageKey.newhita_vip_upgrade_ask.tr,
@@ -86,7 +86,7 @@ class TrudaMatchController extends GetxController with RouteAware {
     }, showLoading: showLoading).then((value) {
       detail = value;
       matching = 1;
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
           value.nickName ?? '', value.userId!,
           portrait: value.portrait));
       TrudaDialogMatchOne.checkToShow(detail!);
@@ -127,7 +127,7 @@ class TrudaMatchController extends GetxController with RouteAware {
   }
 
   final String keyEveryDay =
-      "keyEveryDay-${NewHitaMyInfoService.to.myDetail?.userId}-";
+      "keyEveryDay-${TrudaMyInfoService.to.myDetail?.userId}-";
 
   void refreshTodayTimes() {
     TrudaMatchPage.todayMatchTimes.value = getTodayTimes();
@@ -140,7 +140,7 @@ class TrudaMatchController extends GetxController with RouteAware {
 
   // 获取今天使用了几次
   int getTodayTimes() {
-    return NewHitaStorageService.to.prefs
+    return TrudaStorageService.to.prefs
             .getInt('$keyEveryDay${_getTodayStr()}') ??
         0;
   }
@@ -149,7 +149,7 @@ class TrudaMatchController extends GetxController with RouteAware {
   void addTodayTimes() {
     int times = getTodayTimes();
     times++;
-    NewHitaStorageService.to.prefs
+    TrudaStorageService.to.prefs
         .setInt('$keyEveryDay${_getTodayStr()}', times);
 
     refreshTodayTimes();
@@ -157,7 +157,7 @@ class TrudaMatchController extends GetxController with RouteAware {
 
   // 今天次数加一
   void setTodayTimes(int times) {
-    NewHitaStorageService.to.prefs
+    TrudaStorageService.to.prefs
         .setInt('$keyEveryDay${_getTodayStr()}', times);
     refreshTodayTimes();
   }

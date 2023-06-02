@@ -1,6 +1,6 @@
 import 'package:truda/truda_common/truda_constants.dart';
 
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_storage_service.dart';
 
 class TrudaHttpUrls {
   // 预发版本
@@ -23,7 +23,7 @@ class TrudaHttpUrls {
       return url;
     }
     //test mode 0线上，1预发布，2测试
-    switch (NewHitaStorageService.to.getTestStyle) {
+    switch (TrudaStorageService.to.getTestStyle) {
       case 0:
         url = configBaseUrl;
         break;
@@ -45,7 +45,7 @@ class TrudaHttpUrls {
     if (!TrudaConstants.isTestMode) {
       return url;
     }
-    switch (NewHitaStorageService.to.getTestStyle) {
+    switch (TrudaStorageService.to.getTestStyle) {
       case 0:
         url = socketBaseUrl;
         break;
@@ -67,7 +67,7 @@ class TrudaHttpUrls {
     if (!TrudaConstants.isTestMode) {
       return url;
     }
-    switch (NewHitaStorageService.to.getTestStyle) {
+    switch (TrudaStorageService.to.getTestStyle) {
       case 0:
         url = baseUrl;
         break;

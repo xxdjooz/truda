@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_routes/newhita_pages.dart';
-import 'package:truda/truda_rtm/newhita_rtm_manager.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_routes/truda_pages.dart';
+import 'package:truda/truda_rtm/truda_rtm_manager.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_entities/truda_config_entity.dart';
 
 class TrudaSettingController extends GetxController {
@@ -15,7 +15,7 @@ class TrudaSettingController extends GetxController {
     super.onInit();
     // var arguments = Get.arguments as Map<String, dynamic>;
     // herId = arguments['herId']!;
-    dnd.value = NewHitaMyInfoService.to.myDetail?.isDoNotDisturb == 1;
+    dnd.value = TrudaMyInfoService.to.myDetail?.isDoNotDisturb == 1;
   }
 
   void getConfig() {
@@ -32,7 +32,7 @@ class TrudaSettingController extends GetxController {
         .post<void>(TrudaHttpUrls.updateUserInfoApi,
             data: {"isDoNotDisturb": newDnd}, showLoading: true)
         .then((value) {
-      NewHitaMyInfoService.to.myDetail?.isDoNotDisturb = newDnd;
+      TrudaMyInfoService.to.myDetail?.isDoNotDisturb = newDnd;
       dnd.value = newDnd == 1;
     });
   }
@@ -44,7 +44,7 @@ class TrudaSettingController extends GetxController {
     // CblLocalStore.saveAgree(false);
     // Get.find<CblPersonController>().hadUploadAdjust = false;
     // todo
-    NewHitaAppPages.logout();
+    TrudaAppPages.logout();
   }
 
 
@@ -56,7 +56,7 @@ class TrudaSettingController extends GetxController {
     // Get.find<CblPersonController>().hadUploadAdjust = false;
     // todo
     TrudaHttpUtil().post(TrudaHttpUrls.delete_current_account).then((value) {
-      NewHitaAppPages.logout();
+      TrudaAppPages.logout();
     });
   }
 }

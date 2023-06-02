@@ -2,18 +2,18 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:truda/truda_entities/truda_info_entity.dart';
-import 'package:truda/truda_services/newhita_app_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_app_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../generated/json/base/json_convert_content.dart';
 import '../truda_entities/truda_config_entity.dart';
 import '../truda_entities/truda_leval_entity.dart';
 import '../truda_entities/truda_login_entity.dart';
-import '../truda_socket/newhita_socket_entity.dart';
+import '../truda_socket/truda_socket_entity.dart';
 
-class NewHitaMyInfoService extends GetxService {
-  static NewHitaMyInfoService get to => Get.find();
+class TrudaMyInfoService extends GetxService {
+  static TrudaMyInfoService get to => Get.find();
   static const userLoginData = 'userLoginData';
   String? authorization;
   TrudaConfigData? config;
@@ -32,8 +32,8 @@ class NewHitaMyInfoService extends GetxService {
   RxInt msgUnreadNum = 0.obs;
   RxInt haveLotteryTimes = 0.obs;
 
-  Future<NewHitaMyInfoService> init() async {
-    String? str = NewHitaStorageService.to.prefs.getString(userLoginData);
+  Future<TrudaMyInfoService> init() async {
+    String? str = TrudaStorageService.to.prefs.getString(userLoginData);
     if (str != null && str.isNotEmpty) {
       try {
         TrudaLogin login = JsonConvert.fromJsonAsT<TrudaLogin>(jsonDecode(str))!;
@@ -67,18 +67,18 @@ class NewHitaMyInfoService extends GetxService {
     if (myDetail == null) {
       return 100;
     }
-    return NewHitaStorageService.to.prefs
+    return TrudaStorageService.to.prefs
             .getInt((myDetail?.userId ?? '') + 'leval') ??
         1;
   }
 
   void saveLastLeval(int leval) {
-    NewHitaStorageService.to.prefs
+    TrudaStorageService.to.prefs
         .setInt((myDetail?.userId ?? '') + 'leval', leval);
   }
 
   // 收到socket余额变动消息
-  void handleBalanceChange(NewHitaSocketBalance entity) {
+  void handleBalanceChange(TrudaSocketBalance entity) {
     NewHitaLog.debug('handleBalanceChange $entity');
     _myDetail?.userBalance?.remainDiamonds = entity.diamonds;
     _myDetail?.userBalance?.expLevel = entity.expLevel;
@@ -100,7 +100,7 @@ class NewHitaMyInfoService extends GetxService {
     userLogin = theLogin.user;
     authorization = token?.authorization;
     String str = jsonEncode(theLogin.toJson());
-    NewHitaStorageService.to.prefs.setString(userLoginData, str);
+    TrudaStorageService.to.prefs.setString(userLoginData, str);
   }
 
   String? getLevalUrl() {
@@ -109,7 +109,7 @@ class NewHitaMyInfoService extends GetxService {
     }
     return '${config?.leveldetailurl}?areaCode=${myDetail?.areaCode ?? '1'}'
         '&expe=${myDetail?.userBalance?.expLevel ?? 0}'
-        '&appName=${NewHitaAppInfoService.to.channelName}';
+        '&appName=${TrudaAppInfoService.to.channelName}';
   }
 
   TrudaLevalBean? getMyLeval() {
@@ -147,13 +147,13 @@ class NewHitaMyInfoService extends GetxService {
     if ((myDetail?.userBalance?.totalRecharge ?? 0) > 0) {
       return true;
     }
-    return NewHitaStorageService.to.prefs
+    return TrudaStorageService.to.prefs
             .getBool((myDetail?.userId ?? '') + 'hadCharge') ??
         false;
   }
 
   void saveHadCharge() {
-    NewHitaStorageService.to.prefs
+    TrudaStorageService.to.prefs
         .setBool((myDetail?.userId ?? '') + 'hadCharge', true);
   }
 

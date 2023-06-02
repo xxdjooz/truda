@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 
 import '../../truda_common/truda_constants.dart';
@@ -13,24 +13,24 @@ import '../../truda_entities/truda_aiv_entity.dart';
 import '../../truda_http/truda_http_urls.dart';
 import '../../truda_http/truda_http_util.dart';
 import '../../truda_pages/call/remote/truda_remote_controller.dart';
-import '../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../../truda_services/newhita_event_bus_bean.dart';
-import '../../truda_services/newhita_my_info_service.dart';
+import '../../truda_rtm/truda_rtm_msg_entity.dart';
+import '../../truda_services/truda_event_bus_bean.dart';
+import '../../truda_services/truda_my_info_service.dart';
 import '../newhita_check_calling_util.dart';
 
 /// 需求：获取到配置后，按接听能力（钻石体验卡）分组，
 /// aiv逻辑，次数走完，再走aib
-enum NewHitaAiType { none, aib, aiv }
+enum TrudaAiType { none, aib, aiv }
 
-class NewHitaAiLogicUtils {
-  static NewHitaAiLogicUtils? _instance;
+class TrudaAiLogicUtils {
+  static TrudaAiLogicUtils? _instance;
 
-  factory NewHitaAiLogicUtils() {
-    _instance ??= NewHitaAiLogicUtils._();
+  factory TrudaAiLogicUtils() {
+    _instance ??= TrudaAiLogicUtils._();
     return _instance!;
   }
 
-  NewHitaAiLogicUtils._();
+  TrudaAiLogicUtils._();
 
   // 计时器
   Timer? _timer;
@@ -62,7 +62,7 @@ class NewHitaAiLogicUtils {
   int aibShowTimes = 0;
 
   // 0无配置，1aib,2aiv
-  var aiType = NewHitaAiType.none;
+  var aiType = TrudaAiType.none;
 
   TrudaAiConfigEntity? aiConfigEntity;
 
@@ -73,7 +73,7 @@ class NewHitaAiLogicUtils {
   // 当前用户是首次进入吗？
   bool currentUserFirstLogin = true;
   final String hadLoginKey =
-      "hadLogin-${NewHitaMyInfoService.to.myDetail?.userId}";
+      "hadLogin-${TrudaMyInfoService.to.myDetail?.userId}";
 
   var information = 'wait...'.obs;
   var aiInvokeProcess = '流程';
@@ -81,7 +81,7 @@ class NewHitaAiLogicUtils {
   bool dead = false;
 
   /// event bus 监听
-  StreamSubscription<NewHitaEventCanCallStateChange>? _sub;
+  StreamSubscription<TruaEventCanCallStateChange>? _sub;
 
   void init() {
     if (TrudaConstants.isFakeMode) {
@@ -90,21 +90,21 @@ class NewHitaAiLogicUtils {
     aivShowTimes = startingTime = totalTime = 0;
     nextTime = rejectCount = 0;
     isIntercept = false;
-    aiType = NewHitaAiType.none;
+    aiType = TrudaAiType.none;
     previousUid = "";
     _timer?.cancel();
     _getAibConfig();
-    final hadLogin = NewHitaStorageService.to.prefs.getBool(hadLoginKey) ?? false;
+    final hadLogin = TrudaStorageService.to.prefs.getBool(hadLoginKey) ?? false;
     if (hadLogin) {
       currentUserFirstLogin = false;
     } else {
       currentUserFirstLogin = true;
-      NewHitaStorageService.to.prefs.setBool(hadLoginKey, true);
+      TrudaStorageService.to.prefs.setBool(hadLoginKey, true);
     }
 
     /// event bus 监听
-    _sub = NewHitaStorageService.to.eventBus
-        .on<NewHitaEventCanCallStateChange>()
+    _sub = TrudaStorageService.to.eventBus
+        .on<TruaEventCanCallStateChange>()
         .listen((event) {
       setNextTimer();
     });
@@ -137,15 +137,15 @@ class NewHitaAiLogicUtils {
       // NewHitaLog.debug("==============   $intervals     $nextTime");
       // 需要的下次的间隔时间
       var needNextTime = nextTime;
-      if (!isIntercept && (aiType == NewHitaAiType.aib)) {
+      if (!isIntercept && (aiType == TrudaAiType.aib)) {
         // aib 有挂断加延时的效果
         needNextTime = nextTime + (rejectCount * (aiConfig?.rejectDelay ?? 0));
       }
       // arrive 小于等于0，说明该拨打了
       final arrive = needNextTime - intervals;
       // 如果不能发起aib,aiv的情况,arrive快到了，先不增加计时
-      bool canNotAib = (aiType == NewHitaAiType.aib) && !NewHitaCheckCallingUtil.checkCanAib();
-      bool canNotAic = (aiType == NewHitaAiType.aiv) &&
+      bool canNotAib = (aiType == TrudaAiType.aib) && !NewHitaCheckCallingUtil.checkCanAib();
+      bool canNotAic = (aiType == TrudaAiType.aiv) &&
           !NewHitaCheckCallingUtil.checkCanAic();
       // 就是说剩下2秒要拨打了，但是此时不能拨打，先不增加计时
       if (canNotAib && arrive < 3) {
@@ -198,8 +198,8 @@ class NewHitaAiLogicUtils {
     bool firstCircle = false,
   }) {
     var balance =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-    var callCard = NewHitaMyInfoService.to.myDetail?.callCardCount ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+    var callCard = TrudaMyInfoService.to.myDetail?.callCardCount ?? 0;
     var willChangeConfig = false;
     if (balance >= (aiConfigEntity?.floorDiamondsThreshold ?? 60)) {
       //用户有接听能力 用户余额足够(用户余额>=floorDiamondsThreshold）
@@ -216,7 +216,7 @@ class NewHitaAiLogicUtils {
       aiConfig = aiConfigEntity?.groups?.aibEnoughCallCard;
       configName = '未充值有体验卡';
       // } else if (balance > 0) {
-    } else if (NewHitaMyInfoService.to.getIsHadCharge()) {
+    } else if (TrudaMyInfoService.to.getIsHadCharge()) {
       //付费用户无接听能力(用户余额>0)
       if (aiConfig != aiConfigEntity?.groups?.aibPaidLackBalance) {
         willChangeConfig = true;
@@ -232,14 +232,14 @@ class NewHitaAiLogicUtils {
       configName = '未充值无体验卡';
     }
     _setConfig(willChangeConfig);
-    if (aiType == NewHitaAiType.aib) {
+    if (aiType == TrudaAiType.aib) {
       // aib间隔
       if (firstCircle) {
         nextTime = aiConfigEntity?.loginDelay ?? 10;
       } else {
         nextTime = aiConfig?.nextAibTime ?? 30;
       }
-    } else if (aiType == NewHitaAiType.aiv) {
+    } else if (aiType == TrudaAiType.aiv) {
       // 变成了未充值无体验卡，说明是新用户消耗了体验卡，第一通做成首次的10s
       bool changeToAiv = willChangeConfig &&
           aiConfig == aiConfigEntity?.groups?.aibLackBalance;
@@ -270,20 +270,20 @@ class NewHitaAiLogicUtils {
       interceptTime = 5;
     }
     if (aiConfig?.aivSendFlag == 1) {
-      aiType = NewHitaAiType.aiv;
+      aiType = TrudaAiType.aiv;
       if (aivShowTimes >= _aivMaxTimes() || (aiConfig?.aivSendFlag == 0)) {
         // 如果aiv关掉或者播放次数够了也搞aib
-        aiType = NewHitaAiType.aib;
+        aiType = TrudaAiType.aib;
         if (aiConfig?.sendFlag == 0) {
-          aiType = NewHitaAiType.none;
+          aiType = TrudaAiType.none;
         }
       }
       return;
     }
     if ((aiConfig?.sendFlag == 1)) {
-      aiType = NewHitaAiType.aib;
+      aiType = TrudaAiType.aib;
     } else {
-      aiType = NewHitaAiType.none;
+      aiType = TrudaAiType.none;
     }
   }
 
@@ -351,11 +351,11 @@ class NewHitaAiLogicUtils {
   ///触发 通话逻辑
   void startCall() {
     _log("======发起 aiType=$aiType previousUid=$previousUid ");
-    if (aiType == NewHitaAiType.aib) {
+    if (aiType == TrudaAiType.aib) {
       //该次是aib
       aiInvokeProcess += ':b';
       startAibCall();
-    } else if (aiType == NewHitaAiType.aiv) {
+    } else if (aiType == TrudaAiType.aiv) {
       //逻辑修改  先走 虚拟视频 ，虚拟视频不能调起在走aib
       aiInvokeProcess += ':v';
       startAicCall();
@@ -372,7 +372,7 @@ class NewHitaAiLogicUtils {
     _log("==============   aib");
     if (NewHitaCheckCallingUtil.checkCanAib()) {
       //检查是否能调起aib
-      TrudaHttpUtil().post<NewHitaRTMMsgAIB>(TrudaHttpUrls.getAibAnchor,
+      TrudaHttpUtil().post<TrudaRTMMsgAIB>(TrudaHttpUrls.getAibAnchor,
           errCallback: (error) {}, doneCallback: (isSuccess, msg) {
         _log("========== aib  $isSuccess");
         if (!isSuccess) {
@@ -393,7 +393,7 @@ class NewHitaAiLogicUtils {
         //   //否者重新调起
         //   startAibCall();
         // }
-        NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+        TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
             value.nickname ?? '', value.userId!,
             portrait: value.portrait));
       }).onError((error, stackTrace) {
@@ -453,7 +453,7 @@ class NewHitaAiLogicUtils {
   void _startAicBean(TrudaAivBean bean) {
     previousUid = bean.userId!;
     var balance =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
     if (balance >= 60) {
       // 有运营测到了有钻石调起了aiv，没找到原因，这里拦截一下 todo
       return;
@@ -467,14 +467,14 @@ class NewHitaAiLogicUtils {
         NewHitaLoading.toast('测试：aiv 第$aivShowTimes次 （共${_aivMaxTimes()}）');
       }
     }
-    NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
+    TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(TrudaHerEntity(
         bean.nickname ?? '', bean.userId!,
         portrait: bean.portrait));
   }
 
   String getInformation(int intervals, int count) {
     return 'Ai提示：\n'
-        '目前ai: ${aiType == NewHitaAiType.aiv ? 'aiV' : 'aiB'}\n'
+        '目前ai: ${aiType == TrudaAiType.aiv ? 'aiV' : 'aiB'}\n'
         '目前ai组: $configName\n'
         '总计时: $totalTime\n'
         '目前间隔时间: $nextTime\n'

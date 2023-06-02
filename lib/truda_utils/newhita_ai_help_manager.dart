@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_loading.dart';
 
 import 'newhita_log.dart';
@@ -10,7 +10,7 @@ class NewHitaAihelpManager {
   static final aihelp_channel = MethodChannel("newhita_aihelp_channel");
 
   static Future<void> initAIHelp() async {
-    String? jsonString = NewHitaMyInfoService.to.config?.aiHelp;
+    String? jsonString = TrudaMyInfoService.to.config?.aiHelp;
     if (jsonString != null) {
       Map map = json.decode(jsonString);
 
@@ -30,7 +30,7 @@ class NewHitaAihelpManager {
 
   ///  0 个人中心  1 会话列表
   static Future<void> enterMinAIHelp(int level, int entrance) async {
-    var user = NewHitaMyInfoService.to.userLogin;
+    var user = TrudaMyInfoService.to.userLogin;
     try {
       final result = await aihelp_channel.invokeMethod('enterMinAIHelp', {
         "userId": user?.username ?? "",
@@ -46,7 +46,7 @@ class NewHitaAihelpManager {
   }
 
   static Future<void> enterOrderAIHelp(int level, String orderInfo) async {
-    var user = NewHitaMyInfoService.to.userLogin;
+    var user = TrudaMyInfoService.to.userLogin;
     try {
       final result = await aihelp_channel.invokeMethod('enterOrderAIHelp', {
         "userId": user?.username ?? "",

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../truda_common/truda_language_key.dart';
@@ -40,7 +40,7 @@ class TrudaMyMomentController extends GetxController {
   }
 
   Future getList() async {
-    final myId = NewHitaMyInfoService.to.myDetail?.userId ?? '';
+    final myId = TrudaMyInfoService.to.myDetail?.userId ?? '';
     // var areaCode = NewHitaStorageService.to.getAreaCode();
     await TrudaHttpUtil().post<List<TrudaLinkContent>>(
       '${TrudaHttpUrls.getLinkContent}$myId/-1',

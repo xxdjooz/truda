@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_sender.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_sender.dart';
 
 import '../../../truda_common/truda_charge_path.dart';
 import '../../../truda_common/truda_common_dialog.dart';
@@ -12,9 +12,9 @@ import '../../../truda_database/entity/truda_msg_entity.dart';
 import '../../../truda_dialogs/truda_dialog_confirm.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../../../truda_services/newhita_my_info_service.dart';
-import '../../../truda_services/newhita_storage_service.dart';
+import '../../../truda_rtm/truda_rtm_msg_entity.dart';
+import '../../../truda_services/truda_my_info_service.dart';
+import '../../../truda_services/truda_storage_service.dart';
 import '../../../truda_utils/newhita_choose_image_util.dart';
 import '../../../truda_utils/newhita_loading.dart';
 import '../../../truda_utils/newhita_log.dart';
@@ -42,7 +42,7 @@ class TrudaChatInputController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    myId = NewHitaMyInfoService.to.userLogin?.userId ?? "";
+    myId = TrudaMyInfoService.to.userLogin?.userId ?? "";
     initImageHandler();
     initVoiceHandler();
   }
@@ -66,9 +66,9 @@ class TrudaChatInputController extends GetxController {
     }
     var str = textEditingController.text;
     if (str.isEmpty) return;
-    var json = NewHitaRtmMsgSender.makeRTMMsgText(userId, str);
+    var json = TrudaRtmMsgSender.makeRTMMsgText(userId, str);
     var msg = TrudaMsgEntity(myId, userId, 0, str,
-        DateTime.now().millisecondsSinceEpoch, json, NewHitaRTMMsgText.typeCode,
+        DateTime.now().millisecondsSinceEpoch, json, TrudaRTMMsgText.typeCode,
         msgEventType: NewHitaMsgEventType.sending, sendState: 1);
     textEditingController.clear();
     // 有敏感词或者3个数字，假发送
@@ -81,7 +81,7 @@ class TrudaChatInputController extends GetxController {
     //     containSensitiveWord.add(element);
     //   }
     // });
-    for (var ele in (NewHitaMyInfoService.to.sensitiveList ?? <String>[])){
+    for (var ele in (TrudaMyInfoService.to.sensitiveList ?? <String>[])){
       if (str.toLowerCase().contains(ele.toLowerCase())){
         hasSenstiveWord = true;
         break;
@@ -91,7 +91,7 @@ class TrudaChatInputController extends GetxController {
     bool hasContinuousNum = rep.hasMatch(str);
     //输入了敏感词或者3个相邻的数字 直接存本地 不存在实际发送
     if (hasSenstiveWord || hasContinuousNum || TrudaConstants.appMode == 2) {
-      NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+      TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
         ..msgEventType = NewHitaMsgEventType.none
         ..sendState = 0);
       if(hasSenstiveWord || hasContinuousNum){
@@ -103,16 +103,16 @@ class TrudaChatInputController extends GetxController {
       return;
     }
 
-    NewHitaStorageService.to.eventBus.fire(msg);
+    TrudaStorageService.to.eventBus.fire(msg);
 
     TrudaHttpUtil().post<void>(TrudaHttpUrls.rtmServerSendApi, data: {
       "recipientId": userId,
       "payload": json,
     }, errCallback: (err) {
-      NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+      TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
         ..msgEventType = NewHitaMsgEventType.sendErr
         ..sendState = 2);
-      NewHitaStorageService.to.eventBus.fire(msg);
+      TrudaStorageService.to.eventBus.fire(msg);
       if (err.code == 8) {
         TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_click_recharge,
@@ -121,10 +121,10 @@ class TrudaChatInputController extends GetxController {
         );
       }
     }).then((value) {
-      NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+      TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
         ..msgEventType = NewHitaMsgEventType.sendDone
         ..sendState = 0);
-      NewHitaStorageService.to.eventBus.fire(msg);
+      TrudaStorageService.to.eventBus.fire(msg);
       // _chatController.minusFreeMsg();
     });
   }
@@ -185,7 +185,7 @@ class TrudaChatInputController extends GetxController {
           duration,
           DateTime.now().millisecondsSinceEpoch,
           '',
-          NewHitaRTMMsgVoice.typeCodes[0],
+          TrudaRTMMsgVoice.typeCodes[0],
           msgEventType: NewHitaMsgEventType.uploading,
           sendState: 1);
       msg.extra = localPath;
@@ -199,25 +199,25 @@ class TrudaChatInputController extends GetxController {
         uploadFile(File(localPath), url).then((value) {
           var realUrl = url.split('?')[0];
           if (value == 200) {
-            var json = NewHitaRtmMsgSender.makeRTMMsgVoice(
+            var json = TrudaRtmMsgSender.makeRTMMsgVoice(
                 userId, realUrl, int.parse(duration));
             msg.rawData = json;
             NewHitaLog.debug(json);
             // ios审核模式，假发送
             if (TrudaConstants.appMode == 2){
-              NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+              TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
                 ..msgEventType = NewHitaMsgEventType.none
                 ..sendState = 0);
               return;
             }
             msg.msgEventType = NewHitaMsgEventType.sending;
             msg.sendState = 1;
-            NewHitaStorageService.to.eventBus.fire(msg);
+            TrudaStorageService.to.eventBus.fire(msg);
             TrudaHttpUtil().post<void>(TrudaHttpUrls.rtmServerSendApi, data: {
               "recipientId": userId,
               "payload": json,
             }, errCallback: (err) {
-              NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+              TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
                 ..msgEventType = NewHitaMsgEventType.sendErr
                 ..sendState = 2);
               if (err.code == 8) {
@@ -228,7 +228,7 @@ class TrudaChatInputController extends GetxController {
                 );
               }
             }).then((value) {
-              NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+              TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
                 ..msgEventType = NewHitaMsgEventType.sendDone
                 ..sendState = 0);
               // _chatController.minusFreeMsg();
@@ -296,21 +296,21 @@ class TrudaChatInputController extends GetxController {
               'image',
               DateTime.now().millisecondsSinceEpoch,
               '',
-              NewHitaRTMMsgPhoto.typeCodes[0],
+              TrudaRTMMsgPhoto.typeCodes[0],
               msgEventType: NewHitaMsgEventType.uploading,
               sendState: 1);
           msg.extra = path;
-          NewHitaStorageService.to.eventBus.fire(msg);
+          TrudaStorageService.to.eventBus.fire(msg);
           uploader.msg = msg;
           break;
         case NewHitaUploadType.success:
-          var json = NewHitaRtmMsgSender.makeRTMMsgImage(userId, url!);
+          var json = TrudaRtmMsgSender.makeRTMMsgImage(userId, url!);
           var msg = uploader.msg!;
           msg.rawData = json;
 
           // ios审核模式，假发送
           if (TrudaConstants.appMode == 2){
-            NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+            TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
               ..msgEventType = NewHitaMsgEventType.sendDone
               ..sendState = 0);
             return;
@@ -322,7 +322,7 @@ class TrudaChatInputController extends GetxController {
             "recipientId": userId,
             "payload": json,
           }, errCallback: (err) {
-            NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+            TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
               ..msgEventType = NewHitaMsgEventType.sendErr
               ..sendState = 2);
             if (err.code == 8) {
@@ -333,7 +333,7 @@ class TrudaChatInputController extends GetxController {
               );
             }
           }).then((value) {
-            NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
+            TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msg
               ..msgEventType = NewHitaMsgEventType.sendDone
               ..sendState = 0);
             // _chatController.minusFreeMsg();

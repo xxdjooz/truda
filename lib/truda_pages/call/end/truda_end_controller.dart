@@ -6,18 +6,18 @@ import 'package:truda/truda_common/truda_charge_path.dart';
 import 'package:truda/truda_http/truda_http_urls.dart';
 import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_pages/chargedialog/truda_charge_dialog_manager.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_sender.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
-import 'package:truda/truda_utils/ai/newhita_ai_logic_utils.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_sender.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
+import 'package:truda/truda_utils/ai/truda_ai_logic_utils.dart';
 import 'package:truda/truda_utils/newhita_format_util.dart';
 
 import '../../../truda_entities/truda_end_call_entity.dart';
 import '../../../truda_entities/truda_host_entity.dart';
 import '../../../truda_http/truda_common_api.dart';
-import '../../../truda_routes/newhita_pages.dart';
-import '../../../truda_services/newhita_event_bus_bean.dart';
-import '../../../truda_socket/newhita_socket_entity.dart';
+import '../../../truda_routes/truda_pages.dart';
+import '../../../truda_services/truda_event_bus_bean.dart';
+import '../../../truda_socket/truda_socket_entity.dart';
 import '../../../truda_utils/newhita_log.dart';
 
 /// 这个页面是有可能出现多个的，Controller要注意处理！！！
@@ -62,9 +62,9 @@ class TrudaEndController extends GetxController {
       Get.closeAllSnackbars();
     }
     navigator?.popUntil((route) {
-      return (Get.isOverlaysClosed && Get.currentRoute != NewHitaAppPages.reportPageNew);
+      return (Get.isOverlaysClosed && Get.currentRoute != TrudaAppPages.reportPageNew);
     });
-    Get.offAndToNamed(NewHitaAppPages.callEnd, arguments: map);
+    Get.offAndToNamed(TrudaAppPages.callEnd, arguments: map);
   }
 
   late String herId;
@@ -81,7 +81,7 @@ class TrudaEndController extends GetxController {
   Rx<TrudaEndCallEntity?> endCallEntity = Rx(null);
 
   /// event bus 监听
-  late final StreamSubscription<NewHitaSocketHostState> sub;
+  late final StreamSubscription<TrudaSocketHostState> sub;
 
   @override
   void onInit() {
@@ -99,11 +99,11 @@ class TrudaEndController extends GetxController {
 
     // _createCall();
 
-    NewHitaAiLogicUtils().setNextTimer();
+    TrudaAiLogicUtils().setNextTimer();
 
     /// event bus 监听主播在线状态
-    sub = NewHitaStorageService.to.eventBus
-        .on<NewHitaSocketHostState>()
+    sub = TrudaStorageService.to.eventBus
+        .on<TrudaSocketHostState>()
         .listen((event) {
       if (herId == event.userId) {
         detail?.isOnline = event.isOnline;
@@ -118,8 +118,8 @@ class TrudaEndController extends GetxController {
     super.onReady();
     _endCall();
     final remain =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
-    final callCost = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+    final callCost = TrudaMyInfoService.to.config?.chargePrice ?? 60;
     if (remain < callCost && !callHadShowCount20) {
       TrudaChargeDialogManager.showChargeDialog(
           TrudaChargePath.chating_end_showrecharge,
@@ -140,7 +140,7 @@ class TrudaEndController extends GetxController {
       entity.usedProp = useCard;
       endCallEntity.value = entity;
 
-      NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+      TrudaStorageService.to.objectBoxCall.savaCallHistory(
           herId: herId,
           herVirtualId: detail?.username ?? '',
           channelId: channelId,
@@ -165,10 +165,10 @@ class TrudaEndController extends GetxController {
       // 拨打方发消息 aib在拨打时如果传了aiType,主播端会发消息
       if (callType == 0) {
         NewHitaLog.debug('TrudaEndController _endCall endCallApi');
-        NewHitaRtmMsgSender.sendCallState(
+        TrudaRtmMsgSender.sendCallState(
             herId, TrudaCallStatus.PICK_UP, value.totalCallTime);
 
-        NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+        TrudaStorageService.to.objectBoxCall.savaCallHistory(
             herId: herId,
             herVirtualId: detail?.username ?? '',
             channelId: channelId,
@@ -177,11 +177,11 @@ class TrudaEndController extends GetxController {
             dateInsert: DateTime.now().millisecondsSinceEpoch,
             duration: value.totalCallTime ?? '00:00');
       }
-      NewHitaStorageService.to.eventBus.fire(eventBusRefreshMe);
+      TrudaStorageService.to.eventBus.fire(eventBusRefreshMe);
       if (value.usedProp == true && value.callCardCount == 0) {
         // 使用了体验卡并且使体验卡变成0
-        NewHitaMyInfoService.to.myDetail?.callCardCount = 0;
-        NewHitaAiLogicUtils().setNextTimer();
+        TrudaMyInfoService.to.myDetail?.callCardCount = 0;
+        TrudaAiLogicUtils().setNextTimer();
       }
     });
   }

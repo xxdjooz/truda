@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:truda/truda_services/newhita_my_info_service.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
-import '../truda_rtm/newhita_rtm_msg_entity.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_rtm/truda_rtm_msg_entity.dart';
+import '../truda_services/truda_storage_service.dart';
 import '../objectbox.g.dart';
 import 'entity/truda_aic_entity.dart';
 import 'entity/truda_call_entity.dart';
@@ -24,7 +24,7 @@ class TrudaObjectBoxCall {
   late final Box<TrudaAicEntity> aicBox;
   late final Box<TrudaCallEntity> callBox;
 
-  String get _getMyId => (NewHitaMyInfoService.to.userLogin?.userId) ?? "emptyId";
+  String get _getMyId => (TrudaMyInfoService.to.userLogin?.userId) ?? "emptyId";
 
   TrudaObjectBoxCall._create(this.store) {
     aicBox = Box<TrudaAicEntity>(store);
@@ -138,7 +138,7 @@ class TrudaObjectBoxCall {
     callBox.put(entity);
     // 插入消息数据库
     NewHitaLog.debug('savaCallHistory duration=$duration');
-    var call = NewHitaRTMMsgCallState()
+    var call = TrudaRTMMsgCallState()
       ..statusType = callStatus
       ..duration = duration;
     TrudaMsgEntity msgEntity = TrudaMsgEntity(
@@ -148,9 +148,9 @@ class TrudaObjectBoxCall {
       "",
       dateInsert,
       json.encode(call),
-      NewHitaRTMMsgCallState.typeCode,
+      TrudaRTMMsgCallState.typeCode,
     );
-    NewHitaStorageService.to.objectBoxMsg
+    TrudaStorageService.to.objectBoxMsg
         .insertOrUpdateMsg(msgEntity, setRead: true);
   }
 }

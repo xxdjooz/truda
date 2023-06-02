@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:agora_rtm/agora_rtm.dart';
 import 'package:truda/truda_common/truda_constants.dart';
 import 'package:truda/truda_database/entity/truda_her_entity.dart';
-import 'package:truda/truda_rtm/newhita_rtm_msg_entity.dart';
-import 'package:truda/truda_services/newhita_event_bus_bean.dart';
-import 'package:truda/truda_services/newhita_my_info_service.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_rtm/truda_rtm_msg_entity.dart';
+import 'package:truda/truda_services/truda_event_bus_bean.dart';
+import 'package:truda/truda_services/truda_my_info_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_app_rate.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
@@ -15,10 +15,10 @@ import '../truda_database/entity/truda_msg_entity.dart';
 import '../truda_entities/truda_host_entity.dart';
 import '../truda_http/truda_http_urls.dart';
 import '../truda_http/truda_http_util.dart';
-import '../truda_socket/newhita_socket_entity.dart';
+import '../truda_socket/truda_socket_entity.dart';
 
 void handleMsg(AgoraRtmMessage message, String peerId) {
-  final String myId = NewHitaMyInfoService.to.userLogin?.userId ?? "emptyId";
+  final String myId = TrudaMyInfoService.to.userLogin?.userId ?? "emptyId";
   final int milliseconds = DateTime.now().millisecondsSinceEpoch;
   NewHitaLog.debug('rtm message come !! \npeerId: $peerId \n$message');
   final String text = message.text;
@@ -26,7 +26,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
   final bool offline = message.offline;
 
   /// text字符窜有我们定义的消息
-  NewHitaRTMText msg = NewHitaRTMText.fromJson(json.decode(text));
+  TrudaRTMText msg = TrudaRTMText.fromJson(json.decode(text));
   var her = msg.userInfo;
 
   /// 缓存主播信息用于聊天页面 -1是aic 9999是系统消息
@@ -34,8 +34,8 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
     if (her.portrait != null && her.name != null) {
       var entity =
           TrudaHerEntity(her.name ?? '', her.uid!, portrait: her.portrait);
-      NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
-      NewHitaStorageService.to.eventBus.fire(entity);
+      TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
+      TrudaStorageService.to.eventBus.fire(entity);
     } else {
       // 发现服务端下发的话术消息只有id,"userInfo":{"auth":2,"uid":"108172243"}
       TrudaHttpUtil().post<TrudaHostDetail>(TrudaHttpUrls.upDetailApi + her.uid!,
@@ -44,8 +44,8 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       }).then((value) {
         var entity = TrudaHerEntity(value.nickname ?? '', her.uid!,
             portrait: value.portrait);
-        NewHitaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
-        NewHitaStorageService.to.eventBus.fire(entity);
+        TrudaStorageService.to.objectBoxMsg.putOrUpdateHer(entity);
+        TrudaStorageService.to.eventBus.fire(entity);
       });
     }
   }
@@ -75,7 +75,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       return;
     }
     // 电话涉黄警告
-    NewHitaStorageService.to.eventBus.fire(NewHitaEventCommon(0, ""));
+    TrudaStorageService.to.eventBus.fire(TrudaEventCommon(0, ""));
     return;
   }
 
@@ -100,11 +100,11 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
   }
 
   /// begincall
-  if (msgType == NewHitaRTMMsgBeginCall.typeCode) {
-    NewHitaRTMMsgBeginCall beginCall = NewHitaRTMMsgBeginCall.fromJson(jsonMap);
-    NewHitaStorageService.to.eventBus.fire(beginCall);
+  if (msgType == TrudaRTMMsgBeginCall.typeCode) {
+    TrudaRTMMsgBeginCall beginCall = TrudaRTMMsgBeginCall.fromJson(jsonMap);
+    TrudaStorageService.to.eventBus.fire(beginCall);
     return;
-  } else if (msgType == NewHitaRTMMsgAIB.typeCode) {
+  } else if (msgType == TrudaRTMMsgAIB.typeCode) {
     // if (NewHitaConstants.isFakeMode) {
     //   // 审核模式
     //   return;
@@ -120,7 +120,7 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
     //
     // TrudaRemoteController.startMeAib(aib.userId!, messageContent);
     return;
-  } else if (msgType == NewHitaRTMMsgAIC.typeCode) {
+  } else if (msgType == TrudaRTMMsgAIC.typeCode) {
     // if (NewHitaConstants.isFakeMode) {
     //   // 审核模式
     //   return;
@@ -142,14 +142,14 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
 
     /// 等级提升，充值加钻
     /// 只要有余额变动就会发这个，socket的balanceChanged消息也一样
-    NewHitaSocketEntity entity = NewHitaSocketEntity.fromJson(jsonMap);
-    NewHitaSocketBalance socketBalance =
-        NewHitaSocketBalance.fromJson(json.decode(entity.data!));
+    TrudaSocketEntity entity = TrudaSocketEntity.fromJson(jsonMap);
+    TrudaSocketBalance socketBalance =
+        TrudaSocketBalance.fromJson(json.decode(entity.data!));
     var changeState = -1;
     var myDiamonds =
-        NewHitaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
+        TrudaMyInfoService.to.myDetail?.userBalance?.remainDiamonds ?? 0;
     var newDiamonds = socketBalance.diamonds;
-    var price = NewHitaMyInfoService.to.config?.chargePrice ?? 60;
+    var price = TrudaMyInfoService.to.config?.chargePrice ?? 60;
     if (myDiamonds >= price && newDiamonds < price) {
       // 我的钻石从60以上掉到60以下的情况
       // NewHitaHttpUtil().post(NewHitaHttpUrls.initRobotApi);
@@ -159,26 +159,26 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       changeState = 0;
     }
     // 更新缓存信息
-    NewHitaMyInfoService.to.handleBalanceChange(socketBalance);
+    TrudaMyInfoService.to.handleBalanceChange(socketBalance);
 
     if (changeState > -1) {
-      NewHitaStorageService.to.eventBus
-          .fire(NewHitaEventCanCallStateChange(changeState));
+      TrudaStorageService.to.eventBus
+          .fire(TruaEventCanCallStateChange(changeState));
     }
 
-    NewHitaMyInfoService.to.handleBalanceChange(socketBalance);
+    TrudaMyInfoService.to.handleBalanceChange(socketBalance);
     // TrudaUserLevelUpdate.checkToShow(socketBalance.expLevel);
     return;
-  } else if (msgType == NewHitaRTMMsgCallState.typeCode) {
+  } else if (msgType == TrudaRTMMsgCallState.typeCode) {
     if (TrudaConstants.isFakeMode) {
       // 审核模式
       return;
     }
 
     /// 发来的通话记录
-    NewHitaRTMMsgCallState callState = NewHitaRTMMsgCallState.fromJson(jsonMap);
+    TrudaRTMMsgCallState callState = TrudaRTMMsgCallState.fromJson(jsonMap);
     if (her != null && her.uid != null) {
-      NewHitaStorageService.to.objectBoxCall.savaCallHistory(
+      TrudaStorageService.to.objectBoxCall.savaCallHistory(
           herId: her.uid ?? '',
           herVirtualId: '',
           channelId: '',
@@ -195,33 +195,33 @@ void handleMsg(AgoraRtmMessage message, String peerId) {
       return;
     }
 
-    NewHitaRTMMsgGift msgGift = NewHitaRTMMsgGift.fromJson(jsonMap);
-    NewHitaStorageService.to.eventBus.fire(msgGift);
+    TrudaRTMMsgGift msgGift = TrudaRTMMsgGift.fromJson(jsonMap);
+    TrudaStorageService.to.eventBus.fire(msgGift);
     return;
   }
   // 下面是聊天消息各类型
   final typeList = [
     // 收到电话状态
-    NewHitaRTMMsgCallState.typeCode,
+    TrudaRTMMsgCallState.typeCode,
     // 收到文字
-    NewHitaRTMMsgText.typeCode,
+    TrudaRTMMsgText.typeCode,
     // 收到图片
-    ...NewHitaRTMMsgPhoto.typeCodes,
+    ...TrudaRTMMsgPhoto.typeCodes,
     // 收到声音
-    ...NewHitaRTMMsgVoice.typeCodes
+    ...TrudaRTMMsgVoice.typeCodes
   ];
   TrudaMsgEntity msgEntity;
   if (typeList.contains(msgType)) {
     msgEntity = TrudaMsgEntity(
         myId, peerId, 1, "", milliseconds, messageContent, msgType);
-    if (msgType == NewHitaRTMMsgText.typeCode) {
-      NewHitaRTMMsgText textMsg = NewHitaRTMMsgText.fromJson(jsonMap);
+    if (msgType == TrudaRTMMsgText.typeCode) {
+      TrudaRTMMsgText textMsg = TrudaRTMMsgText.fromJson(jsonMap);
       msgEntity.content = textMsg.text ?? "";
     }
-    if (NewHitaRTMMsgVoice.typeCodes.contains(msgType)) {
-      NewHitaRTMMsgVoice textMsg = NewHitaRTMMsgVoice.fromJson(jsonMap);
+    if (TrudaRTMMsgVoice.typeCodes.contains(msgType)) {
+      TrudaRTMMsgVoice textMsg = TrudaRTMMsgVoice.fromJson(jsonMap);
       msgEntity.content = (textMsg.duration ?? 0).toString();
     }
-    NewHitaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msgEntity);
+    TrudaStorageService.to.objectBoxMsg.insertOrUpdateMsg(msgEntity);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 
 import '../../../truda_database/entity/truda_conversation_entity.dart';
 import '../../../truda_entities/truda_hot_entity.dart';

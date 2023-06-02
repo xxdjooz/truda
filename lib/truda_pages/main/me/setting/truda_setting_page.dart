@@ -10,7 +10,7 @@ import '../../../../truda_common/truda_colors.dart';
 import '../../../../truda_common/truda_common_dialog.dart';
 import '../../../../truda_common/truda_constants.dart';
 import '../../../../truda_dialogs/truda_dialog_search.dart';
-import '../../../../truda_routes/newhita_pages.dart';
+import '../../../../truda_routes/truda_pages.dart';
 import '../../../../truda_widget/newhita_app_bar.dart';
 import '../../../../truda_widget/newhita_decoration_bg.dart';
 import '../../../login/account/truda_account_pasaword_page.dart';
@@ -34,7 +34,7 @@ class TrudaSettingPage extends GetView<TrudaSettingController> {
                   color: Colors.blue,
                 ),
                 onTap: () async {
-                  var result = await Get.toNamed(NewHitaAppPages.test);
+                  var result = await Get.toNamed(TrudaAppPages.test);
                   NewHitaLog.debug('NewHitaSettingPage test result=$result');
                 },
               )
@@ -128,7 +128,7 @@ class TrudaSettingPage extends GetView<TrudaSettingController> {
                 _wItemSet(
                   title: TrudaLanguageKey.newhita_setting_about_us.tr,
                   onTap: () {
-                    Get.toNamed(NewHitaAppPages.aboutUs);
+                    Get.toNamed(TrudaAppPages.aboutUs);
                   },
                 ),
                 _wItemSet(
@@ -145,13 +145,13 @@ class TrudaSettingPage extends GetView<TrudaSettingController> {
                 _wItemSet(
                   title: TrudaLanguageKey.newhita_setting_black_list.tr,
                   onTap: () {
-                    Get.toNamed(NewHitaAppPages.blackList);
+                    Get.toNamed(TrudaAppPages.blackList);
                   },
                 ),
                 _wItemSet(
                   title: TrudaLanguageKey.newhita_story_mine.tr,
                   onTap: () {
-                    Get.toNamed(NewHitaAppPages.myMoment);
+                    Get.toNamed(TrudaAppPages.myMoment);
                   },
                 ),
                 _wItemSet(

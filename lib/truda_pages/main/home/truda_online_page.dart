@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../truda_common/truda_colors.dart';
-import '../../../truda_routes/newhita_pages.dart';
+import '../../../truda_routes/truda_pages.dart';
 import '../../../truda_widget/newhita_home_tab_bar.dart';
 import 'truda_host_widget.dart';
 import 'truda_hot_controller.dart';

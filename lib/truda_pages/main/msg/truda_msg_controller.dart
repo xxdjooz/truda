@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:truda/truda_services/newhita_storage_service.dart';
+import 'package:truda/truda_services/truda_storage_service.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 
 import '../../../truda_common/truda_constants.dart';
@@ -11,10 +11,10 @@ import '../../../truda_database/entity/truda_her_entity.dart';
 import '../../../truda_database/entity/truda_msg_entity.dart';
 import '../../../truda_http/truda_http_urls.dart';
 import '../../../truda_http/truda_http_util.dart';
-import '../../../truda_services/newhita_event_bus_bean.dart';
-import '../../../truda_utils/ad/newhita_ads_native_utils.dart';
-import '../../../truda_utils/ad/newhita_ads_rewarded_utils.dart';
-import '../../../truda_utils/ad/newhita_ads_utils.dart';
+import '../../../truda_services/truda_event_bus_bean.dart';
+import '../../../truda_utils/ad/truda_ads_native_utils.dart';
+import '../../../truda_utils/ad/truda_ads_rewarded_utils.dart';
+import '../../../truda_utils/ad/truda_ads_utils.dart';
 import '../../../truda_utils/newhita_loading.dart';
 
 class TrudaMsgController extends GetxController {
@@ -25,13 +25,13 @@ class TrudaMsgController extends GetxController {
   /// event bus 监听
   late final StreamSubscription<TrudaMsgEntity> sub;
   late final StreamSubscription<TrudaHerEntity> subHer;
-  late final StreamSubscription<NewHitaEventMsgClear> subClear;
+  late final StreamSubscription<TrudaEventMsgClear> subClear;
 
   ///激励广告工具类
-  late NewHitaAdsRewardedUtils rewardedUtils;
+  late TrudaAdsRewardedUtils rewardedUtils;
 
   ///本地广告工具类
-  late NewHitaAdsNativeUtils nativeUtils;
+  late TrudaAdsNativeUtils nativeUtils;
   // 上次加载广告时间
   var lastLoadReward = 0;
   @override
@@ -39,13 +39,13 @@ class TrudaMsgController extends GetxController {
     super.onInit();
     NewHitaLog.good("NewHitaMsgController onInit()");
 
-    rewardedUtils = NewHitaAdsRewardedUtils(
-        NewHitaAdsUtils.getAdCode(NewHitaAdsUtils.REWARD_ONE_MESSAGE_CHAT), () {
+    rewardedUtils = TrudaAdsRewardedUtils(
+        TrudaAdsUtils.getAdCode(TrudaAdsUtils.REWARD_ONE_MESSAGE_CHAT), () {
       lastLoadReward = DateTime.now().millisecondsSinceEpoch;
       update();
     });
-    nativeUtils = NewHitaAdsNativeUtils(
-        NewHitaAdsUtils.getAdCode(NewHitaAdsUtils.NATIVE_CONVERSATION_LIST), () {
+    nativeUtils = TrudaAdsNativeUtils(
+        TrudaAdsUtils.getAdCode(TrudaAdsUtils.NATIVE_CONVERSATION_LIST), () {
       update();
     });
 
@@ -65,20 +65,20 @@ class TrudaMsgController extends GetxController {
     super.onReady();
 
     /// event bus 监听
-    sub = NewHitaStorageService.to.eventBus.on<TrudaMsgEntity>().listen((event) {
+    sub = TrudaStorageService.to.eventBus.on<TrudaMsgEntity>().listen((event) {
       _getList();
     });
-    subHer = NewHitaStorageService.to.eventBus.on<TrudaHerEntity>().listen((event) {
+    subHer = TrudaStorageService.to.eventBus.on<TrudaHerEntity>().listen((event) {
       _getList();
     });
     subClear =
-        NewHitaStorageService.to.eventBus.on<NewHitaEventMsgClear>().listen((event) {
+        TrudaStorageService.to.eventBus.on<TrudaEventMsgClear>().listen((event) {
       NewHitaLog.good("NewHitaMsgController subClear");
       _getList();
     });
 
     if (TrudaConstants.appMode != 0) {
-      NewHitaStorageService.to.objectBoxMsg.make10000().then((value) {
+      TrudaStorageService.to.objectBoxMsg.make10000().then((value) {
         NewHitaLog.good("NewHitaMsgController make10000 = $value");
       }).whenComplete(() => _getList());
     } else {
@@ -93,7 +93,7 @@ class TrudaMsgController extends GetxController {
   void _getList() {
     dataList.clear();
     time = DateTime.now().millisecondsSinceEpoch;
-    var list = NewHitaStorageService.to.objectBoxMsg.queryHostCon(time);
+    var list = TrudaStorageService.to.objectBoxMsg.queryHostCon(time);
     NewHitaLog.debug("NewHitaMsgController _getList() length=${list.length}");
     dataList.addAll(list);
     // update(['list']);
@@ -105,8 +105,8 @@ class TrudaMsgController extends GetxController {
   void handleBlack(String herId) {
     if (herId == TrudaConstants.serviceId){
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(herId, true);
-      NewHitaStorageService.to.objectBoxMsg.make10000().then((value) {
+      TrudaStorageService.to.updateBlackList(herId, true);
+      TrudaStorageService.to.objectBoxMsg.make10000().then((value) {
         NewHitaLog.good("NewHitaMsgController make10000 = $value");
       }).whenComplete(() => _getList());
       return;
@@ -116,7 +116,7 @@ class TrudaMsgController extends GetxController {
           NewHitaLoading.toast(err.message);
         }).then((value) {
       NewHitaLoading.toast(TrudaLanguageKey.newhita_base_success.tr);
-      NewHitaStorageService.to.updateBlackList(herId, value == 1);
+      TrudaStorageService.to.updateBlackList(herId, value == 1);
       refresh();
     });
   }

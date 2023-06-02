@@ -21,9 +21,9 @@ class NewHitaFirebaseManager {
 // import '../truda_entities/truda_host_entity.dart';
 // import '../truda_http/truda_http_urls.dart';
 // import '../truda_http/truda_http_util.dart';
-// import '../truda_rtm/newhita_rtm_msg_entity.dart';
-// import '../truda_services/newhita_my_info_service.dart';
-// import '../truda_services/newhita_storage_service.dart';
+// import '../truda_rtm/truda_rtm_msg_entity.dart';
+// import '../truda_services/truda_my_info_service.dart';
+// import '../truda_services/truda_storage_service.dart';
 // import 'newhita_log.dart';
 //
 // /**

@@ -10,8 +10,8 @@ import 'package:truda/truda_http/truda_http_util.dart';
 import 'package:truda/truda_utils/newhita_log.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
-import '../truda_services/newhita_app_info_service.dart';
-import '../truda_services/newhita_storage_service.dart';
+import '../truda_services/truda_app_info_service.dart';
+import '../truda_services/truda_storage_service.dart';
 import 'truda_constants.dart';
 
 class TrudaLanguageNetHelper {
@@ -66,20 +66,20 @@ class TrudaLanguageNetHelper {
       int configVersion = value.configVersion ?? 0;
 
       final downloadVersion =
-          NewHitaStorageService.to.prefs.getInt(downloadLangVersionKey) ?? -1;
+          TrudaStorageService.to.prefs.getInt(downloadLangVersionKey) ?? -1;
       if (configVersion > downloadVersion) {
         // 有新版本就下载
         _downLoadLanguageStr(languageurl, value.appNumber!).then((downLoad) {
           if (downLoad != null) {
-            NewHitaStorageService.to.prefs
+            TrudaStorageService.to.prefs
                 .setInt(downloadLangVersionKey, configVersion);
-            NewHitaStorageService.to.prefs.setString(downloadLangKey, downLoad);
+            TrudaStorageService.to.prefs.setString(downloadLangKey, downLoad);
             _useLanguage(downLoad, value.appNumber!);
           }
         });
       } else {
         // 没有新版本用下载好的
-        final data = NewHitaStorageService.to.prefs.getString(downloadLangKey);
+        final data = TrudaStorageService.to.prefs.getString(downloadLangKey);
         if (data != null) {
           _useLanguage(data, value.appNumber!);
         }
@@ -123,7 +123,7 @@ class TrudaLanguageNetHelper {
   // 把加密数据解密出来并转化成map
   static _useLanguage(String lang, int appNumber) async {
     final Map<String, String> map = {};
-    String appChannel = NewHitaAppInfoService.to.channelName;
+    String appChannel = TrudaAppInfoService.to.channelName;
     String appName = TrudaConstants.appNameLower;
     String hex = '0123456789ABCDEF';
     // 1 Android 0 ios
